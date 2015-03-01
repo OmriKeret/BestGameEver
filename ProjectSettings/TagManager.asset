@@ -3,14 +3,9 @@
 --- !u!78 &1
 TagManager:
   tags:
-  - Hat
-  - Bomb
-  - Bullet
   - Enemy
-  - 
-  - Scenery
-  - 
-  - Damager
+  - Podium
+  - Speedy
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
@@ -22,11 +17,11 @@ TagManager:
   Builtin Layer 7: 
   User Layer 8: Player
   User Layer 9: Enemy
-  User Layer 10: Bullet (Player)
-  User Layer 11: Bullet (Enemy)
-  User Layer 12: DestoyArea
-  User Layer 13: Scenery
-  User Layer 14: Columns
+  User Layer 10: Podium
+  User Layer 11: 
+  User Layer 12: 
+  User Layer 13: 
+  User Layer 14: 
   User Layer 15: 
   User Layer 16: 
   User Layer 17: 
@@ -48,28 +43,4 @@ TagManager:
   - name: Default
     userID: 0
     uniqueID: 0
-    locked: 0
-  - name: Background
-    userID: 1
-    uniqueID: 1959699241
-    locked: 0
-  - name: Midground
-    userID: 6
-    uniqueID: 2737215443
-    locked: 0
-  - name: Foreground
-    userID: 2
-    uniqueID: 404910065
-    locked: 0
-  - name: Sparks
-    userID: 3
-    uniqueID: 1369744519
-    locked: 0
-  - name: Bullet
-    userID: 4
-    uniqueID: 3567414253
-    locked: 0
-  - name: Player
-    userID: 5
-    uniqueID: 926194697
     locked: 0
