@@ -3,12 +3,15 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class Movement : MonoBehaviour {
-
+	public MissionController missionController;
+	public Toggle mission1;
+	public Toggle mission2;
 	public Text text;
 	public Text dynamicText;//Dynamic version 1.1.0
+	public Text DashNumber;
 	public bool DEBUG_MODE;
 	private float DASH_FORCE = GeneralPhysics.DASH_FORCE;
-	public float AFTER_DASH_MULTIPLIER = 0.25f;
+	public float AFTER_DASH_MULTIPLIER = 0.5f;
 	private int MAX_DASH_TIME = GeneralPhysics.DASH_TIME;
 	int dashTime;
 	public int MAX_DASH_NUM = 2;
@@ -27,27 +30,42 @@ public class Movement : MonoBehaviour {
 		dashTime  = MAX_DASH_TIME + 1;
 		bombPrefab = Resources.Load ("bomb4") as GameObject;
 		GeneralPhysics.placeWalls ();
+		DashNumber.text = "Dash Left: " + dashNum;
 	}
 
 	void OnCollisionEnter2D(Collision2D coll)
 	{
-		this.rigidbody2D.gravityScale = 1;
+		var tag = coll.gameObject.tag;
+		this.GetComponent<Rigidbody2D>().gravityScale = 1;
 		dashTime = MAX_DASH_TIME + 1;
-		if (coll.gameObject.tag.Equals ("Enemy")||coll.gameObject.tag.Equals ("Speedy")) {
-						score += 10;
-						streak++;
-						if (coll.gameObject.tag.Equals ("Speedy"))
-								score += 20;
-						
+		if ((coll.gameObject.tag.Equals ("Enemy") || coll.gameObject.tag.Equals ("Speedy")) && canKill ()) {
 
+			score += 10;
+			streak++;
+			if (coll.gameObject.tag.Equals ("Speedy"))
+				score += 20;
+				score += ((streak / SCORE_MULTIPLIER) * dashNum) * 10;	
+				GeneralPhysics.speedyCounetr++ ;
+				if(GeneralPhysics.speedyCounetr == 10) {
+				mission2.isOn = true;
+				missionController.completedMission();	
 				}
-		score += ((streak / SCORE_MULTIPLIER) * dashNum)*10;
+
+		} else {
+
+		}
+
 		dashNum = MAX_DASH_NUM;
 		if (DEBUG_MODE) {
 			Debug.Log ("Hit " + coll.gameObject.tag + "\nDash number reser to 0!");
 		}
-		if (streak == 10)
-						bomb = Instantiate (bombPrefab) as GameObject;
+		if (streak == 10){
+			bomb = Instantiate (bombPrefab) as GameObject;
+			mission1.isOn = true;
+			missionController.completedMission();
+		}
+
+		DashNumber.text = "Dash Left: " + dashNum;
 
 	}
 
@@ -55,20 +73,20 @@ public class Movement : MonoBehaviour {
 	void Update () {
 		if (transform.position.y < GeneralPhysics.BOTTOM_EDGE-2) {
 			death();
-				}
-		if (Input.GetButtonDown ("Fire1")) {
+			}
+		if (Input.GetButtonDown ("Fire1") && !GeneralPhysics.isPaused) {
 						dash(getPressDirection ());
 
 				}
 		if (dashTime < MAX_DASH_TIME)
 						dashTime++;
-				else if (dashTime == MAX_DASH_TIME) {
+		else if (dashTime == MAX_DASH_TIME) {
 			dashTime++;
 			//rigidbody2D.velocity = new Vector2(0,0);
-			rigidbody2D.gravityScale = 1;
-			Vector2 currentVelocity = rigidbody2D.velocity;
-			rigidbody2D.velocity = new Vector2(0,0);
-			rigidbody2D.AddForce(AFTER_DASH_MULTIPLIER*currentVelocity.normalized*DASH_FORCE);
+			GetComponent<Rigidbody2D>().gravityScale = 1;
+			Vector2 currentVelocity = GetComponent<Rigidbody2D>().velocity;
+			GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
+			GetComponent<Rigidbody2D>().AddForce(AFTER_DASH_MULTIPLIER*currentVelocity.normalized*DASH_FORCE);
 				}
 
 		text.text = "Score: "+score.ToString()+"\nStreak: "+streak.ToString();
@@ -125,14 +143,16 @@ public class Movement : MonoBehaviour {
 				Debug.Log("dash: Passed maximum ammount of dashes");
 			return;
 				}
-		this.rigidbody2D.gravityScale = 0;
-		rigidbody2D.velocity = new Vector3 (0, 0, 0);
-		rigidbody2D.AddForce (location*DASH_FORCE);
+		this.GetComponent<Rigidbody2D>().gravityScale = 0.01f;
+		GetComponent<Rigidbody2D>().velocity = new Vector3 (0, 0, 0);
+		GetComponent<Rigidbody2D>().AddForce (location*DASH_FORCE);
 		if (DEBUG_MODE)
 			Debug.Log("dash: Dashing in "+location*DASH_FORCE);
 		dashNum--;
 		if (streak == 0 && bomb != null)
 			Destroy (bomb);
+
+		DashNumber.text = "Dash Left: " + dashNum;
 	}
 
 	void death(){
@@ -153,4 +173,12 @@ public class Movement : MonoBehaviour {
 						GeneralPhysics.highScore = score;
 		score = 0;
 		}
+
+	private bool canKill() {
+		Rigidbody2D controller = this.GetComponent<Rigidbody2D>();
+		float overallSpeed = controller.velocity.magnitude;
+		Debug.Log("Magnitude is: "+ overallSpeed);
+		return GeneralPhysics.MagnitudeToKill < overallSpeed;
+
+	}
 }

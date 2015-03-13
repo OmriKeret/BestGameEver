@@ -22,7 +22,7 @@ public class SpeedyScript : MonoBehaviour {
 	}
 	
 	void OnCollisionEnter2D(Collision2D coll){
-		if (coll.gameObject.tag.Equals ("Player"))
+		if (coll.gameObject.tag.Equals ("Player")  && canKill (coll.rigidbody))
 			death ();
 	}
 	
@@ -32,24 +32,31 @@ public class SpeedyScript : MonoBehaviour {
 			if (GeneralPhysics.onSpot (this.transform.position, destination))
 				Destroy(this.gameObject);
 			else {
-				if (rigidbody2D.velocity.magnitude<MAX_SPEED)
-					rigidbody2D.AddForce (destination-transform.position.normalized*1000);
+				if (GetComponent<Rigidbody2D>().velocity.magnitude<MAX_SPEED)
+					GetComponent<Rigidbody2D>().AddForce (destination-transform.position.normalized*1000);
 			}
 		} else
-			rigidbody2D.velocity = new Vector2 (0, 0);
+			GetComponent<Rigidbody2D>().velocity = new Vector2 (0, 0);
 	}
 	
 	public void death(){
 		if (leftPart != null) {
 			GameObject left = Instantiate (leftPart, transform.position, Quaternion.identity) as GameObject;
-			left.rigidbody2D.AddForce (new Vector2 (-10, -10));
+			left.GetComponent<Rigidbody2D>().AddForce (new Vector2 (-10, -10));
 			Destroy (left, 1);
 		}
 		if (rightPart != null) {
 			GameObject right = Instantiate (rightPart, transform.position, Quaternion.identity) as GameObject;
-			right.rigidbody2D.AddForce (new Vector2 (10, -10));
+			right.GetComponent<Rigidbody2D>().AddForce (new Vector2 (10, -10));
 			Destroy (right, 1);
 		}
 		Destroy (this.gameObject);
+	}
+
+	private bool canKill(Rigidbody2D controller) {
+		float overallSpeed = controller.velocity.magnitude;
+		Debug.Log("Magnitude is: " + overallSpeed);
+		return GeneralPhysics.MagnitudeToKill < overallSpeed;
+		
 	}
 }

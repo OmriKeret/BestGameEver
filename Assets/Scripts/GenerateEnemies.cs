@@ -29,7 +29,7 @@ public class GenerateEnemies : MonoBehaviour {
 			case 0 :tutorialEnemy = Instantiate(Enemy,new Vector3(4,3,0),Quaternion.identity) as GameObject;
 
 				Destroy(Instantiate(Arrows[0]),1f);
-				tutorialEnemy.rigidbody2D.isKinematic=true;
+				tutorialEnemy.GetComponent<Rigidbody2D>().isKinematic=true;
 				tutorialCounter++;break;
 			case 1: Time.timeScale = 1f;
 
@@ -39,14 +39,14 @@ public class GenerateEnemies : MonoBehaviour {
 					Destroy(Instantiate(Arrows[4],new Vector3(5,-2,0),Quaternion.identity),2);
 				}
 					break;
-			case 2:tutorialEnemy = Instantiate(Enemy,new Vector3(-6,2,0),Quaternion.identity) as GameObject;
+			case 2:tutorialEnemy = Instantiate(Enemy,new Vector3(-4,2,0),Quaternion.identity) as GameObject;
 				Time.timeScale = 0.7f;
 				Destroy(Instantiate(Arrows[1]),1f);
-				tutorialEnemy.rigidbody2D.isKinematic=true;tutorialCounter++;break;
+				tutorialEnemy.GetComponent<Rigidbody2D>().isKinematic=true;tutorialCounter++;break;
 			case 3: if (tutorialEnemy==null)
 				tutorialCounter++;break;
-			case 4:tutorialEnemy = Instantiate(Enemy,new Vector3(7,3,0),Quaternion.identity) as GameObject;
-				tutorialEnemy.rigidbody2D.isKinematic=true;
+			case 4:tutorialEnemy = Instantiate(Enemy,new Vector3(5,3,0),Quaternion.identity) as GameObject;
+				tutorialEnemy.GetComponent<Rigidbody2D>().isKinematic=true;
 				Destroy(Instantiate(Arrows[2]),1f);
 				Destroy(Instantiate(Arrows[3]),1f);
 				tutorialCounter++;break;

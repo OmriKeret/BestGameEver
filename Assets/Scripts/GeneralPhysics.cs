@@ -2,16 +2,17 @@
 using System.Collections;
 
 public class GeneralPhysics : MonoBehaviour {
-
-	public static float RIGHT_EDGE = 9.75f;
+	public static int speedyCounetr = 0;
+	public static float RIGHT_EDGE = 8.75f;
 	public static float LEFT_EDGE = -RIGHT_EDGE;
 	public static float TOP_EDGE = 5.8f;
 	public static float BOTTOM_EDGE = -TOP_EDGE;
 	public static float DELTA_FLOAT = 0.5f;
-	public static bool isTutorialMode = true;
+	public static bool isTutorialMode = false;
 	public static int highScore=0,highStreak=0;
-	public static int DASH_FORCE=1300, DASH_TIME=20;
-
+	public static int DASH_FORCE=850, DASH_TIME=20;
+	public static float MagnitudeToKill = 3f;
+	public static bool isPaused;
 	public static Vector3 getRandomLocation(){
 		return new Vector3 (Random.Range (LEFT_EDGE, RIGHT_EDGE), Random.Range (BOTTOM_EDGE, TOP_EDGE));
 	}
