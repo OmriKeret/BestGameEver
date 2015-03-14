@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GeneralPhysics : MonoBehaviour {
 	public static int speedyCounetr = 0;
-	public static float RIGHT_EDGE = 8.75f;
+	public static float RIGHT_EDGE = 9.75f;
 	public static float LEFT_EDGE = -RIGHT_EDGE;
 	public static float TOP_EDGE = 5.8f;
 	public static float BOTTOM_EDGE = -TOP_EDGE;
