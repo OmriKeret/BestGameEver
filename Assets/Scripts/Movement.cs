@@ -14,7 +14,7 @@ public class Movement : MonoBehaviour {
 	public float AFTER_DASH_MULTIPLIER = 0.5f;
 	private int MAX_DASH_TIME = GeneralPhysics.DASH_TIME;
 	int dashTime;
-	public int MAX_DASH_NUM = 2;
+	public int MAX_DASH_NUM = 20;
 	private int dashNum;
 	public static int score = 0;
 	private static int streak = 0;
@@ -36,7 +36,10 @@ public class Movement : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D coll)
 	{
 		var tag = coll.gameObject.tag;
-		this.GetComponent<Rigidbody2D>().gravityScale = 1;
+		Vector2 currentVelocity = GetComponent<Rigidbody2D>().velocity;
+		GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
+		//GetComponent<Rigidbody2D>().AddForce(currentVelocity *  -2.0f);
+	//	this.GetComponent<Rigidbody2D>().gravityScale = 1;
 		dashTime = MAX_DASH_TIME + 1;
 		if ((coll.gameObject.tag.Equals ("Enemy") || coll.gameObject.tag.Equals ("Speedy")) && canKill ()) {
 
@@ -71,13 +74,20 @@ public class Movement : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+
 		if (transform.position.y < GeneralPhysics.BOTTOM_EDGE-2) {
 			death();
 			}
 		if (Input.GetButtonDown ("Fire1") && !GeneralPhysics.isPaused) {
-						dash(getPressDirection ());
+			Time.timeScale = 0.4f;
+		}
+			if (Input.GetButtonUp ("Fire1") ) {
+			Time.timeScale = 1.0f;
+			dash (getPressDirection ());
 
-				}
+			}
+
+	//	Time.timeScale = 1.0f;
 		if (dashTime < MAX_DASH_TIME)
 						dashTime++;
 		else if (dashTime == MAX_DASH_TIME) {
@@ -122,7 +132,7 @@ public class Movement : MonoBehaviour {
 	{
 		Vector3 location = new Vector3(0,0,-500);
 
-		if (Input.GetButtonDown("Fire1")) {
+		if (Input.GetButtonUp("Fire1")) {
 			location = -transform.position;
 			location += Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			location.z = transform.position.z;
@@ -135,17 +145,28 @@ public class Movement : MonoBehaviour {
 
 	void dash(Vector3 location)
 	{
+		/*float distance = 1;
+		bool dashed = false;
+		Vector2 currentVelocity = GetComponent<Rigidbody2D>().velocity;
+		RaycastHit2D hit = Physics2D.Raycast(GetComponent<Rigidbody2D>().position, currentVelocity.normalized);
+		if (hit.collider != null && !hit.collider.tag.Equals("Player")) {
+		var distances = Vector2.Distance(hit.point, transform.position);
+		
+		}*/
 		dashTime = 0;
+			//var point = GetComponent<Rigidbody2D> ().centerOfMass ;
 		if (dashNum == 1)
 						resetStreak();
 		if (dashNum == 0) {
 			if (DEBUG_MODE)
 				Debug.Log("dash: Passed maximum ammount of dashes");
 			return;
-				}
-		this.GetComponent<Rigidbody2D>().gravityScale = 0.01f;
-		GetComponent<Rigidbody2D>().velocity = new Vector3 (0, 0, 0);
-		GetComponent<Rigidbody2D>().AddForce (location*DASH_FORCE);
+		}
+	//	if (!dashed) {
+			//this.GetComponent<Rigidbody2D>().gravityScale = 0.01f;
+			GetComponent<Rigidbody2D> ().velocity = new Vector3 (0, 0, 0);
+			GetComponent<Rigidbody2D> ().AddForce (location * DASH_FORCE);
+	//	}
 		if (DEBUG_MODE)
 			Debug.Log("dash: Dashing in "+location*DASH_FORCE);
 		dashNum--;
@@ -179,6 +200,9 @@ public class Movement : MonoBehaviour {
 		float overallSpeed = controller.velocity.magnitude;
 		Debug.Log("Magnitude is: "+ overallSpeed);
 		return GeneralPhysics.MagnitudeToKill < overallSpeed;
+	}
 
+	private IEnumerator  SlowMoDash(){
+		return null;
 	}
 }

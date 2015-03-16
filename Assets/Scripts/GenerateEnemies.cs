@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class GenerateEnemies : MonoBehaviour {
 
-	public int CREATION_FREQUENCY = 50;
+	public int CREATION_FREQUENCY = 25;
 	int counter, tutorialCounter;
 	GameObject Enemy,Speedy,tutorialEnemy;
 	GameObject[] Arrows;

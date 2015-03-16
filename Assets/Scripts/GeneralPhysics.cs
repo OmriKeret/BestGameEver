@@ -10,7 +10,7 @@ public class GeneralPhysics : MonoBehaviour {
 	public static float DELTA_FLOAT = 0.5f;
 	public static bool isTutorialMode = false;
 	public static int highScore=0,highStreak=0;
-	public static int DASH_FORCE=850, DASH_TIME=20;
+	public static int DASH_FORCE=2500, DASH_TIME=4;
 	public static float MagnitudeToKill = 3f;
 	public static bool isPaused;
 	public static Vector3 getRandomLocation(){
