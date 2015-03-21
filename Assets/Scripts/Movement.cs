@@ -108,14 +108,7 @@ public class Movement : MonoBehaviour {
 			DASH_FORCE++;
 
 		dynamicText.text = "Dash Force: " + DASH_FORCE + "\nDash Time: " + MAX_DASH_TIME;
-
-		/*
-		//Invisible walls
-		if (transform.position.x < GeneralPhysics.LEFT_EDGE)		
-			transform.position = new Vector3 (GeneralPhysics.RIGHT_EDGE - 0.1f, transform.position.y, transform.position.z);
-		else if (transform.position.x > GeneralPhysics.RIGHT_EDGE) 	
-			transform.position = new Vector3 (GeneralPhysics.LEFT_EDGE + 0.1f, transform.position.y, transform.position.z);
-			*/
+		
 	}
 
 	Vector3 getPressDirection()

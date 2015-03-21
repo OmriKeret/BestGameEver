@@ -10,7 +10,7 @@ public class GeneralPhysics : MonoBehaviour {
 	public static float DELTA_FLOAT = 0.5f;
 	public static bool isTutorialMode = false;
 	public static int highScore=0,highStreak=0;
-	public static int DASH_FORCE=850, DASH_TIME=20;
+	public static int DASH_FORCE=1600, DASH_TIME=4;
 	public static float MagnitudeToKill = 3f;
 	public static bool isPaused;
 	public static Vector3 getRandomLocation(){
@@ -46,8 +46,11 @@ public class GeneralPhysics : MonoBehaviour {
 	public static void placeWalls(){
 
 		GameObject wall = Resources.Load ("Wall") as GameObject;
+		GameObject ceiling = Resources.Load ("Ceiling") as GameObject;
 		Instantiate (wall, new Vector3(RIGHT_EDGE,0,0), Quaternion.identity);
 		Instantiate (wall, new Vector3(LEFT_EDGE,0,0), Quaternion.identity);
+		//Instantiate (ceiling, new Vector3(0,TOP_EDGE,0), Quaternion.identity);
+
 
 		}
 }
