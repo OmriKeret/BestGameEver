@@ -44,10 +44,12 @@ public class TouchInterpeter : MonoBehaviour {
 			case TouchPhase.Ended:
 
 				//touch is in pixels, we convert to unity world point
-				Vector2 realWorldTouch =  (Vector2)Camera.current.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y,  Camera.current.nearClipPlane));
-				direction = player.position - realWorldTouch;
+				Vector2 realWorldTouch =  (Vector2)Camera.main.ScreenToWorldPoint(touch.position);
+				Vector2 realWorldCharPos =  player.position;
+
+				direction = realWorldTouch - realWorldCharPos;
 				Debug.Log ("touch position: " + realWorldTouch);
-				Debug.Log ("player position: " + player.position);
+				Debug.Log ("player position: " + realWorldCharPos);
 				Debug.Log ("direction: " + direction);
  				directionChosen = true;
 				holdingScreen = false;
@@ -60,7 +62,8 @@ public class TouchInterpeter : MonoBehaviour {
 			}
 		}
 		if (directionChosen) {
-			PlayerMovmentController.Move(direction.normalized);
+			direction.Normalize();
+			PlayerMovmentController.Move(direction);
 			//playerMovmentController(direction);
 
 		}
