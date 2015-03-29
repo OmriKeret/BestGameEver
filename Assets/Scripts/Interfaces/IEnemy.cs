@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class IEnemy : MonoBehaviour {
+public interface IEnemy {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	void death();
+
+	Vector2 moveToPoint(Vector2 i_point);
+
+	Vector2 findPlayerLocation();
+
+
+
 }
