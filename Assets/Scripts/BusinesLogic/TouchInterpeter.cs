@@ -4,11 +4,14 @@ using System.Collections;
 public class TouchInterpeter : MonoBehaviour {
 
 	MovementController PlayerMovmentController;
+	PhyisicsController playerPhyisicsController;
 	Rigidbody2D player;
 	public Vector2 startPos;
 	public Vector2 direction;
+	Vector2 realWorldTouch;
 	// Use this for initialization
 	void Start () {
+		playerPhyisicsController = GameObject.Find("PlayerManager").GetComponent<PhyisicsController>();
 		PlayerMovmentController = GameObject.Find("PlayerManager").GetComponent<MovementController>();
 		player = GameObject.Find("PlayerManager").GetComponent<Rigidbody2D>();
 	}
@@ -24,7 +27,7 @@ public class TouchInterpeter : MonoBehaviour {
 			switch (touch.phase) {
 				// Record initial touch position.
 			case TouchPhase.Began:
-				//startPos = touch.position;
+				playerPhyisicsController.fingerHoldHover();
 				directionChosen = false;
 				holdingScreen = true;
 				break;
@@ -42,9 +45,9 @@ public class TouchInterpeter : MonoBehaviour {
 				
 				// Report that a direction has been chosen when the finger is lifted.
 			case TouchPhase.Ended:
-
+				playerPhyisicsController.StopHoverPhyisics();
 				//touch is in pixels, we convert to unity world point
-				Vector2 realWorldTouch =  (Vector2)Camera.main.ScreenToWorldPoint(touch.position);
+				realWorldTouch =  (Vector2)Camera.main.ScreenToWorldPoint(touch.position);
 				Vector2 realWorldCharPos =  player.position;
 
 				direction = realWorldTouch - realWorldCharPos;
@@ -54,6 +57,7 @@ public class TouchInterpeter : MonoBehaviour {
  				directionChosen = true;
 				holdingScreen = false;
 				break;
+
 			case TouchPhase.Canceled:
 				directionChosen = false;
 				holdingScreen = false;
@@ -63,7 +67,7 @@ public class TouchInterpeter : MonoBehaviour {
 		}
 		if (directionChosen) {
 			direction.Normalize();
-			PlayerMovmentController.Move(direction);
+			PlayerMovmentController.Move(direction, realWorldTouch);
 			//playerMovmentController(direction);
 
 		}

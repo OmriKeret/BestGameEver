@@ -20,9 +20,20 @@ public class PhyisicsController : MonoBehaviour {
 		physicsLogic.Reset (model);
 	}
 	
-	public void HoverPhyisics(){
+	public void AfterDashHover(){
 		ChangePhysicsModel model = new ChangePhysicsModel{player = this.gameObject.GetComponent<Rigidbody2D>()};
 		physicsLogic.Hover (model);
 		
+	}
+
+	public void fingerHoldHover(){
+		ChangePhysicsModel model = new ChangePhysicsModel{player = this.gameObject.GetComponent<Rigidbody2D>()};
+		physicsLogic.FingerHoldHover (model);
+		
+	}
+
+	public void StopHoverPhyisics(){
+		ChangePhysicsModel model = new ChangePhysicsModel{player = this.gameObject.GetComponent<Rigidbody2D>()};
+		physicsLogic.stopHover(model);
 	}
 }

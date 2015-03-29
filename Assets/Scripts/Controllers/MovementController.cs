@@ -35,11 +35,12 @@ public class MovementController : MonoBehaviour {
 		
 	}
 	
-	public void Move(Vector2 dir){
+	public void Move(Vector2 dir, Vector2 touch){
 		MoveCharacterModel model = new MoveCharacterModel
 						{ 
 						Direction = dir,
-						player = this.gameObject.GetComponent<Rigidbody2D>()
+						player = this.gameObject.GetComponent<Rigidbody2D>(),
+						touchPoint = touch
 						};
 		PlayerMovmentLogic.MoveCharacter (model);
 	}
