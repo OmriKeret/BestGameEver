@@ -17,7 +17,7 @@ public class TouchInterpeter : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
 		bool directionChosen = false;
 		bool holdingScreen = false;
 		bool stopHover = false;
@@ -51,9 +51,6 @@ public class TouchInterpeter : MonoBehaviour {
 				Vector2 realWorldCharPos =  player.position;
 
 				direction = realWorldTouch - realWorldCharPos;
-				Debug.Log ("touch position: " + realWorldTouch);
-				Debug.Log ("player position: " + realWorldCharPos);
-				Debug.Log ("direction: " + direction);
  				directionChosen = true;
 				holdingScreen = false;
 				break;
@@ -69,6 +66,7 @@ public class TouchInterpeter : MonoBehaviour {
 			direction.Normalize();
 			PlayerMovmentController.Move(direction, realWorldTouch);
 			//playerMovmentController(direction);
+			directionChosen = false;
 
 		}
 		if (holdingScreen) {

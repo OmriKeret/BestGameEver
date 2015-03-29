@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class PhysicsLogic : MonoBehaviour {
-	public float HoverTime = 100f;
+	public float HoverTime = 0.3f;
 	float startHoverTime;
 	Rigidbody2D character;
 	bool hover;
@@ -39,7 +39,6 @@ public class PhysicsLogic : MonoBehaviour {
 		afterDashHover = true;
 		startHoverTime = Time.fixedTime;
 		character = model.player;
-		character.gravityScale = 0.01f;
 	}
 
 	public void FingerHoldHover(ChangePhysicsModel model){

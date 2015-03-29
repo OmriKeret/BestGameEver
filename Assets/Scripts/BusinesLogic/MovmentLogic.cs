@@ -4,8 +4,8 @@ using System.Collections;
 public class MovmentLogic : MonoBehaviour {
 	PhysicsLogic physicsLogic;
 	PhyisicsController phyisicsController;
-	public float dashTime = 1f;
-	public float speed = 0.5f;
+	public float dashTime = 2f;
+	public float speed = 50f;
 	bool moveChar;
 	Vector2 current;
 	Vector2 target;
@@ -22,7 +22,7 @@ public class MovmentLogic : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		if (moveChar) {
-
+			phyisicsController.StopHoverPhyisics();
 			if(Time.fixedTime - startTime < dashTime && ((Vector2)character.transform.position != target) && step != dashDist) {
 				step += speed * Time.fixedDeltaTime;
 				step = step < dashDist ? step : dashDist ;
@@ -42,16 +42,15 @@ public class MovmentLogic : MonoBehaviour {
 		current = model.player.transform.position;
 		character = model.player;
 		target = new Vector2 (model.touchPoint.x, model.touchPoint.y);
-		//model.player.transform.position = Vector2.MoveTowards(model.player.transform.position ,new Vector2(model.touchPoint.x, model.touchPoint.y) , 3);
 		//model.player.AddForce (model.Direction * 600);
 		Debug.Log ("adding force in " + model.Direction + "direction");
 	}
 	public void HoverCharacter(MoveCharacterModel model){
 		//moving 
-		phyisicsController.fingerHoldHover ();
+	//	phyisicsController.fingerHoldHover ();
 	}
 	public void StopHoverCharacter(MoveCharacterModel model){
 		//moving 
-		phyisicsController.StopHoverPhyisics ();
+	//	phyisicsController.StopHoverPhyisics ();
 	}
 }
