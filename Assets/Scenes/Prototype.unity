@@ -238,7 +238,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e64823346cfacb44699a0aecc5c4699c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyHitForce: 150
+  enemyHitForce: 100
+  impactTimeOnPlayer: .5
 --- !u!1 &618581481
 GameObject:
   m_ObjectHideFlags: 0
@@ -722,7 +723,7 @@ GameObject:
   - 61: {fileID: 2143793142}
   m_Layer: 0
   m_Name: Podium
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
