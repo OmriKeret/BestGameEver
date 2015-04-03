@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyPhysicsController : MonoBehaviour {
+public class StipudAIContoller : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -12,5 +12,4 @@ public class EnemyPhysicsController : MonoBehaviour {
 	void Update () {
 	
 	}
-
 }
