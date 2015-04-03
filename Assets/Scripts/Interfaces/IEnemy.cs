@@ -9,6 +9,10 @@ public interface IEnemy {
 
 	Vector2 findPlayerLocation();
 
+	void setStats(EnemyGeneralStats i_stats);
 
+	void moveInDirection(Vector2 i_direction);
+
+	void split(Vector2 i_location);
 
 }
