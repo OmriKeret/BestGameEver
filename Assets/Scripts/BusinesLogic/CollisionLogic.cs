@@ -46,6 +46,7 @@ public class CollisionLogic : MonoBehaviour  {
 		Debug.Log ("________________________________");
 		model.impactForce.x += XForce * Mathf.Sign(model.impactForce.x);
 		model.impactForce.y -= YForce;//model.impactForce.y;
+		model.impactForce.y = model.impactForce.y < -20 ? -20 : model.impactForce.y;
 		model.subject.AddForce (model.impactForce);
 		return model;
 	}
