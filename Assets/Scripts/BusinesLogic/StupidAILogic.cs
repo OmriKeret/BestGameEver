@@ -13,6 +13,7 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
 		_rigidbody = GetComponent<Rigidbody2D> ();
 		_leftBodyPartResouce = Resources.Load ("leftStupidEnemy") as GameObject;
 		_rightBodyPartResouce = Resources.Load ("rightStupidEnemy") as GameObject;
+		GetComponent<Rigidbody2D> ().gravityScale = 0;
 	}
 	
 	// Update is called once per frame
@@ -22,7 +23,7 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
 
 	//TODO:
 	void IEnemy.death(){
-
+		Destroy (this.gameObject);
 		}
 
 	Vector2 IEnemy.moveToPoint(Vector2 point){

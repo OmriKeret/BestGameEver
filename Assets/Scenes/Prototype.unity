@@ -238,6 +238,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e64823346cfacb44699a0aecc5c4699c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  YForce: 0
+  XForce: 0
   enemyHitForce: 100
   impactTimeOnPlayer: .5
 --- !u!1 &618581481
@@ -673,7 +675,7 @@ Transform:
   m_LocalScale: {x: 6.52499056, y: 5.51999569, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
 --- !u!50 &1810197825
 Rigidbody2D:
   m_ObjectHideFlags: 0

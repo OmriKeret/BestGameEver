@@ -7,7 +7,7 @@ public class EnemyGeneralStats : MonoBehaviour {
 	protected int life;
 	protected const int BASIC_HP_DOWN = 1;
 	protected const int BASIC_HP = 1;
-	public float MAX_SPEED = 10f;
+	public float MAX_SPEED = 50f;
 	public Vector2 leftSplitLocation;
 
 	void Start () {
