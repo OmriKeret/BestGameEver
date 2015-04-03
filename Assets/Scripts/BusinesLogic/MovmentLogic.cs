@@ -15,7 +15,7 @@ public class MovmentLogic : MonoBehaviour {
 	float step;
 	// Use this for initialization
 	void Start () {
-		physicsLogic = this.gameObject.GetComponent<PhysicsLogic> ();
+	//	physicsLogic = this.gameObject.GetComponent<PhysicsLogic> ();
 		phyisicsController = GameObject.Find("PlayerManager").GetComponent<PhyisicsController>();
 	}
 	
@@ -43,14 +43,18 @@ public class MovmentLogic : MonoBehaviour {
 		character = model.player;
 		target = new Vector2 (model.touchPoint.x, model.touchPoint.y);
 		//model.player.AddForce (model.Direction * 600);
-		Debug.Log ("adding force in " + model.Direction + "direction");
+	//	Debug.Log ("adding force in " + model.Direction + "direction");
 	}
 	public void HoverCharacter(MoveCharacterModel model){
 		//moving 
-	//	phyisicsController.fingerHoldHover ();
+		phyisicsController.fingerHoldHover ();
 	}
 	public void StopHoverCharacter(MoveCharacterModel model){
 		//moving 
-	//	phyisicsController.StopHoverPhyisics ();
+		phyisicsController.StopHoverPhyisics ();
+	}
+	public void StopMoving(){
+		moveChar = false;
+
 	}
 }
