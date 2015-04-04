@@ -3,7 +3,7 @@ using System.Collections;
 
 public class StupidAILogic : MonoBehaviour , IEnemy{
 
-	EnemyGeneralStats _stats;
+	AEnemyStats _stats;
 	Rigidbody2D _rigidbody;
 	GameObject _leftBodyPartResouce,_rightBodyPartResouce;
 	GameObject _leftBodyPart,_rightBodyPart;
@@ -35,7 +35,7 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
 		return new Vector2(0,0);
 	}
 
-	public void setStats(EnemyGeneralStats i_stats){
+	public void setStats(AEnemyStats i_stats){
 		_stats = i_stats;
 	}
 
