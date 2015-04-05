@@ -4,18 +4,22 @@ using System.Collections;
 public class AIController : MonoBehaviour {
 
 	private IEnemy _logic;
-	private EnemyGeneralStats _stats;
+	private AEnemyStats _stats;
 	Vector2 _creationLocation, _movementDirection;
 	public CollisionFacade collisionFacade;
+    public EnemyType type;
+
+    public enum EnemyType { Stupid=1}
 
 	// Use this for initialization
 	void Start () {
 		//TODO: change type to something general
+        
 		_logic = gameObject.AddComponent<StupidAILogic> ();
-		_stats = gameObject.AddComponent<EnemyGeneralStats> ();
-		_logic.setStats (_stats);
+		_stats = gameObject.AddComponent<StupidGeneralStats> ();
+		_logic.SetStats (_stats);
 		_creationLocation = transform.position;
-		_movementDirection = _logic.moveToPoint (_creationLocation);
+		_movementDirection = _logic.MoveToPoint (_creationLocation);
 		collisionFacade = new CollisionFacade ();
 	
 	}
@@ -43,7 +47,7 @@ public class AIController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		_logic.moveInDirection (_movementDirection);
+		_logic.MoveInDirection (_movementDirection);
 
 	}
 

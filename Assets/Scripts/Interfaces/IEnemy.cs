@@ -3,16 +3,16 @@ using System.Collections;
 
 public interface IEnemy {
 
-	void death();
+	void Death();
 
-	Vector2 moveToPoint(Vector2 i_point);
+	Vector2 MoveToPoint(Vector2 i_point);
 
-	Vector2 findPlayerLocation();
+	Vector2 FindPlayerLocation();
 
-	void setStats(EnemyGeneralStats i_stats);
+	void SetStats(AEnemyStats i_stats);
 
-	void moveInDirection(Vector2 i_direction);
+	void MoveInDirection(Vector2 i_direction);
 
-	void split(Vector2 i_location);
+	void Split(Vector2 i_location);
 
 }
