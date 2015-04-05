@@ -9,16 +9,20 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
 	GameObject _leftBodyPart,_rightBodyPart;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		_rigidbody = GetComponent<Rigidbody2D> ();
-		_leftBodyPartResouce = Resources.Load ("leftStupidEnemy") as GameObject;
-		_rightBodyPartResouce = Resources.Load ("rightStupidEnemy") as GameObject;
+		_leftBodyPartResouce = Resources.Load ("stupidL") as GameObject;
+		_rightBodyPartResouce = Resources.Load ("stupidR") as GameObject;
 		GetComponent<Rigidbody2D> ().gravityScale = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	void FixedUpdate() {
+
 	}
 
 	//TODO:
@@ -40,7 +44,7 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
 	}
 
 	void IEnemy.moveInDirection(Vector2 i_direction){
-		if (_rigidbody.velocity.magnitude<_stats.MAX_SPEED){
+		if (_rigidbody.velocity.magnitude < _stats.MAX_SPEED){
 			_rigidbody.AddForce(i_direction);
 		}
 	}

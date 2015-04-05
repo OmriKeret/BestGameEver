@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PhysicsLogic : MonoBehaviour {
 	public float HoverTime = 0.3f;
+	public float playerGravityScale = 5f;
 	float startHoverTime;
 	Rigidbody2D character;
 	bool hover;
@@ -20,7 +21,7 @@ public class PhysicsLogic : MonoBehaviour {
 				}
 				//wait
 			} else {
-				character.gravityScale = 1f;
+				character.gravityScale = playerGravityScale;
 				hover = false;
 				afterDashHover = false;
 			}
@@ -28,7 +29,7 @@ public class PhysicsLogic : MonoBehaviour {
 	}
 
 	public void Reset(ChangePhysicsModel model){
-		model.player.gravityScale = 1f;
+		model.player.gravityScale = playerGravityScale;
 		hover = false;
 		//consider items
 
@@ -49,7 +50,7 @@ public class PhysicsLogic : MonoBehaviour {
 	}
 
 	public void stopHover(ChangePhysicsModel model){
-		model.player.gravityScale = 1f;
+		model.player.gravityScale = playerGravityScale;
 		hover = false;
 		afterDashHover = false;
 	}

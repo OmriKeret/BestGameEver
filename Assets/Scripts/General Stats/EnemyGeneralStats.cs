@@ -11,7 +11,7 @@ public class EnemyGeneralStats : MonoBehaviour {
 	public Vector2 leftSplitLocation;
 
 	void Start () {
-				leftSplitLocation = new Vector2 (10, 0);
+				leftSplitLocation = new Vector2 (-50, 0);
 		}
 
 

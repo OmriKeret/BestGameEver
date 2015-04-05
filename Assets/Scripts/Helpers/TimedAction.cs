@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 public class TimedAction : MonoBehaviour {
 	public Rigidbody2D subject;
+	public GameObject collidedWith;
 	public float fixedTimeStart;
 	public float durationTime;
 	public Vector2 impactForc;
@@ -14,10 +15,12 @@ public class TimedAction : MonoBehaviour {
 	void FixedUpdate(){
 		if (isRunning) {
 			if(Time.fixedTime - fixedTimeStart < durationTime) {
-				moveAfterCollisionModel = moveAfterCollisionModel ?? new MoveAfterCollisionModel{subject = this.subject,impactForce = this.impactForc};
-				moveAfterCollisionModel = whileGoingDo(moveAfterCollisionModel);
+				if(whileGoingDo != null){
+					moveAfterCollisionModel = moveAfterCollisionModel ?? new MoveAfterCollisionModel{subject = this.subject,impactForce = this.impactForc};
+					moveAfterCollisionModel = whileGoingDo(moveAfterCollisionModel);
+				}
 			} else {
-				stopingFunc.Invoke(new StopAfterCollisionModel{subject = this.subject });
+				stopingFunc.Invoke(new StopAfterCollisionModel{subject = this.subject , collidedWith = this.collidedWith});
 				Destroy(this);
 			}
 		}
@@ -30,6 +33,7 @@ public class TimedAction : MonoBehaviour {
 		this.durationTime = model.durationTime;
 		stopingFunc = model.stopingFunc;
 		whileGoingDo = model.whileGoingDo;
+		collidedWith = model.collidedWith;
 		isRunning = true;
 	}
 }

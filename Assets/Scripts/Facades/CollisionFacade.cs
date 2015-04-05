@@ -15,19 +15,23 @@ public class CollisionFacade {
 	private void buildDictionray(){
 		collisionDictionary = new Dictionary<PairModel<string,string>,Action<CollisionModel>> 	
 		{ 
-			{ PairModel.New<string,string>("Enemy","Player") , collisionLogic.playerCollideWithEnemy },
-			{ PairModel.New<string,string>("Enemy","Enemy") , collisionLogic.playerCollideWithEnemy },
-			{ PairModel.New<string,string>("Enemy","Wall") , collisionLogic.playerCollideWithEnemy },
-			{ PairModel.New<string,string>("Player","Wall") , collisionLogic.playerCollideWithEnemy },
+			{ PairModel.New<string,string>("Enemy","Player") , collisionLogic.EnemyCollidedWithPlayer },
+			{ PairModel.New<string,string>("Enemy","Enemy") , doNothing },
+			{ PairModel.New<string,string>("Enemy","Wall") , doNothing},
+			{ PairModel.New<string,string>("Player","Wall") , doNothing },
 			{ PairModel.New<string,string>("Player","Enemy") , collisionLogic.playerCollideWithEnemy },
 		};
 
 
 	}
 
+	public void doNothing(CollisionModel model) {
+		return;
+	}
 	public void Collision(CollisionModel model) {
 		var pair = PairModel.New<string,string> (model.mainCollider.tag, model.CollidedWith.tag);
-		collisionDictionary[pair].Invoke(model);
+		if (collisionDictionary.ContainsKey (pair)) {
+			collisionDictionary [pair].Invoke (model);
+		}
 	}
-
 }
