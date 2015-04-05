@@ -23,11 +23,16 @@ public class AIController : MonoBehaviour {
 		if (coll.gameObject.tag == "Player") {
 			_stats.lifeDown();
 			if (_stats.isDead())
-				_logic.death();
+				death();
 				}
 
 		
 	}
+
+	void death(){
+		_logic.split (transform.position);
+		_logic.death ();
+		}
 
 	// Update is called once per frame
 	void Update () {
