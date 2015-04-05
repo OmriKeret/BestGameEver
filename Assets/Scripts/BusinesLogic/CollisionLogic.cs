@@ -73,8 +73,8 @@ public class CollisionLogic : MonoBehaviour  {
 		var enemyController = model.mainCollider.GetComponent<AIController> ();
 		var enemy = model.mainCollider.GetComponent<IEnemy> ();
 		var position = (Vector2)model.mainCollider.transform.position ;
-		enemy.death ();
-		enemy.split (position);
+		enemy.Death ();
+		enemy.Split (position);
 	/*	this.gameObject.AddComponent<TimedAction>().doByTime(new TimeActionModel { 
 			subject = model.mainCollider.GetComponent<Rigidbody2D>(),
 			fixedTimeStart = Time.fixedTime,

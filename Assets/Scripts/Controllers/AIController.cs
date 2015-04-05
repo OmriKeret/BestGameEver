@@ -42,7 +42,7 @@ public class AIController : MonoBehaviour {
 
 	public void death(StopAfterCollisionModel s){
 		//_logic.split (transform.position);
-		_logic.death ();
+		_logic.Death ();
 		}
 
 	// Update is called once per frame
