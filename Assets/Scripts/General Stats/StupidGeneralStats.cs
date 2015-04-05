@@ -10,5 +10,7 @@ public class StupidGeneralStats : AEnemyStats {
 		life = BASIC_HP;
 		}
 
+    
+
 
 }

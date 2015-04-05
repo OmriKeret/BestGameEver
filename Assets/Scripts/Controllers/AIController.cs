@@ -6,16 +6,20 @@ public class AIController : MonoBehaviour {
 	private IEnemy _logic;
 	private AEnemyStats _stats;
 	Vector2 _creationLocation, _movementDirection;
+    public EnemyType type;
 
+
+    public enum EnemyType { Stupid=1}
 
 	// Use this for initialization
 	void Start () {
 		//TODO: change type to something general
+        
 		_logic = gameObject.AddComponent<StupidAILogic> ();
 		_stats = gameObject.AddComponent<StupidGeneralStats> ();
-		_logic.setStats (_stats);
+		_logic.SetStats (_stats);
 		_creationLocation = transform.position;
-		_movementDirection = _logic.moveToPoint (_creationLocation);
+		_movementDirection = _logic.MoveToPoint (_creationLocation);
 	
 	}
 
@@ -30,13 +34,13 @@ public class AIController : MonoBehaviour {
 	}
 
 	void death(){
-		_logic.split (transform.position);
-		_logic.death ();
+		_logic.Split (transform.position);
+		_logic.Death ();
 		}
 
 	// Update is called once per frame
 	void Update () {
-		_logic.moveInDirection (_movementDirection);
+		_logic.MoveInDirection (_movementDirection);
 
 	}
 }
