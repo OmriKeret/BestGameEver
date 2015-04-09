@@ -17,6 +17,7 @@ public class MovmentLogic : MonoBehaviour {
 	void Start () {
 	//	physicsLogic = this.gameObject.GetComponent<PhysicsLogic> ();
 		phyisicsController = GameObject.Find("PlayerManager").GetComponent<PhyisicsController>();
+		character = GameObject.Find("PlayerManager").GetComponent<Rigidbody2D>();
 	}
 	
 	// Update is called once per frame
@@ -24,9 +25,11 @@ public class MovmentLogic : MonoBehaviour {
 		if (moveChar) {
 			phyisicsController.StopHoverPhyisics();
 			if(Time.fixedTime - startTime < dashTime && ((Vector2)character.transform.position != target) && step != dashDist) {
+
 				step += speed * Time.fixedDeltaTime;
 				step = step < dashDist ? step : dashDist ;
 				character.transform.position = Vector2.MoveTowards (current, target, step);
+
 			} else {
 				moveChar = false;
 				phyisicsController.AfterDashHover();
@@ -54,6 +57,7 @@ public class MovmentLogic : MonoBehaviour {
 		phyisicsController.StopHoverPhyisics ();
 	}
 	public void StopMoving(){
+		character.velocity = new Vector2 (0,0);
 		moveChar = false;
 
 	}
