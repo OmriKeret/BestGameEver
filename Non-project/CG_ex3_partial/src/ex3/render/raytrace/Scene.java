@@ -10,6 +10,7 @@ import java.util.Scanner;
 import Shapes.Ishape;
 import Shapes.Sphere;
 import ex3.parser.StringUtils;
+import math.Intersection;
 import math.Point3D;
 import math.Ray;
 import math.Vec;
@@ -62,7 +63,7 @@ public class Scene implements IInitable {
 	 * @param ray
 	 * @return
 	 */
-	public void findIntersection(Ray ray) {
+	public Intersection findIntersection(Ray ray) {
 		//TODO find ray intersection with scene, change the output type, add whatever you need
 		Point3D t;
 		Point3D min_t = null;
@@ -74,14 +75,25 @@ public class Scene implements IInitable {
 				min_t = t;
 			}
 		}
-		return Intersection(min_t, min_primitive)
+		return new Intersection(min_t, min_primitive);
 		
 		
 	}
 
-	public Vec calcColor(Ray ray, int level) {
+	public Color calcColor(Ray ray, int level) {
 		//TODO implement ray tracing recursion here, add whatever you need
-		return null;
+		
+		// Ambient and Emission calculations
+		Color color = calcEmissionColor(scene) +
+		calcAmbientColor(scene);
+		// Diffuse & Specular calculations
+		for (int i = 0; i < getNumLights(scene); i++) {
+		Light light = getLight(i,scene);
+		color += calcDiffuseColor(scene,hit,light) +
+		calcSpecularColor(scene,hit,light);
+		}
+		return color;
+
 	}
 
 	/**
