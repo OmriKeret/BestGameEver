@@ -41,7 +41,7 @@ public class Scene implements IInitable {
 
 	public Scene() {
 
-		surfaces = new LinkedList<Ishape>();
+		shapes = new LinkedList<Ishape>();
 		lights = new LinkedList<Light>();
 		camera = new Camera();
 	}
@@ -88,10 +88,9 @@ public class Scene implements IInitable {
 		Color color = calcEmissionColor(scene) +
 		calcAmbientColor(scene);
 		// Diffuse & Specular calculations
-		for (int i = 0; i < getNumLights(scene); i++) {
-		Light light = getLight(i,scene);
-		color += calcDiffuseColor(scene,hit,light) +
-		calcSpecularColor(scene,hit,light);
+		for (Light light : lights) {
+			color += calcDiffuseColor(scene,hit,light) +
+			calcSpecularColor(hit,light);
 		}
 		return color;
 
