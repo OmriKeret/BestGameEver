@@ -38,6 +38,8 @@ public class RayTracer implements IRenderer {
 	@Override
 	public void init(SceneDescriptor sceneDesc, int width, int height, File path) {
         _scene = new Scene();
+        _height = height;
+        _width = width;
         Map<String,String> attributes;
         _canvas = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
         try {
@@ -55,6 +57,7 @@ public class RayTracer implements IRenderer {
 		_scene.setCameraAttributes(sceneDesc.getCameraAttributes());
 
 
+
 	}
 
 	/**
@@ -70,7 +73,8 @@ public class RayTracer implements IRenderer {
 	public void renderLine(BufferedImage canvas, int line) {
         try {
             if (line>_height)
-                throw new Exception("Line is out of bound");
+                throw new Exception("Line is out of bound\n" +
+                        "Asked for line "+line+" but there are only "+_height+" lines in the canvas");
             for (int pixelNumber = 0; pixelNumber<_width;pixelNumber++){
                 Ray ray = _camera.constructRayThroughPixel(pixelNumber,line,_width,_height);
                 _scene.findIntersection(ray);
@@ -85,4 +89,15 @@ public class RayTracer implements IRenderer {
 
 	}
 
+<<<<<<< HEAD
+    private void setBgColor(BufferedImage i_canvas, Color i_color){
+        for(int i=0;i<i_canvas.getHeight();i++){
+            for (int j=0;j<_canvas.getWidth();j++){
+                i_canvas.setRGB(j,i,i_color.getRGB());
+            }
+        }
+    }
+
+=======
+>>>>>>> 520615bdd9454844f26e3668089e580b79860253
 }

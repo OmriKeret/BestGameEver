@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CG_ex3_partial:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CG_ex3_partial_jar</output-path>
+    <root id="archive" name="CG_ex3_partial.jar">
+      <element id="module-output" name="CG_ex3_partial" />
+      <element id="module-output" name="Ex3" />
+      <element id="extracted-dir" path="$APPLICATION_HOME_DIR$/lib/junit-4.11.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
