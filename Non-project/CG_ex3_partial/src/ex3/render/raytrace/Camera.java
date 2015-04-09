@@ -3,6 +3,7 @@ package ex3.render.raytrace;
 import java.util.Map;
 
 import ex3.parser.StringUtils;
+import math.Axis3D;
 import math.Point3D;
 import math.Ray;
 import math.Vec;
@@ -16,15 +17,13 @@ public class Camera implements IInitable{
 
     private Point3D _P0,_Pc;
     private Vec _Vto,_Vup, _Vright;
+    private Axis3D _axisSystem;
     private double _d, _Rx,_Ry, R;
 
 	public void init(Map<String, String> attributes) {
         try {
             _P0 = StringUtils.String2Point(attributes.get("eye"));
-            _Vup = StringUtils.String2Vector(attributes.get("up-direction"));
-            _Vto = StringUtils.String2Vector(attributes.get("direction"));
-            _Vright = null;
-            Vec.PrependiculerAndNormalized(_Vto,_Vup,_Vright);
+
             _d = Double.parseDouble(attributes.get("screen-dist"));
         }
         catch (Exception e){
@@ -77,6 +76,16 @@ public class Camera implements IInitable{
         Vec V = _P0.GetVectorToPoint(P);
         V.normalize();
         return V;
+    }
+
+    private void fixAxis(Map<String,String> attributes) throws Exception{
+        _Vup = StringUtils.String2Vector(attributes.get("up-direction"));
+        _Vto = StringUtils.String2Vector(attributes.get("direction"));
+        _Vright = null;
+        _axisSystem = new Axis3D(_Vto,_Vup);
+        _Vto = _axisSystem.get_Vto();
+        _Vup = _axisSystem.get_Vup();
+        _Vright = _axisSystem.get_Vright();
     }
 
 	

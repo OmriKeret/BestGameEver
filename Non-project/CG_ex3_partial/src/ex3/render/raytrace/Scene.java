@@ -22,7 +22,7 @@ import math.Vec;
 public class Scene implements IInitable {
 
 //TODO add members
-	protected List<Surface> surfaces;
+
 	protected List<Light> lights;
 	protected Camera camera;
 	
@@ -38,7 +38,7 @@ public class Scene implements IInitable {
 
 	public Scene() {
 
-		surfaces = new LinkedList<Surface>();
+
 		lights = new LinkedList<Light>();
 		camera = new Camera();
 	}
