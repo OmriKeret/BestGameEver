@@ -30,12 +30,8 @@ public class StringUtils {
         if (!pointMatcher.matches())
             throw new Exception("The string "+i_stringPoint+" is not in a vector pattern!");
         elementMatcher = elementPattern.matcher(i_stringPoint);
-        String e1,e2,e3;
-        e1 = elementMatcher.group();
-        e2 = elementMatcher.group();
-        e3 = elementMatcher.group();
-
-        return new Point3D(Double.parseDouble(e1),Double.parseDouble(e2),Double.parseDouble(e3));
+        String[] e = i_stringPoint.split(" ");
+        return new Point3D(Double.parseDouble(e[0]),Double.parseDouble(e[1]),Double.parseDouble(e[2]));
 
     }
 
@@ -52,18 +48,14 @@ public class StringUtils {
         return P0.GetVectorToPoint(P1);
     }
     
-    public static Color string2Color(String stringColor) {
-    	if(stringColor == null) {
+    public static Color string2Color(String i_stringVector)throws Exception {
+        if(i_stringVector == null) {
     		
     		//return default
     		return new Color(0,0,0);
     	}
-    	Scanner s = new Scanner(stringColor);
-    	int x = s.nextInt();
-    	int y = s.nextInt(); 
-    	int z = s.nextInt();
-    	s.close();	
-    	return new Color(x,y,z);
+    	Point3D point = String2Point(i_stringVector);
+    	return new Color((int)(point.x*127),(int)(point.y*127),(int)(point.z*127));
     
     }
     

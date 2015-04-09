@@ -46,10 +46,15 @@ public class Scene implements IInitable {
 	public void init(Map<String, String> attributes) {
 	
 		//store xml scene properties in members
-		backgroundCol = StringUtils.string2Color(attributes.get("background-col"));
-		backgroundTex = StringUtils.string2File(attributes.get("background-tex"));
-		maxRecursionLevel =  StringUtils.string2Number(attributes.get("max-recursion-level"));
-		ambientLight = StringUtils.string2Color(attributes.get("ambient-light"));
+        try {
+            backgroundCol = StringUtils.string2Color(attributes.get("background-col"));
+            backgroundTex = StringUtils.string2File(attributes.get("background-tex"));
+            maxRecursionLevel = StringUtils.string2Number(attributes.get("max-recursion-level"));
+            ambientLight = StringUtils.string2Color(attributes.get("ambient-light"));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
 		
          //TODO: store xml bonus properties
 	}
