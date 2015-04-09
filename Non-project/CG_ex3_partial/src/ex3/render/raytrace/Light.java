@@ -2,6 +2,7 @@ package ex3.render.raytrace;
 
 import java.util.Map;
 
+import math.Point3D;
 import math.Vec;
 
 /**
@@ -27,7 +28,7 @@ public abstract class Light implements IInitable {
 		}
 	}
 
-    abstract public double get_intensity(double distance);
+    abstract public double get_intensity(Point3D i_point);
 
 	
 }
