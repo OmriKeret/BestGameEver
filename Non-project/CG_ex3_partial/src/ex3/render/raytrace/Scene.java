@@ -1,10 +1,13 @@
 package ex3.render.raytrace;
 
+import java.awt.Color;
+import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import ex3.parser.StringUtils;
 import math.Point3D;
 import math.Ray;
 import math.Vec;
@@ -19,21 +22,36 @@ import math.Vec;
 public class Scene implements IInitable {
 
 //TODO add members
-	//protected List<Surface> surfaces;
-	//protected List<Light> lights;
-	//protected Camera camera;
-
+	protected List<Surface> surfaces;
+	protected List<Light> lights;
+	protected Camera camera;
+	
+	//Scene params
+	private Color backgroundCol = new Color(0,0,0);
+	private File backgroundTex = null;
+	private int maxRecursionLevel = 10;
+	private Color ambientLight = new Color(0,0,0);
+	
+	//bonus params
+	private int superSampWidth = 1;
+	
 
 	public Scene() {
 
-		//surfaces = new LinkedList<Surface>();
-		//lights = new LinkedList<Light>();
-		//camera = new Camera();
+		surfaces = new LinkedList<Surface>();
+		lights = new LinkedList<Light>();
+		camera = new Camera();
 	}
 
 	public void init(Map<String, String> attributes) {
 	
-		//TODO store xml scene properties in members (parameters just below scene in the XML)
+		//store xml scene properties in members
+		backgroundCol = StringUtils.string2Color(attributes.get("background-col"));
+		backgroundTex = StringUtils.string2File(attributes.get("background-tex"));
+		maxRecursionLevel =  StringUtils.string2Number(attributes.get("max-recursion-level"));
+		ambientLight = StringUtils.string2Color(attributes.get("ambient-light"));
+		
+         //TODO: store xml bonus properties
 	}
 
 	/**
@@ -44,6 +62,9 @@ public class Scene implements IInitable {
 	 */
 	public void findIntersection(Ray ray) {
 		//TODO find ray intersection with scene, change the output type, add whatever you need
+		
+		
+		
 	}
 
 	public Vec calcColor(Ray ray, int level) {

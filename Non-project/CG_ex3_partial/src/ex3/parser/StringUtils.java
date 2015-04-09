@@ -3,6 +3,9 @@ package ex3.parser;
 import math.Point3D;
 import math.Vec;
 
+import java.awt.Color;
+import java.io.File;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,6 +50,48 @@ public class StringUtils {
         Point3D P0 = new Point3D();
         Point3D P1 = String2Point(i_stringVector);
         return P0.GetVectorToPoint(P1);
-
     }
+    
+    public static Color string2Color(String stringColor) {
+    	if(stringColor == null) {
+    		
+    		//return default
+    		return new Color(0,0,0);
+    	}
+    	Scanner s = new Scanner(stringColor);
+    	int x = s.nextInt();
+    	int y = s.nextInt(); 
+    	int z = s.nextInt();
+    	s.close();	
+    	return new Color(x,y,z);
+    
+    }
+    
+    public static File string2File(String fileName) {
+    	if(fileName == null) {
+    
+    		//return default
+    		return null;
+    	}
+    	File file = new File(fileName);
+    	if(!file.isFile()) {
+    		System.err.println("Given texture file doesn't exists: " + fileName);
+    		return null;
+    	}
+    	return file;
+    
+    }
+    public static int string2Number(String number) {
+    	if(number == null) {
+    		
+    		//return default
+    		return 10;
+    	}
+    	Scanner s = new Scanner(number);
+    	int x = s.nextInt();
+    	s.close();	
+    	return x;
+    
+    }
+
 }
