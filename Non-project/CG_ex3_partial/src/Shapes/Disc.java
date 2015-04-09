@@ -17,7 +17,18 @@ public class Disc implements Ishape {
 	}
 	@Override
 	public Point3D intersectWithRay(Ray ray) {
-		return null;
+		double t = (normal.dotProd(ray.p.GetVectorToPoint(center))) / (normal.dotProd(ray.v));
+		Vec temp = new Vec(ray.v);
+		if(t < 0 || normal.dotProd(ray.v) == 0) {
+			return null;
+		}
+		temp.scale(t);
+		Point3D intersactionPoint = ray.p.addVector(temp);
+		temp = center.GetVectorToPoint(intersactionPoint);
+		if(temp.dotProd(temp) > radius * radius) {
+			return null;
+		}
+		return intersactionPoint;
 		
 	}
 	
