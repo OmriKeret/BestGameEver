@@ -357,7 +357,7 @@ public class Vec {
      * @param i_v3 is null!
      */
     public static void PrependiculerAndNormalized(Vec i_v1,Vec i_v2, Vec i_v3){
-        i_v1.normalize();
+    	i_v1.normalize();
         i_v3 = crossProd(i_v1,i_v2);
         i_v3.normalize();
         i_v2 = crossProd(i_v1,i_v3);
