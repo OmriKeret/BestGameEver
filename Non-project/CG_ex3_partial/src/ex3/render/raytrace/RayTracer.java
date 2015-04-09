@@ -1,7 +1,6 @@
 package ex3.render.raytrace;
 
 import java.awt.*;
-import java.awt.datatransfer.StringSelection;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileReader;
@@ -9,7 +8,6 @@ import java.util.Map;
 
 import ex3.parser.Element;
 import ex3.parser.SceneDescriptor;
-import ex3.parser.StringUtils;
 import ex3.render.IRenderer;
 import math.Ray;
 import math.Vec;
@@ -45,10 +43,7 @@ public class RayTracer implements IRenderer {
         Map<String,String> attributes;
         _canvas = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
         try {
-
             attributes = sceneDesc.getSceneAttributes();
-            Color bgColor = StringUtils.string2Color(attributes.get("background-col"));
-            setBgColor(_canvas,bgColor);
             _scene.init(attributes);
         }
         catch (Exception e){
@@ -94,6 +89,7 @@ public class RayTracer implements IRenderer {
 
 	}
 
+<<<<<<< HEAD
     private void setBgColor(BufferedImage i_canvas, Color i_color){
         for(int i=0;i<i_canvas.getHeight();i++){
             for (int j=0;j<_canvas.getWidth();j++){
@@ -102,4 +98,6 @@ public class RayTracer implements IRenderer {
         }
     }
 
+=======
+>>>>>>> 520615bdd9454844f26e3668089e580b79860253
 }
