@@ -1,14 +1,25 @@
 package ex3.render.raytrace;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileReader;
+import java.util.Map;
 
 import ex3.parser.Element;
 import ex3.parser.SceneDescriptor;
 import ex3.render.IRenderer;
+import math.Ray;
+import math.Vec;
 
 public class RayTracer implements IRenderer {
+    SceneDescriptor _sceneDec;
+    Scene _scene;
+    Camera _camera;
+    Light _ambient;
+    int _width,_height;
+    File _path;
+    BufferedImage _canvas;
 
 	/**
 	 * Inits the renderer with scene description and sets the target canvas to
@@ -26,23 +37,28 @@ public class RayTracer implements IRenderer {
 	 */
 	@Override
 	public void init(SceneDescriptor sceneDesc, int width, int height, File path) {
+        _scene = new Scene();
+        Map<String,String> attributes;
+        _canvas = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
         try {
-
+            attributes = sceneDesc.getSceneAttributes();
+            _scene.init(attributes);
         }
         catch (Exception e){
-            System.out.println(e);
+            e.printStackTrace();
         }
 		
-		//for (Element e : sceneDesc.getObjects()) {
-		//	scene.addObjectByName(e.getName(), e.getAttributes());
-		//}
+		for (Element e : sceneDesc.getObjects()) {
+			_scene.addObjectByName(e.getName(), e.getAttributes());
+		}
 		
-		//scene.setCameraAttributes(sceneDesc.getCameraAttributes());
+		_scene.setCameraAttributes(sceneDesc.getCameraAttributes());
+
 
 	}
 
 	/**
-	 * Renders the given line to the given canvas. Canvas is of the exact size
+	 * Renders the given line to the given canvas. Canvas is vcghvof the exact size
 	 * given to init. This method must be called only after init.
 	 * 
 	 * @param canvas
@@ -52,7 +68,21 @@ public class RayTracer implements IRenderer {
 	 */
 	@Override
 	public void renderLine(BufferedImage canvas, int line) {
-		// TODO Implement this
+        try {
+            if (line>_height)
+                throw new Exception("Line is out of bound");
+            for (int pixelNumber = 0; pixelNumber<_width;pixelNumber++){
+                Ray ray = _camera.constructRayThroughPixel(pixelNumber,line,_width,_height);
+                _scene.findIntersection(ray);
+                Vec colorVector = _scene.calcColor(ray, 1); //TODO: change the to intensity
+                Color color = new Color((int)colorVector.x,(int)colorVector.y,(int)colorVector.z);
+                canvas.setRGB(pixelNumber,line,color.getRGB());
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
 	}
 
 }
