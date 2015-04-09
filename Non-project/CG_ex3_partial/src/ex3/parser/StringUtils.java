@@ -81,14 +81,14 @@ public class StringUtils {
     	return file;
     
     }
-    public static int string2Number(String number) {
+    public static double string2Number(String number) {
     	if(number == null) {
     		
     		//return default
     		return 10;
     	}
     	Scanner s = new Scanner(number);
-    	int x = s.nextInt();
+    	double x = s.nextDouble();
     	s.close();	
     	return x;
     

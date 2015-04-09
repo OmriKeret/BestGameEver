@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import Shapes.Ishape;
+import Shapes.Sphere;
 import ex3.parser.StringUtils;
 import math.Point3D;
 import math.Ray;
@@ -22,7 +24,7 @@ import math.Vec;
 public class Scene implements IInitable {
 
 //TODO add members
-	protected List<Surface> surfaces;
+	protected List<Ishape> shapes;
 	protected List<Light> lights;
 	protected Camera camera;
 	
@@ -38,7 +40,7 @@ public class Scene implements IInitable {
 
 	public Scene() {
 
-		surfaces = new LinkedList<Surface>();
+		surfaces = new LinkedList<Ishape>();
 		lights = new LinkedList<Light>();
 		camera = new Camera();
 	}
@@ -48,7 +50,7 @@ public class Scene implements IInitable {
 		//store xml scene properties in members
 		backgroundCol = StringUtils.string2Color(attributes.get("background-col"));
 		backgroundTex = StringUtils.string2File(attributes.get("background-tex"));
-		maxRecursionLevel =  StringUtils.string2Number(attributes.get("max-recursion-level"));
+		maxRecursionLevel = (int)StringUtils.string2Number(attributes.get("max-recursion-level"));
 		ambientLight = StringUtils.string2Color(attributes.get("ambient-light"));
 		
          //TODO: store xml bonus properties
@@ -62,7 +64,17 @@ public class Scene implements IInitable {
 	 */
 	public void findIntersection(Ray ray) {
 		//TODO find ray intersection with scene, change the output type, add whatever you need
-		
+		Point3D t;
+		Point3D min_t = null;
+		Ishape min_primitive = null;
+		for(Ishape primitive : shapes) {
+			t = primitive.intersectWithRay(ray);
+			if (t.distance(ray.p) < min_t.distance(ray.p)) 
+				min_primitive = primitive;
+				min_t = t;
+			}
+		}
+		return Intersection(min_t, min_primitive)
 		
 		
 	}
@@ -77,18 +89,19 @@ public class Scene implements IInitable {
 	 * 
 	 * @param name Object's name
 	 * @param attributes Object's attributes
+	 * @throws Exception 
 	 */
-	public void addObjectByName(String name, Map<String, String> attributes) {
+	public void addObjectByName(String name, Map<String, String> attributes) throws Exception {
 		//TODO this adds all objects to scene except the camera
 		//here is some code example for adding a surface or a light. 
 		//you can change everything and if you don't want this method, delete it
 		
-//		Surface surface = null;
-//		Light light = null;
-//	
-//		if ("sphere".equals(name))
-//			surface = new Sphere();
-//		
+		Ishape surface = null;
+		Light light = null;
+	
+		if ("sphere".equals(name))
+			surface = new Sphere(attributes);
+		
 //		
 //		if ("omni-light".equals(name))
 //			light = new OmniLight();
@@ -109,6 +122,6 @@ public class Scene implements IInitable {
 
 	public void setCameraAttributes(Map<String, String> attributes) {
 		//TODO uncomment after implementing camera interface if you like
-		//this.camera.init(attributes);
+		this.camera.init(attributes);
 	}
 }
