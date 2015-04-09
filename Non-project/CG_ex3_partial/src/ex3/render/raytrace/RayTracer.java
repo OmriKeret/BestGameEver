@@ -74,7 +74,7 @@ public class RayTracer implements IRenderer {
             for (int pixelNumber = 0; pixelNumber<_width;pixelNumber++){
                 Ray ray = _camera.constructRayThroughPixel(pixelNumber,line,_width,_height);
                 _scene.findIntersection(ray);
-                Vec colorVector = _scene.calcColor(ray, 1); //TODO: change the to intensity
+                Vec colorVector = _scene.calcColor(ray, 1); //TODO: change the to _intensity
                 Color color = new Color((int)colorVector.x,(int)colorVector.y,(int)colorVector.z);
                 canvas.setRGB(pixelNumber,line,color.getRGB());
             }
