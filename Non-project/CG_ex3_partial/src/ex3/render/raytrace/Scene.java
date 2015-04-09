@@ -70,15 +70,16 @@ public class Scene implements IInitable {
 		Ishape min_primitive = null;
 		for(Ishape primitive : shapes) {
 			t = primitive.intersectWithRay(ray);
-			if (t.distance(ray.p) < min_t.distance(ray.p)) 
+			if (t.distance(ray.p) < min_t.distance(ray.p)) {
 				min_primitive = primitive;
 				min_t = t;
 			}
 		}
 		return new Intersection(min_t, min_primitive);
-		
-		
 	}
+
+		
+	
 
 	public Color calcColor(Ray ray, int level) {
 		//TODO implement ray tracing recursion here, add whatever you need
