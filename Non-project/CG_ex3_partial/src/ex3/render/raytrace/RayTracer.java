@@ -45,16 +45,16 @@ public class RayTracer implements IRenderer {
         try {
             attributes = sceneDesc.getSceneAttributes();
             _scene.init(attributes);
+            for (Element e : sceneDesc.getObjects()) {
+                _scene.addObjectByName(e.getName(), e.getAttributes());
+            }
         }
         catch (Exception e){
             e.printStackTrace();
         }
-		
-		for (Element e : sceneDesc.getObjects()) {
-			_scene.addObjectByName(e.getName(), e.getAttributes());
-		}
-		
+
 		_scene.setCameraAttributes(sceneDesc.getCameraAttributes());
+
 
 
 
