@@ -8,7 +8,7 @@ import math.Point3D;
 import math.Ray;
 import math.Vec;
 
-public class Sphere implements Ishape{
+public class Sphere extends Ishape{
 
 	//sphere basic params
 	public Point3D center;
@@ -26,7 +26,8 @@ public class Sphere implements Ishape{
 	}
 	
 	public Sphere(Map<String, String> attributes) throws Exception {
-		center = StringUtils.String2Point(attributes.get("center"));
+		init(attributes);
+        center = StringUtils.String2Point(attributes.get("center"));
 		radius = StringUtils.string2Number(attributes.get("radius"));
 	}
 
@@ -50,6 +51,6 @@ public class Sphere implements Ishape{
 		//TODO: add light and capture all in a model
 		return intersection.addVector(Vec.scale(t, ray.v));
 	}
-	
+
 
 }

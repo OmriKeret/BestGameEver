@@ -1,20 +1,30 @@
 package Shapes;
 
+import ex3.parser.StringUtils;
 import math.Point3D;
 import math.Ray;
 import math.Vec;
 
-public class Triangle implements Ishape{
+import java.util.Map;
+
+public class Triangle extends Ishape{
 
 	Point3D a;
 	Point3D b;
 	Point3D c;
 	
-	public Triangle(Point3D a, Point3D b, Point3D c) {
-		this.a = a;
-		this.b = b;
-		this.c = c;
+	public Triangle(Map<String,String> attributes) throws Exception{
+        init(attributes);
+		a = StringUtils.String2Point(attributes.get("p0"));
+		b = StringUtils.String2Point(attributes.get("p1"));
+		c = StringUtils.String2Point(attributes.get("p2"));
 	}
+
+    public Triangle(Point3D i_a,Point3D i_b,Point3D i_c){
+        a=i_a;
+        b=i_b;
+        c=i_c;
+    }
 	
 	@Override
 	public Point3D intersectWithRay(Ray ray) {
@@ -52,8 +62,8 @@ public class Triangle implements Ishape{
 		
 	    return pointOfIntersaction;
 	}
-	
-	private boolean PointInTriangle(Point3D p, Vec v1, Vec v2, Vec v3)
+
+    private boolean PointInTriangle(Point3D p, Vec v1, Vec v2, Vec v3)
 	{	
 		double    uu, uv, vv, wu, wv, D,s,t;
 		

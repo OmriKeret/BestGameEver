@@ -4,6 +4,7 @@ import ex3.parser.StringUtils;
 import math.Point3D;
 import math.Vec;
 
+import java.awt.*;
 import java.util.Map;
 
 /**
@@ -32,5 +33,10 @@ public class PointLight extends Light {
         double distance = _position.distance(i_point);
         double down = _kc+_kl*distance+_kq*distance*distance;
         return (_intensity/down);
+    }
+
+    @Override
+    public Vec getDirection(Point3D i_location) {
+        return i_location.GetVectorToPoint(_position);
     }
 }

@@ -4,6 +4,7 @@ import ex3.parser.StringUtils;
 import math.Point3D;
 import math.Vec;
 
+import java.awt.*;
 import java.util.Map;
 
 /**
@@ -29,4 +30,10 @@ public class DirectionalLight extends Light {
     public double get_intensity(Point3D i_point) {
         return _intensity;
     }
+
+    @Override
+    public Vec getDirection(Point3D i_location) {
+        return _direction;
+    }
+
 }
