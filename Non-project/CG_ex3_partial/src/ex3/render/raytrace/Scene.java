@@ -1,11 +1,11 @@
 package ex3.render.raytrace;
 
 import java.awt.Color;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 
 import Shapes.Ishape;
 import Shapes.Sphere;
@@ -14,6 +14,7 @@ import math.Intersection;
 import math.Point3D;
 import math.Ray;
 import math.Vec;
+
 /**
  * A Scene class containing all the scene objects including camera, lights and
  * surfaces. Some suggestions for code are in comment
@@ -30,10 +31,10 @@ public class Scene implements IInitable {
 	protected Camera camera;
 	
 	//Scene params
-	private Color backgroundCol = new Color(0,0,0);
-	private File backgroundTex = null;
-	private int maxRecursionLevel = 10;
-	private Color ambientLight = new Color(0,0,0);
+	private Color _backgroundCol = new Color(0,0,0);
+	private File _backgroundTex = null;
+	private int _maxRecursionLevel = 10;
+	private Vec _ambientLight = new Vec(0,0,0);
 	
 	//bonus params
 	private int superSampWidth = 1;
@@ -49,13 +50,28 @@ public class Scene implements IInitable {
 	public void init(Map<String, String> attributes) {
 	
 		//store xml scene properties in members
-		backgroundCol = StringUtils.string2Color(attributes.get("background-col"));
-		backgroundTex = StringUtils.string2File(attributes.get("background-tex"));
-		maxRecursionLevel = (int)StringUtils.string2Number(attributes.get("max-recursion-level"));
-		ambientLight = StringUtils.string2Color(attributes.get("ambient-light"));
+        try {
+            _backgroundCol = StringUtils.string2Color(attributes.get("background-col"));
+            _backgroundTex = StringUtils.string2File(attributes.get("background-tex"));
+            _maxRecursionLevel = (int) StringUtils.string2Number(attributes.get("max-recursion-level"));
+            _ambientLight = StringUtils.String2Vector(attributes.get("ambient-light"));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
 		
          //TODO: store xml bonus properties
 	}
+
+    public void colorBackground(BufferedImage canvas){
+        for (int x=0;x<canvas.getWidth();x++){
+            for (int y=0;y<canvas.getHeight();y++){
+                canvas.setRGB(x,y,_backgroundCol.getRGB());
+            }
+        }
+
+    }
 
 	/**
 	 * Send ray return the nearest intersection. Return null if no intersection
@@ -82,19 +98,24 @@ public class Scene implements IInitable {
 	
 
 	public Color calcColor(Ray ray, int level) {
-		//TODO implement ray tracing recursion here, add whatever you need
-		
-		// Ambient and Emission calculations
-		Color color = calcEmissionColor(scene) +
-		calcAmbientColor(scene);
-		// Diffuse & Specular calculations
-		for (Light light : lights) {
-			color += calcDiffuseColor(scene,hit,light) +
-			calcSpecularColor(hit,light);
-		}
-		return color;
+        Intersection intersection = findIntersection(ray);
+        if (intersection.getPoint()==null)
+            return _backgroundCol;
+        //TODO:get the attributes of the intersection.Ishape (and only them)
+        Vec I = new Vec();
+        //Ie
+        I.add(intersection.getShape().get_emission());
+        //KaIa
+        Vec KaIa = _ambientLight;
+        KaIa.scale(intersection.getShape().get_ambient());
+        I.add(KaIa);
+        //(Kd(NL)Il, Il is the intensity of the light
+        Vec KdNLIl = intersection.getShape().get_diffuse();
+        //TODO: find the normal N of the intersection, scale KdNLIl with N*L
 
-	}
+
+        return null;
+    }
 
 	/**
 	 * Add objects to the scene by name
@@ -123,17 +144,16 @@ public class Scene implements IInitable {
 //			surface.init(attributes);
 //			surfaces.add(surface);
 //		}
-//		
-		//adds a light to the list of lights
-//		if (light != null) {
-//			light.init(attributes);
-//			lights.add(light);
-//		}
+//
+		if (light != null) {
+			light.init(attributes);
+			lights.add(light);
+		}
 
 	}
 
-	public void setCameraAttributes(Map<String, String> attributes) {
-		//TODO uncomment after implementing camera interface if you like
+	public Camera setCameraAttributes(Map<String, String> attributes) {
 		this.camera.init(attributes);
+        return camera;
 	}
 }

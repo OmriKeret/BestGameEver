@@ -1,7 +1,9 @@
 package ex3.render.raytrace;
 
+import java.awt.*;
 import java.util.Map;
 
+import ex3.parser.StringUtils;
 import math.Point3D;
 import math.Vec;
 
@@ -15,7 +17,7 @@ public abstract class Light implements IInitable {
     protected double _intensity;
 
 	public Light() {
-		_color = new Vec(1,1,1);
+		_color = new Vec(0,0,0);
 	}
 
 	@Override
@@ -23,12 +25,22 @@ public abstract class Light implements IInitable {
 		if (attributes.containsKey("_color")){
 			//TODO to uncomment this line you should inplement constructor 
 			//with a string argument for Vec. You have an example in Point3D class
-			
-			//_color = new Vec(attributes.get("_color"));
-		}
+
+            try {
+                _color = StringUtils.String2Vector(attributes.get("color"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 	}
 
     abstract public double get_intensity(Point3D i_point);
+
+    abstract public Vec getDirection(Point3D i_location);
+
+    public Vec get_color(){
+        return _color;
+    }
 
 	
 }

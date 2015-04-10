@@ -4,6 +4,7 @@ import ex3.parser.StringUtils;
 import math.Point3D;
 import math.Vec;
 
+import java.awt.*;
 import java.util.Map;
 
 /**
@@ -37,4 +38,10 @@ public class SpotLight extends Light {
         double down = _kc+_kl*D.length()+_kq*D.length()*D.length();
         return (up/down);
     }
+
+    @Override
+    public Vec getDirection(Point3D i_location) {
+        return i_location.GetVectorToPoint(_position);
+    }
+
 }

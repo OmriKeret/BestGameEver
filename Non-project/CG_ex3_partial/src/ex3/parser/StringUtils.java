@@ -14,9 +14,9 @@ import java.util.regex.Pattern;
  */
 public class StringUtils {
 
-    private static Pattern pointPattern = Pattern.compile("[0-9.]+ [0-9.]+ [0-9.]+");
+    private static Pattern pointPattern = Pattern.compile("-?[0-9.]+ -?[0-9.]+ -?[0-9.]+");
     private static Matcher pointMatcher;
-    private static Pattern elementPattern = Pattern.compile("[0-9.]+");
+    private static Pattern elementPattern = Pattern.compile("-?[0-9.]+");
     private static Matcher elementMatcher;
 
     /**
@@ -26,6 +26,8 @@ public class StringUtils {
      * @throws Exception
      */
     public static Point3D String2Point(String i_stringPoint) throws Exception{
+        if (i_stringPoint==null)
+            return new Point3D();
         pointMatcher = pointPattern.matcher(i_stringPoint);
         if (!pointMatcher.matches())
             throw new Exception("The string "+i_stringPoint+" is not in a vector pattern!");
@@ -49,13 +51,8 @@ public class StringUtils {
     }
     
     public static Color string2Color(String i_stringVector)throws Exception {
-        if(i_stringVector == null) {
-    		
-    		//return default
-    		return new Color(0,0,0);
-    	}
     	Point3D point = String2Point(i_stringVector);
-    	return new Color((int)(point.x*127),(int)(point.y*127),(int)(point.z*127));
+    	return new Color((int)(point.x*255),(int)(point.y*255),(int)(point.z*255));
     
     }
     
