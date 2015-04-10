@@ -12,12 +12,14 @@ public class MovmentLogic : MonoBehaviour {
 	Rigidbody2D character;
 	float startTime;
 	public float dashDist = 5f;
+    private PlayerStatsLogic playerStatsLogic;
 	float step;
 	// Use this for initialization
 	void Start () {
 	//	physicsLogic = this.gameObject.GetComponent<PhysicsLogic> ();
 		phyisicsController = GameObject.Find("PlayerManager").GetComponent<PhyisicsController>();
 		character = GameObject.Find("PlayerManager").GetComponent<Rigidbody2D>();
+        playerStatsLogic = this.gameObject.GetComponent<PlayerStatsLogic>();
 	}
 	
 	// Update is called once per frame
@@ -33,12 +35,22 @@ public class MovmentLogic : MonoBehaviour {
 			} else {
 				moveChar = false;
 				phyisicsController.AfterDashHover();
+
+                //player didnt hit a thing :(
+                playerStatsLogic.resetCombo();
 			}
 		}
 	}
 
 	public void MoveCharacter(MoveCharacterModel model){
-		//
+
+		//player out of dashes
+        if (playerStatsLogic.dashNum <= 0)
+        {
+            return;
+        }
+
+        playerStatsLogic.removeOneDash();
 		step = 0f;
 		startTime = Time.fixedTime;
 		moveChar = true;

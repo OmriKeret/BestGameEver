@@ -5,8 +5,9 @@ public class EnemyGeneratorController : MonoBehaviour {
 
 	GameObject stupidEnemy ;
 	GenerateWaveLogic generateWaveLogic;
-	public float timeBetweenWaves = 5f;
-	private float fixedTimeStart;
+	public float timeBetweenWaves = 9f;
+	private float fixedTimeStart = -10;
+	private int waveNumber = 1;
 	// Use this for initialization
 	void Start () {
 		generateWaveLogic = GameObject.Find("Logic").GetComponent<GenerateWaveLogic>();
@@ -19,6 +20,6 @@ public class EnemyGeneratorController : MonoBehaviour {
 		}
 	}
 	void GenerateWave(){
-		generateWaveLogic.generateWave ();
+		generateWaveLogic.generateWave (new WaveGenerateModel{waveNumber = waveNumber});
 	}
 }
