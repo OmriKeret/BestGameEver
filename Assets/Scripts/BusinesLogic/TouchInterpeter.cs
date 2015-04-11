@@ -1,19 +1,25 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class TouchInterpeter : MonoBehaviour {
 
 	MovementController PlayerMovmentController;
 	PhyisicsController playerPhyisicsController;
+    EventSystem events;
 	Rigidbody2D player;
 	public Vector2 startPos;
 	public Vector2 direction;
 	Vector2 realWorldTouch;
+    public Button pauseButton;
 	// Use this for initialization
 	void Start () {
 		playerPhyisicsController = GameObject.Find("PlayerManager").GetComponent<PhyisicsController>();
 		PlayerMovmentController = GameObject.Find("PlayerManager").GetComponent<MovementController>();
 		player = GameObject.Find("PlayerManager").GetComponent<Rigidbody2D>();
+        pauseButton = GameObject.Find("Pause").GetComponent<Button>();
+        events = GameObject.Find("EventSystem").GetComponent<EventSystem>();
 	}
 	
 	// Update is called once per frame
@@ -62,15 +68,26 @@ public class TouchInterpeter : MonoBehaviour {
 				break;
 			}
 		}
+        if (events.currentSelectedGameObject == pauseButton.gameObject)
+        {
+          //  Debug.Log("button 1 clicked");
+            return;
+           
+        }
+ 
 		if (directionChosen) {
 			direction.Normalize();
 			PlayerMovmentController.Move(direction, realWorldTouch);
 			//playerMovmentController(direction);
 			directionChosen = false;
+			stopHover = true;
 
 		}
 		if (holdingScreen) {
 			PlayerMovmentController.Hover();
+		}
+		if (stopHover) {
+			playerPhyisicsController.StopHoverPhyisics();
 		}
 	}
 }

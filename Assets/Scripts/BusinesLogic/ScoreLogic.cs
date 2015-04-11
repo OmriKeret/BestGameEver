@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class ScoreLogic : MonoBehaviour {
     private MissionLogic missionLogic;
     Text scoreText;
-    int score = 0;
+    public int score = 0;
 	// Use this for initialization
 	void Start () {
         scoreText = GameObject.Find("ScoreText").GetComponent<Text>();

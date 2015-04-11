@@ -14,8 +14,8 @@ public class AIController : MonoBehaviour {
 	void Start () {
 		//TODO: change type to something general
 		 type = EnemyType.Stupid;
-		_logic = gameObject.AddComponent<StupidAILogic> ();
-		_stats = gameObject.AddComponent<StupidGeneralStats> ();
+         _logic = this.gameObject.GetComponent<StupidAILogic>();
+         _stats = this.gameObject.GetComponent<StupidGeneralStats>();
 		_logic.SetStats (_stats);
 		_creationLocation = transform.position;
 		_movementDirection = _logic.MoveToPoint (_creationLocation);

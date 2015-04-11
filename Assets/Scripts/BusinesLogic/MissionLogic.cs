@@ -6,7 +6,7 @@ public class MissionLogic : MonoBehaviour {
 
     MissionModel[] missions;
     Dictionary<EnemyType, int> enemyKills;
-    InternalMissionModel[] MissionsToggleAndText;
+  public InternalMissionModel[] MissionsToggleAndText;
 	// Use this for initialization
 	void Start () {
         enemyKills = new Dictionary<EnemyType, int>	{ 
@@ -18,7 +18,7 @@ public class MissionLogic : MonoBehaviour {
 			new InternalMissionModel()
 		};
         int missionNum = 0;
-		var x = GameObject.Find("PauseMenu/Mission1/Mission1Label").GetComponent<Text>();
+		//var x = GameObject.Find("PauseMenu/Mission1/Mission1Label").GetComponent<Text>();
 		MissionsToggleAndText[missionNum].missionText = GameObject.Find("PauseMenu/Mission1/Mission1Label").GetComponent<Text>();
 		MissionsToggleAndText[missionNum].missionToggle = GameObject.Find("PauseMenu/Mission1").GetComponent<Toggle>();
         missionNum++;

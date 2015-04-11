@@ -12,7 +12,9 @@ GameObject:
   - 58: {fileID: 5851788}
   - 50: {fileID: 5076938}
   - 114: {fileID: 11435606}
-  m_Layer: 0
+  - 114: {fileID: 11424654}
+  - 114: {fileID: 11418072}
+  m_Layer: 9
   m_Name: stupidEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -27,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 181882}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -14.3900003, y: 30.2399998, z: 2.22000003}
-  m_LocalScale: {x: 1.38775325, y: 1.37082934, z: 1.35390544}
+  m_LocalScale: {x: 1.07571292, y: 1.06259441, z: 1.04947591}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -59,6 +61,30 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2.5
+--- !u!114 &11418072
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 181882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7706a84143c71ac47ab4c0f2779b9f26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11424654
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 181882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8970a457281c0714ba56a68df3335882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MAX_SPEED: 10
+  leftSplitLocation: {x: 0, y: 0}
 --- !u!114 &11435606
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -38,11 +38,13 @@ public class GenerateWaveLogic : MonoBehaviour {
         {
             //genereate enemies randomly 
             var enemyType = waveTypeArr[UnityEngine.Random.Range(0, typeMax)];
-            var enemyLocation = instantiateLocations[UnityEngine.Random.Range(0, locationMax)];
+            var enemyLocation = new Vector2(0f, 40f); ;//instantiateLocations[UnityEngine.Random.Range(0, locationMax)];
 
             //instantiate enemeies in random location
             var enemy1 = Instantiate(stupidEnemy, enemyLocation, Quaternion.identity) as GameObject;
+            var enemyLogic = enemy1.GetComponent<IEnemy>();
 
+            enemyLogic.setPath("EnemyPath" + UnityEngine.Random.Range(1, 3), model.waveNumber * 10);
 			yield return new WaitForSeconds(numberOfSecBetweenEnemies);    //Wait 
         }
        

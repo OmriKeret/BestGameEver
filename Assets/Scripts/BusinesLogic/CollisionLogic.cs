@@ -20,7 +20,7 @@ public class CollisionLogic : MonoBehaviour  {
         missionLogic = this.gameObject.GetComponent<MissionLogic>();
 	}
 	public void playerCollideWithEnemy(CollisionModel model) {
-
+	//	iTween.StopByName (StaticVars.ITWEEN_PLAYER_MOVMENT);
 		//to remove secondary collisions
 		if (model.CollidedWith != null) {
 			Physics2D.IgnoreCollision (model.CollidedWith.GetComponent<Collider2D> (), model.mainCollider.GetComponent<Collider2D> ());
@@ -28,13 +28,35 @@ public class CollisionLogic : MonoBehaviour  {
 		var enemyPosition = model.CollidedWith.transform.position;
 		var playerPosition = model.mainCollider.transform.position;
 		var VectorForce = (Vector2)((playerPosition - enemyPosition).normalized);
-		VectorForce.y = 600f;
+		//VectorForce.y = 600f;
 		stopOtherEffectsOnPlayer(new ChangePhysicsModel{player = model.mainCollider.GetComponent<Rigidbody2D>()});
-
+		
 	    //if player hit some1 than he get back is dashes
         playerStatsLogic.resetDash();
 		playerStatsLogic.addOneToCombo ();
-		this.gameObject.AddComponent<TimedAction>().doByTime(new TimeActionModel { 
+        
+        //building path
+        var sign = VectorForce.x > 0 ? 1 : -1;
+        Vector3[] path = new Vector3[] {
+                                             new Vector3(playerPosition.x,playerPosition.y),
+                                             new Vector3(playerPosition.x + (0.397063f * sign),playerPosition.y + 7.108706f),
+                                             new Vector3(playerPosition.x + (1.96f * sign),playerPosition.y + 8.749998f),
+                                        };
+        iTween.MoveTo(model.mainCollider, iTween.Hash(
+           "name", StaticVars.ITWEEN_PLAYER_MOVMENT,
+           "time", impactTimeOnPlayer,
+           "path", path,
+           "oncomplete", "stopAfterBounce",
+           "oncompleteparams", new StopAfterCollisionModel
+                       {
+                           subject = model.mainCollider.GetComponent<Rigidbody2D>(),
+                           collidedWith = model.CollidedWith
+                       }
+
+                                                             ));
+
+
+		/*this.gameObject.AddComponent<TimedAction>().doByTime(new TimeActionModel { 
 									 subject = model.mainCollider.GetComponent<Rigidbody2D>(),
 									 fixedTimeStart = Time.fixedTime,
 								     durationTime = impactTimeOnPlayer,
@@ -43,12 +65,13 @@ public class CollisionLogic : MonoBehaviour  {
 									 impactForce = VectorForce,
 								     collidedWith = model.CollidedWith
 									});
-	}
+									*/
 
+	}
 
 	public void stopAfterBounce(StopAfterCollisionModel model){
 		//Debug.Log("got to the after function");
-		physicsLogic.Hover (new ChangePhysicsModel{ player = model.subject});
+	//	physicsLogic.Hover (new ChangePhysicsModel{ player = model.subject});
 		if (model.collidedWith != null) {
 			var collidedWithCollider = model.collidedWith.GetComponent<Collider2D> ();
 			if (collidedWithCollider != null) {
@@ -62,7 +85,7 @@ public class CollisionLogic : MonoBehaviour  {
 	//	Debug.Log ("Force To Apply is: " + model.impactForce);
 	//	Debug.Log ("________________________________");
 		model.impactForce.x += XForce * Mathf.Sign(model.impactForce.x);
-		model.impactForce.y -= YForce;//model.impactForce.y;
+    	model.impactForce.y -= YForce;//model.impactForce.y;
 		model.impactForce.y = model.impactForce.y < -20 ? -20 : model.impactForce.y;
 		model.subject.AddForce (model.impactForce);
 		return model;
@@ -79,9 +102,13 @@ public class CollisionLogic : MonoBehaviour  {
 		var position = (Vector2)model.mainCollider.transform.position;
         if (enemyController.lifeDown(playerStatsLogic.Strength)) //if enemy dead
         {
-    //    TODO: add
             scoreLogic.addPoint(new AddPointModel { type = enemyController.type, combo = playerStatsLogic.combo });
             missionLogic.addKill(enemyController.type);
+            var Itweenpart = model.mainCollider.GetComponent<iTween> ();
+            if (Itweenpart != null)
+            {
+                Destroy(Itweenpart);
+            }
             enemy.Death();
             enemy.Split(position);
         }
