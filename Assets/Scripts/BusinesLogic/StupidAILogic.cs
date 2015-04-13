@@ -52,11 +52,11 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
 	void IEnemy.Split(Vector2 i_location){
 		_leftBodyPart = Instantiate (_leftBodyPartResouce, i_location, Quaternion.identity) as GameObject;
 		if (_leftBodyPart != null) {
-			_leftBodyPart.GetComponent<Rigidbody2D>().AddForce(_stats.leftSplitLocation);
+            _leftBodyPart.GetComponent<PartOfEnemyFadeOut>().FadeAndDestoryUp();
 				}
 		_rightBodyPart = Instantiate (_rightBodyPartResouce, i_location, Quaternion.identity) as GameObject;
 		if (_rightBodyPart != null) {
-			_rightBodyPart.GetComponent<Rigidbody2D>().AddForce(_stats.leftSplitLocation*(-1));
+            _rightBodyPart.GetComponent<PartOfEnemyFadeOut>().FadeAndDestoryDown(); ;
 		}
 	}
 
