@@ -6,7 +6,7 @@ public class MovmentLogic : MonoBehaviour {
 	PhyisicsController phyisicsController;
 	public float dashTime = 2f;
 	public float speed = 50f;
-	bool moveChar;
+	//bool moveChar;
 	Vector2 current;
 	Vector2 target;
 	Rigidbody2D character;
@@ -15,32 +15,20 @@ public class MovmentLogic : MonoBehaviour {
     private PlayerStatsLogic playerStatsLogic;
 	float step;
     public float timeToReturnFromFall = 1f;
+	AnimationLogic animationLogic;
+	public float fallingSpeed = 50f;
 	// Use this for initialization
 	void Start () {
 	//	physicsLogic = this.gameObject.GetComponent<PhysicsLogic> ();
 		phyisicsController = GameObject.Find("PlayerManager").GetComponent<PhyisicsController>();
 		character = GameObject.Find("PlayerManager").GetComponent<Rigidbody2D>();
         playerStatsLogic = this.gameObject.GetComponent<PlayerStatsLogic>();
+		animationLogic = this.gameObject.GetComponent<AnimationLogic>();
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		if (moveChar) {
-			phyisicsController.StopHoverPhyisics();
-			if(Time.fixedTime - startTime < dashTime && ((Vector2)character.transform.position != target) && step != dashDist) {
-
-				step += speed * Time.fixedDeltaTime;
-				step = step < dashDist ? step : dashDist ;
-				character.transform.position = Vector2.MoveTowards (current, target, step);
-
-			} else {
-				moveChar = false;
-				phyisicsController.AfterDashHover();
-
-                //player didnt hit a thing :(
-                playerStatsLogic.resetCombo();
-			}
-		}
+	
 	}
 
 	public void MoveCharacter(MoveCharacterModel model){
@@ -50,14 +38,8 @@ public class MovmentLogic : MonoBehaviour {
         {
             return;
         }
-        /*
-        playerStatsLogic.removeOneDash();
-		step = 0f;
-		startTime = Time.fixedTime;
-		moveChar = true;
-		current = model.player.transform.position;
-		character = model.player;
-         */ 
+		playerStatsLogic.dashNum--;
+
         target = new Vector2 (model.touchPoint.x, model.touchPoint.y);
 		Vector2 vecBetween = target - model.player.position;
 		var distToGo = vecBetween.magnitude;
@@ -65,15 +47,35 @@ public class MovmentLogic : MonoBehaviour {
 			distToGo = dashDist;
 			target = model.player.position + model.Direction * distToGo;
 		}
-
-		//model.player.AddForce (model.Direction * 600);
-	//	Debug.Log ("adding force in " + model.Direction + "direction");
+		animationLogic.OnMoveSetDirection (new moveAnimationModel{direction = vecBetween.normalized});
         iTween.MoveTo(model.player.gameObject, iTween.Hash(
             "name", StaticVars.ITWEEN_PLAYER_MOVMENT,
-            "time", dashTime,
+            "speed", speed,
             "position", (Vector3)target,
-			"easetype", iTween.EaseType.easeOutExpo
+			"easetype", iTween.EaseType.easeInOutQuad,
+			"oncomplete", "FinishedMoving",
+			"oncompleteparams",playerStatsLogic.combo,
+			"oncompletetarget", this.gameObject
             ));
+	}
+	public void FinishedMoving(int combo) 
+	{
+		if (playerStatsLogic.combo == combo) 
+		{
+			playerStatsLogic.resetCombo();
+		}
+		fallDown ();
+	}
+
+	public void fallDown() 
+	{
+		target = new Vector2 (character.transform.position.x, character.transform.position.y - 30);
+		iTween.MoveTo(character.gameObject, iTween.Hash(
+			"name", StaticVars.ITWEEN_PLAYER_MOVMENT,
+			"speed", fallingSpeed,
+			"position", (Vector3)target,
+			"easetype", iTween.EaseType.easeInCubic
+			));
 	}
     public void oncomplete()
     {
@@ -90,12 +92,13 @@ public class MovmentLogic : MonoBehaviour {
 	}
 	public void StopMoving(){
 		character.velocity = new Vector2 (0,0);
-		moveChar = false;
+	//	moveChar = false;
 
 	}
 
     internal void MoveOnFallDeath()
     {
+		playerStatsLogic.resetCombo();
         character.GetComponent<Collider2D>().enabled = false;
         var playerPosition = character.transform;
         Vector3[] path = new Vector3[] {

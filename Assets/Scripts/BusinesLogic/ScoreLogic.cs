@@ -13,11 +13,12 @@ public class ScoreLogic : MonoBehaviour {
 	
 	public void addPoint(AddPointModel model) {
 		var scoreToAdd = 0;
+		scoreToAdd += (int)model.type * 100;
 		for(int i = 0; i < model.combo; i ++) {
 			scoreToAdd += (int)model.type * 1327;
 		}
 		score += scoreToAdd;
-        scoreText.text = string.Format("Score: {0}", score);
+        scoreText.text = string.Format("{0}\nPOINTS", score);
         missionLogic.gotScoreOf(score);
     }
 }

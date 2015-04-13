@@ -7,6 +7,7 @@ public class CollisionLogic : MonoBehaviour  {
 	public float enemyDeathTime = 1f;
 	//public float enemyHitForce = 100f;
 	public float impactTimeOnPlayer = 0.5f;
+	public float playerCollisionSpeed = 30f;
 	private PhysicsLogic physicsLogic;
 	private MovmentLogic movmentLogic;
     private ScoreLogic scoreLogic;
@@ -20,7 +21,6 @@ public class CollisionLogic : MonoBehaviour  {
         missionLogic = this.gameObject.GetComponent<MissionLogic>();
 	}
 	public void playerCollideWithEnemy(CollisionModel model) {
-	//	iTween.StopByName (StaticVars.ITWEEN_PLAYER_MOVMENT);
 		//to remove secondary collisions
 		if (model.CollidedWith != null) {
 			Physics2D.IgnoreCollision (model.CollidedWith.GetComponent<Collider2D> (), model.mainCollider.GetComponent<Collider2D> ());
@@ -28,8 +28,7 @@ public class CollisionLogic : MonoBehaviour  {
 		var enemyPosition = model.CollidedWith.transform.position;
 		var playerPosition = model.mainCollider.transform.position;
 		var VectorForce = (Vector2)((playerPosition - enemyPosition).normalized);
-		//VectorForce.y = 600f;
-		stopOtherEffectsOnPlayer(new ChangePhysicsModel{player = model.mainCollider.GetComponent<Rigidbody2D>()});
+
 		
 	    //if player hit some1 than he get back is dashes
         playerStatsLogic.resetDash();
@@ -44,9 +43,10 @@ public class CollisionLogic : MonoBehaviour  {
                                         };
         iTween.MoveTo(model.mainCollider, iTween.Hash(
            "name", StaticVars.ITWEEN_PLAYER_MOVMENT,
-           "time", impactTimeOnPlayer,
+		   "speed", playerCollisionSpeed,
            "path", path,
            "oncomplete", "stopAfterBounce",
+			"easetype", iTween.EaseType.easeInOutQuad,
            "oncompleteparams", new StopAfterCollisionModel
                        {
                            subject = model.mainCollider.GetComponent<Rigidbody2D>(),
@@ -55,35 +55,21 @@ public class CollisionLogic : MonoBehaviour  {
 
                                                              ));
 
-
-		/*this.gameObject.AddComponent<TimedAction>().doByTime(new TimeActionModel { 
-									 subject = model.mainCollider.GetComponent<Rigidbody2D>(),
-									 fixedTimeStart = Time.fixedTime,
-								     durationTime = impactTimeOnPlayer,
-									 stopingFunc = stopAfterBounce,
-								     whileGoingDo = moveCircular,
-									 impactForce = VectorForce,
-								     collidedWith = model.CollidedWith
-									});
-									*/
-
 	}
 
 	public void stopAfterBounce(StopAfterCollisionModel model){
-		//Debug.Log("got to the after function");
-	//	physicsLogic.Hover (new ChangePhysicsModel{ player = model.subject});
+
 		if (model.collidedWith != null) {
 			var collidedWithCollider = model.collidedWith.GetComponent<Collider2D> ();
 			if (collidedWithCollider != null) {
 				Physics2D.IgnoreCollision (collidedWithCollider, model.subject.GetComponent<Collider2D> (), false); //remove collision ignorance
 			}
 		}
+		movmentLogic.fallDown ();
 
 	}
 
 	public MoveAfterCollisionModel moveCircular(MoveAfterCollisionModel model){		
-	//	Debug.Log ("Force To Apply is: " + model.impactForce);
-	//	Debug.Log ("________________________________");
 		model.impactForce.x += XForce * Mathf.Sign(model.impactForce.x);
     	model.impactForce.y -= YForce;//model.impactForce.y;
 		model.impactForce.y = model.impactForce.y < -20 ? -20 : model.impactForce.y;
@@ -113,13 +99,14 @@ public class CollisionLogic : MonoBehaviour  {
             enemy.Split(position);
         }
 
+	}
 
-	/*	this.gameObject.AddComponent<TimedAction>().doByTime(new TimeActionModel { 
-			subject = model.mainCollider.GetComponent<Rigidbody2D>(),
-			fixedTimeStart = Time.fixedTime,
-			durationTime = enemyDeathTime,
-			stopingFunc = enemyController.death
-		});
-	*/
+	public void playerCollidedWithWall(CollisionModel model) 
+	{
+		var Itweenpart = model.mainCollider.GetComponent<iTween> ();
+		if (Itweenpart != null)
+		{
+			Destroy(Itweenpart);
+		}
 	}
 }
