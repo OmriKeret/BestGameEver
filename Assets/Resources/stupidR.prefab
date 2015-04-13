@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 427890}
   - 212: {fileID: 21273496}
   - 50: {fileID: 5002908}
+  - 114: {fileID: 11407256}
   m_Layer: 0
   m_Name: stupidR
   m_TagString: Untagged
@@ -24,7 +25,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190206}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.0539999, y: 30.2450008, z: 0}
+  m_LocalPosition: {x: -26.943161, y: 17.582449, z: 0}
   m_LocalScale: {x: 1.1732347, y: .974541128, z: .795455337}
   m_Children: []
   m_Father: {fileID: 0}
@@ -44,6 +45,20 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
+--- !u!114 &11407256
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 190206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0f90eb856848a84dab83471330c49db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToFadeOut: 1
+  amountOfForceOnX: 7
+  amountOfForceOnY: 5
 --- !u!212 &21273496
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -68,7 +83,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 711460232a783154a93e90098dc95d10, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3cbf303ac9565574ea961fb4f4e05066, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
