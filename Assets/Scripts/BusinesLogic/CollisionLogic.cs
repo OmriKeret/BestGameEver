@@ -7,6 +7,7 @@ public class CollisionLogic : MonoBehaviour  {
 	public float enemyDeathTime = 1f;
 	//public float enemyHitForce = 100f;
 	public float impactTimeOnPlayer = 0.5f;
+	public float playerCollisionSpeed = 30f;
 	private PhysicsLogic physicsLogic;
 	private MovmentLogic movmentLogic;
     private ScoreLogic scoreLogic;
@@ -42,9 +43,10 @@ public class CollisionLogic : MonoBehaviour  {
                                         };
         iTween.MoveTo(model.mainCollider, iTween.Hash(
            "name", StaticVars.ITWEEN_PLAYER_MOVMENT,
-           "time", impactTimeOnPlayer,
+		   "speed", playerCollisionSpeed,
            "path", path,
            "oncomplete", "stopAfterBounce",
+			"easetype", iTween.EaseType.easeInOutQuad,
            "oncompleteparams", new StopAfterCollisionModel
                        {
                            subject = model.mainCollider.GetComponent<Rigidbody2D>(),
@@ -63,6 +65,7 @@ public class CollisionLogic : MonoBehaviour  {
 				Physics2D.IgnoreCollision (collidedWithCollider, model.subject.GetComponent<Collider2D> (), false); //remove collision ignorance
 			}
 		}
+		movmentLogic.fallDown ();
 
 	}
 
@@ -96,5 +99,14 @@ public class CollisionLogic : MonoBehaviour  {
             enemy.Split(position);
         }
 
+	}
+
+	public void playerCollidedWithWall(CollisionModel model) 
+	{
+		var Itweenpart = model.mainCollider.GetComponent<iTween> ();
+		if (Itweenpart != null)
+		{
+			Destroy(Itweenpart);
+		}
 	}
 }

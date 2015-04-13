@@ -58,6 +58,7 @@ public class DeathLogic : MonoBehaviour {
             DeathScreen();
         }
         movmentLogic.MoveOnFallDeath();
+		playerStatsLogic.resetDash ();
     }
 
     private void DeathScreen()
@@ -69,6 +70,7 @@ public class DeathLogic : MonoBehaviour {
 
     public void Reset()
     {
+		Time.timeScale = 1;
         Application.LoadLevel(Application.loadedLevel);
     }
 

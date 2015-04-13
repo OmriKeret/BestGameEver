@@ -6,7 +6,7 @@ public class MovmentLogic : MonoBehaviour {
 	PhyisicsController phyisicsController;
 	public float dashTime = 2f;
 	public float speed = 50f;
-	bool moveChar;
+	//bool moveChar;
 	Vector2 current;
 	Vector2 target;
 	Rigidbody2D character;
@@ -16,6 +16,7 @@ public class MovmentLogic : MonoBehaviour {
 	float step;
     public float timeToReturnFromFall = 1f;
 	AnimationLogic animationLogic;
+	public float fallingSpeed = 50f;
 	// Use this for initialization
 	void Start () {
 	//	physicsLogic = this.gameObject.GetComponent<PhysicsLogic> ();
@@ -63,6 +64,18 @@ public class MovmentLogic : MonoBehaviour {
 		{
 			playerStatsLogic.resetCombo();
 		}
+		fallDown ();
+	}
+
+	public void fallDown() 
+	{
+		target = new Vector2 (character.transform.position.x, character.transform.position.y - 30);
+		iTween.MoveTo(character.gameObject, iTween.Hash(
+			"name", StaticVars.ITWEEN_PLAYER_MOVMENT,
+			"speed", fallingSpeed,
+			"position", (Vector3)target,
+			"easetype", iTween.EaseType.easeInCubic
+			));
 	}
     public void oncomplete()
     {
@@ -79,7 +92,7 @@ public class MovmentLogic : MonoBehaviour {
 	}
 	public void StopMoving(){
 		character.velocity = new Vector2 (0,0);
-		moveChar = false;
+	//	moveChar = false;
 
 	}
 
