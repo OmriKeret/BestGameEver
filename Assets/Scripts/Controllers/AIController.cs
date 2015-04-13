@@ -9,14 +9,13 @@ public class AIController : MonoBehaviour {
 	public CollisionFacade collisionFacade;
     public EnemyType type;
 
-    public enum EnemyType { Stupid=1}
 
 	// Use this for initialization
 	void Start () {
 		//TODO: change type to something general
-        
-		_logic = gameObject.AddComponent<StupidAILogic> ();
-		_stats = gameObject.AddComponent<StupidGeneralStats> ();
+		 type = EnemyType.Stupid;
+         _logic = this.gameObject.GetComponent<StupidAILogic>();
+         _stats = this.gameObject.GetComponent<StupidGeneralStats>();
 		_logic.SetStats (_stats);
 		_creationLocation = transform.position;
 		_movementDirection = _logic.MoveToPoint (_creationLocation);
@@ -37,8 +36,12 @@ public class AIController : MonoBehaviour {
 	//			death();
 	//			}
 
-		
 	}
+    public bool lifeDown(int hitStrength)
+    {
+        _stats.lifeDown(hitStrength);
+        return _stats.isDead();
+    }
 
 	public void death(StopAfterCollisionModel s){
 		//_logic.split (transform.position);

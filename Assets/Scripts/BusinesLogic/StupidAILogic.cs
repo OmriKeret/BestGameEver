@@ -59,5 +59,23 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
 			_rightBodyPart.GetComponent<Rigidbody2D>().AddForce(_stats.leftSplitLocation*(-1));
 		}
 	}
+
+    public void setPath(string path, int speed)
+    {
+        iTween.MoveTo(this.gameObject, iTween.Hash(
+           "name", StaticVars.ITWEEN_ENEMY_MOVMENT,
+           "speed", speed,
+           "path", iTweenPath.GetPath(path),
+           "ease" ,iTween.EaseType.easeOutExpo,
+           "oncomplete", "FinishedMoving",
+           "oncompletetarget", this.gameObject
+           ));
+    }
+
+   public void FinishedMoving()
+    {
+        Destroy(this.gameObject);
+    }
+
 	
 }

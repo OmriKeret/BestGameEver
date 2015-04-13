@@ -44,4 +44,9 @@ public class MovementController : MonoBehaviour {
 						};
 		PlayerMovmentLogic.MoveCharacter (model);
 	}
+
+    public void MoveOnFallDeath()
+    {
+        PlayerMovmentLogic.MoveOnFallDeath();
+    }
 }
