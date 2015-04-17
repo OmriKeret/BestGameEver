@@ -21,7 +21,7 @@ public class MovementController : MonoBehaviour {
 			Direction = new Vector2(),
 			player = this.gameObject.GetComponent<Rigidbody2D>()
 		};
-		PlayerMovmentLogic.HoverCharacter (model);
+		//PlayerMovmentLogic.HoverCharacter (model);
 
 	}
 
@@ -31,7 +31,7 @@ public class MovementController : MonoBehaviour {
 			Direction = new Vector2(),
 			player = this.gameObject.GetComponent<Rigidbody2D>()
 		};
-		PlayerMovmentLogic.StopHoverCharacter (model);
+		//PlayerMovmentLogic.StopHoverCharacter (model);
 		
 	}
 	

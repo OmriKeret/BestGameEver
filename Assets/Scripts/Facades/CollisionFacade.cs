@@ -17,7 +17,9 @@ public class CollisionFacade {
 		{ 
 			{ PairModel.New<string,string>("Enemy","Player") , collisionLogic.EnemyCollidedWithPlayer },
 			{ PairModel.New<string,string>("Enemy","Enemy") , doNothing },
+            { PairModel.New<string,string>("Enemy","PowerUp") , doNothing },
 			{ PairModel.New<string,string>("Enemy","Wall") , doNothing},
+            { PairModel.New<string,string>("Player","PowerUp") , collisionLogic.playerCollideWithPowerUp},
 			{ PairModel.New<string,string>("Player","Wall") , collisionLogic.playerCollidedWithWall },
 			{ PairModel.New<string,string>("Player","Enemy") , collisionLogic.playerCollideWithEnemy },
 		};

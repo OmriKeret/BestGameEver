@@ -2,25 +2,36 @@ using UnityEngine;
 using System.Collections;
 
 public class CollisionLogic : MonoBehaviour  {
-	public float YForce = 0f;
-	public float XForce = 0f;
+
 	public float enemyDeathTime = 1f;
-	//public float enemyHitForce = 100f;
+
+    //collision with enemy
 	public float impactTimeOnPlayer = 0.5f;
-	public float playerCollisionSpeed = 30f;
+    public float rollTime = 0.5f;
 	private PhysicsLogic physicsLogic;
 	private MovmentLogic movmentLogic;
     private ScoreLogic scoreLogic;
     private PlayerStatsLogic playerStatsLogic;
     private MissionLogic missionLogic;
+    AnimationLogic animationLogic;
+
 	void Start () {
 		physicsLogic = this.gameObject.GetComponent<PhysicsLogic> ();
 		movmentLogic = this.gameObject.GetComponent<MovmentLogic> ();
         scoreLogic = this.gameObject.GetComponent<ScoreLogic>();
         playerStatsLogic = this.gameObject.GetComponent<PlayerStatsLogic>();
         missionLogic = this.gameObject.GetComponent<MissionLogic>();
+        animationLogic = this.gameObject.GetComponent<AnimationLogic>();
 	}
 	public void playerCollideWithEnemy(CollisionModel model) {
+        if (playerStatsLogic.powerUpModeActive == PowerUpType.SUPERHIT)
+        {
+            playerStatsLogic.resetDash();
+            playerStatsLogic.addOneToCombo();
+            return;
+        }
+        movmentLogic.ResetRotation();
+        LeanTween.cancel(model.mainCollider.gameObject, true);
 		//to remove secondary collisions
 		if (model.CollidedWith != null) {
 			Physics2D.IgnoreCollision (model.CollidedWith.GetComponent<Collider2D> (), model.mainCollider.GetComponent<Collider2D> ());
@@ -37,26 +48,32 @@ public class CollisionLogic : MonoBehaviour  {
         //building path
         var sign = VectorForce.x > 0 ? 1 : -1;
         Vector3[] path = new Vector3[] {
-                                             new Vector3(playerPosition.x,playerPosition.y),
-                                             new Vector3(playerPosition.x + (0.397063f * sign),playerPosition.y + 7.108706f),
-                                             new Vector3(playerPosition.x + (1.96f * sign),playerPosition.y + 8.749998f),
+                                             new Vector3(playerPosition.x + (-2.697063f * sign) ,playerPosition.y),
+                                             new Vector3(playerPosition.x + (-1.397063f * sign),playerPosition.y + 5.108706f),
+                                             new Vector3(playerPosition.x + (0.397063f * sign),playerPosition.y + 6.408706f),
+                                             new Vector3(playerPosition.x + (1f * sign),playerPosition.y + 7.749998f),
                                         };
-        iTween.MoveTo(model.mainCollider, iTween.Hash(
-           "name", StaticVars.ITWEEN_PLAYER_MOVMENT,
-		   "speed", playerCollisionSpeed,
-           "path", path,
-           "oncomplete", "stopAfterBounce",
-			"easetype", iTween.EaseType.easeInOutQuad,
-           "oncompleteparams", new StopAfterCollisionModel
-                       {
-                           subject = model.mainCollider.GetComponent<Rigidbody2D>(),
-                           collidedWith = model.CollidedWith
-                       }
+ 
 
-                                                             ));
-
+        LeanTween.move(model.mainCollider.gameObject, path, impactTimeOnPlayer).setOnComplete(() => 
+            {
+                stopAfterBounce(new StopAfterCollisionModel{collidedWith = model.CollidedWith.gameObject, subject = model.mainCollider.GetComponent<Rigidbody2D> ()});
+            });
+        rollOver(model.mainCollider);       
+        animationLogic.UnSetDashing();
+        animationLogic.SetSlicing();
 	}
 
+    public void playerCollideWithPowerUp(CollisionModel model)
+    {
+        return;
+    }
+
+    public void rollOver(GameObject player)
+    {
+        float numberOfRolls = 5;
+        LeanTween.rotateZ(player, 360f * numberOfRolls, impactTimeOnPlayer + rollTime);
+    }
 	public void stopAfterBounce(StopAfterCollisionModel model){
 
 		if (model.collidedWith != null) {
@@ -66,21 +83,10 @@ public class CollisionLogic : MonoBehaviour  {
 			}
 		}
 		movmentLogic.fallDown ();
+        animationLogic.UnSetDashing();
 
 	}
 
-	public MoveAfterCollisionModel moveCircular(MoveAfterCollisionModel model){		
-		model.impactForce.x += XForce * Mathf.Sign(model.impactForce.x);
-    	model.impactForce.y -= YForce;//model.impactForce.y;
-		model.impactForce.y = model.impactForce.y < -20 ? -20 : model.impactForce.y;
-		model.subject.AddForce (model.impactForce);
-		return model;
-	}
-
-	public void stopOtherEffectsOnPlayer(ChangePhysicsModel model){
-		movmentLogic.StopMoving ();
-		physicsLogic.Reset (model);
-	}
 
 	public void EnemyCollidedWithPlayer(CollisionModel model) {
 		var enemyController = model.mainCollider.GetComponent<AIController> ();
@@ -90,11 +96,7 @@ public class CollisionLogic : MonoBehaviour  {
         {
             scoreLogic.addPoint(new AddPointModel { type = enemyController.type, combo = playerStatsLogic.combo });
             missionLogic.addKill(enemyController.type);
-            var Itweenpart = model.mainCollider.GetComponent<iTween> ();
-            if (Itweenpart != null)
-            {
-                Destroy(Itweenpart);
-            }
+            LeanTween.cancel(model.mainCollider.gameObject, true);
             enemy.Death();
             enemy.Split(position);
         }
@@ -103,10 +105,9 @@ public class CollisionLogic : MonoBehaviour  {
 
 	public void playerCollidedWithWall(CollisionModel model) 
 	{
-		var Itweenpart = model.mainCollider.GetComponent<iTween> ();
-		if (Itweenpart != null)
-		{
-			Destroy(Itweenpart);
-		}
+        LeanTween.cancel(model.mainCollider.gameObject, true);
+        movmentLogic.ResetRotation();
+        animationLogic.UnSetDashing();
+        animationLogic.CheckIfGrounded();
 	}
 }

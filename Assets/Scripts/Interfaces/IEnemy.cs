@@ -16,5 +16,5 @@ public interface IEnemy {
 	void Split(Vector2 i_location);
 
 
-    void setPath(string path,int speed);
+    void setPath(Vector3[] path,int speed);
 }

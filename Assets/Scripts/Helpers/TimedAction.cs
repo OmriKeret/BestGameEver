@@ -3,24 +3,25 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 public class TimedAction : MonoBehaviour {
-	public Rigidbody2D subject;
+	public GameObject subject;
 	public GameObject collidedWith;
 	public float fixedTimeStart;
 	public float durationTime;
 	public Vector2 impactForc;
-	public Action<StopAfterCollisionModel> stopingFunc;
+	public Action<SuperHitModel> stopingFunc;
 	public Func<MoveAfterCollisionModel,MoveAfterCollisionModel> whileGoingDo;
 	public bool isRunning;
 	private MoveAfterCollisionModel moveAfterCollisionModel;
 	void FixedUpdate(){
 		if (isRunning) {
 			if(Time.fixedTime - fixedTimeStart < durationTime) {
-				if(whileGoingDo != null){
-					moveAfterCollisionModel = moveAfterCollisionModel ?? new MoveAfterCollisionModel{subject = this.subject,impactForce = this.impactForc};
-					moveAfterCollisionModel = whileGoingDo(moveAfterCollisionModel);
-				}
+                //if(whileGoingDo != null){
+                //    moveAfterCollisionModel = moveAfterCollisionModel ?? new MoveAfterCollisionModel{subject = this.subject,impactForce = this.impactForc};
+                //    moveAfterCollisionModel = whileGoingDo(moveAfterCollisionModel);
+				
 			} else {
-				stopingFunc.Invoke(new StopAfterCollisionModel{subject = this.subject , collidedWith = this.collidedWith});
+                stopingFunc.Invoke(new SuperHitModel {character = subject, 
+                enemy = collidedWith});
 				Destroy(this);
 			}
 		}

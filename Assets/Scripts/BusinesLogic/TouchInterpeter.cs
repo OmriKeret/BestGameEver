@@ -13,6 +13,7 @@ public class TouchInterpeter : MonoBehaviour {
 	public Vector2 direction;
 	Vector2 realWorldTouch;
     public Button pauseButton;
+    bool isMovmentDisabled;
 	// Use this for initialization
 	void Start () {
 		playerPhyisicsController = GameObject.Find("PlayerManager").GetComponent<PhyisicsController>();
@@ -74,8 +75,9 @@ public class TouchInterpeter : MonoBehaviour {
             return;
            
         }
- 
-		if (directionChosen) {
+
+        if (directionChosen && !isMovmentDisabled)
+        {
 			direction.Normalize();
 			PlayerMovmentController.Move(direction, realWorldTouch);
 			//playerMovmentController(direction);
@@ -83,11 +85,21 @@ public class TouchInterpeter : MonoBehaviour {
 			stopHover = true;
 
 		}
-		if (holdingScreen) {
+        if (holdingScreen && !isMovmentDisabled)
+        {
 			PlayerMovmentController.Hover();
 		}
 		if (stopHover) {
 			playerPhyisicsController.StopHoverPhyisics();
 		}
 	}
+
+    public void SetDisableMovment()
+    {
+        this.isMovmentDisabled = true;
+    }
+    public void UnsetDisableMovment()
+    {
+        this.isMovmentDisabled = false;
+    }
 }
