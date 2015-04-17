@@ -4,7 +4,7 @@ import math.Point3D;
 import math.Ray;
 import math.Vec;
 
-public class Convexpolygon implements Ishape {
+public class Convexpolygon extends Ishape {
 	Point3D a;
 	Point3D b;
 	Point3D c;
