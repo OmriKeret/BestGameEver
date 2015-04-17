@@ -7,9 +7,10 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
 	Rigidbody2D _rigidbody;
 	GameObject _leftBodyPartResouce,_rightBodyPartResouce;
 	GameObject _leftBodyPart,_rightBodyPart;
-    public float timeToFinishPath = 15f;
-    public float minTimeForPath = 4f;
-    public float maxTimeForPath = 30f;
+	public float timeToFinishPath;
+	public float minTimeForPath;
+	public float maxTimeForPath;
+
 	// Use this for initialization
 	void Awake () {
         _stats = GetComponent<AEnemyStats>();
@@ -17,6 +18,9 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
 		_leftBodyPartResouce = Resources.Load ("stupidL") as GameObject;
 		_rightBodyPartResouce = Resources.Load ("stupidR") as GameObject;
 		GetComponent<Rigidbody2D> ().gravityScale = 0;
+		timeToFinishPath = 15f;
+		minTimeForPath = 4f;
+		maxTimeForPath = 30f;
 	}
 
 	void IEnemy.Death(){

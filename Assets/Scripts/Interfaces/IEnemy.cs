@@ -3,6 +3,11 @@ using System.Collections;
 
 public interface IEnemy {
 
+	public float timeToFinishPath;
+	public float minTimeForPath;
+	public float maxTimeForPath;
+	EnemyMode _mode;
+
 	void Death();
 
 	Vector2 MoveToPoint(Vector2 i_point);
