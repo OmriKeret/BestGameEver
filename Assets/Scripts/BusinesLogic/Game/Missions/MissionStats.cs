@@ -96,4 +96,9 @@ public class MissionStats : MonoBehaviour {
         }
         return result;
     }
+
+    internal int getTier()
+    {
+        return this.tier;
+    }
 }

@@ -10,7 +10,7 @@ public class MissionAssigner : MonoBehaviour {
     Dictionary<PowerUpType, string> powerUpTypeString;
 	// Use this for initialization
 	void Awake () {
-        DontDestroyOnLoad(transform.gameObject);
+        DontDestroyOnLoad(gameObject);
         MissionInitializer();
 	}
 
@@ -26,11 +26,9 @@ public class MissionAssigner : MonoBehaviour {
             //if mission doesn't exists yet
             if (!result.Exists(m => m.type == mission.type))
             {
-                Debug.Log("result not exits");
                 result.Add(mission);
                 i++;
             }
-            //i++;
         }
         return result.ToArray();
 
@@ -79,13 +77,15 @@ public class MissionAssigner : MonoBehaviour {
     private void MissionInitializer()
     {
         missions = new MissionModel[] { 
-                                             new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 1, missionText ="Kill Total of five enemies!", enemyType = EnemyType.General, needToBeCompletedInOneGame = false }, 
-                                             new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 1, missionText ="Kill five stupid enemies!", enemyType = EnemyType.Stupid, needToBeCompletedInOneGame = false }, 
-                                             new MissionModel {type = MissionType.getScoreOf , numberToAchive = 1, missionText ="Get score of 10,000!" , needToBeCompletedInOneGame = false},
-                                             new MissionModel {type = MissionType.survival , numberToAchive = 1, missionText ="Survive for:" , needToBeCompletedInOneGame = false},
-                                             new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 1, missionText ="Kill Total of five enemies!", enemyType = EnemyType.General, needToBeCompletedInOneGame = false }, 
-                                             new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 1, missionText ="Kill five stupid enemies!", enemyType = EnemyType.Stupid, needToBeCompletedInOneGame = false }, 
-                                             new MissionModel {type = MissionType.getScoreOf , numberToAchive = 1, missionText ="Get score of 10,000!" , needToBeCompletedInOneGame = false},
+                                             new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 20, missionText ="Kill Total of five enemies!", enemyType = EnemyType.General, needToBeCompletedInOneGame = true }, 
+                                             new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 6, missionText ="Kill five stupid enemies!", enemyType = EnemyType.Stupid, needToBeCompletedInOneGame = true }, 
+                                             new MissionModel {type = MissionType.getScoreOf , numberToAchive = 10000, missionText ="Get score of 10,000!" , needToBeCompletedInOneGame = true},
+                                             new MissionModel {type = MissionType.survival , numberToAchive = 70, missionText ="Survive for:" , needToBeCompletedInOneGame = true},
+                                             new MissionModel {type = MissionType.takePowerUp , numberToAchive = 5, powerUpType = PowerUpType.SUPERHIT , needToBeCompletedInOneGame = true},
+                                             new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 40, missionText ="Kill Total of five enemies!", enemyType = EnemyType.General, needToBeCompletedInOneGame = false }, 
+                                             new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 20, missionText ="Kill five stupid enemies!", enemyType = EnemyType.Stupid, needToBeCompletedInOneGame = false }, 
+                                             new MissionModel {type = MissionType.getScoreOf , numberToAchive = 100000, missionText ="Get score of 10,000!" , needToBeCompletedInOneGame = false},
+                                             new MissionModel {type = MissionType.takePowerUp , numberToAchive = 10, powerUpType = PowerUpType.SUPERHIT , needToBeCompletedInOneGame = false},
                                                };
         enemyTypeString = new Dictionary<EnemyType, string> 
         {

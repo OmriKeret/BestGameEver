@@ -193,8 +193,13 @@ public class MissionLogic : MonoBehaviour {
     public void updateMissionProggressEndOfGame()
     {
         if(missionStats.updateMissionStats(this.missions))
-            {
-                deathLogic.switchMissionsOnComplete(missionStats.switchMissions());
-            }  
+         {
+             deathLogic.switchMissionsOnComplete(missionStats.switchMissions());
+         }  
+    }
+
+    internal int getTier()
+    {
+        return missionStats.getTier();
     }
 }

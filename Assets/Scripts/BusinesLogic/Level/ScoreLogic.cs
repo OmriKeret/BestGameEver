@@ -21,4 +21,10 @@ public class ScoreLogic : MonoBehaviour {
         scoreText.text = string.Format("{0}\nPOINTS", score);
         missionLogic.gotScoreOf(score);
     }
+
+    internal int multiplyScoreAfterFinishingMissions(int tier)
+    {
+        score = (int)(score * tier * 1.1);
+        return score;
+    }
 }

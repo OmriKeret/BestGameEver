@@ -23,11 +23,13 @@ public class DeathLogic : MonoBehaviour {
     public InternalMissionModel[] missionsToggleAndText;
     public InternalMissionModel[] deathMissionsToggleAndText;
     public InternalMissionModel[] deathMissionsToggleAndTextNew;
+    private int scoreBegin;
+    private int scoreEnd;
+    private bool changeScoreText = false;
 
 	// Use this for initialization
     void Start()
-    {
-        
+    {      
         losePanel = GameObject.Find("LosePanel");
         OrigPos = new Vector3(0, 30, 0);
         EndPos = new Vector3(0, 6, 0);
@@ -72,6 +74,14 @@ public class DeathLogic : MonoBehaviour {
         origMissionTextX = deathMissionsToggleAndText[missionNum].missionToggle.transform.position.x - 1;
         EndMissionTextX = origMissionTextX - 30;
 		deathScore = GameObject.Find("LosePanel/LoseScore").GetComponent<Text>();
+    }
+
+    void Update()
+    {
+        if (changeScoreText && scoreBegin < scoreEnd)
+        {
+            deathScore.text = string.Format("SCORE: {0}", scoreBegin++);
+        }
     }
 
     public void DeathByFall()
@@ -134,11 +144,22 @@ public class DeathLogic : MonoBehaviour {
 
     }
 
+    //called if finished all missions
     internal void switchMissionsOnComplete(MissionModel[] missionModel)
     {
         updateNewMissions(missionModel);
         moveOldMissionsAndReplaceWithNew();
+        multiplyScore(missionLogic.getTier());
     }
+
+    private void multiplyScore(int tier)
+    {
+       int scoreBegin = scoreLogic.score;
+       int scoreEnd = scoreLogic.multiplyScoreAfterFinishingMissions(tier);
+       changeScoreText = true;
+    }
+
+
 
     private void moveOldMissionsAndReplaceWithNew()
     {
@@ -178,8 +199,8 @@ public class DeathLogic : MonoBehaviour {
     {
         for(int missionNum = 0; missionNum < 3; missionNum++)
         {
-        deathMissionsToggleAndTextNew[missionNum].missionText.text = missionModel[missionNum].missionText;
-        deathMissionsToggleAndTextNew[missionNum].missionToggle.isOn = false; ;
-         }
+            deathMissionsToggleAndTextNew[missionNum].missionText.text = missionModel[missionNum].missionText;
+            deathMissionsToggleAndTextNew[missionNum].missionToggle.isOn = false; ;
+        }
     }
 }
