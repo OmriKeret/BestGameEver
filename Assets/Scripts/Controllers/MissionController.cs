@@ -9,8 +9,8 @@ public class MissionController : MonoBehaviour {
         missionLogic = GameObject.Find("Logic").GetComponent<MissionLogic>();
 
         //stub missions TODO: replace with real missions from data
-        MissionModel[] missions = new MissionModel[] {  new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 5, missionText ="Kill five stupid enemies!" }, 
-                                                        new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 5, missionText ="Kill five stupid enemies!" }, 
+        MissionModel[] missions = new MissionModel[] {  new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 5, missionText ="Kill Total of five enemies!", enemyType = EnemyType.General }, 
+                                                        new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 5, missionText ="Kill five stupid enemies!", enemyType = EnemyType.Stupid }, 
                                                         new MissionModel {type = MissionType.getScoreOf , numberToAchive = 10000, missionText ="Get score of 10,000!" }
                                                         };
 

@@ -6,11 +6,16 @@ public class MissionLogic : MonoBehaviour {
 
     MissionModel[] missions;
     Dictionary<EnemyType, int> enemyKills;
+    Dictionary<PowerUpType, int> powerUpstaken;
   public InternalMissionModel[] MissionsToggleAndText;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         enemyKills = new Dictionary<EnemyType, int>	{ 
-			{ EnemyType.Stupid, 0 }
+			{ EnemyType.Stupid, 0 },
+            { EnemyType.General, 0 }
+		};
+        powerUpstaken = new Dictionary<PowerUpType, int>	{ 
+			{ PowerUpType.SUPERHIT, 0 }
 		};
 		MissionsToggleAndText = new InternalMissionModel[] {
 			new InternalMissionModel(),
@@ -39,11 +44,41 @@ public class MissionLogic : MonoBehaviour {
        for (int i = 0; i < 3; i++)
        {
            MissionsToggleAndText[i].missionText.text = missions[i].missionText;
+           MissionsToggleAndText[i].missionToggle.isOn = missions[i].isFinished;
+
+           if (missions[i].type == MissionType.killTypeOfEnemy)
+           {
+               enemyKills[missions[i].enemyType] = missions[i].currentNumberAchived;
+           }
+           if (missions[i].type == MissionType.takePowerUp)
+           {
+               powerUpstaken[missions[i].powerUpType] = missions[i].currentNumberAchived;
+           }
        }
     }
 
+   public void addPowerUp(PowerUpType powerUp)
+   {
+       if (!powerUpstaken.ContainsKey(powerUp))
+       {
+           return;
+       }
+       powerUpstaken[powerUp]++;
+       for (int i = 0; i < missions.Length; i++)
+       {
+           if (missions[i].type == MissionType.takePowerUp && missions[i].powerUpType == powerUp)
+           {
+               if (missions[i].type == MissionType.takePowerUp && missions[i].powerUpType == powerUp && missions[i].numberToAchive <= powerUpstaken[powerUp])
+               {
+                   finishedMission(i);
+               }
+           }
+       }
+   }
+
    public void addKill(EnemyType enemy)
     {
+        enemyKills[EnemyType.General]++;
         if (!enemyKills.ContainsKey(enemy))
         {
             return;
@@ -73,11 +108,11 @@ public class MissionLogic : MonoBehaviour {
     private void finishedMission(int missionNum)
     {
         //TODO:playsound 
-
         MissionsToggleAndText[missionNum].missionToggle.isOn = true;
+    }
 
-
-
+    public void updateMissionProggress()
+    {
 
     }
 }

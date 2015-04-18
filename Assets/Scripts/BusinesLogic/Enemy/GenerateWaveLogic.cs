@@ -6,20 +6,17 @@ public class GenerateWaveLogic : MonoBehaviour {
 
 	GameObject stupidEnemy;
 	public float numberOfSecBetweenEnemies = 0.5f;
-	public Vector2 enemy1Loc;
-	public Vector2 enemy2Loc;
-	public Vector2 enemy3Loc;
+
     public Vector3[][] paths;
     public Vector2[] instantiateLocations;
 	public Dictionary <int,int> numberOfEnemysEachWave;
 	public Dictionary <int,int[]> TypeOfEnemiesEachWave;
+
 	void Start () {
-		 enemy1Loc = new Vector2(-10.5f, 14.9f);
-		 enemy2Loc = new Vector2(10.5f, 14.9f);
-		 enemy3Loc = new Vector2(0f, 14.9f);
 		stupidEnemy = Resources.Load ("stupidEnemy") as GameObject;
         buildDictionaries();
 	}
+
 	// Use this for initialization
 	public void generateWave(WaveGenerateModel model) {
 
@@ -65,6 +62,7 @@ public class GenerateWaveLogic : MonoBehaviour {
 			{ 5 , 14 },
 			{ 6 , 7 }
 		};
+
 		TypeOfEnemiesEachWave = new Dictionary<int,int[]>  	
 		{ 
 			{ 1 , new int[]{1} },
@@ -74,6 +72,7 @@ public class GenerateWaveLogic : MonoBehaviour {
 			{ 5 , new int[]{1} },
 			{ 6 , new int[]{1} }
 		};
+
         paths = new Vector3[][]
         {
            new Vector3[] {
@@ -97,6 +96,6 @@ public class GenerateWaveLogic : MonoBehaviour {
                //new Vector3(-16.24f,10.62772f,0f)
             }
         };
-        instantiateLocations = new Vector2[3] { enemy1Loc, enemy2Loc, enemy3Loc };
+      //  instantiateLocations = new Vector2[3] {  };
 	}
 }

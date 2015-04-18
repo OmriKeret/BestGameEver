@@ -28,7 +28,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 181882}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.3900003, y: 31.0799999, z: 2.22000003}
+  m_LocalPosition: {x: 46.5699997, y: 13.1000004, z: 2.20000005}
   m_LocalScale: {x: .951423466, y: .939820588, z: .928217828}
   m_Children: []
   m_Father: {fileID: 0}
@@ -39,7 +39,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 181882}
-  m_Mass: 1
+  m_Mass: 9.99999975e-05
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
   m_GravityScale: 0
@@ -72,6 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7706a84143c71ac47ab4c0f2779b9f26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stats: {fileID: 11424654}
   timeToFinishPath: 30
   minTimeForPath: 4
   maxTimeForPath: 30
@@ -86,6 +87,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8970a457281c0714ba56a68df3335882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: 1
+  BASIC_HP_DOWN: 1
+  BASIC_HP: 1
   MAX_SPEED: 20
   leftSplitLocation: {x: 0, y: 0}
 --- !u!114 &11435606
@@ -99,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c834ff917a9678e44994966daccf65ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 1
 --- !u!212 &21239546
 SpriteRenderer:
   m_ObjectHideFlags: 1

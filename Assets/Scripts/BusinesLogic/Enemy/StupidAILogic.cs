@@ -3,7 +3,7 @@ using System.Collections;
 
 public class StupidAILogic : MonoBehaviour , IEnemy{
 
-	AEnemyStats _stats;
+	public AEnemyStats _stats;
 	Rigidbody2D _rigidbody;
 	GameObject _leftBodyPartResouce,_rightBodyPartResouce;
 	GameObject _leftBodyPart,_rightBodyPart;
@@ -12,12 +12,17 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
     public float maxTimeForPath = 30f;
 	// Use this for initialization
 	void Awake () {
-        _stats = GetComponent<AEnemyStats>();
-		_rigidbody = GetComponent<Rigidbody2D> ();
+        _stats = this.gameObject.GetComponent<AEnemyStats>();
+		_rigidbody = this.gameObject.GetComponent<Rigidbody2D> ();
 		_leftBodyPartResouce = Resources.Load ("stupidL") as GameObject;
 		_rightBodyPartResouce = Resources.Load ("stupidR") as GameObject;
 		GetComponent<Rigidbody2D> ().gravityScale = 0;
 	}
+    public bool isDead()
+    {
+   //     Debug.Log("checking if dead: " + _stats.life + " HP");
+        return _stats.life <= 0;
+    }
 
 	void IEnemy.Death(){
 		Destroy (this.gameObject);
@@ -33,7 +38,7 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
 	}
 
 	public void SetStats(AEnemyStats i_stats){
-		_stats = i_stats;
+		//_stats = i_stats;
 	}
 
 	void IEnemy.MoveInDirection(Vector2 i_direction){
@@ -43,6 +48,7 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
 	}
 
 	void IEnemy.Split(Vector2 i_location){
+        Debug.Log("spliting enemy at location: " + i_location.ToString());
 		_leftBodyPart = Instantiate (_leftBodyPartResouce, i_location, Quaternion.identity) as GameObject;
 		if (_leftBodyPart != null) {
             _leftBodyPart.GetComponent<PartOfEnemyFadeOut>().FadeAndDestoryUp();
@@ -55,7 +61,7 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
 
     public void setPath(Vector3[] path, int speed)
     {
-        LeanTween.move(this.gameObject, path, calculateTime(speed)).setEase(LeanTweenType.linear).setOnComplete(() =>
+        LeanTween.move(this.gameObject, path, calculateTime(speed)).setEase(LeanTweenType.linear).setOnComplete( () =>
         {
             FinishedMoving();
         });
@@ -63,13 +69,19 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
 
    public void FinishedMoving()
     {
-        Destroy(this.gameObject);
+      //  Destroy(this.gameObject);
     }
 
    public float calculateTime(float speed)
    {
        speed = speed > _stats.MAX_SPEED ? _stats.MAX_SPEED : speed;
        return minTimeForPath * (_stats.MAX_SPEED / speed);
+   }
+
+   public bool lifeDown(int str)
+   {
+       _stats.lifeDown(str);
+       return _stats.isDead();
    }
 	
 }

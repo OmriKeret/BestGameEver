@@ -18,6 +18,7 @@ public class DeathLogic : MonoBehaviour {
 	// Use this for initialization
     void Start()
     {
+        
         losePanel = GameObject.Find("LosePanel");
         OrigPos = new Vector3(0, 30, 0);
         EndPos = new Vector3(0, 6, 0);
