@@ -108,7 +108,7 @@ public class PowerUpLogic : MonoBehaviour {
         movmentLogic.ResetRotation();
         animationLogic.SetDashing();
         LeanTween.cancel(character.gameObject,true);
-        var playerPosition = character.transform;
+       // var playerPosition = character.transform;
         var enemies = GameObject.FindGameObjectsWithTag("Enemy");
         LeanTween.pauseAll();
         Time.timeScale = 0f;
@@ -137,7 +137,7 @@ public class PowerUpLogic : MonoBehaviour {
             return;
         }
         var enemy = enemyStack.Pop();
-        var enemyCollider = enemy.GetComponent<Collider2D>();
+     //   var enemyCollider = enemy.GetComponent<Collider2D>();
         
         var enemyController = enemy.GetComponent<AIController>();
         var playerController = character.GetComponent<CollisionController>();

@@ -105,7 +105,7 @@ public class MovmentLogic : MonoBehaviour {
 		animationLogic.OnMoveSetDirection(new moveAnimationModel {direction = new Vector2(-1,0)});
 		playerStatsLogic.resetCombo();
         character.GetComponent<Collider2D>().enabled = false;
-        var playerPosition = character.transform;
+   //     var playerPosition = character.transform;
         touch.SetDisableMovment();
         Vector3[] path = new Vector3[] {
                                              new Vector3(12.16001f ,-19.35955f),
@@ -150,7 +150,7 @@ public class MovmentLogic : MonoBehaviour {
        {
            dashAnimationVector = new Vector2(-1f, 0.5f);
        }
-       Quaternion newRotation = Quaternion.LookRotation(dir);
+     //  Quaternion newRotation = Quaternion.LookRotation(dir);
 
       character.transform.rotation = Quaternion.FromToRotation(dashAnimationVector, dir);
 

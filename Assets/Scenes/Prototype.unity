@@ -1227,6 +1227,7 @@ GameObject:
   - 114: {fileID: 605148571}
   - 114: {fileID: 605148572}
   - 114: {fileID: 605148573}
+  - 114: {fileID: 605148574}
   m_Layer: 0
   m_Name: Logic
   m_TagString: Untagged
@@ -1246,7 +1247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HoverTime: 2
-  playerGravityScale: 0
+  playerGravityScale: 1
   amountOfShake: {x: 0, y: 0, z: 0}
 --- !u!114 &605148563
 MonoBehaviour:
@@ -1427,6 +1428,27 @@ MonoBehaviour:
   _BubblePowerUpPrefab: {fileID: 0}
   _InvincablePowerUpPrefab: {fileID: 0}
   _SuperhitPowerUpPrefab: {fileID: 0}
+--- !u!114 &605148574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 605148561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b40e4120146a90458c3ff177254b397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToGoDown: 5
+  timeToComeBackUp: 2
+  timeToShake: 2
+  timeToWaitBeforeShaking: 1
+  shakingTime: .100000001
+  angleToShakeTo: 4
+  podiumOriginalX: 2
+  podiumOriginalY: -7.21999979
+  immunityTimeFromBeginning: 0
+  timeToWaitDown: 2
 --- !u!1 &617068833
 GameObject:
   m_ObjectHideFlags: 0
@@ -1831,6 +1853,7 @@ GameObject:
   - 4: {fileID: 847587692}
   - 212: {fileID: 847587691}
   - 61: {fileID: 847587690}
+  - 114: {fileID: 847587693}
   m_Layer: 10
   m_Name: Podium
   m_TagString: Wall
@@ -1889,6 +1912,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 13
+--- !u!114 &847587693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 847587689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6098da4456852f44d96e0cc8d6209a04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &872514263
 GameObject:
   m_ObjectHideFlags: 0
@@ -2187,6 +2221,21 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 1
+--- !u!1 &915826020 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 170498, guid: 18b1c969bf9bc8f4cb1c2c5345cde54c, type: 2}
+  m_PrefabInternal: {fileID: 1973416762}
+--- !u!114 &915826024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 915826020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4344cfd8cb5892408f9fd31d9c25179, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &946425647
 GameObject:
   m_ObjectHideFlags: 0
@@ -2965,6 +3014,45 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1313239174}
+--- !u!1 &1316770618
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1316770620}
+  - 114: {fileID: 1316770619}
+  m_Layer: 0
+  m_Name: MemoryInfo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1316770619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1316770618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93369db90ae99384584684235f55da76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1316770620
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1316770618}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.71683407, y: 8.53833961, z: 79.796875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
 --- !u!1 &1328956598
 GameObject:
   m_ObjectHideFlags: 0
@@ -4270,7 +4358,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 170498, guid: 18b1c969bf9bc8f4cb1c2c5345cde54c, type: 2}
       propertyPath: m_Name
-      value: GameManagerMissions
+      value: GameManagerData
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 18b1c969bf9bc8f4cb1c2c5345cde54c, type: 2}
