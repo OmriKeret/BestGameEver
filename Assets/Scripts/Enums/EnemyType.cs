@@ -12,6 +12,7 @@ using System.Collections;
 public enum EnemyType { 
     Stupid = 1,
 	Spike,
-	Pion
-	//TBD: Ninja,Tank, Boss
+	Tank,
+	End// This is NOT an enemy, just means that the way have ended
+	//TBD: Ninja,Pion, Boss
 }
