@@ -9,10 +9,13 @@ using System.Collections;
  * Tank - Weak attacker, but need a few hits to be killed
  * 
  */
-public enum EnemyType { 
+public enum EnemyType
+{
+    General = 0,
     Stupid = 1,
-	Spike,
-	Tank,
-	End// This is NOT an enemy, just means that the way have ended
-	//TBD: Ninja,Pion, Boss
+    Spike,
+    Tank,
+    End,// This is NOT an enemy, just means that the way have ended
+    //TBD: Ninja,Pion, Boss
+    
 }

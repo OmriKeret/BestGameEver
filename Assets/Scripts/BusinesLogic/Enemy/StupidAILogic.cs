@@ -23,6 +23,16 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
 		GetComponent<Rigidbody2D> ().gravityScale = 0;
 	    _allPaths = initPaths();
 	}
+   public bool lifeDown(int str)
+    {
+        _stats.lifeDown(str);
+        return isDead();
+    }
+
+   public bool isDead()
+    {
+        return _stats.life <= 0;
+    }
 
     void IEnemy.Death(){
 		Destroy (this.gameObject);
