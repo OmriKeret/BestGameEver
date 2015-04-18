@@ -15,10 +15,26 @@ GameObject:
   - 114: {fileID: 11493638}
   - 114: {fileID: 11456252}
   - 61: {fileID: 6119542}
-  m_Layer: 0
+  - 95: {fileID: 9588938}
+  m_Layer: 8
   m_Name: PlayerManager
   m_TagString: Player
   m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &163890
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 470820}
+  m_Layer: 8
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -29,10 +45,23 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 150694}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.0799999982, y: 2.30999994, z: 0}
-  m_LocalScale: {x: 1.59762418, y: 1.4185425, z: .761715829}
-  m_Children: []
+  m_LocalPosition: {x: 2.07999992, y: -.379999995, z: 0}
+  m_LocalScale: {x: 1.44779813, y: 1.28551078, z: .69028163}
+  m_Children:
+  - {fileID: 470820}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!4 &470820
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 163890}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .119999997, y: -2.23000002, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 410640}
   m_RootOrder: 0
 --- !u!50 &5052598
 Rigidbody2D:
@@ -43,7 +72,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
-  m_GravityScale: 3
+  m_GravityScale: .100000001
   m_FixedAngle: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -62,6 +91,23 @@ BoxCollider2D:
   m_Offset: {x: .101715483, y: -.16240415}
   serializedVersion: 2
   m_Size: {x: 2.87965941, y: 4.42955923}
+--- !u!95 &9588938
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 150694}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4362b7e0a9b5f6a4282c0ad5d691088e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11456252
 MonoBehaviour:
   m_ObjectHideFlags: 1

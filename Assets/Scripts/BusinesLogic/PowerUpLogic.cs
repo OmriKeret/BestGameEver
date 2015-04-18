@@ -11,6 +11,7 @@ public class PowerUpLogic : MonoBehaviour {
     Dictionary<PowerUpType, Action> powerUpActions;
     Dictionary<PowerUpType, GameObject> powerUpIcon;
     Dictionary<PowerUpType, GameObject> powerUpSprite;
+
     //GUI
     public GameObject powerUpContainer;
     public float width;
@@ -37,13 +38,14 @@ public class PowerUpLogic : MonoBehaviour {
     AnimationLogic animationLogic;
     GameObject character;
     PlayerStatsLogic playerStatsLogic;
-
+    MissionLogic missionLogic;
     
 	// Use this for initialization
 
 	void Start () {
         //TODO: SET ASSETST
         //  _BubblePowerUpIcon = Resources.Load("stupidL") as GameObject;
+        missionLogic = this.gameObject.GetComponent<MissionLogic>();
         playerStatsLogic = this.gameObject.GetComponent<PlayerStatsLogic>();
         powerUPText = GameObject.Find("PowerUpText").GetComponent<Text>();
         touch = GameObject.Find("TouchInterpter").GetComponent<TouchInterpeter>();
@@ -57,6 +59,7 @@ public class PowerUpLogic : MonoBehaviour {
 
     public void GotPowerUp(PowerUpType powerUp) 
     {
+        missionLogic.addPowerUp(powerUp);
         powerUps[powerUp]++;
         clearPowerUps(powerUp);
         ReWritePowerUp(powerUp);
@@ -99,6 +102,7 @@ public class PowerUpLogic : MonoBehaviour {
     }
     private void SuperHit() 
     {
+        Debug.Log("doing super hit");
 		playerStatsLogic.powerUpModeActive = PowerUpType.SUPERHIT;
         touch.SetDisableMovment();
         movmentLogic.ResetRotation();
@@ -106,59 +110,121 @@ public class PowerUpLogic : MonoBehaviour {
         LeanTween.cancel(character.gameObject,true);
         var playerPosition = character.transform;
         var enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        Time.timeScale = 0.5f;
+        LeanTween.pauseAll();
+        Time.timeScale = 0f;
         originalStr = playerStatsLogic.Strength;
         playerStatsLogic.Strength = 100;
-        int count = 0;
-
+       
+        Stack<GameObject> enemiesObject = new Stack<GameObject>();
         foreach(var enemy in enemies) 
         {
             if(insideScreen(enemy.transform)) {
-                var dbt = character.AddComponent<TimedAction>();
-                dbt.doByTime(new TimeActionModel
-                {
-                    durationTime = superHitTime * count,
-                    stopingFunc = punchEnemies,
-                    subject = character,
-                    collidedWith = enemy,
-                    fixedTimeStart = Time.fixedTime
-                });
-				count++;
+                enemiesObject.Push(enemy);
+                var enemyCollider = enemy.GetComponent<Collider2D>();
+                enemyCollider.enabled = false;
 			}
         }
-		if (count == 0) 
-		{
-			finishedSuperHit();
-		}
+		punchEnemies (enemiesObject);
+        if (enemiesObject.Count == 0)
+        {
+            finishedSuperHit();
+        }
+    }
+    void punchEnemies(Stack<GameObject> enemyStack)
+    {
+        if (enemyStack.Count == 0)
+        {
+            return;
+        }
+        var enemy = enemyStack.Pop();
+        var enemyCollider = enemy.GetComponent<Collider2D>();
+        
+        var enemyController = enemy.GetComponent<AIController>();
+        var playerController = character.GetComponent<CollisionController>();
+
+        //set collision between character and enemy manually
+        playerController.OnCollisionEnter2DManual(enemy);
+        enemyController.OnCollisionEnter2DManual(character);
+
+        Vector2 target = enemy.transform.position;
+        Vector2 vecBetween = target - (Vector2)character.transform.position;
+        movmentLogic.RotateToDash(vecBetween);
+        animationLogic.OnMoveSetDirection(new moveAnimationModel { direction = vecBetween.normalized });
+        LeanTween.move(character, (Vector2)target, superHitTime).setIgnoreTimeScale(true).setEase(LeanTweenType.easeInOutElastic).setOnComplete(() =>
+        {
+            punchRecursionLogic(enemyStack);
+        });
+        
+
+    }
+    void punchRecursionLogic(Stack<GameObject> enemyStack)
+    {
+        if (enemyStack.Count == 0)
+        {
+            finishedSuperHit();
+            return;
+        }
+        else
+        {
+             punchEnemies(enemyStack);
+        }
     }
     void punchEnemies(SuperHitModel model)
     {
+
         Vector2 target = model.enemy.transform.position;
         Vector2 vecBetween = target - (Vector2)model.character.transform.position;
         movmentLogic.RotateToDash(vecBetween);
         animationLogic.OnMoveSetDirection(new moveAnimationModel { direction = vecBetween.normalized });
-        LeanTween.move(model.character, (Vector2)target, 0.5f).setEase(LeanTweenType.punch).setIgnoreTimeScale(true).setOnComplete(() =>
+        LeanTween.move(model.character, (Vector2)target, superHitTime).setEase(LeanTweenType.punch).setIgnoreTimeScale(true).setOnComplete(() =>
         {
+            
             finishedSuperHit();
         });
-
+    
     }
     public void finishedSuperHit()
     {
-        count--;
-        if(count > 0) 
+        int i = 0;
+        //return living enemies colliders
+        var enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (var enemy in enemies)
         {
-            return;
+           var collider = enemy.GetComponent<Collider2D>();
+           collider.enabled = true;
+           //Debug.Log("iterating on enemy " + i + "\ndead status: " + enemy.GetComponent<IEnemy>().isDead());
+           //Debug.Log("character strength is: " + playerStatsLogic.Strength );
+           if (enemy.GetComponent<IEnemy>().isDead())
+           {
+               killEnemy(enemy);
+           }
+           i++;
+           
         }
-
         playerStatsLogic.Strength = originalStr;
         movmentLogic.ResetRotation();
         movmentLogic.fallDown();
         touch.UnsetDisableMovment();
         animationLogic.UnSetDashing();
         Time.timeScale = 1f;
+		LeanTween.resumeAll ();
 		playerStatsLogic.powerUpModeActive = PowerUpType.NONE;
     }
+
+    private void killEnemy(GameObject enemy)
+    {
+        Debug.Log("killing enemy");
+        if (LeanTween.isTweening(enemy))
+        {
+            LeanTween.cancel(enemy,false);
+        }
+        var position = enemy.transform.position;
+        var enemyLogic = enemy.GetComponent<IEnemy>();
+        enemyLogic.Split(position);
+        enemyLogic.Death();
+
+    }
+
     //dict to know what action to use
     private void BuildDictionary()
     {
@@ -216,10 +282,22 @@ public class PowerUpLogic : MonoBehaviour {
     {
         //TODO: select randomly a powerUP
         var pref = powerUpSprite[PowerUpType.SUPERHIT];
-        var sprite = Instantiate(pref, new Vector3(-14.67f, 2.36f, 0f), Quaternion.identity) as GameObject;
+
+        var vec= RandomPlaceInsideScreenToPowerUp();
+        var sprite = Instantiate(pref, vec, Quaternion.identity) as GameObject;
         sprite.GetComponent<PowerUpTrigger>().Set();
     }
+    private Vector3 RandomPlaceInsideScreenToPowerUp()
+    {
+        var dist = (this.transform.position - Camera.main.transform.position).z;
+        var leftBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, dist)).x;
+        var rightBorder = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, dist)).x;
+        var topBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 1, dist)).y;
+        var buttomBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, dist)).y;
 
+        return new Vector3((float)UnityEngine.Random.Range(leftBorder, rightBorder), (float)UnityEngine.Random.Range(buttomBorder + 4, topBorder - 2), 0f);
+
+    }
     private bool insideScreen(Transform t){
 		var dist = (t.position - Camera.main.transform.position).z;
 		var leftBorder = Camera.main.ViewportToWorldPoint(new Vector3(0,0,dist)).x; 

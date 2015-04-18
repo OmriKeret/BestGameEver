@@ -6,6 +6,7 @@ public class PowerUpController : MonoBehaviour {
     PowerUpLogic powerUpLogic;
     public float nextGenerateTime;
     public float fixedTimeStart = -10f;
+    public float minBetweenPowerUps = 5f;
     public int maxTimeBetweenPowerUps;
 
 	// Use this for initialization
@@ -25,6 +26,6 @@ public class PowerUpController : MonoBehaviour {
     void GeneratePowerUp()
     {
         powerUpLogic.generatePowerUp();
-        nextGenerateTime =(float) UnityEngine.Random.Range(2, maxTimeBetweenPowerUps);
+        nextGenerateTime = (float)UnityEngine.Random.Range(minBetweenPowerUps, maxTimeBetweenPowerUps);
     }
 }

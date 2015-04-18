@@ -89,20 +89,33 @@ public class CollisionLogic : MonoBehaviour  {
 
 
 	public void EnemyCollidedWithPlayer(CollisionModel model) {
+        Debug.Log("enemy collision detected");
 		var enemyController = model.mainCollider.GetComponent<AIController> ();
 		var enemy = model.mainCollider.GetComponent<IEnemy> ();
 		var position = (Vector2)model.mainCollider.transform.position;
-        if (enemyController.lifeDown(playerStatsLogic.Strength)) //if enemy dead
+        if (enemy.lifeDown(playerStatsLogic.Strength)) //if enemy dead
         {
             scoreLogic.addPoint(new AddPointModel { type = enemyController.type, combo = playerStatsLogic.combo });
             missionLogic.addKill(enemyController.type);
-            LeanTween.cancel(model.mainCollider.gameObject, true);
-            enemy.Death();
-            enemy.Split(position);
+            LeanTween.cancel(model.mainCollider.gameObject, false);
+            if (Time.timeScale != 0) //could happen in super hit power up
+            {
+				enemy.Split(position);
+                enemy.Death();
+
+            }
+
         }
 
 	}
 
+    public void killEnemy(GameObject enemy)
+    {
+        var position = enemy.transform.position;
+        var enemyLogic = enemy.GetComponent<IEnemy>();
+		enemyLogic.Split(position);
+		enemyLogic.Death ();
+    }
 	public void playerCollidedWithWall(CollisionModel model) 
 	{
         LeanTween.cancel(model.mainCollider.gameObject, true);

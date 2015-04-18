@@ -15,6 +15,9 @@ public interface IEnemy {
 
 	void Split(Vector2 i_location);
 
+    bool lifeDown(int str);
+    
+    bool isDead();
 
     void StartRandomPath(int speed);
 }

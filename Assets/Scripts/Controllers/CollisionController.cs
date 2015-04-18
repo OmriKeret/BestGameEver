@@ -21,6 +21,13 @@ public class CollisionController : MonoBehaviour {
 		onCollisionFacade (model);
 	}
 
+    public void OnCollisionEnter2DManual(GameObject col)
+    {
+        //	Debug.Log("collision detected");
+        CollisionModel model = new CollisionModel { mainCollider = this.gameObject, CollidedWith = col.gameObject };
+        onCollisionFacade(model);
+    }
+
 	public void onCollisionFacade(CollisionModel model) {
 		collisionFacade.Collision (model);
 	}
