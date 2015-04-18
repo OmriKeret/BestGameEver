@@ -9,6 +9,8 @@ public class StupidGeneralStats : AEnemyStats {
 		BASIC_HP = 1;
 		life = BASIC_HP;
 		MAX_SPEED = 10f;
+		_mode = EnemyMode.None;
+		_type = EnemyType.Stupid;
 		}
 
     

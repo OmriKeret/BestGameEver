@@ -91,7 +91,7 @@ public class MovmentLogic : MonoBehaviour {
 	public void fallDown() 
 	{
         ResetRotation();
-		Vector2 target = new Vector2 (character.transform.position.x, character.transform.position.y - 30);
+		Vector2 target = new Vector2 (character.transform.position.x, character.transform.position.y - 60);
         RotateCharFall();
         LeanTween.move(character.gameObject, (Vector2)target, fallTime).setEase(LeanTweenType.easeInCubic).setDelay(hoverTime);
 	}

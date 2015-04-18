@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class EnemyGeneratorController : MonoBehaviour {
@@ -7,7 +7,7 @@ public class EnemyGeneratorController : MonoBehaviour {
 	GenerateWaveLogic generateWaveLogic;
 	public float timeBetweenWaves = 9f;
 	private float fixedTimeStart = -10;
-	private int waveNumber = 1;
+	private int _waveNumber = 1;
 	// Use this for initialization
 
 	void Start () {
@@ -18,12 +18,13 @@ public class EnemyGeneratorController : MonoBehaviour {
 	void FixedUpdate(){
 		if (Time.fixedTime - fixedTimeStart > timeBetweenWaves) {
 			GenerateWave();
+            Debug.Log("new wave");
 			fixedTimeStart = Time.fixedTime;
 		}
 	}
 
 	void GenerateWave(){
-		generateWaveLogic.generateWave (new WaveGenerateModel{waveNumber = waveNumber});
-        waveNumber++;
+		generateWaveLogic.generateWave (new WaveGenerateModel{waveNumber = _waveNumber});
+        _waveNumber++;
 	}
 }

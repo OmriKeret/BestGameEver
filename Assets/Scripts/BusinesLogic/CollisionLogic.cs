@@ -97,7 +97,7 @@ public class CollisionLogic : MonoBehaviour  {
         {
             scoreLogic.addPoint(new AddPointModel { type = enemyController.type, combo = playerStatsLogic.combo });
             missionLogic.addKill(enemyController.type);
-            LeanTween.cancel(model.mainCollider.gameObject, true);
+            LeanTween.cancel(model.mainCollider.gameObject, false);
             if (Time.timeScale != 0) //could happen in super hit power up
             {
 				enemy.Split(position);

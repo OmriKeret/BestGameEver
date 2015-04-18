@@ -19,5 +19,5 @@ public interface IEnemy {
     
     bool isDead();
 
-    void setPath(Vector3[] path,int speed);
+    void StartRandomPath(int speed);
 }
