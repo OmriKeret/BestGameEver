@@ -13,6 +13,8 @@ public class DeathLogic : MonoBehaviour {
     GameObject losePanel;
     Vector3 OrigPos;
     Vector3 EndPos;
+    public float timeToEnterMission = 0.2f;
+    public float delayBetweenMissionRemovalToEnterance = 0.2f;
     public float timeToRemoveMission = 0.2f;
     float origMissionTextX;
     float EndMissionTextX;
@@ -67,7 +69,7 @@ public class DeathLogic : MonoBehaviour {
         deathMissionsToggleAndTextNew[missionNum].missionText = GameObject.Find("LosePanel/LoseMission3New/LoseMissionText3").GetComponent<Text>();
         deathMissionsToggleAndTextNew[missionNum].missionToggle = GameObject.Find("LosePanel/LoseMission3New").GetComponent<Toggle>();
 
-        origMissionTextX = deathMissionsToggleAndText[missionNum].missionToggle.transform.position.x;
+        origMissionTextX = deathMissionsToggleAndText[missionNum].missionToggle.transform.position.x - 1;
         EndMissionTextX = origMissionTextX - 30;
 		deathScore = GameObject.Find("LosePanel/LoseScore").GetComponent<Text>();
     }
@@ -97,7 +99,10 @@ public class DeathLogic : MonoBehaviour {
 
     private void MoveGUI()
     {
-        LeanTween.move(losePanel, EndPos, timeToOpenDeathMenu).setIgnoreTimeScale(true);
+        LeanTween.move(losePanel, EndPos, timeToOpenDeathMenu).setIgnoreTimeScale(true).setOnComplete( () => 
+            {
+                missionLogic.updateMissionProggressEndOfGame();
+            });
         Time.timeScale = 0;
     }
 
@@ -120,25 +125,13 @@ public class DeathLogic : MonoBehaviour {
 
         missionsToggleAndText[missionNum].missionText = missionLogic.MissionsToggleAndText[missionNum].missionText;
         missionsToggleAndText[missionNum].missionToggle = missionLogic.MissionsToggleAndText[missionNum].missionToggle;
-        int i = 0;
-        foreach(var mission in missionsToggleAndText) 
+     
+        for (int i = 0; i < missionsToggleAndText.Length; i++)
         {
-            if (mission.missionToggle.isOn)
-            {
-              //  deathMissionsToggleAndText[i].missionToggle.gameObject.re = true;
-                deathMissionsToggleAndText[i].missionText.text = mission.missionText.text;
-                deathMissionsToggleAndText[i].missionToggle.isOn = true;
-                i++;
-            }
+            deathMissionsToggleAndText[i].missionText.text = missionsToggleAndText[i].missionText.text;
+            deathMissionsToggleAndText[i].missionToggle.isOn = missionsToggleAndText[i].missionToggle.isOn;
         }
-        foreach (var mission in missionsToggleAndText)
-        {
-            if (mission.missionToggle.isOn == false)
-            {
-                deathMissionsToggleAndText[i].missionToggle.gameObject.SetActive(false);
-                i++;
-            }
-        }
+
     }
 
     internal void switchMissionsOnComplete(MissionModel[] missionModel)
@@ -150,7 +143,7 @@ public class DeathLogic : MonoBehaviour {
     private void moveOldMissionsAndReplaceWithNew()
     {
         int i = 0;
-        LeanTween.moveX(missionsToggleAndText[i].missionToggle.gameObject, EndMissionTextX, timeToRemoveMission).setIgnoreTimeScale(true).setOnComplete(
+        LeanTween.moveX(deathMissionsToggleAndText[i].missionToggle.gameObject, EndMissionTextX, timeToRemoveMission).setIgnoreTimeScale(true).setEase(LeanTweenType.easeInOutElastic).setOnComplete(
             () =>
                 {
                     moveOldMission(i);
@@ -159,7 +152,7 @@ public class DeathLogic : MonoBehaviour {
     }
     private void moveNewMission(int i)
     {
-        LeanTween.moveX(deathMissionsToggleAndTextNew[i].missionToggle.gameObject, origMissionTextX, timeToRemoveMission).setIgnoreTimeScale(true).setOnComplete(
+        LeanTween.moveX(deathMissionsToggleAndTextNew[i].missionToggle.gameObject, origMissionTextX, timeToEnterMission).setIgnoreTimeScale(true).setEase(LeanTweenType.easeInOutElastic).setDelay(delayBetweenMissionRemovalToEnterance).setOnComplete(
               () =>
               {
                   i++;
@@ -173,7 +166,7 @@ public class DeathLogic : MonoBehaviour {
     }
     private void moveOldMission(int i)
     {
-            LeanTween.moveX(missionsToggleAndText[i].missionToggle.gameObject, EndMissionTextX, timeToRemoveMission).setIgnoreTimeScale(true).setOnComplete(
+        LeanTween.moveX(deathMissionsToggleAndText[i].missionToggle.gameObject, EndMissionTextX, timeToRemoveMission).setDelay(delayBetweenMissionRemovalToEnterance).setIgnoreTimeScale(true).setEase(LeanTweenType.easeInOutElastic).setOnComplete(
                 () =>
                 {
                     moveNewMission(i);

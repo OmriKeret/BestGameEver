@@ -9,10 +9,6 @@ public class MissionStats : MonoBehaviour {
     MissionModel[] currentMissions;
     MissionAssigner missionAssigner;
     Dictionary<int, string> tierTitle;
-    void Awake()
-    {
-        DontDestroyOnLoad(transform.gameObject);
-    }
 
 	// Use this for initialization
 	void Start () {
@@ -88,6 +84,7 @@ public class MissionStats : MonoBehaviour {
         MissionModel[] result = new MissionModel[3];
         for (int i = 0; i < result.Length; i++)
         {
+            result[i] = new MissionModel();
             result[i].currentNumberAchived = currentMissions[i].currentNumberAchived;
             result[i].enemyType = currentMissions[i].enemyType;
             result[i].isFinished = currentMissions[i].isFinished;

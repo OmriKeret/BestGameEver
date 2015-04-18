@@ -10,6 +10,7 @@ public class MissionAssigner : MonoBehaviour {
     Dictionary<PowerUpType, string> powerUpTypeString;
 	// Use this for initialization
 	void Awake () {
+        DontDestroyOnLoad(transform.gameObject);
         MissionInitializer();
 	}
 
@@ -23,10 +24,13 @@ public class MissionAssigner : MonoBehaviour {
             MissionModel mission = getRandomMission(tier);
 
             //if mission doesn't exists yet
-            if(!result.Exists(m => m.type == mission.type)) {
+            if (!result.Exists(m => m.type == mission.type))
+            {
+                Debug.Log("result not exits");
                 result.Add(mission);
                 i++;
             }
+            //i++;
         }
         return result.ToArray();
 
@@ -44,44 +48,53 @@ public class MissionAssigner : MonoBehaviour {
         mission.powerUpType = selectedMission.powerUpType;
         mission.isFinished = false;
         mission.needToBeCompletedInOneGame = selectedMission.needToBeCompletedInOneGame;
-
+        string inOneGame = mission.needToBeCompletedInOneGame ? " in one game!" : "!";
         if(mission.type == MissionType.killTypeOfEnemy) {
-            mission.missionText = string.Format("Kill total of {0} {1}", mission.numberToAchive, enemyTypeString[mission.enemyType]);
+            mission.missionText = string.Format("Kill total of {0} {1}{2}", mission.numberToAchive, enemyTypeString[mission.enemyType], inOneGame);
         }
         if (mission.type == MissionType.takePowerUp)
         {
-            mission.missionText = string.Format("Get total of {0} {1}", mission.numberToAchive, powerUpTypeString[mission.powerUpType]);
+            mission.missionText = string.Format("Get total of {0} {1}{2}", mission.numberToAchive, powerUpTypeString[mission.powerUpType], inOneGame);
         }
         if (mission.type == MissionType.getScoreOf)
         {
-            mission.missionText = string.Format("Get score of {0}!", string.Format(System.Globalization.CultureInfo.InvariantCulture,
-                                 "{0:0,0}", mission.numberToAchive));
+            mission.missionText = string.Format("Get score of {0}{1}", string.Format(System.Globalization.CultureInfo.InvariantCulture,
+                                 "{0:0,0}", mission.numberToAchive), inOneGame);
         }
         if (mission.type == MissionType.survival)
         {
-            TimeSpan time = TimeSpan.FromSeconds(mission.numberToAchive);
-            string text = string.Format("{0}:{1} ",time.TotalMinutes,time.TotalSeconds);
+          //  TimeSpan time = TimeSpan.FromSeconds(mission.numberToAchive);
+            string text = formatCountTimeString(mission.numberToAchive);
             mission.missionText = string.Format("Survive for {0} minutes!", text);
         }
         return mission;
     }
-
+    private string formatCountTimeString(int numberToAchive)
+    {
+        int seconds = numberToAchive % 60;
+        int minutes = numberToAchive / 60;
+        return minutes + ":" + seconds;
+    }
     //setting variables 
-    public void MissionInitializer()
+    private void MissionInitializer()
     {
         missions = new MissionModel[] { 
-                                             new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 5, missionText ="Kill Total of five enemies!", enemyType = EnemyType.General, needToBeCompletedInOneGame = true }, 
-                                             new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 5, missionText ="Kill five stupid enemies!", enemyType = EnemyType.Stupid, needToBeCompletedInOneGame = true }, 
-                                             new MissionModel {type = MissionType.getScoreOf , numberToAchive = 10000, missionText ="Get score of 10,000!" , needToBeCompletedInOneGame = true}
+                                             new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 1, missionText ="Kill Total of five enemies!", enemyType = EnemyType.General, needToBeCompletedInOneGame = false }, 
+                                             new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 1, missionText ="Kill five stupid enemies!", enemyType = EnemyType.Stupid, needToBeCompletedInOneGame = false }, 
+                                             new MissionModel {type = MissionType.getScoreOf , numberToAchive = 1, missionText ="Get score of 10,000!" , needToBeCompletedInOneGame = false},
+                                             new MissionModel {type = MissionType.survival , numberToAchive = 1, missionText ="Survive for:" , needToBeCompletedInOneGame = false},
+                                             new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 1, missionText ="Kill Total of five enemies!", enemyType = EnemyType.General, needToBeCompletedInOneGame = false }, 
+                                             new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 1, missionText ="Kill five stupid enemies!", enemyType = EnemyType.Stupid, needToBeCompletedInOneGame = false }, 
+                                             new MissionModel {type = MissionType.getScoreOf , numberToAchive = 1, missionText ="Get score of 10,000!" , needToBeCompletedInOneGame = false},
                                                };
         enemyTypeString = new Dictionary<EnemyType, string> 
         {
-            {EnemyType.General, "enemies!"},
-            {EnemyType.Stupid, "flying goblins!"}
+            {EnemyType.General, "enemies"},
+            {EnemyType.Stupid, "flying goblins"}
         };
         powerUpTypeString = new Dictionary<PowerUpType, string> 
         {
-            {PowerUpType.SUPERHIT, "Super Hit PowerUPs!"}
+            {PowerUpType.SUPERHIT, "Super Hit PowerUPs"}
         };
     }
 

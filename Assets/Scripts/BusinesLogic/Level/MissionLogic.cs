@@ -15,6 +15,9 @@ public class MissionLogic : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        deathLogic = this.gameObject.GetComponent<DeathLogic>();
+        missionStats = GameObject.Find("GameManagerMissions").GetComponent<MissionStats>();     
+
         enemyKills = new Dictionary<EnemyType, int>	{ 
 			{ EnemyType.Stupid, 0 },
             { EnemyType.General, 0 }
@@ -27,7 +30,7 @@ public class MissionLogic : MonoBehaviour {
 			new InternalMissionModel(),
 			new InternalMissionModel()
 		};
-        TrackTimeForMissionNumber = 0;
+        TrackTimeForMissionNumber = -1;
         int missionNum = 0;
 		//var x = GameObject.Find("PauseMenu/Mission1/Mission1Label").GetComponent<Text>();
 		MissionsToggleAndText[missionNum].missionText = GameObject.Find("PauseMenu/Mission1/Mission1Label").GetComponent<Text>();
@@ -50,7 +53,7 @@ public class MissionLogic : MonoBehaviour {
     //counting time to timed missions
     void FixedUpdate()
     {
-        if (TrackTimeForMissionNumber != 0)
+        if (TrackTimeForMissionNumber != -1)
         {
             missions[TrackTimeForMissionNumber].currentNumberAchived = (int)Time.fixedTime;
             updateNumberAchived(TrackTimeForMissionNumber, missions[TrackTimeForMissionNumber].currentNumberAchived);
@@ -87,11 +90,13 @@ public class MissionLogic : MonoBehaviour {
    //helper method to format time text
    private string formatCountTimeString(int numberToAchive, int numberAchivedAlready)
    {
-       var Left = string.Format(System.Globalization.CultureInfo.InvariantCulture,
-                                 "{0:0,0}", numberToAchive);
-       var right = string.Format(System.Globalization.CultureInfo.InvariantCulture,
-                          "{0:0,0}", numberAchivedAlready);
-       return string.Format("{0}/{1}", Left, right);
+       int seconds = numberToAchive % 60;
+       int minutes = numberToAchive / 60;
+       string right = minutes + ":" + seconds;
+       seconds = numberAchivedAlready % 60;
+       minutes = numberAchivedAlready / 60;
+       string left = minutes + ":" + seconds;
+       return string.Format("{0}/{1}", left, right);
    }
 
    //helper method to format text
@@ -124,6 +129,12 @@ public class MissionLogic : MonoBehaviour {
     //helper method to update the number achived and write it
    private void updateNumberAchived(int missionNumber,int numberAchived)
    {
+       if (missions[missionNumber].numberToAchive <= numberAchived)
+       {
+           numberAchived = missions[missionNumber].numberToAchive;
+           finishedMission(missionNumber);
+
+       }
        missions[missionNumber].currentNumberAchived = numberAchived;
        if (missions[missionNumber].type == MissionType.survival)
        {
@@ -176,6 +187,7 @@ public class MissionLogic : MonoBehaviour {
     {
         //TODO:playsound 
         MissionsToggleAndText[missionNum].missionToggle.isOn = true;
+        missions[missionNum].isFinished = true;
     }
 
     public void updateMissionProggressEndOfGame()

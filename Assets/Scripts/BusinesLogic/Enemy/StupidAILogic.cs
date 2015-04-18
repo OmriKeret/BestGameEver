@@ -69,7 +69,7 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
 
    public void FinishedMoving()
     {
-      //  Destroy(this.gameObject);
+        Destroy(this.gameObject);
     }
 
    public float calculateTime(float speed)
