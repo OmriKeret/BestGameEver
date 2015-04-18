@@ -4,11 +4,13 @@ using UnityEngine.UI;
 public class ScoreLogic : MonoBehaviour {
     private MissionLogic missionLogic;
     Text scoreText;
+    ScoreData scoreDataAccess;
     public int score = 0;
 	// Use this for initialization
 	void Start () {
         scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
         missionLogic = this.gameObject.GetComponent<MissionLogic>();
+        scoreDataAccess = GameObject.Find("GameManagerData").GetComponent<ScoreData>();
 	}
 	
 	public void addPoint(AddPointModel model) {
@@ -26,5 +28,10 @@ public class ScoreLogic : MonoBehaviour {
     {
         score = (int)(score * tier * 1.1);
         return score;
+    }
+
+    internal void saveScoreData()
+    {
+        scoreDataAccess.updateHighScore(score);
     }
 }

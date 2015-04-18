@@ -9,14 +9,14 @@ public class MissionLogic : MonoBehaviour {
   Dictionary<PowerUpType, int> powerUpstaken;
   public InternalMissionModel[] MissionsToggleAndText;
   int TrackTimeForMissionNumber;
-  DeathLogic deathLogic; // todo: assign
-  MissionStats missionStats; //todo: assign
+  DeathLogic deathLogic; 
+  MissionStats missionStats; 
   public Text missionTitle;
 
 	// Use this for initialization
 	void Start () {
         deathLogic = this.gameObject.GetComponent<DeathLogic>();
-        missionStats = GameObject.Find("GameManagerMissions").GetComponent<MissionStats>();     
+        missionStats = GameObject.Find("GameManagerData").GetComponent<MissionStats>();     
 
         enemyKills = new Dictionary<EnemyType, int>	{ 
 			{ EnemyType.Stupid, 0 },
@@ -201,5 +201,10 @@ public class MissionLogic : MonoBehaviour {
     internal int getTier()
     {
         return missionStats.getTier();
+    }
+
+    internal void saveMissionData()
+    {
+        missionStats.SaveMissionProgression();
     }
 }

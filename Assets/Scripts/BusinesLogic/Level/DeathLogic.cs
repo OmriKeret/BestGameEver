@@ -26,7 +26,6 @@ public class DeathLogic : MonoBehaviour {
     private int scoreBegin;
     private int scoreEnd;
     private bool changeScoreText = false;
-
 	// Use this for initialization
     void Start()
     {      
@@ -99,6 +98,7 @@ public class DeathLogic : MonoBehaviour {
         GetMissionData();
         GetScoreData();
         MoveGUI();
+      //  saveScore();
     }
 
     public void Reset()
@@ -150,6 +150,13 @@ public class DeathLogic : MonoBehaviour {
         updateNewMissions(missionModel);
         moveOldMissionsAndReplaceWithNew();
         multiplyScore(missionLogic.getTier());
+        saveScoreAndMissions();
+    }
+
+    private void saveScoreAndMissions()
+    {
+        scoreLogic.saveScoreData();
+        missionLogic.saveMissionData();
     }
 
     private void multiplyScore(int tier)
