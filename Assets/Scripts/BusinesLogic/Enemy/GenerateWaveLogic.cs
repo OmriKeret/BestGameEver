@@ -24,7 +24,7 @@ public class GenerateWaveLogic : MonoBehaviour {
 	}
 	// Use this for initialization
 	public void generateWave(WaveGenerateModel i_model) {
-		/** --don't know if I need this anymore
+		/** --omri's code
         if (!TypeOfEnemiesEachWave.ContainsKey(model.waveNumber))
         {
             return;
@@ -49,7 +49,7 @@ public class GenerateWaveLogic : MonoBehaviour {
 			var enemyType = i_CurrentWave.GetNextEnemy();
             if (enemyType.Equals(EnemyType.End))
             {
-               
+               yield break;
             }
             var enemyLocation = new Vector2(0f, 40f); ;//instantiateLocations[UnityEngine.Random.Range(0, locationMax)];
 

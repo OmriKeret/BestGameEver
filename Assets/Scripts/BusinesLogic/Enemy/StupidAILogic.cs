@@ -24,21 +24,6 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
 	    _allPaths = initPaths();
 	}
 
-    private Vector3[][] initPaths()
-    {
-        LinkedList<Vector3[]> paths = new LinkedList<Vector3[]>();
-        paths.AddFirst(new Vector3[]
-        {
-            new Vector3(23.16821f,32.77761f), 
-            new Vector3(16.53627f,23.94602f), 
-            new Vector3(15.8f,-5.75f), 
-            new Vector3(5.79f,10.11f), 
-        });
-
-        return paths.ToArray();
-
-    }
-
     void IEnemy.Death(){
 		Destroy (this.gameObject);
 		}
@@ -104,6 +89,35 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
    {
        speed = speed > _stats.MAX_SPEED ? _stats.MAX_SPEED : speed;
        return minTimeForPath * (_stats.MAX_SPEED / speed);
+   }
+
+   private Vector3[][] initPaths()
+   {
+       LinkedList<Vector3[]> paths = new LinkedList<Vector3[]>();
+       paths.AddFirst(new Vector3[]
+        {
+            new Vector3(23.16821f,32.77761f), 
+            new Vector3(16.53627f,23.94602f), 
+            new Vector3(15.8f,-5.75f), 
+            new Vector3(SceneStats.LeftEdge,0), 
+        });
+       paths.AddLast(new Vector3[]
+        {
+            new Vector3(SceneStats.LeftEdge,0), 
+            new Vector3(-20.53627f,7.94602f), 
+            new Vector3(15f,-2.75f), 
+            new Vector3(SceneStats.RightEdge,SceneStats.TopEdge), 
+        });
+       paths.AddLast(new Vector3[]
+        {
+            new Vector3(SceneStats.LeftEdge,SceneStats.TopEdge), 
+            new Vector3(-5f,17.51f), 
+            new Vector3(-10.15f,9.19f), 
+            new Vector3(SceneStats.LeftEdge,SceneStats.BottomEdge), 
+        });
+
+       return paths.ToArray();
+
    }
 	
 }

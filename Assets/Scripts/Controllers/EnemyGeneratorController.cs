@@ -5,7 +5,7 @@ public class EnemyGeneratorController : MonoBehaviour {
 
 	GameObject stupidEnemy ;
 	GenerateWaveLogic generateWaveLogic;
-	public float timeBetweenWaves = 9f;
+	public float timeBetweenWaves = 4f;
 	private float fixedTimeStart = -10;
 	private int _waveNumber = 1;
 	// Use this for initialization
