@@ -5,4 +5,5 @@ using UnityEngine.UI;
 public class InternalMissionModel {
   public  Text missionText;
   public  Toggle missionToggle;
+  public Text missionCount;
 }

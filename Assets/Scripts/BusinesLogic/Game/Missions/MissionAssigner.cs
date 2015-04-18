@@ -9,14 +9,14 @@ public class MissionAssigner : MonoBehaviour {
     Dictionary<EnemyType, string> enemyTypeString;
     Dictionary<PowerUpType, string> powerUpTypeString;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         MissionInitializer();
 	}
 
 
     public MissionModel[] getNewMissions(int tier)
-    {      
-        List<MissionModel> result = new List<MissionModel>;
+    {
+        List<MissionModel> result = new List<MissionModel>();
         int i = 0;
         while (i < 3)
         {
@@ -43,6 +43,7 @@ public class MissionAssigner : MonoBehaviour {
         mission.enemyType = selectedMission.enemyType;
         mission.powerUpType = selectedMission.powerUpType;
         mission.isFinished = false;
+        mission.needToBeCompletedInOneGame = selectedMission.needToBeCompletedInOneGame;
 
         if(mission.type == MissionType.killTypeOfEnemy) {
             mission.missionText = string.Format("Kill total of {0} {1}", mission.numberToAchive, enemyTypeString[mission.enemyType]);
@@ -63,16 +64,15 @@ public class MissionAssigner : MonoBehaviour {
             mission.missionText = string.Format("Survive for {0} minutes!", text);
         }
         return mission;
-
-        
     }
 
     //setting variables 
     public void MissionInitializer()
     {
-        missions = new MissionModel[] {      new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 5, missionText ="Kill Total of five enemies!", enemyType = EnemyType.General }, 
-                                             new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 5, missionText ="Kill five stupid enemies!", enemyType = EnemyType.Stupid }, 
-                                             new MissionModel {type = MissionType.getScoreOf , numberToAchive = 10000, missionText ="Get score of 10,000!" }
+        missions = new MissionModel[] { 
+                                             new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 5, missionText ="Kill Total of five enemies!", enemyType = EnemyType.General, needToBeCompletedInOneGame = true }, 
+                                             new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 5, missionText ="Kill five stupid enemies!", enemyType = EnemyType.Stupid, needToBeCompletedInOneGame = true }, 
+                                             new MissionModel {type = MissionType.getScoreOf , numberToAchive = 10000, missionText ="Get score of 10,000!" , needToBeCompletedInOneGame = true}
                                                };
         enemyTypeString = new Dictionary<EnemyType, string> 
         {

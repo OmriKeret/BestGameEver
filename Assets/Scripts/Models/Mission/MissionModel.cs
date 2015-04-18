@@ -10,4 +10,5 @@ public class MissionModel {
    public int currentNumberAchived;
    public string missionText;
    public bool isFinished;
+   public bool needToBeCompletedInOneGame;
 }

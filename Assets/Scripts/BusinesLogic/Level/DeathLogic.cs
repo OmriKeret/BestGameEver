@@ -13,8 +13,15 @@ public class DeathLogic : MonoBehaviour {
     GameObject losePanel;
     Vector3 OrigPos;
     Vector3 EndPos;
+    public float timeToRemoveMission = 0.2f;
+    float origMissionTextX;
+    float EndMissionTextX;
+    public Text missionTitle;
+    public Text missionTitleNew;
     public InternalMissionModel[] missionsToggleAndText;
     public InternalMissionModel[] deathMissionsToggleAndText;
+    public InternalMissionModel[] deathMissionsToggleAndTextNew;
+
 	// Use this for initialization
     void Start()
     {
@@ -37,18 +44,31 @@ public class DeathLogic : MonoBehaviour {
 			new InternalMissionModel(),
 			new InternalMissionModel()
 		};
+        deathMissionsToggleAndTextNew = new InternalMissionModel[] {
+			new InternalMissionModel(),
+			new InternalMissionModel(),
+			new InternalMissionModel()
+		};
         int missionNum = 0;
         deathMissionsToggleAndText[missionNum].missionText = GameObject.Find("LosePanel/LoseMission1/LoseMissionText1").GetComponent<Text>();
         deathMissionsToggleAndText[missionNum].missionToggle = GameObject.Find("LosePanel/LoseMission1").GetComponent<Toggle>();
+        deathMissionsToggleAndTextNew[missionNum].missionText = GameObject.Find("LosePanel/LoseMission1New/LoseMissionText1").GetComponent<Text>();
+        deathMissionsToggleAndTextNew[missionNum].missionToggle = GameObject.Find("LosePanel/LoseMission1New").GetComponent<Toggle>();
         missionNum++;
 
         deathMissionsToggleAndText[missionNum].missionText = GameObject.Find("LosePanel/LoseMission2/LoseMissionText2").GetComponent<Text>();
         deathMissionsToggleAndText[missionNum].missionToggle = GameObject.Find("LosePanel/LoseMission2").GetComponent<Toggle>();
+        deathMissionsToggleAndTextNew[missionNum].missionText = GameObject.Find("LosePanel/LoseMission2New/LoseMissionText2").GetComponent<Text>();
+        deathMissionsToggleAndTextNew[missionNum].missionToggle = GameObject.Find("LosePanel/LoseMission2New").GetComponent<Toggle>();
         missionNum++;
 
         deathMissionsToggleAndText[missionNum].missionText = GameObject.Find("LosePanel/LoseMission3/LoseMissionText3").GetComponent<Text>();
         deathMissionsToggleAndText[missionNum].missionToggle = GameObject.Find("LosePanel/LoseMission3").GetComponent<Toggle>();
+        deathMissionsToggleAndTextNew[missionNum].missionText = GameObject.Find("LosePanel/LoseMission3New/LoseMissionText3").GetComponent<Text>();
+        deathMissionsToggleAndTextNew[missionNum].missionToggle = GameObject.Find("LosePanel/LoseMission3New").GetComponent<Toggle>();
 
+        origMissionTextX = deathMissionsToggleAndText[missionNum].missionToggle.transform.position.x;
+        EndMissionTextX = origMissionTextX - 30;
 		deathScore = GameObject.Find("LosePanel/LoseScore").GetComponent<Text>();
     }
 
@@ -119,5 +139,54 @@ public class DeathLogic : MonoBehaviour {
                 i++;
             }
         }
+    }
+
+    internal void switchMissionsOnComplete(MissionModel[] missionModel)
+    {
+        updateNewMissions(missionModel);
+        moveOldMissionsAndReplaceWithNew();
+    }
+
+    private void moveOldMissionsAndReplaceWithNew()
+    {
+        int i = 0;
+        LeanTween.moveX(missionsToggleAndText[i].missionToggle.gameObject, EndMissionTextX, timeToRemoveMission).setIgnoreTimeScale(true).setOnComplete(
+            () =>
+                {
+                    moveOldMission(i);
+                }
+            );
+    }
+    private void moveNewMission(int i)
+    {
+        LeanTween.moveX(deathMissionsToggleAndTextNew[i].missionToggle.gameObject, origMissionTextX, timeToRemoveMission).setIgnoreTimeScale(true).setOnComplete(
+              () =>
+              {
+                  i++;
+                  if (i < 3)
+                  {
+                      moveOldMission(i);
+                  }
+
+              }
+          );
+    }
+    private void moveOldMission(int i)
+    {
+            LeanTween.moveX(missionsToggleAndText[i].missionToggle.gameObject, EndMissionTextX, timeToRemoveMission).setIgnoreTimeScale(true).setOnComplete(
+                () =>
+                {
+                    moveNewMission(i);
+                }
+            );
+    }
+
+    private void updateNewMissions(MissionModel[] missionModel)
+    {
+        for(int missionNum = 0; missionNum < 3; missionNum++)
+        {
+        deathMissionsToggleAndTextNew[missionNum].missionText.text = missionModel[missionNum].missionText;
+        deathMissionsToggleAndTextNew[missionNum].missionToggle.isOn = false; ;
+         }
     }
 }
