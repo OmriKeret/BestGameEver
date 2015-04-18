@@ -103,10 +103,10 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
         });
        paths.AddLast(new Vector3[]
         {
-            new Vector3(SceneStats.LeftEdge,0), 
-            new Vector3(-20.53627f,7.94602f), 
-            new Vector3(15f,-2.75f), 
-            new Vector3(SceneStats.RightEdge,SceneStats.TopEdge), 
+            new Vector3(SceneStats.LeftEdge,SceneStats.TopEdge), 
+            new Vector3(-15f,23.51f),  
+            new Vector3(10f,-5.75f), 
+            new Vector3(SceneStats.RightEdge,SceneStats.BottomEdge), 
         });
        paths.AddLast(new Vector3[]
         {
@@ -114,6 +114,13 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
             new Vector3(-5f,17.51f), 
             new Vector3(-10.15f,9.19f), 
             new Vector3(SceneStats.LeftEdge,SceneStats.BottomEdge), 
+        });
+       paths.AddLast(new Vector3[]
+        {
+            new Vector3(SceneStats.RightEdge,SceneStats.TopEdge), 
+            new Vector3(10f,17.51f), 
+            new Vector3(13.15f,9.19f), 
+            new Vector3(SceneStats.RightEdge,SceneStats.BottomEdge), 
         });
 
        return paths.ToArray();

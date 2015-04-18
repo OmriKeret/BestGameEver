@@ -1289,7 +1289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a6d2c3d9b84ba49be8996dac02f3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenWaves: 8
+  timeBetweenWaves: 9
 --- !u!1 &667210678
 GameObject:
   m_ObjectHideFlags: 0

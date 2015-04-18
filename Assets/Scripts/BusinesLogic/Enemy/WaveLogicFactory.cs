@@ -11,7 +11,7 @@ public class WaveLogicFactory {
 
 	public WaveLogicFactory(){
 		_easyWaves = new WaveLogic[]{
-			//new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid}),
+			new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid}),
 			new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid}),
             //new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Spike,}),
             //new WaveLogic(new EnemyType[]{EnemyType.Tank,EnemyType.Stupid}),
@@ -31,7 +31,8 @@ public class WaveLogicFactory {
 
 	private WaveLogic createWave(WaveLogic[] i_waves){
 		int waveNumber = UnityEngine.Random.Range (0,i_waves.Length);
-		return i_waves[waveNumber];
+	    WaveLogic wave = new WaveLogic(i_waves[waveNumber]);
+		return wave;
 	}
 
 

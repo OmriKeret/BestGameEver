@@ -5,7 +5,7 @@ public class EnemyGeneratorController : MonoBehaviour {
 
 	GameObject stupidEnemy ;
 	GenerateWaveLogic generateWaveLogic;
-	public float timeBetweenWaves = 4f;
+	public float timeBetweenWaves = 9f;
 	private float fixedTimeStart = -10;
 	private int _waveNumber = 1;
 	// Use this for initialization
@@ -16,6 +16,7 @@ public class EnemyGeneratorController : MonoBehaviour {
 	void FixedUpdate(){
 		if (Time.fixedTime - fixedTimeStart > timeBetweenWaves) {
 			GenerateWave();
+            Debug.Log("new wave");
 			fixedTimeStart = Time.fixedTime;
 		}
 	}
