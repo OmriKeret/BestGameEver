@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class StupidAILogic : MonoBehaviour , IEnemy{
 
@@ -10,6 +12,8 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
     public float timeToFinishPath = 15f;
     public float minTimeForPath = 4f;
     public float maxTimeForPath = 30f;
+    private Vector3[][] _allPaths ; 
+
 	// Use this for initialization
 	void Awake () {
         _stats = GetComponent<AEnemyStats>();
@@ -17,9 +21,25 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
 		_leftBodyPartResouce = Resources.Load ("stupidL") as GameObject;
 		_rightBodyPartResouce = Resources.Load ("stupidR") as GameObject;
 		GetComponent<Rigidbody2D> ().gravityScale = 0;
+	    _allPaths = initPaths();
 	}
 
-	void IEnemy.Death(){
+    private Vector3[][] initPaths()
+    {
+        LinkedList<Vector3[]> paths = new LinkedList<Vector3[]>();
+        paths.AddFirst(new Vector3[]
+        {
+            new Vector3(23.16821f,32.77761f), 
+            new Vector3(16.53627f,23.94602f), 
+            new Vector3(15.8f,-5.75f), 
+            new Vector3(5.79f,10.11f), 
+        });
+
+        return paths.ToArray();
+
+    }
+
+    void IEnemy.Death(){
 		Destroy (this.gameObject);
 		}
 
@@ -53,15 +73,29 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
 		}
 	}
 
-    public void setPath(Vector3[] path, int speed)
+    public void StartRandomPath(int speed)
     {
+        Vector3[] path;
+        selectRandomPath(out path);
+
         LeanTween.move(this.gameObject, path, calculateTime(speed)).setEase(LeanTweenType.linear).setOnComplete(() =>
         {
             FinishedMoving();
         });
     }
 
-   public void FinishedMoving()
+    private void selectRandomPath(out Vector3[] i_path)
+    {
+        int pathNumber = UnityEngine.Random.Range(0, _allPaths.Length);
+        i_path = _allPaths[pathNumber];
+    }
+
+    public Vector3[] GetPath()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void FinishedMoving()
     {
         Destroy(this.gameObject);
     }

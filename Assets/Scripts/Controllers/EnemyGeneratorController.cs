@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class EnemyGeneratorController : MonoBehaviour {
@@ -7,7 +7,7 @@ public class EnemyGeneratorController : MonoBehaviour {
 	GenerateWaveLogic generateWaveLogic;
 	public float timeBetweenWaves = 9f;
 	private float fixedTimeStart = -10;
-	private int waveNumber = 1;
+	private int _waveNumber = 1;
 	// Use this for initialization
 	void Start () {
 		generateWaveLogic = GameObject.Find("Logic").GetComponent<GenerateWaveLogic>();
@@ -20,7 +20,7 @@ public class EnemyGeneratorController : MonoBehaviour {
 		}
 	}
 	void GenerateWave(){
-		generateWaveLogic.generateWave ();
-        waveNumber++;
+		generateWaveLogic.generateWave (new WaveGenerateModel{waveNumber = _waveNumber});
+        _waveNumber++;
 	}
 }

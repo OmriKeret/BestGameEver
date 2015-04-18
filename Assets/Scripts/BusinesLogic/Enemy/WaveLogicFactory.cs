@@ -1,22 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WaveHolderLogic : MonoBehaviour {
+public class WaveLogicFactory {
 
 	WaveLogic[] tutorialWaves;//TBD
-	WaveLogic[] _easyWaves;
+    readonly WaveLogic[] _easyWaves;
 	WaveLogic[] _mediumWaves;
 	WaveLogic[] _hardWaves;
 	WaveLogic[] _extremeWaves;
 
-	public WaveHolderLogic(){
+	public WaveLogicFactory(){
 		_easyWaves = new WaveLogic[]{
-			new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid}),
+			//new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid}),
 			new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid}),
-			new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Spike,}),
-			new WaveLogic(new EnemyType[]{EnemyType.Tank,EnemyType.Stupid}),
-			new WaveLogic(new EnemyType[]{EnemyType.Tank,EnemyType.Tank}),
-			new WaveLogic(new EnemyType[]{EnemyType.Tank,EnemyType.Spike})
+            //new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Spike,}),
+            //new WaveLogic(new EnemyType[]{EnemyType.Tank,EnemyType.Stupid}),
+            //new WaveLogic(new EnemyType[]{EnemyType.Tank,EnemyType.Tank}),
+            //new WaveLogic(new EnemyType[]{EnemyType.Tank,EnemyType.Spike})
 		};
 		_mediumWaves = new WaveLogic[]{
 			

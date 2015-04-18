@@ -4,7 +4,7 @@ using System.Collections;
 using System;
 public class GenerateWaveLogic : MonoBehaviour {
 	
-	WaveHolderLogic waveMaker;
+	WaveLogicFactory _wave;
 	EnemyGeneratorLogic enemyGenerator;
 	private int waveNumber;
 	public float numberOfSecBetweenEnemies = 0.5f;
@@ -18,44 +18,48 @@ public class GenerateWaveLogic : MonoBehaviour {
 		 enemy2Loc = new Vector2(10.5f, 14.9f);
 		 enemy3Loc = new Vector2(0f, 14.9f);
         buildDictionaries();
-		waveMaker = new WaveHolderLogic ();
+		_wave = new WaveLogicFactory ();
 		enemyGenerator = new EnemyGeneratorLogic ();
 		waveNumber = 1;
 	}
 	// Use this for initialization
-	public void generateWave() {
+	public void generateWave(WaveGenerateModel i_model) {
 		/** --don't know if I need this anymore
         if (!TypeOfEnemiesEachWave.ContainsKey(model.waveNumber))
         {
             return;
         }
         */
-
-		WaveLogic currentWave = waveMaker.createEasyWave ();
-		StartCoroutine(generateEnemiesWithPause(currentWave));
+	    
+		WaveLogic currentWave = _wave.createEasyWave ();
+		StartCoroutine(GenerateEnemiesWithPause(currentWave));
 		waveNumber++;
 	}
 
-     IEnumerator generateEnemiesWithPause(WaveLogic i_currentWave)
+     IEnumerator GenerateEnemiesWithPause(WaveLogic i_CurrentWave)
     {
 
 		//EnemyType[] waveTypeArr = TypeOfEnemiesEachWave[model.waveNumber];
 		//var typeMax = waveTypeArr.Length;
         var pathsMax = paths.Length;
-		int waveLength = i_currentWave.getLength ();
+		int waveLength = i_CurrentWave.getLength ();
 		for (int i = 0; i < waveLength; i++)
         {
             //genereate enemies randomly 
-			var enemyType = i_currentWave.getNextEnemy();
+			var enemyType = i_CurrentWave.GetNextEnemy();
+            if (enemyType.Equals(EnemyType.End))
+            {
+               
+            }
             var enemyLocation = new Vector2(0f, 40f); ;//instantiateLocations[UnityEngine.Random.Range(0, locationMax)];
 
             //instantiate enemeies in random location
             var path = paths[UnityEngine.Random.Range(0, pathsMax)];
-			var enemy1 = Instantiate(enemyGenerator.getEnemy(EnemyType.Stupid), enemyLocation, Quaternion.identity) as GameObject;
+            var enemy1 = Instantiate(enemyGenerator.getEnemy(enemyType), enemyLocation, Quaternion.identity) as GameObject;
             var enemyLogic = enemy1.GetComponent<IEnemy>();
-            enemyLogic.setPath(path, 5 * 10);
+            enemyLogic.StartRandomPath(5 * 10);
             
-            //enemyLogic.setPath("EnemyPath" + UnityEngine.Random.Range(1, 3), model.waveNumber * 10);
+            //enemyLogic.StartRandomPath("EnemyPath" + UnityEngine.Random.Range(1, 3), model.waveNumber * 10);
 			yield return new WaitForSeconds(numberOfSecBetweenEnemies);    //Wait 
         }
     } 

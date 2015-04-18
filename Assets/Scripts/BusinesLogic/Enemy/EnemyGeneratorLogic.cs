@@ -21,7 +21,7 @@ public class EnemyGeneratorLogic : MonoBehaviour {
 		if (enemy != null)
 			return enemy;
 		else
-			throw new UnityException("Failed to create new enemy: Enemy type doesn't exsist!");
+			throw new UnityException("Failed to create new enemy: Enemy type "+i_type+" doesn't exsist!");
 	}
 
 
