@@ -121,7 +121,7 @@ public class SpikeAILogic : MonoBehaviour, IEnemy {
     {
         Vector3[] path;
         selectRandomPath(out path);
-
+        
         LeanTween.move(this.gameObject, path, calculateTime(speed)).setEase(LeanTweenType.linear).setOnComplete(() =>
         {
             FinishedMoving();
@@ -131,6 +131,11 @@ public class SpikeAILogic : MonoBehaviour, IEnemy {
     public void selectRandomPath(out Vector3[] i_path)
     {
         int pathNumber = UnityEngine.Random.Range(0, _allPaths.Length);
+        if (pathNumber==1||pathNumber==2)
+        {
+            Debug.Log("right");
+            goRight();
+        }
         i_path = _allPaths[pathNumber];
     }
 
@@ -207,5 +212,12 @@ public class SpikeAILogic : MonoBehaviour, IEnemy {
     public void playDeathSound()
     {
         _audioSource.PlayOneShot(Sound.sound.EnemyGetDeathSound(_stats._type));
+    }
+
+    public void goRight()
+    {
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 }

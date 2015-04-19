@@ -13,12 +13,29 @@ public abstract class AEnemyStats : MonoBehaviour {
     //TODO: now it switches sprite, later change to animation
 	public Dictionary <EnemyMode,Sprite> _AnimationState;
     public Sprite[] AllSprites;
-	
+    private float priorLocation;
+    private float scale;
+    private bool flip = false,toRight;
+
 	public void lifeDown(){
 		lifeDown (BASIC_HP_DOWN);
 	}
-	
-    
+
+    void Start()
+    {
+        scale = transform.localScale.x;
+        flip = false;
+        toRight = false;
+    }
+
+    void Update()
+    {
+        
+        
+
+    }
+
+
 
 	public void lifeDown(int i_hp){
         life = life - i_hp;	
