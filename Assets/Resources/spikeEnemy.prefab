@@ -14,9 +14,9 @@ GameObject:
   - 114: {fileID: 11447274}
   - 114: {fileID: 11433122}
   - 114: {fileID: 11490762}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: spikeEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
