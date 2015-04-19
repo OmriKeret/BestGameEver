@@ -28,6 +28,7 @@ public class MovmentLogic : MonoBehaviour {
 	AnimationLogic animationLogic;
     TouchInterpeter touch;
     PhysicsLogic physicsLogic;
+    SoundLogic soundLogic;
     private PlayerStatsLogic playerStatsLogic;
 
 	// Use this for initialization
@@ -36,18 +37,21 @@ public class MovmentLogic : MonoBehaviour {
 		character = GameObject.Find("PlayerManager").GetComponent<Rigidbody2D>();
         playerStatsLogic = this.gameObject.GetComponent<PlayerStatsLogic>();
 		animationLogic = this.gameObject.GetComponent<AnimationLogic>();
+        soundLogic = this.gameObject.GetComponent<SoundLogic>();
         touch = GameObject.Find("TouchInterpter").GetComponent<TouchInterpeter>();
 	}
 
 	public void MoveCharacter(MoveCharacterModel model){
-        ResetRotation();
-        animationLogic.SetDashing();
+
 		//player out of dashes
         if (playerStatsLogic.dashNum <= 0)
         {
             return;
         }
 		playerStatsLogic.dashNum--;
+        soundLogic.playJumpSound();
+        ResetRotation();
+        animationLogic.SetDashing();
 
         Vector2 target = new Vector2 (model.touchPoint.x, model.touchPoint.y);
 		Vector2 vecBetween = target - model.player.position;
@@ -90,6 +94,7 @@ public class MovmentLogic : MonoBehaviour {
 
 	public void fallDown() 
 	{
+        soundLogic.playFallSound();
         ResetRotation();
 		Vector2 target = new Vector2 (character.transform.position.x, character.transform.position.y - 60);
         RotateCharFall();
@@ -100,12 +105,13 @@ public class MovmentLogic : MonoBehaviour {
 
     internal void MoveOnFallDeath()
     {
+        soundLogic.playJumpSound();
         ResetRotation();
         LeanTween.cancel(character.gameObject);
 		animationLogic.OnMoveSetDirection(new moveAnimationModel {direction = new Vector2(-1,0)});
 		playerStatsLogic.resetCombo();
         character.GetComponent<Collider2D>().enabled = false;
-        var playerPosition = character.transform;
+   //     var playerPosition = character.transform;
         touch.SetDisableMovment();
         Vector3[] path = new Vector3[] {
                                              new Vector3(12.16001f ,-19.35955f),
@@ -150,7 +156,7 @@ public class MovmentLogic : MonoBehaviour {
        {
            dashAnimationVector = new Vector2(-1f, 0.5f);
        }
-       Quaternion newRotation = Quaternion.LookRotation(dir);
+     //  Quaternion newRotation = Quaternion.LookRotation(dir);
 
       character.transform.rotation = Quaternion.FromToRotation(dashAnimationVector, dir);
 

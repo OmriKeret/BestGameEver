@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &173494
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 437954}
+  - 114: {fileID: 11433534}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &437954
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 173494}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.44999981, y: 6.17999983, z: 79.7799988}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11433534
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 173494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bff6784bfec4514082a04442e080cd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goblinDeath:
+  - {fileID: 8300000, guid: ca99a0f453490e04190dc016f6255427, type: 3}
+  - {fileID: 8300000, guid: 616cb082f087d2440999a1ca9fafd906, type: 3}
+  - {fileID: 8300000, guid: 5aae91b3723152a4a9efd4f22e67762a, type: 3}
+  - {fileID: 8300000, guid: 7023cd9e60a0b1046b2962bb7f7b4715, type: 3}
+  goblinSpawn:
+  - {fileID: 8300000, guid: 1cd5f555f24a68641a20644099ff9f23, type: 3}
+  - {fileID: 8300000, guid: 51ac3b5dd0bb2dd4294d5e764cf58224, type: 3}
+  - {fileID: 8300000, guid: e1d282b4ef6d9874f8cde00692211c92, type: 3}
+  - {fileID: 8300000, guid: de0eb40539af2f84ca83a07828cc211e, type: 3}
+  jump:
+  - {fileID: 8300000, guid: 268883436298e9d4287ad04e9c304f47, type: 3}
+  - {fileID: 8300000, guid: 5b49b55262841194290a9841e84d877f, type: 3}
+  - {fileID: 8300000, guid: 9fad9ba6170a7b644917604351582a35, type: 3}
+  - {fileID: 8300000, guid: 0407e5745c9597d409ec8495b2c0b4e7, type: 3}
+  - {fileID: 8300000, guid: 2c6375ad2a309eb42be1dc0d53c9cc9c, type: 3}
+  - {fileID: 8300000, guid: 1806db5d9f1ef434dad61071e54d19cd, type: 3}
+  - {fileID: 8300000, guid: aa5f178c23d43a34ba21d66d4ea0c926, type: 3}
+  spin:
+  - {fileID: 8300000, guid: d962321e649fcf447bf5ce6faab1b1b2, type: 3}
+  - {fileID: 8300000, guid: 3c93fc52540439343bfef610ebf92fc9, type: 3}
+  swordSlice:
+  - {fileID: 8300000, guid: 999049ee9f6aad641a7d0b16e2b386c0, type: 3}
+  - {fileID: 8300000, guid: 072cec892b7c4204e98e23517079f2c8, type: 3}
+  - {fileID: 8300000, guid: 08a528ddb9516bf44a431b63890c5e50, type: 3}
+  - {fileID: 8300000, guid: c8bf631831c17c644996d1e9619336ed, type: 3}
+  backgroundMusic: {fileID: 8300000, guid: 894772056da7cbe4a8c9d3fc0d157cf8, type: 3}
+  landingSound: {fileID: 8300000, guid: 815e541b989d5774ebb15b91931f770f, type: 3}
+  startMusicQ: {fileID: 8300000, guid: 5444db68280f24c408489ae54801a122, type: 3}
+  startButton: {fileID: 8300000, guid: 0b65fa463323ab2438d277f9ee725018, type: 3}
+  fall: {fileID: 8300000, guid: e3fcf8f47534f0847885f0494c00da55, type: 3}
+  buttonPush: {fileID: 8300000, guid: e48ac953b7703af4c80ec7ec3896bc88, type: 3}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 173494}
+  m_IsPrefabParent: 1

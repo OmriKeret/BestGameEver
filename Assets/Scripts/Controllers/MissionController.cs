@@ -9,7 +9,7 @@ public class MissionController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         missionLogic = GameObject.Find("Logic").GetComponent<MissionLogic>();
-        missionDataStats = GameObject.Find("GameManagerMissions").GetComponent<MissionStats>();     
+        missionDataStats = GameObject.Find("GameManagerData").GetComponent<MissionStats>();     
         getMissionData();
         
         //stub missions TODO: replace with real missions from data

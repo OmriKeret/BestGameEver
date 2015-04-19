@@ -16,21 +16,21 @@ public class MovementController : MonoBehaviour {
 	}
 
 	public void Hover(){
-		MoveCharacterModel model = new MoveCharacterModel
-		{ 
-			Direction = new Vector2(),
-			player = this.gameObject.GetComponent<Rigidbody2D>()
-		};
+        //MoveCharacterModel model = new MoveCharacterModel
+        //{ 
+        //    Direction = new Vector2(),
+        //    player = this.gameObject.GetComponent<Rigidbody2D>()
+        //};
 		//PlayerMovmentLogic.HoverCharacter (model);
 
 	}
 
 	public void StopHover(){
-		MoveCharacterModel model = new MoveCharacterModel
-		{ 
-			Direction = new Vector2(),
-			player = this.gameObject.GetComponent<Rigidbody2D>()
-		};
+        //MoveCharacterModel model = new MoveCharacterModel
+        //{ 
+        //    Direction = new Vector2(),
+        //    player = this.gameObject.GetComponent<Rigidbody2D>()
+        //};
 		//PlayerMovmentLogic.StopHoverCharacter (model);
 		
 	}

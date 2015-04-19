@@ -21,8 +21,7 @@ public abstract class AEnemyStats : MonoBehaviour {
     
 
 	public void lifeDown(int i_hp){
-        life = life - i_hp;
-		
+        life = life - i_hp;	
 	}
 	
 	public bool isDead(){

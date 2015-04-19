@@ -15,7 +15,7 @@ public class PairModel<T1, T2>
 	public override bool Equals(object obj)
 	{
 		if (obj == null || !(obj is PairModel<T1,T2>)) return false;
-		var a = (PairModel<T1,T2>)obj;
+	//	var a = (PairModel<T1,T2>)obj;
 	//	bool s = (isEquals (((PairModel<T,object>)obj).First, this.First));
 	//	bool d = (isEquals(((PairModel<object,object>)obj).Second, this.Second));
 		return (isEquals(((PairModel<T1,T2>)obj).First, this.First)) && (isEquals(((PairModel<T1,T2>)obj).Second, this.Second));
