@@ -181,20 +181,20 @@ public class SpikeAILogic : MonoBehaviour, IEnemy {
             new Vector3(SceneStats.RightEdge,0), 
             
         });
-        //paths.AddLast(new Vector3[]
-        //{
-        //    new Vector3(SceneStats.LeftEdge,SceneStats.TopEdge), 
-        //    new Vector3(5f,12.51f), 
-        //    new Vector3(-10.15f,0.19f), 
-        //    new Vector3(SceneStats.RightEdge,SceneStats.TopEdge), 
-        //});
-        //paths.AddLast(new Vector3[]
-        //{
-        //    new Vector3(SceneStats.RightEdge,SceneStats.TopEdge), 
-        //    new Vector3(10f,12.51f), 
-        //    new Vector3(19.15f,0.19f), 
-        //    new Vector3(SceneStats.LeftEdge,SceneStats.TopEdge), 
-        //});
+        paths.AddLast(new Vector3[]
+        {
+            new Vector3(SceneStats.LeftEdge,SceneStats.TopEdge), 
+            new Vector3(5f,12.51f), 
+            new Vector3(-10.15f,0.19f), 
+            new Vector3(SceneStats.RightEdge,SceneStats.TopEdge), 
+        });
+        paths.AddLast(new Vector3[]
+        {
+            new Vector3(SceneStats.RightEdge,SceneStats.TopEdge), 
+            new Vector3(10f,12.51f), 
+            new Vector3(19.15f,0.19f), 
+            new Vector3(SceneStats.LeftEdge,SceneStats.TopEdge), 
+        });
 
         return paths.ToArray();
 
