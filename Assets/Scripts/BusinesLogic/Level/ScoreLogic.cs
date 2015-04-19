@@ -28,7 +28,7 @@ public class ScoreLogic : MonoBehaviour {
 
     internal int multiplyScoreAfterFinishingMissions(int tier)
     {
-        score = (int)(score * tier * 1.1);
+        score = (int)(score * tier * 1.5);
         return score;
     }
 

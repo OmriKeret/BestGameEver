@@ -100,7 +100,12 @@ public class DeathLogic : MonoBehaviour {
         GetMissionData();
         GetScoreData();
         MoveGUI();
-      //  saveScore();
+        saveScore();
+    }
+
+    private void saveScore()
+    {
+        scoreLogic.saveScoreData();
     }
 
     public void Reset()

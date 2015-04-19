@@ -8,6 +8,7 @@ public class AnimationLogic : MonoBehaviour
 	public bool isDashing = false;
     public bool grounded = true;
     public bool isSlicing = false;
+    public float hitChangeColorTIme = 0.3f;
 	public Rigidbody2D character ;
     public LayerMask whatIsGround;
 	public Animator animator;
@@ -60,5 +61,10 @@ public class AnimationLogic : MonoBehaviour
 		character.transform.localScale = theScale;
 		
 	}
+
+    internal void playerHit()
+    {
+        LeanTween.color(character.gameObject, Color.red, hitChangeColorTIme).setLoopPingPong(2);             
+    }
 }
 

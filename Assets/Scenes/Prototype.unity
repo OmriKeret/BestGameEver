@@ -1446,6 +1446,7 @@ MonoBehaviour:
   isDashing: 0
   grounded: 1
   isSlicing: 0
+  hitChangeColorTIme: .300000012
   character: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
@@ -1641,7 +1642,7 @@ Transform:
   m_LocalScale: {x: 1.04103875, y: .803926468, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!1 &665893020
 GameObject:
   m_ObjectHideFlags: 0
@@ -1669,7 +1670,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!114 &665893022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2013,7 +2014,7 @@ RectTransform:
   m_RootOrder: 5
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -15, y: 240}
+  m_AnchoredPosition: {x: -285, y: 156}
   m_SizeDelta: {x: -574, y: -578}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &872514265
@@ -2031,7 +2032,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: f91306ab82250f044848efad8c3732b9, type: 3}
-    m_FontSize: 30
+    m_FontSize: 15
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -4888,11 +4889,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 428654, guid: 64284ef2d405c3441ac10a0c1d084ab3, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 46.5999985
+      value: 14.1999998
       objectReference: {fileID: 0}
     - target: {fileID: 428654, guid: 64284ef2d405c3441ac10a0c1d084ab3, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 29.2000008
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 428654, guid: 64284ef2d405c3441ac10a0c1d084ab3, type: 2}
       propertyPath: m_LocalPosition.z

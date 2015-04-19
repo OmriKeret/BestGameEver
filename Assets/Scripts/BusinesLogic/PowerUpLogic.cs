@@ -16,7 +16,7 @@ public class PowerUpLogic : MonoBehaviour {
     public GameObject powerUpContainer;
     public float width;
     public Text powerUPText;
-    private char powerUpChar ='☺';
+    private char powerUpChar ='o';
 
     //superHit
     public float superHitTime = 1f;

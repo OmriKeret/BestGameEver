@@ -31,6 +31,8 @@ public class CollisionLogic : MonoBehaviour  {
             playerStatsLogic.addOneToCombo();
             return;
         }
+        //if(model.CollidedWith.GetComponent<>.stats == )
+
         movmentLogic.ResetRotation();
         LeanTween.cancel(model.mainCollider.gameObject, true);
 		//to remove secondary collisions
@@ -44,10 +46,17 @@ public class CollisionLogic : MonoBehaviour  {
 		
 	    //if player hit some1 than he get back is dashes
         playerStatsLogic.resetDash();
+
+        var sign = VectorForce.x > 0 ? 1 : -1;
+        if (true)
+        {
+            movmentLogic.playerHit(model.CollidedWith.GetComponent<Collider2D>(), sign);
+            return;
+        }
 		playerStatsLogic.addOneToCombo ();
         
         //building path
-        var sign = VectorForce.x > 0 ? 1 : -1;
+       
         Vector3[] path = new Vector3[] {
                                              new Vector3(playerPosition.x + (-2.697063f * sign) ,playerPosition.y),
                                              new Vector3(playerPosition.x + (-1.397063f * sign),playerPosition.y + 5.108706f),
