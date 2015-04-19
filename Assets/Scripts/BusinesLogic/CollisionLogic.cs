@@ -63,7 +63,7 @@ public class CollisionLogic : MonoBehaviour  {
             playerStatsLogic.addOneToCombo();
             return;
         }
-       
+        Debug.Log("playerCollided with enemy");
 
         movmentLogic.ResetRotation();
         LeanTween.cancel(model.mainCollider.gameObject, true);
@@ -82,10 +82,10 @@ public class CollisionLogic : MonoBehaviour  {
 
         var sign = VectorForce.x > 0 ? 1 : -1;
         var enemyStats = model.CollidedWith.GetComponent<AEnemyStats>();
-        if (enemyStats._mode == EnemyMode.Attack || enemyStats._mode == EnemyMode.Both || model.CollidedWith.tag == "Commet")
+        if (enemyStats._mode == EnemyMode.Attack || enemyStats._mode == EnemyMode.Both)
         {
             soundLogic.playHittedSound();
-            Debug.Log("player Collided with commet");
+           // Debug.Log("player Collided with commet");
             movmentLogic.playerHit(model.CollidedWith.GetComponent<Collider2D>(), sign);
             if (playerStatsLogic.removeHp(1))
             {
