@@ -20,7 +20,9 @@ public class ScoreLogic : MonoBehaviour {
 			scoreToAdd += (int)model.type * 1327;
 		}
 		score += scoreToAdd;
-        scoreText.text = string.Format("{0}\nPOINTS", score);
+        var scoreTxt = string.Format(System.Globalization.CultureInfo.InvariantCulture,
+                                 "{0:0,0}", score);
+        scoreText.text = string.Format("{0}\nPOINTS", scoreTxt);
         missionLogic.gotScoreOf(score);
     }
 

@@ -79,7 +79,9 @@ public class DeathLogic : MonoBehaviour {
     {
         if (changeScoreText && scoreBegin < scoreEnd)
         {
-            deathScore.text = string.Format("SCORE: {0}", scoreBegin++);
+            var scoreTxt = string.Format(System.Globalization.CultureInfo.InvariantCulture,
+                         "{0:0,0}", scoreBegin++);
+            deathScore.text = string.Format("{0}", scoreTxt);
         }
     }
 
@@ -118,7 +120,9 @@ public class DeathLogic : MonoBehaviour {
 
     private void GetScoreData()
     {
-        deathScore.text = string.Format("SCORE: {0}",scoreLogic.score);
+        var scoreTxt = string.Format(System.Globalization.CultureInfo.InvariantCulture,
+                          "{0:0,0}", scoreLogic.score);
+        deathScore.text = string.Format("{0}", scoreTxt);
     }
 
     //geting the mission data from the mission logic
