@@ -20,4 +20,14 @@ public interface IEnemy {
     bool isDead();
 
     void StartRandomPath(int speed);
+
+    float calculateTime(float speed);
+
+    Vector3[][] initPaths();
+
+    void FinishedMoving();
+
+    void selectRandomPath(out Vector3[] i_path);
+
+    EnemyMode GetEnemyMode();
 }
