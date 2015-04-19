@@ -84,13 +84,17 @@ public class MissionAssigner : MonoBehaviour {
                                              new MissionModel {type = MissionType.takePowerUp , numberToAchive = 5, powerUpType = PowerUpType.SUPERHIT , needToBeCompletedInOneGame = true},
                                              new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 40, missionText ="Kill Total of five enemies!", enemyType = EnemyType.General, needToBeCompletedInOneGame = false }, 
                                              new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 20, missionText ="Kill five stupid enemies!", enemyType = EnemyType.Stupid, needToBeCompletedInOneGame = false }, 
+                                             new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 20, missionText ="Kill five stupid enemies!", enemyType = EnemyType.Spike, needToBeCompletedInOneGame = false }, 
+                                             new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 20, missionText ="Kill five stupid enemies!", enemyType = EnemyType.Tank, needToBeCompletedInOneGame = false }, 
                                              new MissionModel {type = MissionType.getScoreOf , numberToAchive = 100000, missionText ="Get score of 10,000!" , needToBeCompletedInOneGame = false},
                                              new MissionModel {type = MissionType.takePowerUp , numberToAchive = 10, powerUpType = PowerUpType.SUPERHIT , needToBeCompletedInOneGame = false},
                                                };
         enemyTypeString = new Dictionary<EnemyType, string> 
         {
             {EnemyType.General, "enemies"},
-            {EnemyType.Stupid, "flying goblins"}
+            {EnemyType.Stupid, "flying goblins"},
+            {EnemyType.Spike, "fat flying thoug"},
+            {EnemyType.Tank, "fire deamon"}
         };
         powerUpTypeString = new Dictionary<PowerUpType, string> 
         {

@@ -14,9 +14,9 @@ GameObject:
   - 114: {fileID: 11447274}
   - 114: {fileID: 11433122}
   - 114: {fileID: 11490762}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: spikeEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 140466}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -11.226162, y: 5.72151279, z: 0}
   m_LocalScale: {x: .899999976, y: .899999976, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -43,7 +43,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
   m_GravityScale: 0
-  m_FixedAngle: 0
+  m_FixedAngle: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -60,7 +60,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: -.189999998, y: .430000007}
   serializedVersion: 2
-  m_Radius: 3.17000008
+  m_Radius: 2.28419304
 --- !u!114 &11433122
 MonoBehaviour:
   m_ObjectHideFlags: 1

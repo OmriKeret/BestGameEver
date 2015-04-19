@@ -9,6 +9,7 @@ TagManager:
   - Speedy
   - Wall
   - PowerUp
+  - Commet
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Enemy
   - Podium
   - Background
-  - 
+  - Commet
   - 
   - 
   - 

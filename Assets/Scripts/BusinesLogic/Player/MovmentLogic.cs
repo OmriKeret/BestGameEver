@@ -199,5 +199,53 @@ public class MovmentLogic : MonoBehaviour {
         animationLogic.UnSetDashing();
     }
 
- 
+
+
+    internal void playerHitwithCommet(Collider2D fatherCollider, Collider2D collider2D, int sign)
+    {
+        var playerPosition = character.position;
+        Vector3[] path = new Vector3[] {
+                                             new Vector3(playerPosition.x + (-2.697063f * sign) ,playerPosition.y),
+                                             new Vector3(playerPosition.x + (-1.397063f * sign),playerPosition.y + 5.108706f),
+                                             new Vector3(playerPosition.x + (0.397063f * sign),playerPosition.y + 6.408706f),
+                                             new Vector3(playerPosition.x + (1f * sign),playerPosition.y + 7.749998f),
+                                        };
+        animationLogic.playerHit();
+        LeanTween.move(character.gameObject, path, 0.4f).setOnComplete(() =>
+        {
+            stopAfterHitBounce(fatherCollider,collider2D);
+        });
+    }
+
+    private void stopAfterHitBounce(Collider2D fatherCollider, Collider2D collider2D)
+    {
+        if (collider2D != null)
+        {
+            var collidedWithCollider = collider2D;
+            if (collidedWithCollider != null)
+            {
+                Physics2D.IgnoreCollision(collidedWithCollider, character.GetComponent<Collider2D>(), false); //remove collision ignorance
+                Physics2D.IgnoreCollision(fatherCollider, character.GetComponent<Collider2D>(), false);
+            }
+        }
+        fallDown();
+        animationLogic.UnSetDashing();
+    }
+
+
+
+    internal void movePlayerDie(int sign)
+    {
+        character.GetComponent<Collider2D>().enabled = false;
+        var playerPosition = character.position;
+        animationLogic.UnSetDashing();
+        Vector3[] path = new Vector3[] {
+                                             new Vector3(playerPosition.x + (-2.697063f * sign) ,playerPosition.y),
+                                             new Vector3(playerPosition.x + (-1.397063f * sign),playerPosition.y + 5.108706f),
+                                             new Vector3(playerPosition.x + (0.397063f * sign),playerPosition.y + 6.408706f),
+                                             new Vector3(playerPosition.x + (1f * sign),playerPosition.y + 7.749998f),
+                                        };
+        animationLogic.playerHit();
+        fallDown();
+    }
 }

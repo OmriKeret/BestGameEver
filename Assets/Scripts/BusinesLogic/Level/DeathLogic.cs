@@ -9,10 +9,12 @@ public class DeathLogic : MonoBehaviour {
     PlayerStatsLogic playerStatsLogic;
     MissionLogic missionLogic;
     ScoreLogic scoreLogic;
+    TouchInterpeter touch;
     Text deathScore;
     GameObject losePanel;
     Vector3 OrigPos;
     Vector3 EndPos;
+    public float delayToMoveDeathPanelUp = 0.4f;
     public float timeToEnterMission = 0.2f;
     public float delayBetweenMissionRemovalToEnterance = 0.2f;
     public float timeToRemoveMission = 0.2f;
@@ -32,7 +34,7 @@ public class DeathLogic : MonoBehaviour {
         losePanel = GameObject.Find("LosePanel");
         OrigPos = new Vector3(0, 30, 0);
         EndPos = new Vector3(0, 6, 0);
-
+        touch = GameObject.Find("TouchInterpter").GetComponent<TouchInterpeter>();
         movmentLogic = this.gameObject.GetComponent<MovmentLogic>();
         playerStatsLogic = this.gameObject.GetComponent<PlayerStatsLogic>();
         missionLogic = this.gameObject.GetComponent<MissionLogic>();
@@ -89,17 +91,17 @@ public class DeathLogic : MonoBehaviour {
     {
         if (playerStatsLogic.removeHp(1))
         {
-            DeathScreen();
+            DeathScreen(0f);
         }
         movmentLogic.MoveOnFallDeath();
 		playerStatsLogic.resetDash ();
     }
 
-    private void DeathScreen()
+    private void DeathScreen(float delay)
     {
         GetMissionData();
         GetScoreData();
-        MoveGUI();
+        MoveGUI(delay);
         saveScore();
     }
 
@@ -114,13 +116,14 @@ public class DeathLogic : MonoBehaviour {
         Application.LoadLevel(Application.loadedLevel);
     }
 
-    private void MoveGUI()
+    private void MoveGUI(float delay)
     {
-        LeanTween.move(losePanel, EndPos, timeToOpenDeathMenu).setIgnoreTimeScale(true).setOnComplete( () => 
+        LeanTween.move(losePanel, EndPos, timeToOpenDeathMenu).setDelay(delay).setIgnoreTimeScale(true).setOnComplete( () => 
             {
                 missionLogic.updateMissionProggressEndOfGame();
+                Time.timeScale = 0;
             });
-        Time.timeScale = 0;
+      
     }
 
     private void GetScoreData()
@@ -201,6 +204,7 @@ public class DeathLogic : MonoBehaviour {
               }
           );
     }
+
     private void moveOldMission(int i)
     {
         LeanTween.moveX(deathMissionsToggleAndText[i].missionToggle.gameObject, EndMissionTextX, timeToRemoveMission).setDelay(delayBetweenMissionRemovalToEnterance).setIgnoreTimeScale(true).setEase(LeanTweenType.easeInOutElastic).setOnComplete(
@@ -218,5 +222,15 @@ public class DeathLogic : MonoBehaviour {
             deathMissionsToggleAndTextNew[missionNum].missionText.text = missionModel[missionNum].missionText;
             deathMissionsToggleAndTextNew[missionNum].missionToggle.isOn = false; ;
         }
+    }
+
+
+
+    internal void playerDie(int sign)
+    {
+        
+        movmentLogic.movePlayerDie(sign);
+        touch.SetDisableMovment();
+        DeathScreen(delayToMoveDeathPanelUp);
     }
 }
