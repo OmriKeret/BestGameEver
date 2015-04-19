@@ -83,6 +83,11 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
     public void selectRandomPath(out Vector3[] i_path)
     {
         int pathNumber = UnityEngine.Random.Range(0, _allPaths.Length);
+        if (pathNumber == 1)
+        {
+            Debug.Log("right");
+            goRight();
+        }
         i_path = _allPaths[pathNumber];
     }
 
@@ -150,5 +155,12 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
     public void playDeathSound()
     {
         _audioSource.PlayOneShot(Sound.sound.EnemyGetDeathSound(_stats._type));
+    }
+
+    public void goRight()
+    {
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 }

@@ -34,4 +34,6 @@ public interface IEnemy {
     void playSpawnSound();
 
     void playDeathSound();
+
+    void goRight();
 }

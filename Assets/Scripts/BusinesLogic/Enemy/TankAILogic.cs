@@ -15,6 +15,7 @@ public class TankAILogic : MonoBehaviour, IEnemy {
     public float maxTimeForPath = 30f;
     private Vector3[][] _allPaths;
     private CommetLogic commet;
+    private bool switchSides = true;
     AudioSource _audioSource;
     // Use this for initialization
     void Awake()
@@ -27,7 +28,23 @@ public class TankAILogic : MonoBehaviour, IEnemy {
         GetComponent<Rigidbody2D>().gravityScale = 0;
         _allPaths = initPaths();
         commet = GetComponentInChildren<CommetLogic>();
+        switchSides = true;
     }
+
+    void Update()
+    {
+        if (switchSides)
+        {
+            if (transform.position.x < SceneStats.LeftEdge||
+                transform.position.x > SceneStats.RightEdge)
+            {
+                goRight();
+                switchSides = false;
+            }
+        }
+    }
+
+
     public bool lifeDown(int str)
     {
         _stats.lifeDown(str);
@@ -97,6 +114,11 @@ public class TankAILogic : MonoBehaviour, IEnemy {
     public void selectRandomPath(out Vector3[] i_path)
     {
         int pathNumber = UnityEngine.Random.Range(0, _allPaths.Length);
+        if (pathNumber == 1 || pathNumber == 2)
+        {
+            Debug.Log("right");
+            goRight();
+        }
         i_path = _allPaths[pathNumber];
     }
 
@@ -147,20 +169,20 @@ public class TankAILogic : MonoBehaviour, IEnemy {
             new Vector3(15f,5f), 
             new Vector3(SceneStats.LeftEdge,1), 
         });
-        paths.AddLast(new Vector3[]
-        {
-            new Vector3(SceneStats.LeftEdge,SceneStats.TopEdge), 
-            new Vector3(-5f,17.51f), 
-            new Vector3(-10.15f,9.19f), 
-            new Vector3(SceneStats.LeftEdge,SceneStats.BottomEdge), 
-        });
-        paths.AddLast(new Vector3[]
-        {
-            new Vector3(SceneStats.RightEdge,SceneStats.TopEdge), 
-            new Vector3(10f,17.51f), 
-            new Vector3(13.15f,9.19f), 
-            new Vector3(SceneStats.RightEdge,SceneStats.BottomEdge), 
-        });
+        //paths.AddLast(new Vector3[]
+        //{
+        //    new Vector3(SceneStats.LeftEdge,SceneStats.TopEdge), 
+        //    new Vector3(-5f,17.51f), 
+        //    new Vector3(-10.15f,9.19f), 
+        //    new Vector3(SceneStats.LeftEdge,SceneStats.BottomEdge), 
+        //});
+        //paths.AddLast(new Vector3[]
+        //{
+        //    new Vector3(SceneStats.RightEdge,SceneStats.TopEdge), 
+        //    new Vector3(10f,17.51f), 
+        //    new Vector3(13.15f,9.19f), 
+        //    new Vector3(SceneStats.RightEdge,SceneStats.BottomEdge), 
+        //});
 
         return paths.ToArray();
 
@@ -174,5 +196,12 @@ public class TankAILogic : MonoBehaviour, IEnemy {
     public void playDeathSound()
     {
         _audioSource.PlayOneShot(Sound.sound.EnemyGetDeathSound(_stats._type));
+    }
+
+    public void goRight()
+    {
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 }
