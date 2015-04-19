@@ -14,7 +14,7 @@ public class SpikeAILogic : MonoBehaviour, IEnemy {
     public float maxTimeForPath = 30f;
     private Vector3[][] _allPaths;
     private SpriteRenderer _spriteRenderer;
-
+    AudioSource _audioSource;
     private int stateCounter = 0;
     public int normalTime = 90;
     public int spikeTime = 150;
@@ -23,6 +23,7 @@ public class SpikeAILogic : MonoBehaviour, IEnemy {
     // Use this for initialization
     void Awake()
     {
+        _audioSource = GetComponent<AudioSource>();
         _stats = GetComponent<AEnemyStats>();
         _rigidbody = GetComponent<Rigidbody2D>();
         _leftBodyPartResouce = Resources.Load("spikeL") as GameObject;
@@ -197,5 +198,14 @@ public class SpikeAILogic : MonoBehaviour, IEnemy {
 
         return paths.ToArray();
 
+    }
+    public void playSpawnSound()
+    {
+        _audioSource.PlayOneShot(Sound.sound.EnemyGetSpawnSound(_stats._type));
+    }
+
+    public void playDeathSound()
+    {
+        _audioSource.PlayOneShot(Sound.sound.EnemyGetDeathSound(_stats._type));
     }
 }

@@ -14,6 +14,8 @@ public class Sound : MonoBehaviour {
     public AudioClip startButton;
     public AudioClip fall;
     public AudioClip buttonPush;
+    public AudioClip playerHitted;
+    public AudioClip playerDie;
     private Dictionary<EnemyType, EnemySoundModel> enemieSounds;
     public static Sound sound;
     // Use this for initialization
@@ -62,6 +64,14 @@ public class Sound : MonoBehaviour {
     public AudioClip playerGetFallSound()
     {
         return fall;
+    }
+    public AudioClip playerGetHittedSound()
+    {
+        return playerHitted;
+    }
+    public AudioClip playerGetDeathSound()
+    {
+        return playerDie;
     }
     public AudioClip EnemyGetSpawnSound(EnemyType type)
     {

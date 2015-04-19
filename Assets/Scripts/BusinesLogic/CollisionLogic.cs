@@ -44,10 +44,10 @@ public class CollisionLogic : MonoBehaviour  {
         var enemyPosition = model.CollidedWith.transform.position;
         var playerPosition = model.mainCollider.transform.position;
         var VectorForce = (Vector2)((playerPosition - enemyPosition).normalized);
-      //  soundLogic.playSliceSound();
+        //soundLogic.playSliceSound();
         //if player hit some1 than he get back is dashes
         playerStatsLogic.resetDash();
-
+        soundLogic.playHittedSound();
         var sign = VectorForce.x > 0 ? 1 : -1;
 
         movmentLogic.playerHitwithCommet(fatherCollider,model.CollidedWith.GetComponent<Collider2D>(), sign);
@@ -84,6 +84,7 @@ public class CollisionLogic : MonoBehaviour  {
         var enemyStats = model.CollidedWith.GetComponent<AEnemyStats>();
         if (enemyStats._mode == EnemyMode.Attack || enemyStats._mode == EnemyMode.Both || model.CollidedWith.tag == "Commet")
         {
+            soundLogic.playHittedSound();
             Debug.Log("player Collided with commet");
             movmentLogic.playerHit(model.CollidedWith.GetComponent<Collider2D>(), sign);
             if (playerStatsLogic.removeHp(1))
@@ -157,15 +158,15 @@ public class CollisionLogic : MonoBehaviour  {
             case EnemyMode.Defence: enemyDefende(); break;
             case EnemyMode.None: if (enemy.lifeDown(playerStatsLogic.Strength)) //if enemy dead
                  {
-                     Debug.Log("kill enemy");
+                   //  Debug.Log("kill enemy");
                      scoreLogic.addPoint(new AddPointModel { type = enemyController.type, combo = playerStatsLogic.combo });
                      missionLogic.addKill(enemyController.type);
                      LeanTween.cancel(model.mainCollider.gameObject, false);
                      if (Time.timeScale != 0) //could happen in super hit power up
                      {
+                         enemy.playDeathSound();
                          enemy.Split(position);
                          enemy.Death();
-
                      }
 
                  } break;
@@ -178,13 +179,13 @@ public class CollisionLogic : MonoBehaviour  {
     //TODO: Omri - what to do when the enemy is on defence mode (e.g. tank)
     private void enemyDefende()
     {
-        Debug.Log("Defended");
+    //    Debug.Log("Defended");
     }
 
     //TODO: Omri - what to do when the enemy attack the player (e.g. hits spike AKA abu-nafha)
     private void hitPlayer()
     {
-        Debug.Log("Attacked");
+      //  Debug.Log("Attacked");
     }
 
     public void killEnemy(GameObject enemy)

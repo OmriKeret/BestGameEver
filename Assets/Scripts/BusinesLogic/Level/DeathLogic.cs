@@ -10,6 +10,7 @@ public class DeathLogic : MonoBehaviour {
     MissionLogic missionLogic;
     ScoreLogic scoreLogic;
     TouchInterpeter touch;
+    SoundLogic soundLogic;
     Text deathScore;
     GameObject losePanel;
     Vector3 OrigPos;
@@ -28,9 +29,12 @@ public class DeathLogic : MonoBehaviour {
     private int scoreBegin;
     private int scoreEnd;
     private bool changeScoreText = false;
+    
 	// Use this for initialization
     void Start()
-    {      
+    {
+        soundLogic = this.gameObject.GetComponent<SoundLogic>();
+        missionLogic = this.gameObject.GetComponent<MissionLogic>();
         losePanel = GameObject.Find("LosePanel");
         OrigPos = new Vector3(0, 30, 0);
         EndPos = new Vector3(0, 6, 0);
@@ -92,6 +96,7 @@ public class DeathLogic : MonoBehaviour {
         if (playerStatsLogic.removeHp(1))
         {
             DeathScreen(0f);
+            return;
         }
         movmentLogic.MoveOnFallDeath();
 		playerStatsLogic.resetDash ();
@@ -228,7 +233,7 @@ public class DeathLogic : MonoBehaviour {
 
     internal void playerDie(int sign)
     {
-        
+        soundLogic.playDeathSound();
         movmentLogic.movePlayerDie(sign);
         touch.SetDisableMovment();
         DeathScreen(delayToMoveDeathPanelUp);

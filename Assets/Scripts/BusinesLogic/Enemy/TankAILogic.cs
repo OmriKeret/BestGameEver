@@ -15,10 +15,11 @@ public class TankAILogic : MonoBehaviour, IEnemy {
     public float maxTimeForPath = 30f;
     private Vector3[][] _allPaths;
     private CommetLogic commet;
-
+    AudioSource _audioSource;
     // Use this for initialization
     void Awake()
     {
+        _audioSource = GetComponent<AudioSource>();
         _stats = GetComponent<AEnemyStats>();
         _rigidbody = GetComponent<Rigidbody2D>();
         _leftBodyPartResouce = Resources.Load("tankL") as GameObject;
@@ -163,5 +164,15 @@ public class TankAILogic : MonoBehaviour, IEnemy {
 
         return paths.ToArray();
 
+    }
+
+    public void playSpawnSound()
+    {
+        _audioSource.PlayOneShot(Sound.sound.EnemyGetSpawnSound(_stats._type));
+    }
+
+    public void playDeathSound()
+    {
+        _audioSource.PlayOneShot(Sound.sound.EnemyGetDeathSound(_stats._type));
     }
 }

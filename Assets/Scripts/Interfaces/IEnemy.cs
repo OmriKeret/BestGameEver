@@ -30,4 +30,8 @@ public interface IEnemy {
     void selectRandomPath(out Vector3[] i_path);
 
     EnemyMode GetEnemyMode();
+
+    void playSpawnSound();
+
+    void playDeathSound();
 }

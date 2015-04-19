@@ -21,7 +21,7 @@ public class SoundLogic : MonoBehaviour {
     }
     public void playSliceSound()
     {
-        Debug.Log("play slicingSound");
+  //      Debug.Log("play slicingSound");
         currentlyPlaying = Sound.sound.playerGetRandomSliceSound();
         audioSource1.Stop();
         audioSource2.Stop();
@@ -49,7 +49,22 @@ public class SoundLogic : MonoBehaviour {
         audioSource2.Stop();
         audioSource1.PlayOneShot(currentlyPlaying);
     }
-
+    public void playHittedSound()
+    {
+    //    Debug.Log("play slicingSound");
+        currentlyPlaying = Sound.sound.playerGetHittedSound();
+        audioSource1.Stop();
+        audioSource2.Stop();
+        audioSource2.PlayOneShot(currentlyPlaying);
+    }
+    public void playDeathSound()
+    {
+//        Debug.Log("play slicingSound");
+        currentlyPlaying = Sound.sound.playerGetDeathSound();
+        audioSource1.Stop();
+        audioSource2.Stop();
+        audioSource2.PlayOneShot(currentlyPlaying);
+    }
 	
     
 }

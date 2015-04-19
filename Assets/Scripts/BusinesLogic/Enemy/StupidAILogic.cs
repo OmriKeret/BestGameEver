@@ -12,10 +12,11 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
     public float timeToFinishPath = 15f;
     public float minTimeForPath = 4f;
     public float maxTimeForPath = 30f;
-    private Vector3[][] _allPaths ; 
-
+    private Vector3[][] _allPaths ;
+    AudioSource _audioSource;
 	// Use this for initialization
 	void Awake () {
+        _audioSource = GetComponent<AudioSource>();
         _stats = GetComponent<AEnemyStats>();
 		_rigidbody = GetComponent<Rigidbody2D> ();
 		_leftBodyPartResouce = Resources.Load ("stupidL") as GameObject;
@@ -139,7 +140,15 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
        // });
 
        return paths.ToArray();
-
    }
-	
+
+    public void playSpawnSound()
+    {
+        _audioSource.PlayOneShot(Sound.sound.EnemyGetSpawnSound(_stats._type));
+    }
+
+    public void playDeathSound()
+    {
+        _audioSource.PlayOneShot(Sound.sound.EnemyGetDeathSound(_stats._type));
+    }
 }

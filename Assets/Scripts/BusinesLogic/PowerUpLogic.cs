@@ -197,6 +197,7 @@ public class PowerUpLogic : MonoBehaviour {
            if (enemy.GetComponent<IEnemy>().isDead())
            {
                killEnemy(enemy);
+
            }
            i++;
            
@@ -218,9 +219,11 @@ public class PowerUpLogic : MonoBehaviour {
         {
             LeanTween.cancel(enemy,false);
         }
+
         var position = enemy.transform.position;
         var enemyLogic = enemy.GetComponent<IEnemy>();
         enemyLogic.Split(position);
+        enemyLogic.playDeathSound();
         enemyLogic.Death();
 
     }
