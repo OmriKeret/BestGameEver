@@ -111,32 +111,32 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
        LinkedList<Vector3[]> paths = new LinkedList<Vector3[]>();
        paths.AddFirst(new Vector3[]
         {
-            new Vector3(23.16821f,32.77761f), 
-            new Vector3(16.53627f,23.94602f), 
-            new Vector3(15.8f,-5.75f), 
-            new Vector3(SceneStats.LeftEdge,0), 
+            new Vector3(23.16821f,SceneStats.TopEdge), 
+            new Vector3(16.53627f,5f), 
+            new Vector3(15.8f,4f), 
+            new Vector3(0,SceneStats.TopEdge), 
         });
        paths.AddLast(new Vector3[]
         {
-            new Vector3(SceneStats.LeftEdge,SceneStats.TopEdge), 
-            new Vector3(-15f,23.51f),  
-            new Vector3(10f,-5.75f), 
-            new Vector3(SceneStats.RightEdge,SceneStats.BottomEdge), 
+            new Vector3(-23.16821f,SceneStats.TopEdge), 
+            new Vector3(-16.53627f,5f), 
+            new Vector3(-15.8f,4f), 
+            new Vector3(0,SceneStats.TopEdge), 
         });
        paths.AddLast(new Vector3[]
         {
-            new Vector3(SceneStats.LeftEdge,SceneStats.TopEdge), 
-            new Vector3(-5f,17.51f), 
-            new Vector3(-10.15f,9.19f), 
-            new Vector3(SceneStats.LeftEdge,SceneStats.BottomEdge), 
+            new Vector3(SceneStats.RightEdge,5f), 
+            new Vector3(20f,SceneStats.TopEdge), 
+            new Vector3(-10f,4f), 
+            new Vector3(SceneStats.LeftEdge,15f)
         });
-       paths.AddLast(new Vector3[]
-        {
-            new Vector3(SceneStats.RightEdge,SceneStats.TopEdge), 
-            new Vector3(10f,17.51f), 
-            new Vector3(13.15f,9.19f), 
-            new Vector3(SceneStats.RightEdge,SceneStats.BottomEdge), 
-        });
+       //paths.AddLast(new Vector3[]
+       // {
+       //     new Vector3(SceneStats.RightEdge,SceneStats.TopEdge), 
+       //     new Vector3(10f,17.51f), 
+       //     new Vector3(13.15f,9.19f), 
+       //     new Vector3(SceneStats.RightEdge,SceneStats.BottomEdge), 
+       // });
 
        return paths.ToArray();
 
