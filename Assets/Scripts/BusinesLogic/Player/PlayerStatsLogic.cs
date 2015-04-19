@@ -9,14 +9,19 @@ public class PlayerStatsLogic : MonoBehaviour {
     public int combo = 0;
     public int dashNum = 5;
     public PowerUpType powerUpModeActive;
-    public Text HPText;
+    public GameObject guiHP;
+    public GameObject _LifeFullPrefab;
+    public GameObject _LifeEmptyPrefab;
     private char hearSymbole = '♥';
 	public Text comboText;
+    public GameObject[] lifes;
 	// Use this for initialization
 	void Start () {
-        HPText = GameObject.Find("HP").GetComponent<Text>();
+        guiHP = GameObject.Find("HpContainer");
 		comboText = GameObject.Find("ComboText").GetComponent<Text>();
-		ReWriteHP();
+        _LifeFullPrefab = Resources.Load("lifeFull") as GameObject;
+        _LifeEmptyPrefab = Resources.Load("lifeEmpty") as GameObject;
+        firstTimeWriteHp();
 	}
 	
 	// Update is called once per frame
@@ -61,14 +66,35 @@ public class PlayerStatsLogic : MonoBehaviour {
 		}
 	}
 
-    private void ReWriteHP()
+    private void firstTimeWriteHp()
     {
-        string numOfHearts ="";
+        lifes = new GameObject[HP];
         for (int i = 0; i < HP; i++)
         {
-            numOfHearts += hearSymbole; 
+            Debug.Log("creating");
+            Vector3 pos = guiHP.transform.position;
+            pos.x = (float)(pos.x + 4 * i);
+            lifes[i] = Instantiate(_LifeFullPrefab, pos, Quaternion.identity) as GameObject;
+            lifes[i].transform.parent = guiHP.transform;
         }
-        HPText.text = numOfHearts;
+    }
+    private void ReWriteHP()
+    {
+        for (int i = 0; i < lifes.Length; i++)
+        {
+            if (i + 1 <= HP)
+            {
+
+            }
+            else
+            {
+                Vector3 pos = guiHP.transform.position;
+                pos.x = (float)(pos.x + 4 * i);
+                Destroy(lifes[i].gameObject);
+                lifes[i] = Instantiate(_LifeEmptyPrefab, pos, Quaternion.identity) as GameObject;
+            }
+        }
+      //  HPText.text = numOfHearts;
     }
 
 }

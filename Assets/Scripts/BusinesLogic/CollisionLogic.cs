@@ -124,5 +124,6 @@ public class CollisionLogic : MonoBehaviour  {
         movmentLogic.ResetRotation();
         animationLogic.UnSetDashing();
         animationLogic.CheckIfGrounded();
+        soundLogic.playLandingSound();
 	}
 }

@@ -4,6 +4,8 @@ using System.Collections;
 public class CollisionController : MonoBehaviour {
 
 	public CollisionFacade collisionFacade;
+    private float intervalBetweenCollisionWithPodium = 0.3f;
+    private float lastCollisionWithPodium;
 	// Use this for initialization
 	void Start () {
 	//	Debug.Log("Trigger: " + collider2D.is);
@@ -11,12 +13,21 @@ public class CollisionController : MonoBehaviour {
 		collisionFacade = new CollisionFacade ();
 	}
 	
-	// Update is called once per frame
-	void Update () {
+    void FixedUpdate()
+    {
 
-	}
+    }
 	public void OnCollisionEnter2D(Collision2D col) {
 	//	Debug.Log("collision detected");
+        if(col.collider.tag.Equals("Wall")) 
+        {
+            if (Time.fixedTime - lastCollisionWithPodium < intervalBetweenCollisionWithPodium)
+            {
+                return;
+            }
+            lastCollisionWithPodium = Time.fixedTime;
+        }
+       
 		CollisionModel model = new CollisionModel{ mainCollider = this.gameObject, CollidedWith = col.gameObject};
 		onCollisionFacade (model);
 	}

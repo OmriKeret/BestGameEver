@@ -13,7 +13,7 @@ public class Sound : MonoBehaviour {
     public AudioClip startMusicQ;
     public AudioClip startButton;
     public AudioClip fall;
-
+    public AudioClip buttonPush;
     private Dictionary<EnemyType, EnemySoundModel> enemieSounds;
     public static Sound sound;
     // Use this for initialization
@@ -88,5 +88,9 @@ public class Sound : MonoBehaviour {
     public AudioClip getStartMenuQ()
     {
         return startMusicQ;
+    }
+    public AudioClip getButtonPushSound()
+    {
+        return buttonPush;
     }
 }
