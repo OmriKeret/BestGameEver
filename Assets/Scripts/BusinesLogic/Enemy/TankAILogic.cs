@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class SpikeAILogic : MonoBehaviour, IEnemy {
+public class TankAILogic : MonoBehaviour, IEnemy {
+
 
     AEnemyStats _stats;
     Rigidbody2D _rigidbody;
@@ -13,58 +14,26 @@ public class SpikeAILogic : MonoBehaviour, IEnemy {
     public float minTimeForPath = 4f;
     public float maxTimeForPath = 30f;
     private Vector3[][] _allPaths;
-    private SpriteRenderer _spriteRenderer;
-
-    private int stateCounter = 0;
-    public int normalTime = 90;
-    public int spikeTime = 150;
-    
+    private CommetLogic commet;
 
     // Use this for initialization
     void Awake()
     {
         _stats = GetComponent<AEnemyStats>();
         _rigidbody = GetComponent<Rigidbody2D>();
-        _leftBodyPartResouce = Resources.Load("spikeL") as GameObject;
-        _rightBodyPartResouce = Resources.Load("spikeR") as GameObject;
+        _leftBodyPartResouce = Resources.Load("tankL") as GameObject;
+        _rightBodyPartResouce = Resources.Load("tankR") as GameObject;
         GetComponent<Rigidbody2D>().gravityScale = 0;
         _allPaths = initPaths();
-        _stats.initAnimation();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-
-
+        commet = GetComponentInChildren<CommetLogic>();
     }
-
-    void FixedUpdate()
-    {
-        stateCounter++;
-        if (stateCounter == normalTime)
-        {
-            normalMode();
-        }
-        else if (stateCounter == spikeTime)
-        {
-            spikeMode();
-            stateCounter = 0;
-        }
-        
-    }
-
-    private void spikeMode()
-    {
-        _stats._mode = EnemyMode.Attack;
-        _spriteRenderer.sprite = _stats.GetCurrentAnimation();
-    }
-
-    private void normalMode()
-    {
-        _stats._mode = EnemyMode.None;
-        _spriteRenderer.sprite = _stats.GetCurrentAnimation();
-    }
-
     public bool lifeDown(int str)
     {
         _stats.lifeDown(str);
+        if (_stats.life == 1)
+        {
+            Destroy(commet.gameObject);
+        }
         return isDead();
     }
 
@@ -135,7 +104,7 @@ public class SpikeAILogic : MonoBehaviour, IEnemy {
 
     public EnemyMode GetEnemyMode()
     {
-        return _stats._mode;
+        return EnemyMode.None;
     }
 
     public Vector3[] GetPath()
@@ -159,31 +128,31 @@ public class SpikeAILogic : MonoBehaviour, IEnemy {
         LinkedList<Vector3[]> paths = new LinkedList<Vector3[]>();
         paths.AddFirst(new Vector3[]
         {
-            new Vector3(SceneStats.RightEdge,0), 
-            new Vector3(15f,23.94602f), 
-            new Vector3(-15.8f,23.94602f), 
+            new Vector3(23.16821f,32.77761f), 
+            new Vector3(16.53627f,23.94602f), 
+            new Vector3(15.8f,-5.75f), 
             new Vector3(SceneStats.LeftEdge,0), 
         });
         paths.AddLast(new Vector3[]
         {
-            new Vector3(SceneStats.LeftEdge,0), 
-            new Vector3(-14.37f,23.51f),  
+            new Vector3(SceneStats.LeftEdge,SceneStats.TopEdge), 
+            new Vector3(-15f,23.51f),  
             new Vector3(10f,-5.75f), 
             new Vector3(SceneStats.RightEdge,SceneStats.BottomEdge), 
         });
         paths.AddLast(new Vector3[]
         {
             new Vector3(SceneStats.LeftEdge,SceneStats.TopEdge), 
-            new Vector3(5f,12.51f), 
-            new Vector3(-10.15f,0.19f), 
-            new Vector3(SceneStats.RightEdge,SceneStats.TopEdge), 
+            new Vector3(-5f,17.51f), 
+            new Vector3(-10.15f,9.19f), 
+            new Vector3(SceneStats.LeftEdge,SceneStats.BottomEdge), 
         });
         paths.AddLast(new Vector3[]
         {
             new Vector3(SceneStats.RightEdge,SceneStats.TopEdge), 
-            new Vector3(10f,12.51f), 
-            new Vector3(19.15f,0.19f), 
-            new Vector3(SceneStats.LeftEdge,SceneStats.TopEdge), 
+            new Vector3(10f,17.51f), 
+            new Vector3(13.15f,9.19f), 
+            new Vector3(SceneStats.RightEdge,SceneStats.BottomEdge), 
         });
 
         return paths.ToArray();

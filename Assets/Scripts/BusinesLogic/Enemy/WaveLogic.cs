@@ -47,4 +47,18 @@ public class WaveLogic {
 	public int getLength(){
 		return _enemies.Length;
 	}
+
+    public WaveLogic mergeWaves(WaveLogic i_Wave)
+    {
+        EnemyType[] newEnemyTypes = new EnemyType[_enemies.Length + i_Wave._enemies.Length];
+        for (int i = 0; i < _enemies.Length; i++)
+        {
+            newEnemyTypes[i] = _enemies[i];
+        }
+        for (int i = 0; i < i_Wave._enemies.Length; i++)
+        {
+            newEnemyTypes[i + _enemies.Length] = i_Wave._enemies[i];
+        }
+        return new WaveLogic(newEnemyTypes);
+    }
 }

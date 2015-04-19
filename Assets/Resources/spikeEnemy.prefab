@@ -72,9 +72,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c94fffb998416a458999ce67cca548b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToFinishPath: 50
-  minTimeForPath: 20
-  maxTimeForPath: 50
+  timeToFinishPath: 40
+  minTimeForPath: 10
+  maxTimeForPath: 40
   normalTime: 90
   spikeTime: 147
 --- !u!114 &11447274
