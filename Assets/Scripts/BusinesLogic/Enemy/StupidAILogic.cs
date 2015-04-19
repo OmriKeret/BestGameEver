@@ -85,7 +85,7 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
         int pathNumber = UnityEngine.Random.Range(0, _allPaths.Length);
         if (pathNumber == 1)
         {
-            Debug.Log("right");
+       //     Debug.Log("right");
             goRight();
         }
         i_path = _allPaths[pathNumber];

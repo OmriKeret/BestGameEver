@@ -42,7 +42,7 @@ public class MovmentLogic : MonoBehaviour {
 	}
 
 	public void MoveCharacter(MoveCharacterModel model){
-
+      //  LeanTween.color(character.gameObject, Color.white, 0);
 		//player out of dashes
         if (playerStatsLogic.dashNum <= 0)
         {
@@ -171,6 +171,10 @@ public class MovmentLogic : MonoBehaviour {
 
     internal void playerHit(Collider2D collider2D, int sign)
     {
+
+        Debug.Log("disable collisions");
+        character.GetComponent<Collider2D>().enabled = false;
+        touch.SetDisableMovment();
         var playerPosition = character.position;
         Vector3[] path = new Vector3[] {
                                              new Vector3(playerPosition.x + (-2.697063f * sign) ,playerPosition.y),
@@ -182,6 +186,7 @@ public class MovmentLogic : MonoBehaviour {
         LeanTween.move(character.gameObject, path, 0.4f).setOnComplete(() =>
         {
             stopAfterHitBounce(collider2D);
+
         });
     }
 
@@ -195,6 +200,8 @@ public class MovmentLogic : MonoBehaviour {
                 Physics2D.IgnoreCollision(collidedWithCollider, character.GetComponent<Collider2D>(), false); //remove collision ignorance
             }
         }
+        character.GetComponent<Collider2D>().enabled = true;
+        touch.UnsetDisableMovment();
         fallDown();
         animationLogic.UnSetDashing();
     }
@@ -203,6 +210,8 @@ public class MovmentLogic : MonoBehaviour {
 
     internal void playerHitwithCommet(Collider2D fatherCollider, Collider2D collider2D, int sign)
     {
+        character.GetComponent<Collider2D>().enabled = false;
+        touch.SetDisableMovment();
         var playerPosition = character.position;
         Vector3[] path = new Vector3[] {
                                              new Vector3(playerPosition.x + (-2.697063f * sign) ,playerPosition.y),
@@ -226,8 +235,11 @@ public class MovmentLogic : MonoBehaviour {
             {
                 Physics2D.IgnoreCollision(collidedWithCollider, character.GetComponent<Collider2D>(), false); //remove collision ignorance
                 Physics2D.IgnoreCollision(fatherCollider, character.GetComponent<Collider2D>(), false);
+
             }
         }
+        character.GetComponent<Collider2D>().enabled = true;
+        touch.UnsetDisableMovment();
         fallDown();
         animationLogic.UnSetDashing();
     }

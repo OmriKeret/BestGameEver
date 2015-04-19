@@ -17,7 +17,7 @@ public class PodiumLogic : MonoBehaviour {
 
     //platform time managment
     public float immunityTimeFromBeginning;
-    private float timeFromGoingDown = 100000f;
+//    private float timeFromGoingDown = 100000f;
     public float timeToWaitDown;
 
     private bool goingDown = false;
@@ -52,6 +52,14 @@ public class PodiumLogic : MonoBehaviour {
 
     private void startGoDown()
     {
+
+        //if you are still immune return
+        Debug.Log("fixed time is : " + Time.fixedTime);
+        Debug.Log("immunityTimeFromBeginning: " + immunityTimeFromBeginning);
+        if (Time.fixedTime - immunityTimeFromBeginning < 0)
+        {
+            return; 
+        }
         if (goingDown)
         {
             return;
@@ -60,11 +68,7 @@ public class PodiumLogic : MonoBehaviour {
         {
             goingDown = true;
         }
-        //if you are still immune return
-        if (Time.fixedTime - immunityTimeFromBeginning < 0)
-        {
-            return; 
-        }
+        Debug.Log("podium go down");
         LeanTween.rotateZ(podium, angleToShakeTo, shakingTime).setDelay(timeToWaitBeforeShaking).setOnComplete(
            () =>
            {

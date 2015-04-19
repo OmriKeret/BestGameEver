@@ -1311,13 +1311,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 971e4ca46819a7a4aa07c20d6148bc1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashTime: .5
-  dashDist: 30
+  dashTime: .300000012
+  dashDist: 15
   hoverTime: .100000001
   timeToRotate: .5
   delayTillRotat: .0799999982
   timeToRotateBack: .100000001
-  fallTime: 2
+  fallTime: 1.60000002
   timeToReturnFromFall: .5
 --- !u!4 &605148564
 Transform:
@@ -1372,11 +1372,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7e8558949aa777439d6a840a3efc333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MAX_DASH_NUM: 100
-  HP: 1
+  MAX_DASH_NUM: 3
+  HP: 3
   Strength: 1
   combo: 0
-  dashNum: 100
+  dashNum: 3
   powerUpModeActive: 0
   guiHP: {fileID: 0}
   _LifeFullPrefab: {fileID: 0}
@@ -1503,7 +1503,7 @@ MonoBehaviour:
   angleToShakeTo: 4
   podiumOriginalX: 2
   podiumOriginalY: -7.21999979
-  immunityTimeFromBeginning: 0
+  immunityTimeFromBeginning: 3
   timeToWaitDown: 2
 --- !u!114 &605148575
 MonoBehaviour:
@@ -1764,7 +1764,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!224 &682699756 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22442378, guid: 1f5dc2fe3425e074797ea5ab475ccca9,
@@ -3508,7 +3508,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
 --- !u!1 &1378797007
 GameObject:
   m_ObjectHideFlags: 0

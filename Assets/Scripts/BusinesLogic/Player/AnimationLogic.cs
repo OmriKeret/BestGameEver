@@ -33,6 +33,8 @@ public class AnimationLogic : MonoBehaviour
 	public void SetDashing() 
 	{
 		isDashing = true;
+        grounded = false;
+        animator.SetBool("Grounded", grounded);
         animator.SetBool("isDashing", isDashing);
 	}
 	public void UnSetDashing()
@@ -58,8 +60,7 @@ public class AnimationLogic : MonoBehaviour
 		faceRight = !faceRight;
 		Vector3 theScale = character.transform.localScale;
 		theScale.x *= -1;
-		character.transform.localScale = theScale;
-		
+		character.transform.localScale = theScale;	
 	}
 
     internal void playerHit()

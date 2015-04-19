@@ -39,12 +39,13 @@ public class PowerUpLogic : MonoBehaviour {
     GameObject character;
     PlayerStatsLogic playerStatsLogic;
     MissionLogic missionLogic;
-    
+    SoundLogic soundLogic;
 	// Use this for initialization
 
 	void Start () {
         //TODO: SET ASSETST
         //  _BubblePowerUpIcon = Resources.Load("stupidL") as GameObject;
+        soundLogic = this.gameObject.GetComponent<SoundLogic>();
         missionLogic = this.gameObject.GetComponent<MissionLogic>();
         playerStatsLogic = this.gameObject.GetComponent<PlayerStatsLogic>();
         powerUPText = GameObject.Find("PowerUpText").GetComponent<Text>();
@@ -102,7 +103,7 @@ public class PowerUpLogic : MonoBehaviour {
     }
     private void SuperHit() 
     {
-        Debug.Log("doing super hit");
+       // Debug.Log("doing super hit");
 		playerStatsLogic.powerUpModeActive = PowerUpType.SUPERHIT;
         touch.SetDisableMovment();
         movmentLogic.ResetRotation();
@@ -145,7 +146,7 @@ public class PowerUpLogic : MonoBehaviour {
         //set collision between character and enemy manually
         playerController.OnCollisionEnter2DManual(enemy);
         enemyController.OnCollisionEnter2DManual(character);
-
+        soundLogic.playSliceSound();
         Vector2 target = enemy.transform.position;
         Vector2 vecBetween = target - (Vector2)character.transform.position;
         movmentLogic.RotateToDash(vecBetween);
@@ -171,7 +172,8 @@ public class PowerUpLogic : MonoBehaviour {
     }
     void punchEnemies(SuperHitModel model)
     {
-
+        Debug.Log("play slice");
+        soundLogic.playSliceSound();
         Vector2 target = model.enemy.transform.position;
         Vector2 vecBetween = target - (Vector2)model.character.transform.position;
         movmentLogic.RotateToDash(vecBetween);
@@ -214,7 +216,7 @@ public class PowerUpLogic : MonoBehaviour {
 
     private void killEnemy(GameObject enemy)
     {
-        Debug.Log("killing enemy");
+        //Debug.Log("killing enemy");
         if (LeanTween.isTweening(enemy))
         {
             LeanTween.cancel(enemy,false);

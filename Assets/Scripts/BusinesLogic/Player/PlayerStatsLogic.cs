@@ -71,7 +71,7 @@ public class PlayerStatsLogic : MonoBehaviour {
         lifes = new GameObject[HP];
         for (int i = 0; i < HP; i++)
         {
-            Debug.Log("creating");
+          //  Debug.Log("creating");
             Vector3 pos = guiHP.transform.position;
             pos.x = (float)(pos.x + 4 * i);
             lifes[i] = Instantiate(_LifeFullPrefab, pos, Quaternion.identity) as GameObject;

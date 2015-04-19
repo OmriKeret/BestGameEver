@@ -18,7 +18,7 @@ public class EnemyGeneratorController : MonoBehaviour {
 	void FixedUpdate(){
 		if (Time.fixedTime - fixedTimeStart > timeBetweenWaves) {
 			GenerateWave();
-            Debug.Log("new wave");
+    //        Debug.Log("new wave");
 			fixedTimeStart = Time.fixedTime;
 		}
 	}

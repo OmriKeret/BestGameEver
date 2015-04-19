@@ -133,7 +133,7 @@ public class SpikeAILogic : MonoBehaviour, IEnemy {
         int pathNumber = UnityEngine.Random.Range(0, _allPaths.Length);
         if (pathNumber==1||pathNumber==2)
         {
-            Debug.Log("right");
+       //     Debug.Log("right");
             goRight();
         }
         i_path = _allPaths[pathNumber];

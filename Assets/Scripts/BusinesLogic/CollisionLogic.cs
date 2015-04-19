@@ -63,10 +63,10 @@ public class CollisionLogic : MonoBehaviour  {
             playerStatsLogic.addOneToCombo();
             return;
         }
-        Debug.Log("playerCollided with enemy");
+       // Debug.Log("playerCollided with enemy");
 
         movmentLogic.ResetRotation();
-        LeanTween.cancel(model.mainCollider.gameObject, true);
+        LeanTween.cancel(model.mainCollider.gameObject, false); //else the movment will reset the combo
 		//to remove secondary collisions
 		if (model.CollidedWith != null ) {
 			Physics2D.IgnoreCollision (model.CollidedWith.GetComponent<Collider2D> (), model.mainCollider.GetComponent<Collider2D> ());
@@ -176,6 +176,7 @@ public class CollisionLogic : MonoBehaviour  {
 
 	}
 
+
     //TODO: Omri - what to do when the enemy is on defence mode (e.g. tank)
     private void enemyDefende()
     {
@@ -202,5 +203,6 @@ public class CollisionLogic : MonoBehaviour  {
         animationLogic.UnSetDashing();
         animationLogic.CheckIfGrounded();
         soundLogic.playLandingSound();
+        playerStatsLogic.resetDash();
 	}
 }
