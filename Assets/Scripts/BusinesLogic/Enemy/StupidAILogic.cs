@@ -79,10 +79,15 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
         });
     }
 
-    private void selectRandomPath(out Vector3[] i_path)
+    public void selectRandomPath(out Vector3[] i_path)
     {
         int pathNumber = UnityEngine.Random.Range(0, _allPaths.Length);
         i_path = _allPaths[pathNumber];
+    }
+
+    public EnemyMode GetEnemyMode()
+    {
+        return EnemyMode.None;
     }
 
     public Vector3[] GetPath()
@@ -101,7 +106,7 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
        return minTimeForPath * (_stats.MAX_SPEED / speed);
    }
 
-   private Vector3[][] initPaths()
+    public Vector3[][] initPaths()
    {
        LinkedList<Vector3[]> paths = new LinkedList<Vector3[]>();
        paths.AddFirst(new Vector3[]

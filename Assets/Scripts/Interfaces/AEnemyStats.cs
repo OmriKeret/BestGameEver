@@ -10,7 +10,9 @@ public abstract class AEnemyStats : MonoBehaviour {
 	public Vector2 leftSplitLocation;
 	public EnemyMode _mode;
 	public EnemyType _type;
-	public Dictionary <EnemyMode,Animation> _AnimationState;
+    //TODO: now it switches sprite, later change to animation
+	public Dictionary <EnemyMode,Sprite> _AnimationState;
+    public Sprite[] AllSprites;
 	
 	public void lifeDown(){
 		lifeDown (BASIC_HP_DOWN);
@@ -29,4 +31,20 @@ public abstract class AEnemyStats : MonoBehaviour {
         }
 		return true;
 	}
+
+    public void initAnimation()
+    {
+        _AnimationState = new Dictionary<EnemyMode, Sprite>()
+        {
+            {EnemyMode.None, AllSprites[0]},
+            {EnemyMode.Attack, AllSprites[1]}
+        };
+    }
+
+    public Sprite GetCurrentAnimation()
+    {
+        Sprite sprite;
+        _AnimationState.TryGetValue(_mode,out sprite);
+        return sprite;
+    }
 }

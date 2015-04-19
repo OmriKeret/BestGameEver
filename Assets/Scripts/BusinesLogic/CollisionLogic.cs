@@ -100,25 +100,51 @@ public class CollisionLogic : MonoBehaviour  {
 
 
 	public void EnemyCollidedWithPlayer(CollisionModel model) {
-     //   Debug.Log("enemy collision detected");
+        Debug.Log("enemy collision detected. Enemy mode is:");
 		var enemyController = model.mainCollider.GetComponent<AIController> ();
 		var enemy = model.mainCollider.GetComponent<IEnemy> ();
 		var position = (Vector2)model.mainCollider.transform.position;
-        if (enemy.lifeDown(playerStatsLogic.Strength)) //if enemy dead
-        {
-            scoreLogic.addPoint(new AddPointModel { type = enemyController.type, combo = playerStatsLogic.combo });
-            missionLogic.addKill(enemyController.type);
-            LeanTween.cancel(model.mainCollider.gameObject, false);
-            if (Time.timeScale != 0) //could happen in super hit power up
-            {
-				enemy.Split(position);
-                enemy.Death();
+	    EnemyMode mode = enemy.GetEnemyMode();
+        Debug.Log(mode);
+        
 
-            }
+	    switch (mode)
+	    {
+	         case EnemyMode.Attack:
+	            hitPlayer(); break;
+             case EnemyMode.Both: hitPlayer(); enemyDefende(); break; 
+            case EnemyMode.Defence: enemyDefende(); break;
+            case EnemyMode.None: if (enemy.lifeDown(playerStatsLogic.Strength)) //if enemy dead
+                 {
+                     Debug.Log("kill enemy");
+                     scoreLogic.addPoint(new AddPointModel { type = enemyController.type, combo = playerStatsLogic.combo });
+                     missionLogic.addKill(enemyController.type);
+                     LeanTween.cancel(model.mainCollider.gameObject, false);
+                     if (Time.timeScale != 0) //could happen in super hit power up
+                     {
+                         enemy.Split(position);
+                         enemy.Death();
 
-        }
+                     }
+
+                 } break;
+	    }
+
+        
 
 	}
+
+    //TODO: Omri - what to do when the enemy is on defence mode (e.g. tank)
+    private void enemyDefende()
+    {
+        Debug.Log("Defended");
+    }
+
+    //TODO: Omri - what to do when the enemy attack the player (e.g. hits spike AKA abu-nafha)
+    private void hitPlayer()
+    {
+        Debug.Log("Attacked");
+    }
 
     public void killEnemy(GameObject enemy)
     {
