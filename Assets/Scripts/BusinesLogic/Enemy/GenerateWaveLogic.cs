@@ -57,6 +57,7 @@ public class GenerateWaveLogic : MonoBehaviour {
             var path = paths[UnityEngine.Random.Range(0, pathsMax)];
             var enemy1 = Instantiate(enemyGenerator.getEnemy(enemyType), enemyLocation, Quaternion.identity) as GameObject;
             var enemyLogic = enemy1.GetComponent<IEnemy>();
+            enemyLogic.playSpawnSound();
             enemyLogic.StartRandomPath(5 * 10);
             
             //enemyLogic.StartRandomPath("EnemyPath" + UnityEngine.Random.Range(1, 3), model.waveNumber * 10);
