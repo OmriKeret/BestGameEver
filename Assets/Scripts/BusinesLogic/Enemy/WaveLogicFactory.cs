@@ -11,13 +11,13 @@ public class WaveLogicFactory {
 
 	public WaveLogicFactory(){
 		_easyWaves = new WaveLogic[]{
-            //new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid}),
+            new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid}),
             new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid}),
-            //new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Spike,}),
-            //new WaveLogic(new EnemyType[]{EnemyType.Tank,EnemyType.Stupid}),
-            //new WaveLogic(new EnemyType[]{EnemyType.Tank,EnemyType.Tank}),
-            //new WaveLogic(new EnemyType[]{EnemyType.Tank,EnemyType.Spike}),
-            //new WaveLogic(new EnemyType[]{EnemyType.Spike,EnemyType.Spike})
+            new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Spike,}),
+            new WaveLogic(new EnemyType[]{EnemyType.Tank,EnemyType.Stupid}),
+            new WaveLogic(new EnemyType[]{EnemyType.Tank,EnemyType.Tank}),
+            new WaveLogic(new EnemyType[]{EnemyType.Tank,EnemyType.Spike}),
+            new WaveLogic(new EnemyType[]{EnemyType.Spike,EnemyType.Spike})
 		};
 		_mediumWaves = new WaveLogic[]{
 			
