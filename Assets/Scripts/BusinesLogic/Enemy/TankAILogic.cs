@@ -30,10 +30,6 @@ public class TankAILogic : MonoBehaviour, IEnemy {
     public bool lifeDown(int str)
     {
         _stats.lifeDown(str);
-        if (_stats.life == 1)
-        {
-            Destroy(commet.gameObject);
-        }
         return isDead();
     }
 
