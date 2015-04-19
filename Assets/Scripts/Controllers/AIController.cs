@@ -24,6 +24,7 @@ public class AIController : MonoBehaviour {
 	}
 
 	public void OnCollisionEnter2D(Collision2D col) {
+    //    Debug.Log("collided with commet");
 		CollisionModel model = new CollisionModel{ mainCollider = this.gameObject, CollidedWith = col.gameObject};
 		onCollisionFacade (model);
 	}

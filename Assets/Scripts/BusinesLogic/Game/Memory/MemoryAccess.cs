@@ -22,7 +22,7 @@ public class MemoryAccess : MonoBehaviour {
     public void SaveScore(IOScoreModel score)
     {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Open(Application.persistentDataPath + scoreFileName, FileMode.Open);
+        FileStream file = File.Create(Application.persistentDataPath + scoreFileName);
         bf.Serialize(file, score);
         file.Close();
     }
@@ -42,7 +42,7 @@ public class MemoryAccess : MonoBehaviour {
     public void SaveMissions(IOMissionModel missions)
     {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Open(Application.persistentDataPath + missionsFileName, FileMode.Open);
+        FileStream file = File.Create(Application.persistentDataPath + missionsFileName);
         bf.Serialize(file, missions);
         file.Close();
     }

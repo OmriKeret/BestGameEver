@@ -15,6 +15,7 @@ public class CollisionLogic : MonoBehaviour  {
     private MissionLogic missionLogic;
     AnimationLogic animationLogic;
     SoundLogic soundLogic;
+    DeathLogic deathLogic;
 	void Start () {
 		physicsLogic = this.gameObject.GetComponent<PhysicsLogic> ();
 		movmentLogic = this.gameObject.GetComponent<MovmentLogic> ();
@@ -23,7 +24,38 @@ public class CollisionLogic : MonoBehaviour  {
         missionLogic = this.gameObject.GetComponent<MissionLogic>();
         animationLogic = this.gameObject.GetComponent<AnimationLogic>();
         soundLogic = this.gameObject.GetComponent<SoundLogic>();
+        deathLogic = this.gameObject.GetComponent<DeathLogic>();
 	}
+    public void playerCollideWithCommet(CollisionModel model)
+    {
+        if (playerStatsLogic.powerUpModeActive == PowerUpType.SUPERHIT)
+        {
+            return;
+        }
+        Debug.Log("playerCollided with commet");
+        movmentLogic.ResetRotation();
+        LeanTween.cancel(model.mainCollider.gameObject, true);
+        var fatherCollider = model.CollidedWith.transform.parent.GetComponent<Collider2D>();
+        if (model.CollidedWith != null )
+        {
+            Physics2D.IgnoreCollision(model.CollidedWith.GetComponent<Collider2D>(), model.mainCollider.GetComponent<Collider2D>());
+            Physics2D.IgnoreCollision(fatherCollider, model.mainCollider.GetComponent<Collider2D>());
+        }
+        var enemyPosition = model.CollidedWith.transform.position;
+        var playerPosition = model.mainCollider.transform.position;
+        var VectorForce = (Vector2)((playerPosition - enemyPosition).normalized);
+      //  soundLogic.playSliceSound();
+        //if player hit some1 than he get back is dashes
+        playerStatsLogic.resetDash();
+
+        var sign = VectorForce.x > 0 ? 1 : -1;
+
+        movmentLogic.playerHitwithCommet(fatherCollider,model.CollidedWith.GetComponent<Collider2D>(), sign);
+        if (playerStatsLogic.removeHp(1))
+        {
+            deathLogic.playerDie(sign);
+        }
+    }
 	public void playerCollideWithEnemy(CollisionModel model) {
         if (playerStatsLogic.powerUpModeActive == PowerUpType.SUPERHIT)
         {
@@ -31,23 +63,41 @@ public class CollisionLogic : MonoBehaviour  {
             playerStatsLogic.addOneToCombo();
             return;
         }
+       
+
         movmentLogic.ResetRotation();
         LeanTween.cancel(model.mainCollider.gameObject, true);
 		//to remove secondary collisions
-		if (model.CollidedWith != null) {
+		if (model.CollidedWith != null ) {
 			Physics2D.IgnoreCollision (model.CollidedWith.GetComponent<Collider2D> (), model.mainCollider.GetComponent<Collider2D> ());
+
 		}
 		var enemyPosition = model.CollidedWith.transform.position;
 		var playerPosition = model.mainCollider.transform.position;
 		var VectorForce = (Vector2)((playerPosition - enemyPosition).normalized);
-        soundLogic.playSliceSound();
+       
 		
 	    //if player hit some1 than he get back is dashes
         playerStatsLogic.resetDash();
+
+        var sign = VectorForce.x > 0 ? 1 : -1;
+        var enemyStats = model.CollidedWith.GetComponent<AEnemyStats>();
+        if (enemyStats._mode == EnemyMode.Attack || enemyStats._mode == EnemyMode.Both || model.CollidedWith.tag == "Commet")
+        {
+            Debug.Log("player Collided with commet");
+            movmentLogic.playerHit(model.CollidedWith.GetComponent<Collider2D>(), sign);
+            if (playerStatsLogic.removeHp(1))
+            {
+                deathLogic.playerDie(sign);
+            }
+           
+            return;
+        }
+        soundLogic.playSliceSound();
 		playerStatsLogic.addOneToCombo ();
         
         //building path
-        var sign = VectorForce.x > 0 ? 1 : -1;
+       
         Vector3[] path = new Vector3[] {
                                              new Vector3(playerPosition.x + (-2.697063f * sign) ,playerPosition.y),
                                              new Vector3(playerPosition.x + (-1.397063f * sign),playerPosition.y + 5.108706f),
@@ -91,12 +141,12 @@ public class CollisionLogic : MonoBehaviour  {
 
 
 	public void EnemyCollidedWithPlayer(CollisionModel model) {
-        Debug.Log("enemy collision detected. Enemy mode is:");
+     //   Debug.Log("enemy collision detected. Enemy mode is:");
 		var enemyController = model.mainCollider.GetComponent<AIController> ();
 		var enemy = model.mainCollider.GetComponent<IEnemy> ();
 		var position = (Vector2)model.mainCollider.transform.position;
 	    EnemyMode mode = enemy.GetEnemyMode();
-        Debug.Log(mode);
+       // Debug.Log(mode);
         
 
 	    switch (mode)
