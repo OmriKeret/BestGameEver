@@ -160,31 +160,40 @@ public class SpikeAILogic : MonoBehaviour, IEnemy {
         paths.AddFirst(new Vector3[]
         {
             new Vector3(SceneStats.RightEdge,0), 
-            new Vector3(15f,23.94602f), 
-            new Vector3(-15.8f,23.94602f), 
+            new Vector3(21.54f,15.94602f), 
+            new Vector3(15.54f,15.94602f),
+            new Vector3(6.54f,5.94602f),
+            new Vector3(6.54f,5.94602f),
+            new Vector3(-11.54f,15.94602f),
+            new Vector3(-17.54f,15.94602f),
             new Vector3(SceneStats.LeftEdge,0), 
         });
         paths.AddLast(new Vector3[]
         {
             new Vector3(SceneStats.LeftEdge,0), 
-            new Vector3(-14.37f,23.51f),  
-            new Vector3(10f,-5.75f), 
-            new Vector3(SceneStats.RightEdge,SceneStats.BottomEdge), 
+            new Vector3(-17.54f,15.94602f),
+            new Vector3(-11.54f,15.94602f),
+            new Vector3(6.54f,5.94602f),
+            new Vector3(6.54f,5.94602f),
+            new Vector3(15.54f,15.94602f),
+            new Vector3(21.54f,15.94602f), 
+            new Vector3(SceneStats.RightEdge,0), 
+            
         });
-        paths.AddLast(new Vector3[]
-        {
-            new Vector3(SceneStats.LeftEdge,SceneStats.TopEdge), 
-            new Vector3(5f,12.51f), 
-            new Vector3(-10.15f,0.19f), 
-            new Vector3(SceneStats.RightEdge,SceneStats.TopEdge), 
-        });
-        paths.AddLast(new Vector3[]
-        {
-            new Vector3(SceneStats.RightEdge,SceneStats.TopEdge), 
-            new Vector3(10f,12.51f), 
-            new Vector3(19.15f,0.19f), 
-            new Vector3(SceneStats.LeftEdge,SceneStats.TopEdge), 
-        });
+        //paths.AddLast(new Vector3[]
+        //{
+        //    new Vector3(SceneStats.LeftEdge,SceneStats.TopEdge), 
+        //    new Vector3(5f,12.51f), 
+        //    new Vector3(-10.15f,0.19f), 
+        //    new Vector3(SceneStats.RightEdge,SceneStats.TopEdge), 
+        //});
+        //paths.AddLast(new Vector3[]
+        //{
+        //    new Vector3(SceneStats.RightEdge,SceneStats.TopEdge), 
+        //    new Vector3(10f,12.51f), 
+        //    new Vector3(19.15f,0.19f), 
+        //    new Vector3(SceneStats.LeftEdge,SceneStats.TopEdge), 
+        //});
 
         return paths.ToArray();
 

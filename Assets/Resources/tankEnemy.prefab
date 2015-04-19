@@ -32,9 +32,9 @@ GameObject:
   - 114: {fileID: 11493510}
   - 114: {fileID: 11494536}
   - 114: {fileID: 11471906}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: tankEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,7 +87,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 171934}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: -.239999995, y: 1}
   serializedVersion: 2
@@ -116,9 +116,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 527400dfbbd6cc441a0bc3b2de29c827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToFinishPath: 15
-  minTimeForPath: 4
-  maxTimeForPath: 30
+  timeToFinishPath: 40
+  minTimeForPath: 5
+  maxTimeForPath: 40
 --- !u!114 &11477922
 MonoBehaviour:
   m_ObjectHideFlags: 1

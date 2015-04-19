@@ -2643,6 +2643,33 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1023016988}
+--- !u!1 &1047857364
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1047857365}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1047857365
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1047857364}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -25.3999996, y: -1.60000002, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 23
 --- !u!1 &1080938093
 GameObject:
   m_ObjectHideFlags: 0
@@ -4002,11 +4029,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 410640, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 2.07999992
+      value: 2.0999999
       objectReference: {fileID: 0}
     - target: {fileID: 410640, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -.379999995
+      value: 82.8000031
       objectReference: {fileID: 0}
     - target: {fileID: 410640, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
       propertyPath: m_LocalPosition.z
@@ -4030,7 +4057,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 410640, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
@@ -4870,7 +4897,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 428654, guid: 64284ef2d405c3441ac10a0c1d084ab3, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 64284ef2d405c3441ac10a0c1d084ab3, type: 2}

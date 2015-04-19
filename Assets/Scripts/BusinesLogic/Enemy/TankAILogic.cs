@@ -85,6 +85,7 @@ public class TankAILogic : MonoBehaviour, IEnemy {
     {
         Vector3[] path;
         selectRandomPath(out path);
+        
 
         LeanTween.move(this.gameObject, path, calculateTime(speed)).setEase(LeanTweenType.linear).setOnComplete(() =>
         {
@@ -121,35 +122,44 @@ public class TankAILogic : MonoBehaviour, IEnemy {
 
     public Vector3[][] initPaths()
     {
+
         LinkedList<Vector3[]> paths = new LinkedList<Vector3[]>();
         paths.AddFirst(new Vector3[]
         {
-            new Vector3(23.16821f,32.77761f), 
-            new Vector3(16.53627f,23.94602f), 
-            new Vector3(15.8f,-5.75f), 
-            new Vector3(SceneStats.LeftEdge,0), 
+            new Vector3(SceneStats.RightEdge,7), 
+            new Vector3(18f,6f), 
+            new Vector3(-9.9f,13.6f), 
+            new Vector3(SceneStats.LeftEdge-6,7.9f), 
+            new Vector3(SceneStats.LeftEdge-6,7.9f), 
+            new Vector3(-25.9f,-5f),
+            new Vector3(-15f,5f), 
+            new Vector3(SceneStats.RightEdge,1), 
         });
         paths.AddLast(new Vector3[]
         {
-            new Vector3(SceneStats.LeftEdge,SceneStats.TopEdge), 
-            new Vector3(-15f,23.51f),  
-            new Vector3(10f,-5.75f), 
-            new Vector3(SceneStats.RightEdge,SceneStats.BottomEdge), 
+            new Vector3(SceneStats.LeftEdge,7), 
+            new Vector3(-18f,6f), 
+            new Vector3(9.9f,13.6f), 
+            new Vector3(SceneStats.RightEdge+6,7.9f), 
+            new Vector3(SceneStats.RightEdge+6,7.9f), 
+            new Vector3(25.9f,-5f),
+            new Vector3(15f,5f), 
+            new Vector3(SceneStats.LeftEdge,1), 
         });
-        paths.AddLast(new Vector3[]
-        {
-            new Vector3(SceneStats.LeftEdge,SceneStats.TopEdge), 
-            new Vector3(-5f,17.51f), 
-            new Vector3(-10.15f,9.19f), 
-            new Vector3(SceneStats.LeftEdge,SceneStats.BottomEdge), 
-        });
-        paths.AddLast(new Vector3[]
-        {
-            new Vector3(SceneStats.RightEdge,SceneStats.TopEdge), 
-            new Vector3(10f,17.51f), 
-            new Vector3(13.15f,9.19f), 
-            new Vector3(SceneStats.RightEdge,SceneStats.BottomEdge), 
-        });
+        //paths.AddLast(new Vector3[]
+        //{
+        //    new Vector3(SceneStats.LeftEdge,SceneStats.TopEdge), 
+        //    new Vector3(-5f,17.51f), 
+        //    new Vector3(-10.15f,9.19f), 
+        //    new Vector3(SceneStats.LeftEdge,SceneStats.BottomEdge), 
+        //});
+        //paths.AddLast(new Vector3[]
+        //{
+        //    new Vector3(SceneStats.RightEdge,SceneStats.TopEdge), 
+        //    new Vector3(10f,17.51f), 
+        //    new Vector3(13.15f,9.19f), 
+        //    new Vector3(SceneStats.RightEdge,SceneStats.BottomEdge), 
+        //});
 
         return paths.ToArray();
 
