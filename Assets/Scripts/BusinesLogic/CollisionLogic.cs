@@ -14,7 +14,7 @@ public class CollisionLogic : MonoBehaviour  {
     private PlayerStatsLogic playerStatsLogic;
     private MissionLogic missionLogic;
     AnimationLogic animationLogic;
-
+    SoundLogic soundLogic;
 	void Start () {
 		physicsLogic = this.gameObject.GetComponent<PhysicsLogic> ();
 		movmentLogic = this.gameObject.GetComponent<MovmentLogic> ();
@@ -22,6 +22,7 @@ public class CollisionLogic : MonoBehaviour  {
         playerStatsLogic = this.gameObject.GetComponent<PlayerStatsLogic>();
         missionLogic = this.gameObject.GetComponent<MissionLogic>();
         animationLogic = this.gameObject.GetComponent<AnimationLogic>();
+        soundLogic = this.gameObject.GetComponent<SoundLogic>();
 	}
 	public void playerCollideWithEnemy(CollisionModel model) {
         if (playerStatsLogic.powerUpModeActive == PowerUpType.SUPERHIT)
@@ -39,7 +40,7 @@ public class CollisionLogic : MonoBehaviour  {
 		var enemyPosition = model.CollidedWith.transform.position;
 		var playerPosition = model.mainCollider.transform.position;
 		var VectorForce = (Vector2)((playerPosition - enemyPosition).normalized);
-
+        soundLogic.playSliceSound();
 		
 	    //if player hit some1 than he get back is dashes
         playerStatsLogic.resetDash();
@@ -71,6 +72,7 @@ public class CollisionLogic : MonoBehaviour  {
 
     public void rollOver(GameObject player)
     {
+        soundLogic.playSpinningeSound();
         float numberOfRolls = 5;
         LeanTween.rotateZ(player, 360f * numberOfRolls, impactTimeOnPlayer + rollTime);
     }
@@ -89,7 +91,7 @@ public class CollisionLogic : MonoBehaviour  {
 
 
 	public void EnemyCollidedWithPlayer(CollisionModel model) {
-        Debug.Log("enemy collision detected");
+     //   Debug.Log("enemy collision detected");
 		var enemyController = model.mainCollider.GetComponent<AIController> ();
 		var enemy = model.mainCollider.GetComponent<IEnemy> ();
 		var position = (Vector2)model.mainCollider.transform.position;
