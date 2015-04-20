@@ -11,12 +11,26 @@ public class ScoreData : MonoBehaviour {
 
     public void loadHighScore()
     {
-        var score = MemoryAccess.memoryAccess.LoadScore();
-        highScore = score.scroe;
+        try
+        {
+            var score = MemoryAccess.memoryAccess.LoadScore();
+            highScore = score.scroe;
+        }
+        catch {
+            highScore = 0;
+            }
     }
     public void saveHighScore(int score)
     {
-        MemoryAccess.memoryAccess.SaveScore(new IOScoreModel { scroe = highScore });
+        try
+        {
+            MemoryAccess.memoryAccess.SaveScore(new IOScoreModel { scroe = highScore });
+        }
+        catch
+        {
+            Debug.Log("Data Base ERROR!!!");
+        }
+
     }
     public void updateHighScore(int score)
     {

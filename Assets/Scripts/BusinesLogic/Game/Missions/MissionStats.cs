@@ -11,12 +11,21 @@ public class MissionStats : MonoBehaviour {
     Dictionary<int, string> tierTitle;
 	// Use this for initialization
 	void Start () {
-        var missions = MemoryAccess.memoryAccess.LoadMission();
-        tier = missions.tier; //TODO: get tier from memory
+        IOMissionModel missionsFromDisc;
+
+       // tier = missions.tier; //TODO: get tier from memory
         missionAssigner = this.gameObject.GetComponent<MissionAssigner>();
         if (currentMissions == null)
         {
-            var missionsFromDisc = MemoryAccess.memoryAccess.LoadMission();
+            try
+            {
+                missionsFromDisc = MemoryAccess.memoryAccess.LoadMission();
+            }
+            catch
+            {
+                missionsFromDisc = new IOMissionModel { tier = -2  };
+            }
+          //  var missionsFromDisc = MemoryAccess.memoryAccess.LoadMission();
             if (missionsFromDisc.tier == -2)
             {
                 tier = 1;

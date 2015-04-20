@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class EnemyGeneratorLogic : MonoBehaviour {
+public class EnemyGeneratorLogic  {
 
 	GameObject stupid,spike,tank;
     
