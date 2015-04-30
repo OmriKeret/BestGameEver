@@ -28,6 +28,17 @@ public class TouchInterpeter : MonoBehaviour {
 		bool directionChosen = false;
 		bool holdingScreen = false;
 		bool stopHover = false;
+        Vector2 realWorldCharPos;
+        if (Input.GetMouseButtonDown(0))
+        {
+            realWorldTouch = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            realWorldCharPos = player.position;
+            direction = realWorldTouch - realWorldCharPos;
+            directionChosen = true;
+            holdingScreen = false;
+            playerPhyisicsController.StopHoverPhyisics();
+        }
+ 
 		if (Input.touchCount > 0) {
 			var touch = Input.GetTouch(0);
 			// Handle finger movements based on touch phase.
@@ -55,7 +66,7 @@ public class TouchInterpeter : MonoBehaviour {
 				playerPhyisicsController.StopHoverPhyisics();
 				//touch is in pixels, we convert to unity world point
 				realWorldTouch =  (Vector2)Camera.main.ScreenToWorldPoint(touch.position);
-				Vector2 realWorldCharPos =  player.position;
+				realWorldCharPos =  player.position;
 
 				direction = realWorldTouch - realWorldCharPos;
  				directionChosen = true;
@@ -78,6 +89,7 @@ public class TouchInterpeter : MonoBehaviour {
 
         if (directionChosen && !isMovmentDisabled)
         {
+
 			direction.Normalize();
 			PlayerMovmentController.Move(direction, realWorldTouch);
 			//playerMovmentController(direction);
@@ -87,10 +99,10 @@ public class TouchInterpeter : MonoBehaviour {
 		}
         if (holdingScreen && !isMovmentDisabled)
         {
-			PlayerMovmentController.Hover();
+	//		PlayerMovmentController.Hover();
 		}
 		if (stopHover) {
-			playerPhyisicsController.StopHoverPhyisics();
+		//	playerPhyisicsController.StopHoverPhyisics();
 		}
 	}
 
