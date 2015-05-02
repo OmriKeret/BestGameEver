@@ -16,7 +16,8 @@ public class EnemyGeneratorLogic  {
 		{ 
 			{ EnemyType.Stupid, stupid },
             {EnemyType.Spike,spike},
-            {EnemyType.Tank,tank}
+            {EnemyType.Tank,tank},
+            {EnemyType.End,new GameObject()}
 		};
 	}
 

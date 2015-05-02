@@ -69,6 +69,22 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
 		}
 	}
 
+    public void StartOrderPath(int i_speed, int i_PathNumber)
+    {
+        Vector3[] path;
+        selectOrderPath(out path, i_PathNumber);
+
+        LeanTween.move(this.gameObject, path, calculateTime(i_speed)).setEase(LeanTweenType.linear).setOnComplete(() =>
+        {
+            FinishedMoving();
+        });
+    }
+
+    public void selectOrderPath(out Vector3[] i_path, int i_PathNumber)
+    {
+        i_path = _allPaths[i_PathNumber];
+    }
+
     public void StartRandomPath(int speed)
     {
         Vector3[] path;
