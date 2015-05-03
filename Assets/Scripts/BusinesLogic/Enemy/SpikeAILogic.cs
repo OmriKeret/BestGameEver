@@ -117,6 +117,22 @@ public class SpikeAILogic : MonoBehaviour, IEnemy {
         }
     }
 
+    public void StartOrderPath(int i_speed, int i_WaveNumber)
+    {
+        Vector3[] path;
+        selectOrderPath(out path, i_WaveNumber);
+
+        LeanTween.move(this.gameObject, path, calculateTime(i_speed)).setEase(LeanTweenType.linear).setOnComplete(() =>
+        {
+            FinishedMoving();
+        });
+    }
+
+    public void selectOrderPath(out Vector3[] i_path, int i_WaveNumber)
+    {
+        i_path = _allPaths[i_WaveNumber];
+    }
+
     public void StartRandomPath(int speed)
     {
         Vector3[] path;

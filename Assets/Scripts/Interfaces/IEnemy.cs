@@ -21,6 +21,8 @@ public interface IEnemy {
 
     void StartRandomPath(int speed);
 
+    void StartOrderPath(int i_speed, int i_WaveNumber);
+
     float calculateTime(float speed);
 
     Vector3[][] initPaths();
@@ -28,6 +30,8 @@ public interface IEnemy {
     void FinishedMoving();
 
     void selectRandomPath(out Vector3[] i_path);
+
+    void selectOrderPath(out Vector3[] i_path, int i_WaveNumber);
 
     EnemyMode GetEnemyMode();
 

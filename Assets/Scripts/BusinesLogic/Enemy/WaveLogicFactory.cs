@@ -8,27 +8,33 @@ public class WaveLogicFactory {
 	WaveLogic[] _mediumWaves;
 	WaveLogic[] _hardWaves;
 	WaveLogic[] _extremeWaves;
+    WaveLogic[] _orderWaves;
 
 	public WaveLogicFactory(){
-		_easyWaves = new WaveLogic[]{
-            new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid}),
-            new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid}),
-            new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Spike,EnemyType.Stupid}),
-            new WaveLogic(new EnemyType[]{EnemyType.Tank,EnemyType.Stupid,EnemyType.Spike,EnemyType.Stupid}),
-            new WaveLogic(new EnemyType[]{EnemyType.Tank,EnemyType.Stupid,EnemyType.Tank}),
-            new WaveLogic(new EnemyType[]{EnemyType.Tank,EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid,EnemyType.Spike}),
-            new WaveLogic(new EnemyType[]{EnemyType.Spike,EnemyType.Stupid,EnemyType.Stupid})
+        _orderWaves = new WaveLogic[]{
+            new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid},
+                            new EnemyLocation[]{EnemyLocation.TopLeft,EnemyLocation.TopRight,EnemyLocation.BottomRight},
+                            new int[]{1,1,1})
+        };
+
+        _easyWaves = new WaveLogic[]{
 		};
-		_mediumWaves = new WaveLogic[]{
+        _mediumWaves = new WaveLogic[]{
 			
 		};
-		_hardWaves = new WaveLogic[]{
+        _hardWaves = new WaveLogic[]{
 			
 		};
-		_extremeWaves = new WaveLogic[]{
+        _extremeWaves = new WaveLogic[]{
 			
 		};
+
 	}
+
+    public WaveLogic createWaveByOrder(WaveGenerateModel i_model)
+    {
+        return new WaveLogic(_orderWaves[i_model.waveNumber]);
+    }
 
 	private WaveLogic createWave(WaveLogic[] i_waves){
 		int waveNumber = UnityEngine.Random.Range (0,i_waves.Length);
@@ -41,8 +47,4 @@ public class WaveLogicFactory {
 		return createWave(_easyWaves);
 	}
 
-    public WaveLogic CreateMediumWave()
-    {
-        return createEasyWave().mergeWaves(createEasyWave());
-    }
 }
