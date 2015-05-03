@@ -141,9 +141,9 @@ public class MemoryAccess : MonoBehaviour {
         }
         catch
         {
-            return new IOTotalClothModel();
+            return null;
         }
-        return new IOTotalClothModel();
+        return null;
     }
 
     public void SaveHats(IOTotalClothModel hats)
@@ -176,9 +176,9 @@ public class MemoryAccess : MonoBehaviour {
         }
         catch
         {
-            return new IOTotalClothModel();
+            return null;
         }
-        return new IOTotalClothModel();
+        return null;
     }
 
     public void SavePonchoes(IOTotalClothModel hats)
@@ -211,9 +211,9 @@ public class MemoryAccess : MonoBehaviour {
         }
         catch
         {
-            return new IOTotalClothModel();
+            return null;
         }
-        return new IOTotalClothModel();
+        return null;
     }
 
     public void SaveSwords(IOTotalClothModel Swords)
