@@ -13,7 +13,7 @@ public class PodiumController : MonoBehaviour {
 	
 	}
 
-    void OnCollisionEnter2D(Collision2D other)
+    void OnCollisionExit2D(Collision2D other)
     {
         if (other.collider.tag.Equals("Player"))
         {

@@ -138,27 +138,7 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
             new Vector3(15.8f,4f), 
             new Vector3(0,SceneStats.TopEdge), 
         });
-       paths.AddLast(new Vector3[]
-        {
-            new Vector3(-23.16821f,SceneStats.TopEdge), 
-            new Vector3(-16.53627f,5f), 
-            new Vector3(-15.8f,4f), 
-            new Vector3(0,SceneStats.TopEdge), 
-        });
-       paths.AddLast(new Vector3[]
-        {
-            new Vector3(SceneStats.RightEdge,5f), 
-            new Vector3(20f,SceneStats.TopEdge), 
-            new Vector3(-10f,4f), 
-            new Vector3(SceneStats.LeftEdge,15f)
-        });
-       //paths.AddLast(new Vector3[]
-       // {
-       //     new Vector3(SceneStats.RightEdge,SceneStats.TopEdge), 
-       //     new Vector3(10f,17.51f), 
-       //     new Vector3(13.15f,9.19f), 
-       //     new Vector3(SceneStats.RightEdge,SceneStats.BottomEdge), 
-       // });
+       
 
        return paths.ToArray();
    }

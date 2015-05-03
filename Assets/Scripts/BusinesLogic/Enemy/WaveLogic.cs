@@ -14,18 +14,27 @@ public class WaveLogic {
 	int _hpBonus;
 
 
+
 	public WaveLogic(EnemyType[] i_Enemies, EnemyLocation[] i_Location, int[] i_NumOfEnemies){
 		_enemies = new EnemyType[i_Enemies.Length+1];
-        for (int i = 0; i < _enemies.Length-1; i++)
+        _locations = new EnemyLocation[i_Location.Length + 1];
+        _numOfEnemiesToInstaniate = new int[i_NumOfEnemies.Length+1];
+        for (int i = 0; i < i_Enemies.Length; i++)
         {
 			_enemies[i] = i_Enemies[i];
-            _locations[i] = i_Location[i];
 		}
-        for (int i = 0; i < _numOfEnemiesToInstaniate.Length; i++)
+        _enemies[_enemies.Length - 1] = EnemyType.End;
+        for (int i = 0; i < i_Location.Length; i++)
+        {
+            _locations[i] = i_Location[i];
+        }
+        _locations[_locations.Length - 1] = EnemyLocation.BottomRight;
+        for (int i = 0; i < i_NumOfEnemies.Length; i++)
         {
             _numOfEnemiesToInstaniate[i] = i_NumOfEnemies[i];
         }
-        _enemies[_enemies.Length - 1] = EnemyType.End;
+        _numOfEnemiesToInstaniate[_numOfEnemiesToInstaniate.Length - 1] = 1;
+        
 		_currentNumOfEnemy = 0;
         _currentEnemiesInRow = 0;
 		_strengthMultiplier = 1;
@@ -33,19 +42,9 @@ public class WaveLogic {
 		_hpBonus = 0;
 	}
 
-    public WaveLogic(WaveLogic i_Wave)
+    public WaveLogic(WaveLogic i_Wave) : this(i_Wave._enemies,i_Wave._locations,i_Wave._numOfEnemiesToInstaniate)
     {
-        _enemies = new EnemyType[i_Wave._enemies.Length+1];
-        for (int i = 0; i < _enemies.Length-1; i++)
-        {
-            _enemies[i] = i_Wave._enemies[i];
-            _locations[i] = i_Wave._locations[i];
-        }
-        for (int i = 0; i < _numOfEnemiesToInstaniate.Length; i++)
-        {
-            _numOfEnemiesToInstaniate[i] = i_Wave._numOfEnemiesToInstaniate[i];
-        }
-        _enemies[_enemies.Length - 1] = EnemyType.End;
+
         _currentNumOfEnemy = i_Wave._currentNumOfEnemy;
         _currentEnemiesInRow = i_Wave._currentEnemiesInRow;
         _speedMultiplier = i_Wave._speedMultiplier;
