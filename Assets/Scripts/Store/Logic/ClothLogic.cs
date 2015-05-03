@@ -113,8 +113,11 @@ public class ClothLogic : MonoBehaviour {
     private void initilaizeCloth()
     {
         hats = new Hats();
+        hats.hats.RemoveRange(1, hats.hats.Count - 1);
         punchoes = new Punchoes();
+        punchoes.pounchoes.RemoveRange(1, punchoes.pounchoes.Count - 1);
         swords = new Swords();
+        swords.swords.RemoveRange(1, swords.swords.Count - 1);
     }
 
 

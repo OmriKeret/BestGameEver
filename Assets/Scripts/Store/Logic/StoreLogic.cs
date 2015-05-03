@@ -18,6 +18,7 @@ public class StoreLogic : MonoBehaviour {
     private Text description;
     private Text name;
     private Text price;
+    private Text buy;
     private Image image;
 
 	// Use this for initialization
@@ -39,6 +40,7 @@ public class StoreLogic : MonoBehaviour {
         price = GameObject.Find("Description/PriceText").GetComponent<Text>();
         name = GameObject.Find("Description/NameText").GetComponent<Text>();
         image = GameObject.Find("Description/Image").GetComponent<Image>();
+        buy = GameObject.Find("Buy button").GetComponent<Text>();
 		ChangeItemGroup(BodyPart.sword);
 	}
 
@@ -88,6 +90,10 @@ public class StoreLogic : MonoBehaviour {
         return false;
     }
 
+    public bool equipItem()
+    {
+
+    }
     public void ChangeItemGroup(BodyPart part) {
         switch (part) {
             case (BodyPart.hat):
