@@ -11,8 +11,8 @@ PlayerSettings:
   targetIOSGraphics: -1
   targetResolution: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
-  productName: New Unity Project
+  companyName: Kiwi
+  productName: Ponchjoe
   cloudProjectId: 
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -83,7 +83,7 @@ PlayerSettings:
   xboxOneDisableKinectGpuReservation: 0
   productGUID: ed897eb89a65a794081a92ad764672f9
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 18
+  AndroidMinSdkVersion: 16
   AndroidPreferredInstallLocation: 1
   aotOptions: 
   apiCompatibilityLevel: 2
@@ -137,7 +137,7 @@ PlayerSettings:
   m_BuildTargetIcons:
   - m_BuildTarget: 
     m_Icons:
-    - m_Icon: {fileID: 0}
+    - m_Icon: {fileID: 2800000, guid: 4b52095c8f0dad24698cdab607997549, type: 3}
       m_Size: 128
   - m_BuildTarget: Android
     m_Icons:

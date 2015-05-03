@@ -32,13 +32,14 @@ public class StoreLogic : MonoBehaviour {
         var i = MemoryAccess.memoryAccess.LoadCurrency();
         currentPJ = i.PJ;
         currentJem = i.jems;
-        ChangeItemGroup(BodyPart.sword);
+       
 
         //gui elements
-        description = GameObject.Find("Description/DescriptionText").GetComponent<Text>();
+        description = GameObject.Find("Canvas/Description/DescriptionText").GetComponent<Text>();
         price = GameObject.Find("Description/PriceText").GetComponent<Text>();
         name = GameObject.Find("Description/NameText").GetComponent<Text>();
         image = GameObject.Find("Description/Image").GetComponent<Image>();
+		ChangeItemGroup(BodyPart.sword);
 	}
 
     private List<ClothModel> clone(List<ClothModel> list)
@@ -108,7 +109,7 @@ public class StoreLogic : MonoBehaviour {
     public void moveLeft()
     {
         var len = currentGroup.Count;
-        index = index - 1 < 0 ? len - 1 : index - 1 % len;
+        index = index - 1 < 0 ? len - 1 : (index - 1) % len;
         currentDisplayed = currentGroup[index];
         updateDisplayData();
     }
@@ -116,7 +117,7 @@ public class StoreLogic : MonoBehaviour {
     public void moveRight()
     {
         var len = currentGroup.Count;
-        index = index + 1 % len;
+        index = (index + 1) % len;
         currentDisplayed = currentGroup[index];
         updateDisplayData();
     }
@@ -129,6 +130,7 @@ public class StoreLogic : MonoBehaviour {
 
     private void updateGuiDisplay()
     {
+        Debug.Log("current display is " + currentDisplayed.description);
         description.text = currentDisplayed.description;
         name.text = currentDisplayed.name;
         price.text = string.Format("{0} PJ", currentDisplayed.PJPrice);
@@ -140,30 +142,33 @@ public class StoreLogic : MonoBehaviour {
     private void updateGuiCharacterDisplay()
     {
         //TODO: change character display
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
 
 
-    private void switchItemsToHats()
+    public void switchItemsToHats()
     {
        currentGroup = hats.hats;
        currentDisplayed = currentGroup.Single(e => e.selected);
        index = currentDisplayed.id - 1;
+       updateDisplayData();
         //TODO: CHANGE IMAGE, DESC and PRICE  
     }
-    private void switchItemsToPonchoes()
+    public void switchItemsToPonchoes()
     {
         currentGroup = punchoes.pounchoes;
         currentDisplayed = currentGroup.Single(e => e.selected);
         index = currentDisplayed.id - 1;
+        updateDisplayData();
         //TODO: CHANGE IMAGE, DESC and PRICE  
     }
-    private void switchItemsToSwords()
+    public void switchItemsToSwords()
     {
         currentGroup = swords.swords;
         currentDisplayed = currentGroup.Single(e => e.selected);
         index = currentDisplayed.id - 1;
+        updateDisplayData();
         //TODO: CHANGE IMAGE, DESC and PRICE  
     }
 }

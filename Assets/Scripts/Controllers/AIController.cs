@@ -48,6 +48,7 @@ public class AIController : MonoBehaviour {
 	}
 
 	public void onCollisionFacade(CollisionModel model) {
+
 		collisionFacade.Collision (model);
 	}
 

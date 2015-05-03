@@ -66,6 +66,7 @@ public class ClothLogic : MonoBehaviour {
 
     private void syncHats(IOTotalClothModel hatsFromMem)
     {
+        if (hatsFromMem == null) return;
         //iterate thorugh the hats and mark those who we own
         foreach (var hat in hatsFromMem.items)
         {
@@ -81,6 +82,7 @@ public class ClothLogic : MonoBehaviour {
 
     private void syncPonchoes(IOTotalClothModel phonchesFromMem)
     {
+        if (phonchesFromMem == null) return;
         //iterate thorugh the phonches and mark those who we own
         foreach (var phonche in phonchesFromMem.items)
         {
@@ -95,6 +97,7 @@ public class ClothLogic : MonoBehaviour {
 
     private void syncSwords(IOTotalClothModel swordsFromMem)
     {
+        if (swordsFromMem == null) return;
         //iterate thorugh the swords and mark those who we own
         foreach (var sword in swordsFromMem.items)
         {

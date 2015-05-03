@@ -1361,6 +1361,7 @@ MonoBehaviour:
   enemy2Loc: {x: 0, y: 0}
   enemy3Loc: {x: 0, y: 0}
   instantiateLocations: []
+  waveEnded: 1
 --- !u!114 &605148567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4062,7 +4063,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 410640, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -.379999995
+      value: -.129999995
       objectReference: {fileID: 0}
     - target: {fileID: 410640, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
       propertyPath: m_LocalPosition.z
@@ -4086,7 +4087,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 410640, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
