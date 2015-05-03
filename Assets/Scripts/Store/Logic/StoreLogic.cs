@@ -147,25 +147,28 @@ public class StoreLogic : MonoBehaviour {
 
 
 
-    private void switchItemsToHats()
+    public void switchItemsToHats()
     {
        currentGroup = hats.hats;
        currentDisplayed = currentGroup.Single(e => e.selected);
        index = currentDisplayed.id - 1;
+       updateDisplayData();
         //TODO: CHANGE IMAGE, DESC and PRICE  
     }
-    private void switchItemsToPonchoes()
+    public void switchItemsToPonchoes()
     {
         currentGroup = punchoes.pounchoes;
         currentDisplayed = currentGroup.Single(e => e.selected);
         index = currentDisplayed.id - 1;
+        updateDisplayData();
         //TODO: CHANGE IMAGE, DESC and PRICE  
     }
-    private void switchItemsToSwords()
+    public void switchItemsToSwords()
     {
         currentGroup = swords.swords;
         currentDisplayed = currentGroup.Single(e => e.selected);
         index = currentDisplayed.id - 1;
+        updateDisplayData();
         //TODO: CHANGE IMAGE, DESC and PRICE  
     }
 }
