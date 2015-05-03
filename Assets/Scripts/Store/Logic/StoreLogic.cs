@@ -92,7 +92,7 @@ public class StoreLogic : MonoBehaviour {
 
     public bool equipItem()
     {
-
+        return false;
     }
     public void ChangeItemGroup(BodyPart part) {
         switch (part) {
