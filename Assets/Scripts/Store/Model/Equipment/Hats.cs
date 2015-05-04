@@ -6,8 +6,8 @@ using System;
 public class Hats {
 
     public List<ClothModel> hats = new List<ClothModel> {
-        new ClothModel{id = 1, description = "normal mexican hat", jemPrice = -1, name = "Mexican hat", owned = true, part = BodyPart.hat, PJPrice = 0,selected = true},
-        new ClothModel{id = 2, description = "leather cowboy hat", jemPrice = -1, name = "cowboy hat", owned = false, part = BodyPart.hat, PJPrice = 5, selected = false}
+        new ClothModel{id = 1, description = "normal mexican hat", jemPrice = -1, name = "Mexican hat", owned = true,characterSpriteFront = "Cloth/Hat/normal", part = BodyPart.hat, PJPrice = 0,selected = true, statsImprove = new StatsImprovementModel{}},
+        new ClothModel{id = 2, description = "leather cowboy hat", jemPrice = -1, name = "cowboy hat", owned = false, part = BodyPart.hat,characterSpriteFront = "Cloth/Hat/leather", PJPrice = 5, selected = false, statsImprove = new StatsImprovementModel{}}
 
         };
 
@@ -17,7 +17,10 @@ public class Hats {
         item.items = new List<IOClothModel>();
         foreach (var i in hats)
         {
-            item.items.Add(new IOClothModel {id = i.id, bodyPart = i.part, imgPath = i.img , selected = i.selected});
+            if (i.owned == true)
+            {
+                item.items.Add(new IOClothModel { id = i.id, bodyPart = i.part, selected = i.selected });
+            }
         }
         return item;
     }

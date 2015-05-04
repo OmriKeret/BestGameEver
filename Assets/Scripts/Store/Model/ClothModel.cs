@@ -8,9 +8,12 @@ public class ClothModel {
    public BodyPart part;
    public int PJPrice;
    public int jemPrice;
-   public string img;
+   public string storeImg;
+   public string characterSpriteFront;
+   public string characterSpriteBack;
    public string name;
    public string description;
    public bool owned;
    public bool selected;
+   public StatsImprovementModel statsImprove;
 }

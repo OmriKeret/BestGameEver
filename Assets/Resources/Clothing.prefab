@@ -1,0 +1,196 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &108238
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 495402}
+  - 114: {fileID: 11488486}
+  m_Layer: 0
+  m_Name: Clothing
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &495402
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 108238}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .0117943455, y: 2.78562284, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11488486
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 108238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffe87e5e0a3f5b34381f057048000695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hats:
+    hats:
+    - id: 1
+      part: 1
+      PJPrice: 0
+      jemPrice: -1
+      storeImg: 
+      characterSpriteFront: 
+      characterSpriteBack: 
+      name: Mexican hat
+      description: normal mexican hat
+      owned: 1
+      selected: 1
+      statsImprove:
+        hp: 0
+        dashDist: 0
+        dashNum: 0
+    - id: 2
+      part: 1
+      PJPrice: 5
+      jemPrice: -1
+      storeImg: 
+      characterSpriteFront: 
+      characterSpriteBack: 
+      name: cowboy hat
+      description: leather cowboy hat
+      owned: 0
+      selected: 0
+      statsImprove:
+        hp: 0
+        dashDist: 0
+        dashNum: 0
+  punchoes:
+    pounchoes:
+    - id: 1
+      part: 3
+      PJPrice: 0
+      jemPrice: -1
+      storeImg: 
+      characterSpriteFront: 
+      characterSpriteBack: 
+      name: Mexican pouncho
+      description: normal mexican pouncho
+      owned: 1
+      selected: 1
+      statsImprove:
+        hp: 0
+        dashDist: 0
+        dashNum: 0
+    - id: 2
+      part: 3
+      PJPrice: 5
+      jemPrice: -1
+      storeImg: 
+      characterSpriteFront: 
+      characterSpriteBack: 
+      name: cowboy pouncho
+      description: leather cowboy pouncho
+      owned: 0
+      selected: 0
+      statsImprove:
+        hp: 0
+        dashDist: 0
+        dashNum: 0
+  swords:
+    swords:
+    - id: 1
+      part: 2
+      PJPrice: 0
+      jemPrice: -1
+      storeImg: 
+      characterSpriteFront: 
+      characterSpriteBack: 
+      name: Mexican sword
+      description: normal mexican sword
+      owned: 1
+      selected: 1
+      statsImprove:
+        hp: 0
+        dashDist: 0
+        dashNum: 0
+    - id: 2
+      part: 2
+      PJPrice: 5
+      jemPrice: -1
+      storeImg: 
+      characterSpriteFront: 
+      characterSpriteBack: 
+      name: cowboy sword
+      description: leather cowboy sword
+      owned: 0
+      selected: 0
+      statsImprove:
+        hp: 0
+        dashDist: 0
+        dashNum: 0
+  equipedHat:
+    id: 0
+    part: 0
+    PJPrice: 0
+    jemPrice: 0
+    storeImg: 
+    characterSpriteFront: 
+    characterSpriteBack: 
+    name: 
+    description: 
+    owned: 0
+    selected: 0
+    statsImprove:
+      hp: 0
+      dashDist: 0
+      dashNum: 0
+  equipedPoncho:
+    id: 0
+    part: 0
+    PJPrice: 0
+    jemPrice: 0
+    storeImg: 
+    characterSpriteFront: 
+    characterSpriteBack: 
+    name: 
+    description: 
+    owned: 0
+    selected: 0
+    statsImprove:
+      hp: 0
+      dashDist: 0
+      dashNum: 0
+  equipedSword:
+    id: 0
+    part: 0
+    PJPrice: 0
+    jemPrice: 0
+    storeImg: 
+    characterSpriteFront: 
+    characterSpriteBack: 
+    name: 
+    description: 
+    owned: 0
+    selected: 0
+    statsImprove:
+      hp: 0
+      dashDist: 0
+      dashNum: 0
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 108238}
+  m_IsPrefabParent: 1
