@@ -13,6 +13,8 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
     public float minTimeForPath = 4f;
     public float maxTimeForPath = 30f;
     private Vector3[][] _allPaths ;
+    private Dictionary<EnemyLocation, Vector3[]> _pathMap;
+
     AudioSource _audioSource;
 	// Use this for initialization
 	void Awake () {
@@ -22,7 +24,7 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
 		_leftBodyPartResouce = Resources.Load ("stupidL") as GameObject;
 		_rightBodyPartResouce = Resources.Load ("stupidR") as GameObject;
 		GetComponent<Rigidbody2D> ().gravityScale = 0;
-	    _allPaths = initPaths();
+	    initPaths();
 	}
    public bool lifeDown(int str)
     {
@@ -69,10 +71,14 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
 		}
 	}
 
-    public void StartOrderPath(int i_speed, int i_PathNumber)
+    public void StartOrderPath(int i_speed, EnemyLocation i_Location)
     {
         Vector3[] path;
-        selectOrderPath(out path, i_PathNumber);
+        if (!_pathMap.TryGetValue(i_Location, out path))
+        {
+            Debug.Log("Error choosing path (StartOrderPath in stupid)");
+        }
+        //selectOrderPath(out path, i_PathNumber);
 
         LeanTween.move(this.gameObject, path, calculateTime(i_speed)).setEase(LeanTweenType.linear).setOnComplete(() =>
         {
@@ -84,6 +90,7 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
     {
         i_path = _allPaths[i_PathNumber];
     }
+
 
     public void StartRandomPath(int speed)
     {
@@ -128,19 +135,28 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
        return minTimeForPath * (_stats.MAX_SPEED / speed);
    }
 
-    public Vector3[][] initPaths()
+    public void initPaths()
    {
-       LinkedList<Vector3[]> paths = new LinkedList<Vector3[]>();
-       paths.AddFirst(new Vector3[]
-        {
-            new Vector3(23.16821f,SceneStats.TopEdge), 
-            new Vector3(16.53627f,5f), 
-            new Vector3(15.8f,4f), 
-            new Vector3(0,SceneStats.TopEdge), 
-        });
-       
+       Vector3[] topRight = new Vector3[]
+                {
+                    new Vector3(23.16821f,SceneStats.TopEdge), 
+                    new Vector3(17.23f,6.3f), 
+                    new Vector3(3.17f,11.14f), 
+                    new Vector3(SceneStats.LeftEdge,0)
+                };
+       Vector3[] topLeft = new Vector3[]
+       {
+                    new Vector3(SceneStats.LeftEdge,SceneStats.TopEdge), 
+                    new Vector3(-17.23f,6.3f), 
+                    new Vector3(0,11.14f), 
+                    new Vector3(SceneStats.RightEdge,0)
+                };
+        _pathMap = new Dictionary<EnemyLocation, Vector3[]>
+       {
+           {EnemyLocation.TopRight, topRight},
+           {EnemyLocation.TopLeft, topLeft}
+       };
 
-       return paths.ToArray();
    }
 
     public void playSpawnSound()

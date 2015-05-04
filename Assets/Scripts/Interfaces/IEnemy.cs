@@ -21,11 +21,11 @@ public interface IEnemy {
 
     void StartRandomPath(int speed);
 
-    void StartOrderPath(int i_speed, int i_WaveNumber);
+    void StartOrderPath(int i_speed, EnemyLocation i_Location);
 
     float calculateTime(float speed);
 
-    Vector3[][] initPaths();
+    void initPaths();
 
     void FinishedMoving();
 
