@@ -8,6 +8,7 @@ public class PlayerStatsLogic : MonoBehaviour {
     public int Strength = 1;
     public int combo = 0;
     public int dashNum = 5;
+    public int dashDist = 15;
     public PowerUpType powerUpModeActive;
     public GameObject guiHP;
     public GameObject _LifeFullPrefab;
@@ -15,6 +16,8 @@ public class PlayerStatsLogic : MonoBehaviour {
     private char hearSymbole = '♥';
 	public Text comboText;
     public GameObject[] lifes;
+
+    private MovmentLogic movmentLogic;
 	// Use this for initialization
 	void Start () {
         guiHP = GameObject.Find("HpContainer");
@@ -22,6 +25,7 @@ public class PlayerStatsLogic : MonoBehaviour {
         _LifeFullPrefab = Resources.Load("lifeFull") as GameObject;
         _LifeEmptyPrefab = Resources.Load("lifeEmpty") as GameObject;
         firstTimeWriteHp();
+        movmentLogic = this.GetComponent<MovmentLogic>();
 	}
 	
 	// Update is called once per frame
@@ -97,4 +101,22 @@ public class PlayerStatsLogic : MonoBehaviour {
       //  HPText.text = numOfHearts;
     }
 
+
+    internal void addDashNumBoost(int dashNumBoost)
+    {
+        MAX_DASH_NUM += dashNumBoost;
+        resetDash();
+    }
+
+    internal void addDashDistBoost(int dashDistBoost)
+    {
+        dashDist += dashDistBoost;
+        movmentLogic.dashDist = dashDist;
+    }
+
+    internal void addDashHPBoost(int hpBoost)
+    {
+        HP += hpBoost;
+        firstTimeWriteHp();
+    }
 }

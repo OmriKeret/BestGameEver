@@ -6,6 +6,6 @@ public class IOClothModel {
 
     public int id;
     public BodyPart bodyPart;
-    public string imgPath;
+ //   public string imgPath;
     public bool selected;
 }

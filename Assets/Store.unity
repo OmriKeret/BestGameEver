@@ -227,7 +227,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
 --- !u!1 &170878954
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,7 +304,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2018467541}
-        m_MethodName: switchItemsToSwords
+        m_MethodName: switchItemsToPonchoes
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -881,6 +881,45 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 952817263}
+--- !u!1 &1015099357
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1015099358}
+  - 114: {fileID: 1015099359}
+  m_Layer: 0
+  m_Name: CharacterDresser
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1015099358
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1015099357}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.50273633, y: .267899811, z: .0234375}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+--- !u!114 &1015099359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1015099357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dbdf3d4a5feeb1438626a091325a6fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1055571364
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,6 +1036,48 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1055571364}
+--- !u!1001 &1147839571
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 495402, guid: ac3581329e83e60409477946d1e4ee8d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: .0117943455
+      objectReference: {fileID: 0}
+    - target: {fileID: 495402, guid: ac3581329e83e60409477946d1e4ee8d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.78562284
+      objectReference: {fileID: 0}
+    - target: {fileID: 495402, guid: ac3581329e83e60409477946d1e4ee8d, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 495402, guid: ac3581329e83e60409477946d1e4ee8d, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 495402, guid: ac3581329e83e60409477946d1e4ee8d, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 495402, guid: ac3581329e83e60409477946d1e4ee8d, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 495402, guid: ac3581329e83e60409477946d1e4ee8d, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 495402, guid: ac3581329e83e60409477946d1e4ee8d, type: 2}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: ac3581329e83e60409477946d1e4ee8d, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1148040179
 GameObject:
   m_ObjectHideFlags: 0
@@ -1034,7 +1115,7 @@ RectTransform:
   - {fileID: 1168120162}
   - {fileID: 619972364}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -1067,10 +1148,10 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
+  m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1, y: 768}
+  m_ReferenceResolution: {x: 100, y: 768}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
@@ -1344,105 +1425,102 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1236006571}
---- !u!1 &1354693952
-GameObject:
+--- !u!1001 &1261479886
+Prefab:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1354693954}
-  - 114: {fileID: 1354693953}
-  m_Layer: 0
-  m_Name: Clothing
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1354693953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1354693952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffe87e5e0a3f5b34381f057048000695, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hats:
-    hats:
-    - id: 1
-      part: 1
-      PJPrice: 0
-      jemPrice: -1
-      img: 
-      name: Mexican hat
-      description: normal mexican hat
-      owned: 1
-      selected: 1
-    - id: 2
-      part: 1
-      PJPrice: 5
-      jemPrice: -1
-      img: 
-      name: cowboy hat
-      description: leather cowboy hat
-      owned: 0
-      selected: 0
-  punchoes:
-    pounchoes:
-    - id: 1
-      part: 3
-      PJPrice: 0
-      jemPrice: -1
-      img: 
-      name: Mexican pouncho
-      description: normal mexican pouncho
-      owned: 1
-      selected: 1
-    - id: 2
-      part: 3
-      PJPrice: 5
-      jemPrice: -1
-      img: 
-      name: cowboy pouncho
-      description: leather cowboy pouncho
-      owned: 0
-      selected: 0
-  swords:
-    swords:
-    - id: 1
-      part: 2
-      PJPrice: 0
-      jemPrice: -1
-      img: 
-      name: Mexican sword
-      description: normal mexican sword
-      owned: 1
-      selected: 1
-    - id: 2
-      part: 2
-      PJPrice: 5
-      jemPrice: -1
-      img: 
-      name: cowboy sword
-      description: leather cowboy sword
-      owned: 0
-      selected: 0
---- !u!4 &1354693954
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1354693952}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .0117943455, y: 2.78562284, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 477874, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 8.43999958
+      objectReference: {fileID: 0}
+    - target: {fileID: 477874, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.46000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 477874, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 80.5199966
+      objectReference: {fileID: 0}
+    - target: {fileID: 477874, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 477874, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 477874, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 477874, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 477874, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 21212434, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 495666, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 21260882, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 21242144, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 127106, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11458834, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11404476, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111156, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11430140, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11451594, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 21258492, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9f4af0772c3a1874fa1e72bbed2a5874,
+        type: 3}
+    - target: {fileID: 492146, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .980000019
+      objectReference: {fileID: 0}
+    - target: {fileID: 21227834, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9742c93a3f091aa46bb2135e5f4c27c0,
+        type: 3}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1394864428
 GameObject:
   m_ObjectHideFlags: 0
@@ -1708,7 +1786,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
 --- !u!1001 &1658774974
 Prefab:
   m_ObjectHideFlags: 0
@@ -1939,7 +2017,7 @@ Transform:
   m_Children:
   - {fileID: 1805776238}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
 --- !u!1 &2018467540
 GameObject:
   m_ObjectHideFlags: 0
@@ -1973,63 +2051,101 @@ MonoBehaviour:
       part: 1
       PJPrice: 0
       jemPrice: -1
-      img: 
+      storeImg: 
+      characterSpriteFront: 
+      characterSpriteBack: 
       name: Mexican hat
       description: normal mexican hat
       owned: 1
       selected: 1
+      statsImprove:
+        hp: 0
+        dashDist: 0
+        dashNum: 0
     - id: 2
       part: 1
       PJPrice: 5
       jemPrice: -1
-      img: 
+      storeImg: 
+      characterSpriteFront: 
+      characterSpriteBack: 
       name: cowboy hat
       description: leather cowboy hat
       owned: 0
       selected: 0
+      statsImprove:
+        hp: 0
+        dashDist: 0
+        dashNum: 0
   punchoes:
     pounchoes:
     - id: 1
       part: 3
       PJPrice: 0
       jemPrice: -1
-      img: 
+      storeImg: 
+      characterSpriteFront: 
+      characterSpriteBack: 
       name: Mexican pouncho
       description: normal mexican pouncho
       owned: 1
       selected: 1
+      statsImprove:
+        hp: 0
+        dashDist: 0
+        dashNum: 0
     - id: 2
       part: 3
       PJPrice: 5
       jemPrice: -1
-      img: 
+      storeImg: 
+      characterSpriteFront: 
+      characterSpriteBack: 
       name: cowboy pouncho
       description: leather cowboy pouncho
       owned: 0
       selected: 0
+      statsImprove:
+        hp: 0
+        dashDist: 0
+        dashNum: 0
   swords:
     swords:
     - id: 1
       part: 2
       PJPrice: 0
       jemPrice: -1
-      img: 
+      storeImg: 
+      characterSpriteFront: 
+      characterSpriteBack: 
       name: Mexican sword
       description: normal mexican sword
       owned: 1
       selected: 1
+      statsImprove:
+        hp: 0
+        dashDist: 0
+        dashNum: 0
     - id: 2
       part: 2
       PJPrice: 5
       jemPrice: -1
-      img: 
+      storeImg: 
+      characterSpriteFront: 
+      characterSpriteBack: 
       name: cowboy sword
       description: leather cowboy sword
       owned: 0
       selected: 0
+      statsImprove:
+        hp: 0
+        dashDist: 0
+        dashNum: 0
   currentPJ: 0
   currentJem: 0
   index: 0
+  btnBuy: {fileID: 0}
+  btnEquiped: {fileID: 0}
 --- !u!4 &2018467542
 Transform:
   m_ObjectHideFlags: 0
@@ -2041,7 +2157,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
 --- !u!1 &2023920859
 GameObject:
   m_ObjectHideFlags: 0
@@ -2202,60 +2318,144 @@ MonoBehaviour:
       part: 1
       PJPrice: 0
       jemPrice: -1
-      img: 
+      storeImg: 
+      characterSpriteFront: 
+      characterSpriteBack: 
       name: Mexican hat
       description: normal mexican hat
       owned: 1
       selected: 1
+      statsImprove:
+        hp: 0
+        dashDist: 0
+        dashNum: 0
     - id: 2
       part: 1
       PJPrice: 5
       jemPrice: -1
-      img: 
+      storeImg: 
+      characterSpriteFront: 
+      characterSpriteBack: 
       name: cowboy hat
       description: leather cowboy hat
       owned: 0
       selected: 0
+      statsImprove:
+        hp: 0
+        dashDist: 0
+        dashNum: 0
   punchoes:
     pounchoes:
     - id: 1
       part: 3
       PJPrice: 0
       jemPrice: -1
-      img: 
+      storeImg: 
+      characterSpriteFront: 
+      characterSpriteBack: 
       name: Mexican pouncho
       description: normal mexican pouncho
       owned: 1
       selected: 1
+      statsImprove:
+        hp: 0
+        dashDist: 0
+        dashNum: 0
     - id: 2
       part: 3
       PJPrice: 5
       jemPrice: -1
-      img: 
+      storeImg: 
+      characterSpriteFront: 
+      characterSpriteBack: 
       name: cowboy pouncho
       description: leather cowboy pouncho
       owned: 0
       selected: 0
+      statsImprove:
+        hp: 0
+        dashDist: 0
+        dashNum: 0
   swords:
     swords:
     - id: 1
       part: 2
       PJPrice: 0
       jemPrice: -1
-      img: 
+      storeImg: 
+      characterSpriteFront: 
+      characterSpriteBack: 
       name: Mexican sword
       description: normal mexican sword
       owned: 1
       selected: 1
+      statsImprove:
+        hp: 0
+        dashDist: 0
+        dashNum: 0
     - id: 2
       part: 2
       PJPrice: 5
       jemPrice: -1
-      img: 
+      storeImg: 
+      characterSpriteFront: 
+      characterSpriteBack: 
       name: cowboy sword
       description: leather cowboy sword
       owned: 0
       selected: 0
+      statsImprove:
+        hp: 0
+        dashDist: 0
+        dashNum: 0
+  equipedHat:
+    id: 0
+    part: 0
+    PJPrice: 0
+    jemPrice: 0
+    storeImg: 
+    characterSpriteFront: 
+    characterSpriteBack: 
+    name: 
+    description: 
+    owned: 0
+    selected: 0
+    statsImprove:
+      hp: 0
+      dashDist: 0
+      dashNum: 0
+  equipedPoncho:
+    id: 0
+    part: 0
+    PJPrice: 0
+    jemPrice: 0
+    storeImg: 
+    characterSpriteFront: 
+    characterSpriteBack: 
+    name: 
+    description: 
+    owned: 0
+    selected: 0
+    statsImprove:
+      hp: 0
+      dashDist: 0
+      dashNum: 0
+  equipedSword:
+    id: 0
+    part: 0
+    PJPrice: 0
+    jemPrice: 0
+    storeImg: 
+    characterSpriteFront: 
+    characterSpriteBack: 
+    name: 
+    description: 
+    owned: 0
+    selected: 0
+    statsImprove:
+      hp: 0
+      dashDist: 0
+      dashNum: 0
 --- !u!4 &2040995369
 Transform:
   m_ObjectHideFlags: 0
@@ -2267,7 +2467,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
 --- !u!1 &2108250845
 GameObject:
   m_ObjectHideFlags: 0

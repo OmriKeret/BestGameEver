@@ -18,28 +18,32 @@ public class StoreLogic : MonoBehaviour {
     private Text description;
     private Text name;
     private Text price;
-    private Image image;
+    private GameObject buyButton;
+    private Image image; // itemImage
+    public Sprite btnBuy;
+    public Sprite btnEquiped;
 
+    // dreser 
+    private CharacterDresserLogic dresser;
 	// Use this for initialization
 	void Start () {
         index = 0;
-        hats = new Hats();
-        punchoes = new Punchoes();
-        swords = new Swords();
-        hats.hats = clone(ClothLogic.clothLogic.hats.hats);
-        punchoes.pounchoes = clone(ClothLogic.clothLogic.punchoes.pounchoes);
-        swords.swords = clone(ClothLogic.clothLogic.swords.swords);
+        hats.hats = ClothLogic.clothLogic.hats.hats;
+        punchoes.pounchoes = ClothLogic.clothLogic.punchoes.pounchoes;
+        swords.swords = ClothLogic.clothLogic.swords.swords;
         var i = MemoryAccess.memoryAccess.LoadCurrency();
         currentPJ = i.PJ;
         currentJem = i.jems;
-       
+		dresser = GameObject.Find("CharacterDresser").GetComponent<CharacterDresserLogic>();
 
         //gui elements
         description = GameObject.Find("Canvas/Description/DescriptionText").GetComponent<Text>();
         price = GameObject.Find("Description/PriceText").GetComponent<Text>();
         name = GameObject.Find("Description/NameText").GetComponent<Text>();
         image = GameObject.Find("Description/Image").GetComponent<Image>();
+        buyButton = GameObject.Find("Buy button");
 		ChangeItemGroup(BodyPart.sword);
+        
 	}
 
     private List<ClothModel> clone(List<ClothModel> list)
@@ -50,7 +54,10 @@ public class StoreLogic : MonoBehaviour {
             res.Add(new ClothModel { 
                 description = item.description,
                 id = item.id,
-                img = item.img,
+                statsImprove = new StatsImprovementModel { dashDist = item.statsImprove.dashDist, dashNum = item.statsImprove.dashNum, hp = item.statsImprove.hp },
+                storeImg = item.storeImg,
+                characterSpriteBack = item.characterSpriteBack,
+                characterSpriteFront = item.characterSpriteFront,
                 jemPrice = item.jemPrice,
                 PJPrice = item.PJPrice,
                 name = item.name,
@@ -68,8 +75,8 @@ public class StoreLogic : MonoBehaviour {
         {
             currentPJ = currentPJ - currentDisplayed.PJPrice;
             MemoryAccess.memoryAccess.SaveCurrency(new IOCurrencyModel { jems = currentJem, PJ = currentPJ });
-            ClothLogic.clothLogic.addItem(currentDisplayed);
-            updateDisplayData();
+            ClothLogic.clothLogic.buyItem(currentDisplayed);
+            ClothLogic.clothLogic.equipItem(currentDisplayed, currentGroup);
             return true;
         }
         return false;
@@ -81,7 +88,7 @@ public class StoreLogic : MonoBehaviour {
         {
             currentJem = currentJem - currentDisplayed.jemPrice;
             MemoryAccess.memoryAccess.SaveCurrency(new IOCurrencyModel { jems = currentJem, PJ = currentPJ });
-            ClothLogic.clothLogic.addItem(currentDisplayed);
+            ClothLogic.clothLogic.buyItem(currentDisplayed);
             updateDisplayData();
             return true;
         }
@@ -135,14 +142,40 @@ public class StoreLogic : MonoBehaviour {
         name.text = currentDisplayed.name;
         price.text = string.Format("{0} PJ", currentDisplayed.PJPrice);
         //TODO: add jem price here 
-        image.sprite = (Sprite)Resources.Load(currentDisplayed.img, typeof(Sprite));
 
+        //change image of item
+        image.sprite = (Sprite)Resources.Load(currentDisplayed.storeImg, typeof(Sprite));
+
+        //change inage of buy button accordinly
+        if (currentDisplayed.owned)
+        {
+            //own item
+            //change button buy/equip image
+            var btnBuySprite = buyButton.GetComponent<Sprite>();
+            btnBuySprite = btnEquiped;
+
+            if (currentDisplayed.selected)
+            {
+                //change to disabled
+                buyButton.GetComponent<Button>().interactable = false;
+            }
+            else
+            {
+                buyButton.GetComponent<Button>().interactable = true;
+            }
+        }
+        else
+        {
+            //dont own item
+            var btnBuySprite = buyButton.GetComponent<Sprite>();
+            buyButton.GetComponent<Button>().interactable = true;
+            btnBuySprite = btnBuy;
+        }
     }
 
     private void updateGuiCharacterDisplay()
     {
-        //TODO: change character display
-        //throw new System.NotImplementedException();
+        dresser.DressCharacterForStore(currentDisplayed);
     }
 
 
@@ -170,5 +203,29 @@ public class StoreLogic : MonoBehaviour {
         index = currentDisplayed.id - 1;
         updateDisplayData();
         //TODO: CHANGE IMAGE, DESC and PRICE  
+    }
+
+    public void buyOrEquipItem()
+    {
+        if (currentDisplayed.owned)
+        {
+            //equip
+            equipItem();
+        }
+        else
+        {
+            //buy
+            if (!buyItemWithPJ())
+            {
+                //show not enough money messege or sound
+            }
+            //TODO: buy item with jem option
+        }
+        updateDisplayData();
+    }
+
+    public void equipItem()
+    {
+        ClothLogic.clothLogic.equipItem(currentDisplayed,currentGroup);
     }
 }
