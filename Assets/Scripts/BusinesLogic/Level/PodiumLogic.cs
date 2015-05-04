@@ -24,7 +24,7 @@ public class PodiumLogic : MonoBehaviour {
     GameObject podium;
 	// Use this for initialization
 	void Start () {
-        podium = GameObject.Find("Podium");
+        podium = this.gameObject;
 	}
     void FixedUpdate()
     {

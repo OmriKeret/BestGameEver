@@ -9,8 +9,10 @@ public class WaveLogicFactory {
 	WaveLogic[] _hardWaves;
 	WaveLogic[] _extremeWaves;
     WaveLogic[] _orderWaves;
+    PodiumFactory podiumMaker;
 
 	public WaveLogicFactory(){
+        podiumMaker = new PodiumFactory();
         _orderWaves = new WaveLogic[]{
             new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid},
                             new EnemyLocation[]{EnemyLocation.TopLeft,EnemyLocation.TopRight,EnemyLocation.BottomRight},
@@ -33,6 +35,14 @@ public class WaveLogicFactory {
 
     public WaveLogic createWaveByOrder(WaveGenerateModel i_model)
     {
+        podiumMaker.SetupNewWave(i_model.waveNumber);
+        //for debug
+        Debug.Log("Init wave " + i_model.waveNumber);
+        if (i_model.waveNumber >= _orderWaves.Length)
+        {
+            i_model.waveNumber = 0;
+        }
+        //end for debug
         return new WaveLogic(_orderWaves[i_model.waveNumber]);
     }
 

@@ -14,12 +14,13 @@ public class EnemyGeneratorController : MonoBehaviour {
 	void Start () {
 		generateWaveLogic = GameObject.Find("Logic").GetComponent<GenerateWaveLogic>();
 		//_leftBodyPart = Instantiate (_leftBodyPartResouce, i_location, Quaternion.identity) as GameObject;
-        GenerateWave();
+        //GenerateWave();
         b = false;
 	}
 
 	void FixedUpdate(){
-		if (b) {
+        if (generateWaveLogic.waveEnded)
+        {
             generateWaveLogic.waveEnded = false;
 			GenerateWave();
             b = false;
@@ -28,6 +29,6 @@ public class EnemyGeneratorController : MonoBehaviour {
 
 	void GenerateWave(){
 		generateWaveLogic.generateWave (new WaveGenerateModel{waveNumber = _waveNumber});
-        //_waveNumber++;
+        _waveNumber++;
 	}
 }

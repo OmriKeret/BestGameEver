@@ -66,7 +66,6 @@ public class GenerateWaveLogic : MonoBehaviour {
                 Debug.Log("End wave");
                 yield break;
             }
-            Debug.Log("Init type " + currentType);
             var enemyLocation = new Vector2(0f, 40f); ;//instantiateLocations[UnityEngine.Random.Range(0, locationMax)];
             GameObject currentEnemy = Instantiate(enemyGenerator.getEnemy(currentType), enemyLocation, Quaternion.identity) as GameObject;
             IEnemy currentEnemyLogic = currentEnemy.GetComponent<IEnemy>();
