@@ -1378,6 +1378,7 @@ MonoBehaviour:
   Strength: 1
   combo: 0
   dashNum: 3
+  dashDist: 15
   powerUpModeActive: 0
   guiHP: {fileID: 0}
   _LifeFullPrefab: {fileID: 0}
@@ -4101,15 +4102,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 477874, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 10.8500004
+      value: 10.8999996
       objectReference: {fileID: 0}
     - target: {fileID: 477874, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.08000004
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 477874, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 80.5199966
+      value: 80.5
       objectReference: {fileID: 0}
     - target: {fileID: 477874, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
       propertyPath: m_LocalRotation.x
