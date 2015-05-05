@@ -14,6 +14,7 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
     public float maxTimeForPath = 30f;
     private Vector3[][] _allPaths ;
     private Dictionary<EnemyLocation, Vector3[]> _pathMap;
+    private StupidPaths _allVectorPaths;
 
     AudioSource _audioSource;
 	// Use this for initialization
@@ -24,6 +25,7 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
 		_leftBodyPartResouce = Resources.Load ("stupidL") as GameObject;
 		_rightBodyPartResouce = Resources.Load ("stupidR") as GameObject;
 		GetComponent<Rigidbody2D> ().gravityScale = 0;
+        _allVectorPaths = new StupidPaths();
 	    initPaths();
 	}
    public bool lifeDown(int str)
@@ -137,25 +139,10 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
 
     public void initPaths()
    {
-       Vector3[] topRight = new Vector3[]
-                {
-                    new Vector3(23.16821f,SceneStats.TopEdge), 
-                    new Vector3(17.23f,6.3f), 
-                    new Vector3(3.17f,11.14f), 
-                    new Vector3(SceneStats.LeftEdge,0)
-                };
-       Vector3[] topLeft = new Vector3[]
-       {
-                    new Vector3(SceneStats.LeftEdge,SceneStats.TopEdge), 
-                    new Vector3(-17.23f,6.3f), 
-                    new Vector3(0,11.14f), 
-                    new Vector3(SceneStats.RightEdge,0)
-                };
-        _pathMap = new Dictionary<EnemyLocation, Vector3[]>
-       {
-           {EnemyLocation.TopRight, topRight},
-           {EnemyLocation.TopLeft, topLeft}
-       };
+
+       _pathMap = new Dictionary<EnemyLocation, Vector3[]>();
+       _pathMap.Add(EnemyLocation.TopLeft, _allVectorPaths.topLeft);
+       _pathMap.Add(EnemyLocation.TopRight, _allVectorPaths.topRight);
 
    }
 

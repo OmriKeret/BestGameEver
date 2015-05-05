@@ -13,18 +13,22 @@ public class EnemyGeneratorController : MonoBehaviour {
 	void Start () {
 		generateWaveLogic = GameObject.Find("Logic").GetComponent<GenerateWaveLogic>();
 		//_leftBodyPart = Instantiate (_leftBodyPartResouce, i_location, Quaternion.identity) as GameObject;
-        //GenerateWave();
+        //GenerateWave();   
+        Debug.Log("Begin the debug");
 	}
 
 	void FixedUpdate(){
         if (generateWaveLogic.waveEnded)
         {
+            Debug.Log("generate from controller");
             generateWaveLogic.waveEnded = false;
+            GenerateWave();
 		}
 	}
 
 	void GenerateWave(){
-		generateWaveLogic.generateWave (new WaveGenerateModel{waveNumber = _waveNumber});
+        WaveGenerateModel wm = new WaveGenerateModel { waveNumber = _waveNumber };
+        generateWaveLogic.generateWave(wm);
         _waveNumber++;
 	}
 }

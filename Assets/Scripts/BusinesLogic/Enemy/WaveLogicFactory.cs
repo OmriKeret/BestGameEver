@@ -14,9 +14,15 @@ public class WaveLogicFactory {
 	public WaveLogicFactory(){
         podiumMaker = new PodiumFactory();
         _orderWaves = new WaveLogic[]{
+            new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid},
+                            new EnemyLocation[]{EnemyLocation.TopRight,EnemyLocation.TopRight},
+                            new int[]{1,1}),
             new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid},
                             new EnemyLocation[]{EnemyLocation.TopLeft,EnemyLocation.TopRight,EnemyLocation.TopLeft},
-                            new int[]{1,2})
+                            new int[]{1,1,1}),
+            new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid},
+                            new EnemyLocation[]{EnemyLocation.TopLeft,EnemyLocation.TopRight,EnemyLocation.TopRight,EnemyLocation.TopRight},
+                            new int[]{2,1,1})                                
         };
 
         _easyWaves = new WaveLogic[]{
