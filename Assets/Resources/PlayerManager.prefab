@@ -156,7 +156,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 418808}
   m_Layer: 8
-  m_Name: GroundCheck 1
+  m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -192,6 +192,7 @@ GameObject:
   - 114: {fileID: 11451594}
   - 114: {fileID: 11430140}
   - 61: {fileID: 6111156}
+  - 50: {fileID: 5072738}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -576,8 +577,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157064}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalPosition: {x: -.400000006, y: 13.5600004, z: 80.5}
+  m_LocalScale: {x: .5, y: .5, z: 1}
   m_Children:
   - {fileID: 471876}
   - {fileID: 418808}
@@ -642,6 +643,21 @@ Transform:
   - {fileID: 423734}
   m_Father: {fileID: 477874}
   m_RootOrder: 7
+--- !u!50 &5072738
+Rigidbody2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157064}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_FixedAngle: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
 --- !u!61 &6111156
 BoxCollider2D:
   m_ObjectHideFlags: 1
