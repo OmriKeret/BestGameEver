@@ -8,26 +8,27 @@ public class EnemyGeneratorController : MonoBehaviour {
 	public float timeBetweenWaves = 9f;
 	private float fixedTimeStart = -10;
 	private int _waveNumber = 0;
-    bool b;
 	// Use this for initialization
 
 	void Start () {
 		generateWaveLogic = GameObject.Find("Logic").GetComponent<GenerateWaveLogic>();
 		//_leftBodyPart = Instantiate (_leftBodyPartResouce, i_location, Quaternion.identity) as GameObject;
-        GenerateWave();
-        b = false;
+        //GenerateWave();   
+        Debug.Log("Begin the debug");
 	}
 
 	void FixedUpdate(){
-		if (b) {
+        if (generateWaveLogic.waveEnded)
+        {
+            Debug.Log("generate from controller");
             generateWaveLogic.waveEnded = false;
-			GenerateWave();
-            b = false;
+            GenerateWave();
 		}
 	}
 
 	void GenerateWave(){
-		generateWaveLogic.generateWave (new WaveGenerateModel{waveNumber = _waveNumber});
-        //_waveNumber++;
+        WaveGenerateModel wm = new WaveGenerateModel { waveNumber = _waveNumber };
+        generateWaveLogic.generateWave(wm);
+        _waveNumber++;
 	}
 }

@@ -26,7 +26,7 @@ public class TankAILogic : MonoBehaviour, IEnemy {
         _leftBodyPartResouce = Resources.Load("tankL") as GameObject;
         _rightBodyPartResouce = Resources.Load("tankR") as GameObject;
         GetComponent<Rigidbody2D>().gravityScale = 0;
-        _allPaths = initPaths();
+        initPaths();
         commet = GetComponentInChildren<CommetLogic>();
         switchSides = true;
     }
@@ -99,10 +99,12 @@ public class TankAILogic : MonoBehaviour, IEnemy {
         }
     }
 
-    public void StartOrderPath(int i_speed, int i_WaveNumber)
+
+    //TODO: change this to map
+    public void StartOrderPath(int i_speed, EnemyLocation i_Location)
     {
-        Vector3[] path;
-        selectOrderPath(out path, i_WaveNumber);
+        Vector3[] path = null;
+        //selectOrderPath(out path, i_WaveNumber);
 
         LeanTween.move(this.gameObject, path, calculateTime(i_speed)).setEase(LeanTweenType.linear).setOnComplete(() =>
         {
@@ -159,48 +161,9 @@ public class TankAILogic : MonoBehaviour, IEnemy {
         return minTimeForPath * (_stats.MAX_SPEED / speed);
     }
 
-    public Vector3[][] initPaths()
+    //TODO
+    public void initPaths()
     {
-
-        LinkedList<Vector3[]> paths = new LinkedList<Vector3[]>();
-        paths.AddFirst(new Vector3[]
-        {
-            new Vector3(SceneStats.RightEdge,7), 
-            new Vector3(18f,6f), 
-            new Vector3(-9.9f,13.6f), 
-            new Vector3(SceneStats.LeftEdge-6,7.9f), 
-            new Vector3(SceneStats.LeftEdge-6,7.9f), 
-            new Vector3(-25.9f,-5f),
-            new Vector3(-15f,5f), 
-            new Vector3(SceneStats.RightEdge,1), 
-        });
-        paths.AddLast(new Vector3[]
-        {
-            new Vector3(SceneStats.LeftEdge,7), 
-            new Vector3(-18f,6f), 
-            new Vector3(9.9f,13.6f), 
-            new Vector3(SceneStats.RightEdge+6,7.9f), 
-            new Vector3(SceneStats.RightEdge+6,7.9f), 
-            new Vector3(25.9f,-5f),
-            new Vector3(15f,5f), 
-            new Vector3(SceneStats.LeftEdge,1), 
-        });
-        //paths.AddLast(new Vector3[]
-        //{
-        //    new Vector3(SceneStats.LeftEdge,SceneStats.TopEdge), 
-        //    new Vector3(-5f,17.51f), 
-        //    new Vector3(-10.15f,9.19f), 
-        //    new Vector3(SceneStats.LeftEdge,SceneStats.BottomEdge), 
-        //});
-        //paths.AddLast(new Vector3[]
-        //{
-        //    new Vector3(SceneStats.RightEdge,SceneStats.TopEdge), 
-        //    new Vector3(10f,17.51f), 
-        //    new Vector3(13.15f,9.19f), 
-        //    new Vector3(SceneStats.RightEdge,SceneStats.BottomEdge), 
-        //});
-
-        return paths.ToArray();
 
     }
 

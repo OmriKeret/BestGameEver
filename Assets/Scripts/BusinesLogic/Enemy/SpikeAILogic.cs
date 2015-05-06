@@ -29,7 +29,7 @@ public class SpikeAILogic : MonoBehaviour, IEnemy {
         _leftBodyPartResouce = Resources.Load("spikeL") as GameObject;
         _rightBodyPartResouce = Resources.Load("spikeR") as GameObject;
         GetComponent<Rigidbody2D>().gravityScale = 0;
-        _allPaths = initPaths();
+        initPaths();
         _stats.initAnimation();
         _spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -117,10 +117,11 @@ public class SpikeAILogic : MonoBehaviour, IEnemy {
         }
     }
 
-    public void StartOrderPath(int i_speed, int i_WaveNumber)
+    //TODO: change this to map
+    public void StartOrderPath(int i_speed, EnemyLocation i_Location)
     {
-        Vector3[] path;
-        selectOrderPath(out path, i_WaveNumber);
+        Vector3[] path = null;
+        //selectOrderPath(out path, i_WaveNumber);
 
         LeanTween.move(this.gameObject, path, calculateTime(i_speed)).setEase(LeanTweenType.linear).setOnComplete(() =>
         {
@@ -176,48 +177,9 @@ public class SpikeAILogic : MonoBehaviour, IEnemy {
         return minTimeForPath * (_stats.MAX_SPEED / speed);
     }
 
-    public Vector3[][] initPaths()
+    //TODO: set to map
+    public void initPaths()
     {
-        LinkedList<Vector3[]> paths = new LinkedList<Vector3[]>();
-        paths.AddFirst(new Vector3[]
-        {
-            new Vector3(SceneStats.RightEdge,0), 
-            new Vector3(21.54f,15.94602f), 
-            new Vector3(15.54f,15.94602f),
-            new Vector3(6.54f,5.94602f),
-            new Vector3(6.54f,5.94602f),
-            new Vector3(-11.54f,15.94602f),
-            new Vector3(-17.54f,15.94602f),
-            new Vector3(SceneStats.LeftEdge,0), 
-        });
-        paths.AddLast(new Vector3[]
-        {
-            new Vector3(SceneStats.LeftEdge,0), 
-            new Vector3(-17.54f,15.94602f),
-            new Vector3(-11.54f,15.94602f),
-            new Vector3(6.54f,5.94602f),
-            new Vector3(6.54f,5.94602f),
-            new Vector3(15.54f,15.94602f),
-            new Vector3(21.54f,15.94602f), 
-            new Vector3(SceneStats.RightEdge,0), 
-            
-        });
-        paths.AddLast(new Vector3[]
-        {
-            new Vector3(SceneStats.LeftEdge,SceneStats.TopEdge), 
-            new Vector3(5f,12.51f), 
-            new Vector3(-10.15f,0.19f), 
-            new Vector3(SceneStats.RightEdge,SceneStats.TopEdge), 
-        });
-        paths.AddLast(new Vector3[]
-        {
-            new Vector3(SceneStats.RightEdge,SceneStats.TopEdge), 
-            new Vector3(10f,12.51f), 
-            new Vector3(19.15f,0.19f), 
-            new Vector3(SceneStats.LeftEdge,SceneStats.TopEdge), 
-        });
-
-        return paths.ToArray();
 
     }
     public void playSpawnSound()
