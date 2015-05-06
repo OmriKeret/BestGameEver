@@ -2110,6 +2110,22 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
     path: arm/glove/SWORD
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 53.130764, y: 51.2321777, z: 0}
+        inSlope: {x: -169.161118, y: -142.765137, z: -254.210526}
+        outSlope: {x: -169.161118, y: -142.765137, z: -254.210526}
+        tangentMode: 0
+      - time: .316666663
+        value: {x: -.436923593, y: 6.02321768, z: -80.5}
+        inSlope: {x: -169.161118, y: -142.765137, z: -254.210526}
+        outSlope: {x: -169.161118, y: -142.765137, z: -254.210526}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: spikeEnemy
   m_ScaleCurves:
   - curve:
       serializedVersion: 2
@@ -2171,6 +2187,22 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
     path: PONCHO 1/poncho back
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: .899999976, y: .899999976, z: 1}
+        inSlope: {x: -2.55789471, y: -2.55789471, z: 0}
+        outSlope: {x: -2.55789471, y: -2.55789471, z: 0}
+        tangentMode: 0
+      - time: .316666663
+        value: {x: .0899999961, y: .0899999961, z: 1}
+        inSlope: {x: -2.55789471, y: -2.55789471, z: 0}
+        outSlope: {x: -2.55789471, y: -2.55789471, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: spikeEnemy
   m_FloatCurves: []
   m_PPtrCurves:
   - curve:
@@ -2271,6 +2303,12 @@ AnimationClip:
       classID: 4
       customType: 0
       isPPtrCurve: 0
+    - path: 3959892718
+      attribute: 1
+      script: {fileID: 0}
+      classID: 4
+      customType: 0
+      isPPtrCurve: 0
     - path: 3223897432
       attribute: 2
       script: {fileID: 0}
@@ -2356,6 +2394,12 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 0
     - path: 529207597
+      attribute: 3
+      script: {fileID: 0}
+      classID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - path: 3959892718
       attribute: 3
       script: {fileID: 0}
       classID: 4
@@ -11376,6 +11420,120 @@ AnimationClip:
       m_PostInfinity: 2
     attribute: m_LocalScale.z
     path: PONCHO 1/poncho back
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 53.130764
+        inSlope: -169.161118
+        outSlope: -169.161118
+        tangentMode: 10
+      - time: .316666663
+        value: -.436923593
+        inSlope: -169.161118
+        outSlope: -169.161118
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_LocalPosition.x
+    path: spikeEnemy
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 51.2321777
+        inSlope: -142.765137
+        outSlope: -142.765137
+        tangentMode: 10
+      - time: .316666663
+        value: 6.02321768
+        inSlope: -142.765137
+        outSlope: -142.765137
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_LocalPosition.y
+    path: spikeEnemy
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: -254.210526
+        outSlope: -254.210526
+        tangentMode: 10
+      - time: .316666663
+        value: -80.5
+        inSlope: -254.210526
+        outSlope: -254.210526
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_LocalPosition.z
+    path: spikeEnemy
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: .899999976
+        inSlope: -2.55789471
+        outSlope: -2.55789471
+        tangentMode: 10
+      - time: .316666663
+        value: .0899999961
+        inSlope: -2.55789471
+        outSlope: -2.55789471
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_LocalScale.x
+    path: spikeEnemy
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: .899999976
+        inSlope: -2.55789471
+        outSlope: -2.55789471
+        tangentMode: 10
+      - time: .316666663
+        value: .0899999961
+        inSlope: -2.55789471
+        outSlope: -2.55789471
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_LocalScale.y
+    path: spikeEnemy
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: .316666663
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_LocalScale.z
+    path: spikeEnemy
     classID: 4
     script: {fileID: 0}
   m_EulerEditorCurves:
