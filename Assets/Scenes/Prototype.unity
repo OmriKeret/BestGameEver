@@ -1435,7 +1435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToOpenDeathMenu: 1
-  delayToMoveDeathPanelUp: 0
+  delayToMoveDeathPanelUp: 2
   timeToEnterMission: .400000006
   delayBetweenMissionRemovalToEnterance: .400000006
   timeToRemoveMission: .300000012
@@ -1670,7 +1670,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &665893021
 Transform:
   m_ObjectHideFlags: 0
@@ -3474,7 +3474,7 @@ RectTransform:
   m_GameObject: {fileID: 1378797007}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .845441461, y: .679212332, z: 1.82798791}
+  m_LocalScale: {x: 1, y: 1, z: 1.82798791}
   m_Children:
   - {fileID: 546633391}
   - {fileID: 1754515782}
@@ -3899,14 +3899,14 @@ RectTransform:
   m_GameObject: {fileID: 1623378196}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.05158103, y: 1.73510838, z: 1.05158114}
+  m_LocalScale: {x: 1, y: 1, z: 1.05158114}
   m_Children:
   - {fileID: 97095077}
   m_Father: {fileID: 1378797008}
   m_RootOrder: 5
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 0, y: -95.9570007}
+  m_AnchoredPosition: {x: -2, y: -122}
   m_SizeDelta: {x: 184, y: 184}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1623378198
@@ -4040,11 +4040,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 477874, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 3.29999995
+      value: -.400000006
       objectReference: {fileID: 0}
     - target: {fileID: 477874, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3.4000001
+      value: -1.39999998
       objectReference: {fileID: 0}
     - target: {fileID: 477874, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
       propertyPath: m_LocalPosition.z
@@ -4078,9 +4078,13 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 157064, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
-      propertyPath: m_TagString
-      value: Player
+    - target: {fileID: 477874, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_LocalScale.x
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 477874, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_LocalScale.y
+      value: .5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
