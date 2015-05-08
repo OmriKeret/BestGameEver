@@ -12,8 +12,11 @@ public class EnemyGeneratorController : MonoBehaviour {
 	// Use this for initialization
 
 	void Start () {
-		generateWaveLogic = GameObject.Find("Logic").GetComponent<GenerateWaveLogic>();
-		//_leftBodyPart = Instantiate (_leftBodyPartResouce, i_location, Quaternion.identity) as GameObject;
+        //Debug only: start from wave x
+        _waveNumber = 6;
+        Debug.Log("Debug mode: Starting from wave " + _waveNumber);
+        //End debug
+        generateWaveLogic = GameObject.Find("Logic").GetComponent<GenerateWaveLogic>();
         GenerateWave();
         counter = 0;
         startCounter = false;
@@ -28,7 +31,6 @@ public class EnemyGeneratorController : MonoBehaviour {
         if (startCounter)
         {
             counter++;
-            Debug.Log(counter);
         }
         if (counter == TimeBetweenWaves)
         {

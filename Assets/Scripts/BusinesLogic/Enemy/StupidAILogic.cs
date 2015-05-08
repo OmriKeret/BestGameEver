@@ -79,7 +79,9 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
         if (!_pathMap.TryGetValue(i_Location, out path))
         {
             Debug.Log("Error choosing path (StartOrderPath in stupid)");
+            Debug.Log("Caused by "+i_Location);
         }
+        
         //selectOrderPath(out path, i_PathNumber);
 
         LeanTween.move(this.gameObject, path, calculateTime(i_speed)).setEase(LeanTweenType.linear).setOnComplete(() =>
@@ -143,6 +145,11 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
        _pathMap = new Dictionary<EnemyLocation, Vector3[]>();
        _pathMap.Add(EnemyLocation.TopLeft, _allVectorPaths.topLeft);
        _pathMap.Add(EnemyLocation.TopRight, _allVectorPaths.topRight);
+       _pathMap.Add(EnemyLocation.MidRight, _allVectorPaths.midRight);
+       _pathMap.Add(EnemyLocation.MidLeft, _allVectorPaths.midLeft);
+       _pathMap.Add(EnemyLocation.TopMid, _allVectorPaths.topMid);
+       _pathMap.Add(EnemyLocation.BottomLeft, _allVectorPaths.bottomLeft);
+       _pathMap.Add(EnemyLocation.BottomRight, _allVectorPaths.bottomRight);
 
    }
 
