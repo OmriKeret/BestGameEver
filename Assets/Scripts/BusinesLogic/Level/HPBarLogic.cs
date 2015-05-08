@@ -2,52 +2,47 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class StaminaBarLogic : MonoBehaviour
-{
+public class HPBarLogic : MonoBehaviour {
 
     public Image progressBarEmpty;
     public Image progressBarFull;
-    private int MAX_STAMINA;
-    private int currentStamina;
+    private int MAX_HP;
+    private int currentHp;
 
     //GUI fill logic
     public float changeColorDuration = 0.2f;
-    public float speed = 0.7f; //speed for stamina to go down
-    float barDisplay = 0f;
+    public float speed = 0.3f; //speed for life to go down
+    float barDisplay = 1f;
     float currentRatio = 0f;
     bool shouldChange;
 
-	public float circleRatio = 0.666666666f;
+
     Animator anim;
 
     //logic connections
     private PlayerStatsLogic statsLogic;
-   
+
     void Awake()
     {
-        var staminaEmpty = GameObject.Find("StaminaHolder/StaminaEmpty");
-        progressBarFull = GameObject.Find("StaminaHolder/Stamina").GetComponent<Image>();
-        progressBarEmpty = staminaEmpty.GetComponent<Image>();
+        var HPEmpty = GameObject.Find("HealthHolder/HealthEmpty");
+        progressBarFull = GameObject.Find("HealthHolder/Health").GetComponent<Image>();
+        progressBarEmpty = HPEmpty.GetComponent<Image>();
         statsLogic = this.gameObject.GetComponent<PlayerStatsLogic>();
-        anim = staminaEmpty.GetComponent<Animator>();
-		barDisplay = circleRatio;
+        anim = HPEmpty.GetComponent<Animator>();
     }
 
     private void updateRatio()
-    {   
-		currentRatio = (float)((float)currentStamina / (float)MAX_STAMINA) * circleRatio;
-        if (progressBarFull.fillAmount > currentRatio)
-        {
-            //stamina bar go down
-            progressBarFull.fillAmount = currentRatio;
-            anim.SetTrigger("hit");
-        }
-        else
-        {
-			setShouldChange();
-            //stamina bar go up
-            
-        }
+    {      
+         currentRatio = (float)((float)currentHp / (float)MAX_HP);
+         if (progressBarFull.fillAmount > currentRatio)
+         {
+             progressBarFull.fillAmount = currentRatio;
+             anim.SetTrigger("hit");
+         }
+         else
+         {
+             setShouldChange();
+         }
         //Debug.Log("RATIO IS:" + currentRatio);
         //Debug.Log("currentDisplay is: " + barDisplay);
     }
@@ -57,15 +52,17 @@ public class StaminaBarLogic : MonoBehaviour
         shouldChange = true;
     }
 
-    public void updateCurrentStamina(int stamina)
+    public void updateCurrentHP(int hp)
     {
-        currentStamina = stamina;
+        Debug.Log("updatedCurrentHP");
+
+        currentHp = hp;
         updateRatio();
     }
 
-    public void setMaximumStamina(int stamina)
+    public void setMaximumHP(int hp)
     {
-        MAX_STAMINA = stamina;
+        MAX_HP = hp;
     }
 
     void Update()
@@ -104,7 +101,7 @@ public class StaminaBarLogic : MonoBehaviour
                 progressBarEmpty.fillAmount = barDisplay;
             }
         }
-       
+
 
     }
 }

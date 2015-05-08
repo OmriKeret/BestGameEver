@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class PlayerStatsLogic : MonoBehaviour {
     public int MAX_DASH_NUM = 5;
+    public int maxHP;
     public int HP = 3;
     public int Strength = 1;
     public int combo = 0;
@@ -17,15 +18,24 @@ public class PlayerStatsLogic : MonoBehaviour {
 	public Text comboText;
     public GameObject[] lifes;
 
+    //GUI
+    HPBarLogic HPBar;
+    StaminaBarLogic staminaBar;
+    //logic
     private MovmentLogic movmentLogic;
 	// Use this for initialization
 	void Start () {
+        HPBar = this.GetComponent<HPBarLogic>();
+        staminaBar = this.GetComponent<StaminaBarLogic>();
         guiHP = GameObject.Find("HpContainer");
 		comboText = GameObject.Find("ComboText").GetComponent<Text>();
         _LifeFullPrefab = Resources.Load("lifeFull") as GameObject;
         _LifeEmptyPrefab = Resources.Load("lifeEmpty") as GameObject;
         firstTimeWriteHp();
         movmentLogic = this.GetComponent<MovmentLogic>();
+        maxHP = HP;
+        staminaBar.setMaximumStamina(dashNum);
+
 	}
 	
 	// Update is called once per frame
@@ -43,11 +53,13 @@ public class PlayerStatsLogic : MonoBehaviour {
     public void removeOneDash()
     {
         dashNum -= 1;
+        staminaBar.updateCurrentStamina(dashNum);
     }
 
     public void resetDash()
     {
         dashNum = MAX_DASH_NUM;
+        staminaBar.updateCurrentStamina(dashNum);
     }
 
     //return true if dead
@@ -70,34 +82,38 @@ public class PlayerStatsLogic : MonoBehaviour {
 		}
 	}
 
-    private void firstTimeWriteHp()
+    public void firstTimeWriteHp()
     {
-        lifes = new GameObject[HP];
-        for (int i = 0; i < HP; i++)
-        {
-          //  Debug.Log("creating");
-            Vector3 pos = guiHP.transform.position;
-            pos.x = (float)(pos.x + 4 * i);
-            lifes[i] = Instantiate(_LifeFullPrefab, pos, Quaternion.identity) as GameObject;
-            lifes[i].transform.parent = guiHP.transform;
-        }
+        HPBar.setMaximumHP(HP);
+        HPBar.updateCurrentHP(HP);
+     
+        //lifes = new GameObject[HP];
+        //for (int i = 0; i < HP; i++)
+        //{
+        //  //  Debug.Log("creating");
+        //    Vector3 pos = guiHP.transform.position;
+        //    pos.x = (float)(pos.x + 4 * i);
+        //    lifes[i] = Instantiate(_LifeFullPrefab, pos, Quaternion.identity) as GameObject;
+        //    lifes[i].transform.parent = guiHP.transform;
+        //}
     }
     private void ReWriteHP()
     {
-        for (int i = 0; i < lifes.Length; i++)
-        {
-            if (i + 1 <= HP)
-            {
+        HPBar.updateCurrentHP(HP);
+        //for (int i = 0; i < lifes.Length; i++)
+        //{
+        //    if (i + 1 <= HP)
+        //    {
 
-            }
-            else
-            {
-                Vector3 pos = guiHP.transform.position;
-                pos.x = (float)(pos.x + 4 * i);
-                Destroy(lifes[i].gameObject);
-                lifes[i] = Instantiate(_LifeEmptyPrefab, pos, Quaternion.identity) as GameObject;
-            }
-        }
+        //    }
+        //    else
+        //    {
+        //        Vector3 pos = guiHP.transform.position;
+        //        pos.x = (float)(pos.x + 4 * i);
+        //        Destroy(lifes[i].gameObject);
+        //        lifes[i] = Instantiate(_LifeEmptyPrefab, pos, Quaternion.identity) as GameObject;
+        //    }
+        //}
       //  HPText.text = numOfHearts;
     }
 
@@ -105,6 +121,7 @@ public class PlayerStatsLogic : MonoBehaviour {
     internal void addDashNumBoost(int dashNumBoost)
     {
         MAX_DASH_NUM += dashNumBoost;
+        staminaBar.setMaximumStamina(dashNum);
         resetDash();
     }
 
@@ -116,6 +133,7 @@ public class PlayerStatsLogic : MonoBehaviour {
 
     internal void addDashHPBoost(int hpBoost)
     {
+        
         HP += hpBoost;
         firstTimeWriteHp();
     }
