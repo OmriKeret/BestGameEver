@@ -124,7 +124,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 437954, guid: 529b187838370da419ab3502d624e310, type: 2}
       propertyPath: m_RootOrder
-      value: 20
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 11433534, guid: 529b187838370da419ab3502d624e310, type: 2}
       propertyPath: playerHitted
@@ -265,6 +265,33 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 97095076}
+--- !u!1 &120256080
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 120256081}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &120256081
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 120256080}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.0999999, y: 7.19999981, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 21
 --- !u!1 &141120384
 GameObject:
   m_ObjectHideFlags: 0
@@ -811,7 +838,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 392089936}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01bffa8aa898b437183cd5617f7b5303, type: 3}
   m_Name: 
@@ -819,13 +846,13 @@ MonoBehaviour:
   pathName: EnemyPath1
   pathColor: {r: 0, g: 1, b: 1, a: 1}
   nodes:
-  - {x: 23.1682053, y: 32.7776146, z: 0}
-  - {x: 16.5362663, y: 23.9460239, z: 0}
-  - {x: 15.8000002, y: -5.75, z: 0}
-  - {x: 5.78999996, y: 10.1099997, z: 0}
-  - {x: -19.6414394, y: -4.12390852, z: 0}
-  - {x: -7.59688616, y: -1.11000001, z: 0}
-  - {x: -34.6086044, y: 0, z: 0}
+  - {x: 32, y: 22, z: 0}
+  - {x: 30.3999996, y: 17.2700005, z: 0}
+  - {x: 19.2999992, y: -2.0999999, z: 0}
+  - {x: 3.4000001, y: 11.21, z: 0}
+  - {x: -11.21, y: 14.3400002, z: 0}
+  - {x: -26.5, y: 5.13999987, z: 0}
+  - {x: -29, y: 0, z: 0}
   nodeCount: 7
   initialized: 1
   initialName: New Path 1
@@ -1749,7 +1776,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &665893021
 Transform:
   m_ObjectHideFlags: 0
@@ -4739,7 +4766,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 457674, guid: 18b1c969bf9bc8f4cb1c2c5345cde54c, type: 2}
       propertyPath: m_RootOrder
-      value: 18
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 170498, guid: 18b1c969bf9bc8f4cb1c2c5345cde54c, type: 2}
       propertyPath: m_Name
