@@ -9,13 +9,13 @@ using UnityEngine;
         public PodiumModel(Vector3 i_location)
         {
             location = i_location;
-            scale = new Vector3(0.66367f, 0.66367f, 0.66367f);
+            scale = new Vector3(0.45f, 0.45f, 0.66367f);
         }
 
         public PodiumModel(int i)
         {
             location = new Vector3(1.99f,-7.22f,0);
-            scale = new Vector3(0.66367f, 0.66367f, 0.66367f);
+            scale = new Vector3(0.45f, 0.45f, 0.66367f);
         }
         
     }
