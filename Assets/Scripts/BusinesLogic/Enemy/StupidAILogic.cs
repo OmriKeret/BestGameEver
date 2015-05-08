@@ -12,7 +12,6 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
     public float timeToFinishPath = 15f;
     public float minTimeForPath = 4f;
     public float maxTimeForPath = 30f;
-    private Vector3[][] _allPaths ;
     private Dictionary<EnemyLocation, Vector3[]> _pathMap;
     private StupidPaths _allVectorPaths;
 
@@ -90,33 +89,6 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
         });
     }
 
-    public void selectOrderPath(out Vector3[] i_path, int i_PathNumber)
-    {
-        i_path = _allPaths[i_PathNumber];
-    }
-
-
-    public void StartRandomPath(int speed)
-    {
-        Vector3[] path;
-        selectRandomPath(out path);
-
-        LeanTween.move(this.gameObject, path, calculateTime(speed)).setEase(LeanTweenType.linear).setOnComplete(() =>
-        {
-            FinishedMoving();
-        });
-    }
-
-    public void selectRandomPath(out Vector3[] i_path)
-    {
-        int pathNumber = UnityEngine.Random.Range(0, _allPaths.Length);
-        if (pathNumber == 1)
-        {
-       //     Debug.Log("right");
-            goRight();
-        }
-        i_path = _allPaths[pathNumber];
-    }
 
     public EnemyMode GetEnemyMode()
     {

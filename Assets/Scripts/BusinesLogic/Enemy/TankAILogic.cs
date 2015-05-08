@@ -13,10 +13,12 @@ public class TankAILogic : MonoBehaviour, IEnemy {
     public float timeToFinishPath = 15f;
     public float minTimeForPath = 4f;
     public float maxTimeForPath = 30f;
-    private Vector3[][] _allPaths;
     private CommetLogic commet;
     private bool switchSides = true;
     AudioSource _audioSource;
+    private Dictionary<EnemyLocation, Vector3[]> _pathMap;
+    private StupidPaths _allVectorPaths;
+
     // Use this for initialization
     void Awake()
     {
@@ -26,6 +28,7 @@ public class TankAILogic : MonoBehaviour, IEnemy {
         _leftBodyPartResouce = Resources.Load("tankL") as GameObject;
         _rightBodyPartResouce = Resources.Load("tankR") as GameObject;
         GetComponent<Rigidbody2D>().gravityScale = 0;
+        _allVectorPaths = new StupidPaths();
         initPaths();
         commet = GetComponentInChildren<CommetLogic>();
         switchSides = true;
@@ -100,11 +103,16 @@ public class TankAILogic : MonoBehaviour, IEnemy {
     }
 
 
-    //TODO: change this to map
     public void StartOrderPath(int i_speed, EnemyLocation i_Location)
     {
-        Vector3[] path = null;
-        //selectOrderPath(out path, i_WaveNumber);
+        Vector3[] path;
+        if (!_pathMap.TryGetValue(i_Location, out path))
+        {
+            Debug.Log("Error choosing path (StartOrderPath in stupid)");
+            Debug.Log("Caused by " + i_Location);
+        }
+
+        //selectOrderPath(out path, i_PathNumber);
 
         LeanTween.move(this.gameObject, path, calculateTime(i_speed)).setEase(LeanTweenType.linear).setOnComplete(() =>
         {
@@ -112,33 +120,6 @@ public class TankAILogic : MonoBehaviour, IEnemy {
         });
     }
 
-    public void selectOrderPath(out Vector3[] i_path, int i_WaveNumber)
-    {
-        i_path = _allPaths[i_WaveNumber];
-    }
-
-    public void StartRandomPath(int speed)
-    {
-        Vector3[] path;
-        selectRandomPath(out path);
-        
-
-        LeanTween.move(this.gameObject, path, calculateTime(speed)).setEase(LeanTweenType.linear).setOnComplete(() =>
-        {
-            FinishedMoving();
-        });
-    }
-
-    public void selectRandomPath(out Vector3[] i_path)
-    {
-        int pathNumber = UnityEngine.Random.Range(0, _allPaths.Length);
-        if (pathNumber == 1 || pathNumber == 2)
-        {
-            Debug.Log("right");
-            goRight();
-        }
-        i_path = _allPaths[pathNumber];
-    }
 
     public EnemyMode GetEnemyMode()
     {
@@ -161,9 +142,16 @@ public class TankAILogic : MonoBehaviour, IEnemy {
         return minTimeForPath * (_stats.MAX_SPEED / speed);
     }
 
-    //TODO
     public void initPaths()
     {
+        _pathMap = new Dictionary<EnemyLocation, Vector3[]>();
+        _pathMap.Add(EnemyLocation.TopLeft, _allVectorPaths.topLeft);
+        _pathMap.Add(EnemyLocation.TopRight, _allVectorPaths.topRight);
+        _pathMap.Add(EnemyLocation.MidRight, _allVectorPaths.midRight);
+        _pathMap.Add(EnemyLocation.MidLeft, _allVectorPaths.midLeft);
+        _pathMap.Add(EnemyLocation.TopMid, _allVectorPaths.topMid);
+        _pathMap.Add(EnemyLocation.BottomLeft, _allVectorPaths.bottomLeft);
+        _pathMap.Add(EnemyLocation.BottomRight, _allVectorPaths.bottomRight);
 
     }
 
