@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ScoreData : MonoBehaviour {
 
-    int highScore;
+    public int highScore;
 	// Use this for initialization
 	void Start () {
         loadHighScore();

@@ -36,4 +36,10 @@ public class ScoreLogic : MonoBehaviour {
     {
         scoreDataAccess.updateHighScore(score);
     }
+
+    public int getHighScore()
+    {
+        scoreDataAccess.loadHighScore();
+        return scoreDataAccess.highScore;
+    }
 }

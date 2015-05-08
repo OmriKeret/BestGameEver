@@ -11,6 +11,7 @@ public class DeathLogic : MonoBehaviour {
     ScoreLogic scoreLogic;
     TouchInterpeter touch;
     SoundLogic soundLogic;
+    CurrencyLogic currencyLogic;
     Text deathScore;
     GameObject losePanel;
     Vector3 OrigPos;
@@ -26,10 +27,20 @@ public class DeathLogic : MonoBehaviour {
     public InternalMissionModel[] missionsToggleAndText;
     public InternalMissionModel[] deathMissionsToggleAndText;
     public InternalMissionModel[] deathMissionsToggleAndTextNew;
+
+    //score
     private int scoreBegin;
     private int scoreEnd;
+    private int currentHighScore;
     private bool changeScoreText = false;
-    
+    private bool newHighScore;
+    private int finalAchivedScore;
+    //currency
+    int addedCurrency;
+    int currencyDiviser;
+    bool shouldWriteCurrency;
+    private Text currencyText;
+    int currentDisplayedCurrency;
 	// Use this for initialization
     void Start()
     {
@@ -43,6 +54,7 @@ public class DeathLogic : MonoBehaviour {
         playerStatsLogic = this.gameObject.GetComponent<PlayerStatsLogic>();
         missionLogic = this.gameObject.GetComponent<MissionLogic>();
         scoreLogic = this.gameObject.GetComponent<ScoreLogic>();
+        currencyLogic = this.gameObject.GetComponent<CurrencyLogic>();
         missionsToggleAndText = new InternalMissionModel[] {
 			new InternalMissionModel(),
 			new InternalMissionModel(),
@@ -79,6 +91,7 @@ public class DeathLogic : MonoBehaviour {
         origMissionTextX = deathMissionsToggleAndText[missionNum].missionToggle.transform.position.x - 1;
         EndMissionTextX = origMissionTextX - 30;
 		deathScore = GameObject.Find("LosePanel/LoseScore").GetComponent<Text>();
+        currencyText = GameObject.Find("LosePanel/LosePJ").GetComponent<Text>();
     }
 
     void Update()
@@ -88,6 +101,35 @@ public class DeathLogic : MonoBehaviour {
             var scoreTxt = string.Format(System.Globalization.CultureInfo.InvariantCulture,
                          "{0:0,0}", scoreBegin++);
             deathScore.text = string.Format("{0}", scoreTxt);
+            if (scoreBegin >= scoreEnd)
+            {
+                changeScoreText = false;
+            }
+        }
+        else if (shouldWriteCurrency)
+        {
+            if (finalAchivedScore - currencyDiviser >= 0)
+            {
+
+
+                //updating score text
+                finalAchivedScore -= currencyDiviser;
+                var scoreTxt = string.Format(System.Globalization.CultureInfo.InvariantCulture,
+                    "{0:0,0}", finalAchivedScore);
+                deathScore.text = string.Format("{0}", scoreTxt);
+
+                //updating currency text
+                currentDisplayedCurrency += currencyDiviser;
+                currencyText.text = string.Format("PJ EARNED:{0}", currentDisplayedCurrency);
+            }
+            else
+            {
+                //showing score as 0
+                var scoreTxt = string.Format(System.Globalization.CultureInfo.InvariantCulture,
+                                    "{0:0,0}", 0);
+                deathScore.text = string.Format("{0}", scoreTxt);
+                shouldWriteCurrency = false;
+            }
         }
     }
 
@@ -102,12 +144,14 @@ public class DeathLogic : MonoBehaviour {
 		playerStatsLogic.resetDash ();
     }
 
+
+    //the death screen
     private void DeathScreen(float delay)
     {
         GetMissionData();
         GetScoreData();
         MoveGUI(delay);
-        saveScore();
+        saveScoreAndMissions();
     }
 
     private void saveScore()
@@ -121,14 +165,41 @@ public class DeathLogic : MonoBehaviour {
         Application.LoadLevel(Application.loadedLevel);
     }
 
+    //brings death screen up
     private void MoveGUI(float delay)
     {
         LeanTween.move(losePanel, EndPos, timeToOpenDeathMenu).setDelay(delay).setIgnoreTimeScale(true).setOnComplete( () => 
             {
+                //update mission progress
                 missionLogic.updateMissionProggressEndOfGame();
                 Time.timeScale = 0;
-            });
+            }).setOnComplete( () => 
+                {
+                    //update highscore
+                    if (currentHighScore < scoreBegin || currentHighScore < scoreEnd)
+                    {
+                        newHighScore = true;
+                        //TODO: do something with this information (show "new high score") 
+                        if (scoreBegin < scoreEnd)
+                        {
+                            finalAchivedScore = scoreEnd;
+                            updatePJcurrency(finalAchivedScore);
+                        }
+                        else
+                        {
+                            finalAchivedScore = scoreBegin;
+                            updatePJcurrency(finalAchivedScore);
+                        }
+                    }
+                });
       
+    }
+
+    private void updatePJcurrency(int score)
+    {
+        addedCurrency = currencyLogic.updateCurrencyByScore(score);
+        currencyDiviser = currencyLogic.deviderToScore;
+        shouldWriteCurrency = true;
     }
 
     private void GetScoreData()
@@ -136,6 +207,8 @@ public class DeathLogic : MonoBehaviour {
         var scoreTxt = string.Format(System.Globalization.CultureInfo.InvariantCulture,
                           "{0:0,0}", scoreLogic.score);
         deathScore.text = string.Format("{0}", scoreTxt);
+        scoreBegin = scoreLogic.score;
+        currentHighScore = scoreLogic.getHighScore();
     }
 
     //geting the mission data from the mission logic
@@ -167,19 +240,19 @@ public class DeathLogic : MonoBehaviour {
         updateNewMissions(missionModel);
         moveOldMissionsAndReplaceWithNew();
         multiplyScore(missionLogic.getTier());
-        saveScoreAndMissions();
+       // saveScoreAndMissions();
     }
 
     private void saveScoreAndMissions()
     {
-        scoreLogic.saveScoreData();
+        saveScore();
         missionLogic.saveMissionData();
     }
 
     private void multiplyScore(int tier)
     {
-       int scoreBegin = scoreLogic.score;
-       int scoreEnd = scoreLogic.multiplyScoreAfterFinishingMissions(tier);
+       scoreBegin = scoreLogic.score;
+       scoreEnd = scoreLogic.multiplyScoreAfterFinishingMissions(tier);
        changeScoreText = true;
     }
 
