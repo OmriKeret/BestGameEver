@@ -41,7 +41,7 @@ public class WaveLogicFactory {
 
     public WaveLogic createWaveByOrder(WaveGenerateModel i_model)
     {
-        //podiumMaker.SetupNewWave(i_model.waveNumber);
+        podiumMaker.SetupNewWave(i_model.waveNumber);
         //for debug
         Debug.Log("Init wave " + i_model.waveNumber);
         if (i_model.waveNumber >= _orderWaves.Length)
