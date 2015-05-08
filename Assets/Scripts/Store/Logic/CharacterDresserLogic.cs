@@ -11,9 +11,12 @@ public class CharacterDresserLogic : MonoBehaviour {
     GameObject ponchoeFront2;
     GameObject ponchoeBack;
     GameObject hat;
+    
 
     void Start()
+    
     {
+        
         playerStats = GameObject.Find("PlayerManager").GetComponent<PlayerStatsLogic>();
         sword = GameObject.Find("PlayerManager/torso/arm/glove/SWORD");
         ponchoeFront = GameObject.Find("PlayerManager/torso/PONCHO 1");
