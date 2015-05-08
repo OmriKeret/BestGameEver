@@ -9,6 +9,8 @@ using System.Collections;
  * Tank - Weak attacker, but need a few hits to be killed
  * 
  */
+using System;
+[Serializable]
 public enum EnemyType
 {
     General = 0,
