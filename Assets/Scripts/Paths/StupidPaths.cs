@@ -7,8 +7,12 @@ using UnityEngine;
         public Vector3[] topRight = new Vector3[]
                 {
                     SceneStats.TopRight, 
-                    new Vector3(22.23f,5.3f), 
-                    new Vector3(-22.17f,5.14f), 
+                    new Vector3(30.4f,17.27f), 
+                    new Vector3(18.9f,-18.1f), 
+                    new Vector3(0.2f,5.21f), 
+                    new Vector3(0.2f,5.21f), 
+                    new Vector3(-11.21f,14.34f), 
+                    new Vector3(-26.5f,5.14f), 
                     new Vector3(SceneStats.LeftEdge,0)
                 };
         public Vector3[] topLeft = new Vector3[]

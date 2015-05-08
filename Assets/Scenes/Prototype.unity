@@ -811,7 +811,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 392089936}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01bffa8aa898b437183cd5617f7b5303, type: 3}
   m_Name: 
@@ -819,13 +819,10 @@ MonoBehaviour:
   pathName: EnemyPath1
   pathColor: {r: 0, g: 1, b: 1, a: 1}
   nodes:
-  - {x: 23.1682053, y: 32.7776146, z: 0}
-  - {x: 16.5362663, y: 23.9460239, z: 0}
-  - {x: 15.8000002, y: -5.75, z: 0}
-  - {x: 5.78999996, y: 10.1099997, z: 0}
-  - {x: -19.6414394, y: -4.12390852, z: 0}
-  - {x: -7.59688616, y: -1.11000001, z: 0}
-  - {x: -34.6086044, y: 0, z: 0}
+  - {x: 29.9400005, y: 22, z: 0}
+  - {x: 22.2299995, y: 5.30000019, z: 0}
+  - {x: -22, y: 5, z: 0}
+  - {x: -29, y: 0, z: 0}
   nodeCount: 7
   initialized: 1
   initialName: New Path 1
