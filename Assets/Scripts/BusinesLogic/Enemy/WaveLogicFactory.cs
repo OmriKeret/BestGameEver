@@ -14,15 +14,26 @@ public class WaveLogicFactory {
 	public WaveLogicFactory(){
         podiumMaker = new PodiumFactory();
         _orderWaves = new WaveLogic[]{
+            //0
             new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid},
-                            new EnemyLocation[]{EnemyLocation.TopRight,EnemyLocation.TopRight},
-                            new int[]{1,1}),
+            new EnemyLocation[]{EnemyLocation.TopRight,EnemyLocation.TopRight},
+            new int[]{1,1}),
+            //1                
             new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid},
-                            new EnemyLocation[]{EnemyLocation.TopLeft,EnemyLocation.TopRight,EnemyLocation.TopLeft},
-                            new int[]{1,1,1}),
+            new EnemyLocation[]{EnemyLocation.TopLeft,EnemyLocation.TopRight,EnemyLocation.TopLeft},
+            new int[]{1,1,1}),
+            //2                
             new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid},
-                            new EnemyLocation[]{EnemyLocation.TopLeft,EnemyLocation.TopRight,EnemyLocation.TopRight,EnemyLocation.TopRight},
-                            new int[]{2,1,1})                                
+            new EnemyLocation[]{EnemyLocation.TopLeft,EnemyLocation.TopRight,EnemyLocation.TopRight,EnemyLocation.TopRight},
+            new int[]{2,1,1})     ,
+            //3                
+            new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid},
+            new EnemyLocation[]{EnemyLocation.TopLeft,EnemyLocation.TopRight,EnemyLocation.TopRight,EnemyLocation.TopRight},
+            new int[]{2,1,1}) ,
+            ////4                
+            //new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid},
+            //new EnemyLocation[]{EnemyLocation.TopLeft,EnemyLocation.TopRight,EnemyLocation.MidRight,EnemyLocation.BottomRight,EnemyLocation.MidLeft,EnemyLocation.BottomLeft},
+            //new int[]{6}) 
         };
 
         _easyWaves = new WaveLogic[]{
