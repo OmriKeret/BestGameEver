@@ -48,7 +48,7 @@ public class MovmentLogic : MonoBehaviour {
         {
             return;
         }
-		playerStatsLogic.dashNum--;
+		playerStatsLogic.removeOneDash();
         soundLogic.playJumpSound();
         ResetRotation();
         animationLogic.SetDashing();
