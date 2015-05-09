@@ -78,7 +78,8 @@ public class AnimationLogic : MonoBehaviour
 
     internal void playerHit()
     {
-        LeanTween.color(character.gameObject, Color.red, hitChangeColorTIme).setLoopPingPong(2);             
+        //LeanTween.color(character.gameObject, Color.white, 0);
+        //LeanTween.color(character.gameObject, Color.black, hitChangeColorTIme).setLoopPingPong(2);             
     }
 }
 
