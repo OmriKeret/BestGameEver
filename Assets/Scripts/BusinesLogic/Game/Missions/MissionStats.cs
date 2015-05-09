@@ -17,14 +17,14 @@ public class MissionStats : MonoBehaviour {
         missionAssigner = this.gameObject.GetComponent<MissionAssigner>();
         if (currentMissions == null)
         {
-            //try
-            //{
-            //    missionsFromDisc = MemoryAccess.memoryAccess.LoadMission();
-            //}
-            //catch
-            //{
-                missionsFromDisc = new IOMissionModel { tier = -2  };
-            //}
+            try
+            {
+                missionsFromDisc = MemoryAccess.memoryAccess.LoadMission();
+            }
+            catch
+            {
+                missionsFromDisc = new IOMissionModel { tier = -2 };
+            }
           //  var missionsFromDisc = MemoryAccess.memoryAccess.LoadMission();
             if (missionsFromDisc.tier == -2)
             {
