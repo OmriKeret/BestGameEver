@@ -25,93 +25,96 @@ public class TouchInterpeter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		bool directionChosen = false;
-		bool holdingScreen = false;
-		bool stopHover = false;
-        Vector2 realWorldCharPos;
-        if (Input.GetMouseButtonDown(0))
-        {
-            realWorldTouch = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            realWorldCharPos = player.position;
-            direction = realWorldTouch - realWorldCharPos;
-            directionChosen = true;
-            holdingScreen = false;
-            playerPhyisicsController.StopHoverPhyisics();
-        }
+        if(!isMovmentDisabled) {
+		    bool directionChosen = false;
+		    bool holdingScreen = false;
+		    bool stopHover = false;
+            Vector2 realWorldCharPos;
+            if (Input.GetMouseButtonDown(0))
+            {
+                realWorldTouch = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                realWorldCharPos = player.position;
+                direction = realWorldTouch - realWorldCharPos;
+                directionChosen = true;
+                holdingScreen = false;
+                playerPhyisicsController.StopHoverPhyisics();
+            }
  
-		if (Input.touchCount > 0) {
-			var touch = Input.GetTouch(0);
-			// Handle finger movements based on touch phase.
-			switch (touch.phase) {
-				// Record initial touch position.
-			case TouchPhase.Began:
-				playerPhyisicsController.fingerHoldHover();
-				directionChosen = false;
-				holdingScreen = true;
-				break;
-				// Determine if finger is touching the screen
-		//	case TouchPhase.Stationary:
-			//	startPos = touch.position;
-		//		directionChosen = false;
-		//		holdingScreen = true;
-		//		break;
-				// Determine direction by comparing the current touch position with the initial one.
-			case TouchPhase.Moved:
-				//direction = touch.position - startPos;
-				holdingScreen = true;
-				break;
+		    if (Input.touchCount > 0) {
+			    var touch = Input.GetTouch(0);
+			    // Handle finger movements based on touch phase.
+			    switch (touch.phase) {
+				    // Record initial touch position.
+			    case TouchPhase.Began:
+				    playerPhyisicsController.fingerHoldHover();
+				    directionChosen = false;
+				    holdingScreen = true;
+				    break;
+				    // Determine if finger is touching the screen
+		    //	case TouchPhase.Stationary:
+			    //	startPos = touch.position;
+		    //		directionChosen = false;
+		    //		holdingScreen = true;
+		    //		break;
+				    // Determine direction by comparing the current touch position with the initial one.
+			    case TouchPhase.Moved:
+				    //direction = touch.position - startPos;
+				    holdingScreen = true;
+				    break;
 				
-				// Report that a direction has been chosen when the finger is lifted.
-			case TouchPhase.Ended:
-				playerPhyisicsController.StopHoverPhyisics();
-				//touch is in pixels, we convert to unity world point
-				realWorldTouch =  (Vector2)Camera.main.ScreenToWorldPoint(touch.position);
-				realWorldCharPos =  player.position;
+				    // Report that a direction has been chosen when the finger is lifted.
+			    case TouchPhase.Ended:
+				    playerPhyisicsController.StopHoverPhyisics();
+				    //touch is in pixels, we convert to unity world point
+				    realWorldTouch =  (Vector2)Camera.main.ScreenToWorldPoint(touch.position);
+				    realWorldCharPos =  player.position;
 
-				direction = realWorldTouch - realWorldCharPos;
- 				directionChosen = true;
-				holdingScreen = false;
-				break;
+				    direction = realWorldTouch - realWorldCharPos;
+ 				    directionChosen = true;
+				    holdingScreen = false;
+				    break;
 
-			case TouchPhase.Canceled:
-				directionChosen = false;
-				holdingScreen = false;
-				stopHover = true;
-				break;
-			}
-		}
-        if (events.currentSelectedGameObject == pauseButton.gameObject)
-        {
-          //  Debug.Log("button 1 clicked");
-            return;
+			    case TouchPhase.Canceled:
+				    directionChosen = false;
+				    holdingScreen = false;
+				    stopHover = true;
+				    break;
+			    }
+		    }
+            if (events.currentSelectedGameObject == pauseButton.gameObject)
+            {
+              //  Debug.Log("button 1 clicked");
+                return;
            
+            }
+
+            if (directionChosen && !isMovmentDisabled)
+            {
+
+			    direction.Normalize();
+			    PlayerMovmentController.Move(direction, realWorldTouch);
+			    //playerMovmentController(direction);
+			    directionChosen = false;
+			    stopHover = true;
+
+		    }
+            if (holdingScreen && !isMovmentDisabled)
+            {
+	    //		PlayerMovmentController.Hover();
+		    }
+		    if (stopHover) {
+		    //	playerPhyisicsController.StopHoverPhyisics();
+		    }
+	    }
+    }
+
+        public void SetDisableMovment()
+        {
+            this.isMovmentDisabled = true;
         }
-
-        if (directionChosen && !isMovmentDisabled)
+        public void UnsetDisableMovment()
         {
-
-			direction.Normalize();
-			PlayerMovmentController.Move(direction, realWorldTouch);
-			//playerMovmentController(direction);
-			directionChosen = false;
-			stopHover = true;
-
-		}
-        if (holdingScreen && !isMovmentDisabled)
-        {
-	//		PlayerMovmentController.Hover();
-		}
-		if (stopHover) {
-		//	playerPhyisicsController.StopHoverPhyisics();
-		}
-	}
-
-    public void SetDisableMovment()
-    {
-        this.isMovmentDisabled = true;
-    }
-    public void UnsetDisableMovment()
-    {
-        this.isMovmentDisabled = false;
-    }
+            this.isMovmentDisabled = false;
+        }
+    
 }

@@ -26,10 +26,11 @@ public class ScoreLogic : MonoBehaviour {
         missionLogic.gotScoreOf(score);
     }
 
-    internal int multiplyScoreAfterFinishingMissions(int tier)
+    internal int AddBonusToScoreAfterFinishingMissions()
     {
-        score = (int)(score * tier * 1.5);
-        return score;
+        var bonus = missionLogic.getBonusForFinishingAllMission();
+        score += bonus;
+        return bonus;
     }
 
     internal void saveScoreData()
