@@ -10,9 +10,9 @@ public class MissionStats : MonoBehaviour {
     MissionAssigner missionAssigner;
     Dictionary<int, string> tierTitle;
 	// Use this for initialization
-	void Start () {
-        IOMissionModel missionsFromDisc;
-
+	void Awake () {
+        IOMissionModel missionsFromDisc = null ;
+        initalizeDictionary();
        // tier = missions.tier; //TODO: get tier from memory
         missionAssigner = this.gameObject.GetComponent<MissionAssigner>();
         if (currentMissions == null)
@@ -23,21 +23,23 @@ public class MissionStats : MonoBehaviour {
             }
             catch
             {
-                missionsFromDisc = new IOMissionModel { tier = -2 };
+                
             }
+			finally {
           //  var missionsFromDisc = MemoryAccess.memoryAccess.LoadMission();
-            if (missionsFromDisc.tier == -2)
-            {
-                tier = 1;
-                currentMissions = missionAssigner.getNewMissions(tier);
-            }
-            else
-            {
-                currentMissions = missionsFromDisc.missions;
-                tier = missionsFromDisc.tier;
-            }
+	            if (missionsFromDisc == null)
+	            {
+	                tier = 1;
+	                currentMissions = missionAssigner.getNewMissions(tier);
+	            }
+	            else
+	            {
+	                currentMissions = missionsFromDisc.missions;
+	                tier = missionsFromDisc.tier;
+	            }
+			}
         }
-        initalizeDictionary();
+ 
 	}
 
     public void SaveMissionProgression()
