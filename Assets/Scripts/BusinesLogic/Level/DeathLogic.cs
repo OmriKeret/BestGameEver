@@ -102,7 +102,7 @@ public class DeathLogic : MonoBehaviour {
         deathMissionsToggleAndTextNew[missionNum].missionToggle = GameObject.Find("LosePanel/LoseMission3New").GetComponent<Toggle>();
 
         origMissionTextX = deathMissionsToggleAndText[missionNum].missionToggle.transform.position.x;
-        EndMissionTextX = origMissionTextX - 30;
+        EndMissionTextX = origMissionTextX - 60;
 		deathScore = GameObject.Find("LosePanel/LoseScore").GetComponent<Text>();
         currencyText = GameObject.Find("LosePanel/LosePJ").GetComponent<Text>();
         
@@ -181,6 +181,7 @@ public class DeathLogic : MonoBehaviour {
     private void DeathScreen(float delay)
     {
         pauseBtn.interactable = false;
+        touch.SetDisableMovment();
         GetMissionData();
         GetScoreData();
         MoveGUI(delay);
