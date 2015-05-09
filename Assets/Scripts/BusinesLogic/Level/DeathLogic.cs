@@ -47,8 +47,8 @@ public class DeathLogic : MonoBehaviour {
         soundLogic = this.gameObject.GetComponent<SoundLogic>();
         missionLogic = this.gameObject.GetComponent<MissionLogic>();
         losePanel = GameObject.Find("LosePanel");
-        OrigPos = new Vector3(0, 30, 0);
-        EndPos = new Vector3(0, 6, 0);
+        OrigPos = losePanel.transform.position;// new Vector3(0, 30, 0);
+        EndPos = new Vector3(OrigPos.x, 8, 0);
         touch = GameObject.Find("TouchInterpter").GetComponent<TouchInterpeter>();
         movmentLogic = this.gameObject.GetComponent<MovmentLogic>();
         playerStatsLogic = this.gameObject.GetComponent<PlayerStatsLogic>();
@@ -98,6 +98,7 @@ public class DeathLogic : MonoBehaviour {
     {
         if (changeScoreText && scoreBegin < scoreEnd)
         {
+            //TODO: SOUND - change score by mission sound
             var scoreTxt = string.Format(System.Globalization.CultureInfo.InvariantCulture,
                          "{0:0,0}", scoreBegin++);
             deathScore.text = string.Format("{0}", scoreTxt);
@@ -110,7 +111,7 @@ public class DeathLogic : MonoBehaviour {
         {
             if (finalAchivedScore - currencyDiviser >= 0)
             {
-
+                //TODO: SOUND - change score to money
 
                 //updating score text
                 finalAchivedScore -= currencyDiviser;
@@ -162,37 +163,43 @@ public class DeathLogic : MonoBehaviour {
     public void Reset()
     {
 		Time.timeScale = 1;
-        Application.LoadLevel(Application.loadedLevel);
+        AutoFade.LoadLevel(Application.loadedLevel, 2, 1, Color.black);
+       // Application.LoadLevel(Application.loadedLevel);
     }
 
     //brings death screen up
     private void MoveGUI(float delay)
     {
-        LeanTween.move(losePanel, EndPos, timeToOpenDeathMenu).setDelay(delay).setIgnoreTimeScale(true).setOnComplete( () => 
+        //TODO: unable the player to interact
+        LeanTween.move (losePanel, EndPos, timeToOpenDeathMenu).setDelay (delay).setIgnoreTimeScale (true).setOnComplete (() => 
+		{
+			//update mission progress
+			missionLogic.updateMissionProggressEndOfGame ();
+			Time.timeScale = 0;
+            updateCurrencyGui();
+		});   
+    }
+
+    private void updateCurrencyGui()
+    {
+        {
+            //update highscore
+            if (currentHighScore < scoreBegin || currentHighScore < scoreEnd)
             {
-                //update mission progress
-                missionLogic.updateMissionProggressEndOfGame();
-                Time.timeScale = 0;
-            }).setOnComplete( () => 
+                newHighScore = true;
+                //TODO: do something with this information (show "new high score") 
+                if (scoreBegin < scoreEnd)
                 {
-                    //update highscore
-                    if (currentHighScore < scoreBegin || currentHighScore < scoreEnd)
-                    {
-                        newHighScore = true;
-                        //TODO: do something with this information (show "new high score") 
-                        if (scoreBegin < scoreEnd)
-                        {
-                            finalAchivedScore = scoreEnd;
-                            updatePJcurrency(finalAchivedScore);
-                        }
-                        else
-                        {
-                            finalAchivedScore = scoreBegin;
-                            updatePJcurrency(finalAchivedScore);
-                        }
-                    }
-                });
-      
+                    finalAchivedScore = scoreEnd;
+                    updatePJcurrency(finalAchivedScore);
+                }
+                else
+                {
+                    finalAchivedScore = scoreBegin;
+                    updatePJcurrency(finalAchivedScore);
+                }
+            }
+        }
     }
 
     private void updatePJcurrency(int score)
@@ -261,15 +268,13 @@ public class DeathLogic : MonoBehaviour {
     private void moveOldMissionsAndReplaceWithNew()
     {
         int i = 0;
-        LeanTween.moveX(deathMissionsToggleAndText[i].missionToggle.gameObject, EndMissionTextX, timeToRemoveMission).setIgnoreTimeScale(true).setEase(LeanTweenType.easeInOutElastic).setOnComplete(
-            () =>
-                {
-                    moveOldMission(i);
-                }
-            );
+        moveOldMission(i);
+
     }
     private void moveNewMission(int i)
     {
+        Debug.Log("move new mission");
+        //TODO: SOUND - move new mission sound
         LeanTween.moveX(deathMissionsToggleAndTextNew[i].missionToggle.gameObject, origMissionTextX, timeToEnterMission).setIgnoreTimeScale(true).setEase(LeanTweenType.easeInOutElastic).setDelay(delayBetweenMissionRemovalToEnterance).setOnComplete(
               () =>
               {
@@ -285,6 +290,8 @@ public class DeathLogic : MonoBehaviour {
 
     private void moveOldMission(int i)
     {
+        Debug.Log("move old mission");
+        //TODO: SOUND - move old mission sound
         LeanTween.moveX(deathMissionsToggleAndText[i].missionToggle.gameObject, EndMissionTextX, timeToRemoveMission).setDelay(delayBetweenMissionRemovalToEnterance).setIgnoreTimeScale(true).setEase(LeanTweenType.easeInOutElastic).setOnComplete(
                 () =>
                 {
