@@ -1487,11 +1487,11 @@ MonoBehaviour:
   isSlicing: 0
   hitChangeColorTIme: .300000012
   character: {fileID: 0}
+  playerContainer: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1024
   animator: {fileID: 0}
-  groundRadius: .5
 --- !u!114 &605148573
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -57,14 +57,14 @@ public class AnimationLogic : MonoBehaviour
         isSlicing = true;
     }
 
-
+    //TODO: Uncommet when omri finishes working on this
 	private void Flip()
 	{
-		faceRight = !faceRight;
-        Debug.Log("changing local scale");
-		Vector3 theScale = playerContainer.transform.localScale;
-		theScale.x *= -1;
-		playerContainer.transform.localScale = theScale;	
+        //faceRight = !faceRight;
+        //Debug.Log("changing local scale");
+        //Vector3 theScale = playerContainer.transform.localScale;
+        //theScale.x *= -1;
+        //playerContainer.transform.localScale = theScale;	
 	}
 
     internal void playerHit()
