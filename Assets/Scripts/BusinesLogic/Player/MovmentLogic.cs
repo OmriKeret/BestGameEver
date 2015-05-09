@@ -5,7 +5,7 @@ public class MovmentLogic : MonoBehaviour {
 
     //dash
     public float dashTime = 1f;
-    public float dashDist = 5f;
+    private float dashDist = 5f;
 
     //hover
     public float hoverTime = 1f;
@@ -39,6 +39,7 @@ public class MovmentLogic : MonoBehaviour {
 		animationLogic = this.gameObject.GetComponent<AnimationLogic>();
         soundLogic = this.gameObject.GetComponent<SoundLogic>();
         touch = GameObject.Find("TouchInterpter").GetComponent<TouchInterpeter>();
+		dashDist = playerStatsLogic.dashDist;
 	}
 
 	public void MoveCharacter(MoveCharacterModel model){
@@ -67,7 +68,7 @@ public class MovmentLogic : MonoBehaviour {
         animationLogic.SetDashing();
 
         LeanTween.cancel(character.gameObject,true);
-        LeanTween.move(model.player.gameObject, (Vector2)target, CalculateTimeForDistance(distToGo)).setEase(LeanTweenType.easeInOutQuad).setOnComplete(
+		LeanTween.move(model.player.gameObject, (Vector2)target, CalculateTimeForDistance(distToGo)).setEase(LeanTweenType.easeInOutCubic).setOnComplete(
             () =>
             {
                 FinishedMoving(playerStatsLogic.combo);

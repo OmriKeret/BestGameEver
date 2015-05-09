@@ -7,7 +7,9 @@ public class Hats {
 
     public List<ClothModel> hats = new List<ClothModel> {
         new ClothModel{id = 1, description = "normal mexican hat", jemPrice = -1, name = "Mexican hat", owned = true,characterSpriteFront = "Cloth/Hat/normal", part = BodyPart.hat, PJPrice = 0,selected = true, statsImprove = new StatsImprovementModel{}},
-        new ClothModel{id = 2, description = "leather cowboy hat", jemPrice = -1, name = "cowboy hat", owned = false, part = BodyPart.hat,characterSpriteFront = "Cloth/Hat/leather", PJPrice = 5, selected = false, statsImprove = new StatsImprovementModel{}}
+        new ClothModel{id = 2, description = "leather cowboy hat", jemPrice = -1, name = "cowboy hat", owned = false, part = BodyPart.hat,characterSpriteFront = "Cloth/Hat/leather", PJPrice = 5, selected = false, statsImprove = new StatsImprovementModel{}},
+         new ClothModel{id = 3, description = "Chicken hat", jemPrice = -1, name = "Chicken hat", owned = false, part = BodyPart.hat,characterSpriteFront = "Cloth/Hat/chicken", PJPrice = 10, selected = false, statsImprove = new StatsImprovementModel{}},
+          new ClothModel{id = 4, description = "bee hat", jemPrice = -1, name = "Bee hat", owned = false, part = BodyPart.hat,characterSpriteFront = "Cloth/Hat/bee hat", PJPrice = 15, selected = false, statsImprove = new StatsImprovementModel{}}
 
         };
 

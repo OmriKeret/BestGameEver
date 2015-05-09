@@ -77,6 +77,7 @@ public class MissionAssigner : MonoBehaviour {
     private void MissionInitializer()
     {
         missions = new MissionModel[] { 
+
                                              new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 1, missionText ="Kill Total of five enemies!", enemyType = EnemyType.General, needToBeCompletedInOneGame = true }, 
                                              new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 1, missionText ="Kill five stupid enemies!", enemyType = EnemyType.Stupid, needToBeCompletedInOneGame = true }, 
                                              new MissionModel {type = MissionType.getScoreOf , numberToAchive = 1, missionText ="Get score of 10,000!" , needToBeCompletedInOneGame = true},

@@ -27,7 +27,8 @@ public class DeathLogic : MonoBehaviour {
     public InternalMissionModel[] missionsToggleAndText;
     public InternalMissionModel[] deathMissionsToggleAndText;
     public InternalMissionModel[] deathMissionsToggleAndTextNew;
-
+    //pause menu
+    Button pauseBtn;
     //score
     private int scoreBegin;
     private int scoreEnd;
@@ -35,7 +36,13 @@ public class DeathLogic : MonoBehaviour {
     private bool changeScoreText = false;
     private bool newHighScore;
     private int finalAchivedScore;
+    private int bonus;
+    private Animator HighScore;
+    Animator bonusAnimator;
+    Text bonusText;
     //currency
+    public float timeToWaitFromScoreLastUpdateToCurrencyChange = 1f;
+    private float lastScoreUpdate;
     int addedCurrency;
     int currencyDiviser;
     bool shouldWriteCurrency;
@@ -44,17 +51,23 @@ public class DeathLogic : MonoBehaviour {
 	// Use this for initialization
     void Start()
     {
+        var bonus = GameObject.Find("LosePanel/FinishedAllMissions");
+        HighScore = GameObject.Find("LosePanel/NewHighScore").GetComponent<Animator>();
+        bonusAnimator = bonus.GetComponent<Animator>();
+        bonusText = bonus.GetComponent<Text>();
+        pauseBtn = GameObject.Find("Pause").GetComponent<Button>();
         soundLogic = this.gameObject.GetComponent<SoundLogic>();
         missionLogic = this.gameObject.GetComponent<MissionLogic>();
         losePanel = GameObject.Find("LosePanel");
         OrigPos = losePanel.transform.position;// new Vector3(0, 30, 0);
-        EndPos = new Vector3(OrigPos.x, 8, 0);
+        EndPos = new Vector3(OrigPos.x, 12, 0);
         touch = GameObject.Find("TouchInterpter").GetComponent<TouchInterpeter>();
         movmentLogic = this.gameObject.GetComponent<MovmentLogic>();
         playerStatsLogic = this.gameObject.GetComponent<PlayerStatsLogic>();
         missionLogic = this.gameObject.GetComponent<MissionLogic>();
         scoreLogic = this.gameObject.GetComponent<ScoreLogic>();
         currencyLogic = this.gameObject.GetComponent<CurrencyLogic>();
+
         missionsToggleAndText = new InternalMissionModel[] {
 			new InternalMissionModel(),
 			new InternalMissionModel(),
@@ -88,10 +101,11 @@ public class DeathLogic : MonoBehaviour {
         deathMissionsToggleAndTextNew[missionNum].missionText = GameObject.Find("LosePanel/LoseMission3New/LoseMissionText3").GetComponent<Text>();
         deathMissionsToggleAndTextNew[missionNum].missionToggle = GameObject.Find("LosePanel/LoseMission3New").GetComponent<Toggle>();
 
-        origMissionTextX = deathMissionsToggleAndText[missionNum].missionToggle.transform.position.x - 1;
+        origMissionTextX = deathMissionsToggleAndText[missionNum].missionToggle.transform.position.x;
         EndMissionTextX = origMissionTextX - 30;
 		deathScore = GameObject.Find("LosePanel/LoseScore").GetComponent<Text>();
         currencyText = GameObject.Find("LosePanel/LosePJ").GetComponent<Text>();
+        
     }
 
     void Update()
@@ -99,29 +113,41 @@ public class DeathLogic : MonoBehaviour {
         if (changeScoreText && scoreBegin < scoreEnd)
         {
             //TODO: SOUND - change score by mission sound
-            var scoreTxt = string.Format(System.Globalization.CultureInfo.InvariantCulture,
-                         "{0:0,0}", scoreBegin++);
-            deathScore.text = string.Format("{0}", scoreTxt);
+            scoreBegin = scoreBegin + 100;
             if (scoreBegin >= scoreEnd)
             {
+                scoreBegin = scoreEnd;
                 changeScoreText = false;
+                if (newHighScore)
+                {
+                    HighScore.SetTrigger("new");
+                }
+                else
+                {
+                    shouldWriteCurrency = true;
+                    lastScoreUpdate = Time.realtimeSinceStartup;
+                }
             }
+            var scoreTxt = string.Format(System.Globalization.CultureInfo.InvariantCulture,
+                         "{0:0,0}", scoreBegin);
+            deathScore.text = string.Format("{0}", scoreTxt);
+
         }
-        else if (shouldWriteCurrency)
+        else if (shouldWriteCurrency && (Time.realtimeSinceStartup - lastScoreUpdate > timeToWaitFromScoreLastUpdateToCurrencyChange))
         {
             if (finalAchivedScore - currencyDiviser >= 0)
             {
                 //TODO: SOUND - change score to money
 
                 //updating score text
-                finalAchivedScore -= currencyDiviser;
+                finalAchivedScore -= (currencyDiviser * 2);
                 var scoreTxt = string.Format(System.Globalization.CultureInfo.InvariantCulture,
                     "{0:0,0}", finalAchivedScore);
                 deathScore.text = string.Format("{0}", scoreTxt);
 
                 //updating currency text
-                currentDisplayedCurrency += currencyDiviser;
-                currencyText.text = string.Format("PJ EARNED:{0}", currentDisplayedCurrency);
+                currentDisplayedCurrency += 2;
+                currencyText.text = string.Format("PJ:{0}", currentDisplayedCurrency);
             }
             else
             {
@@ -134,6 +160,11 @@ public class DeathLogic : MonoBehaviour {
         }
     }
 
+    public void startChangeScoreWithCurrency()
+    {
+        shouldWriteCurrency = true;
+        lastScoreUpdate = Time.realtimeSinceStartup;
+    }
     public void DeathByFall()
     {
         if (playerStatsLogic.removeHp(1))
@@ -149,6 +180,7 @@ public class DeathLogic : MonoBehaviour {
     //the death screen
     private void DeathScreen(float delay)
     {
+        pauseBtn.interactable = false;
         GetMissionData();
         GetScoreData();
         MoveGUI(delay);
@@ -163,7 +195,7 @@ public class DeathLogic : MonoBehaviour {
     public void Reset()
     {
 		Time.timeScale = 1;
-        AutoFade.LoadLevel(Application.loadedLevel, 2, 1, Color.black);
+        AutoFade.LoadLevel(Application.loadedLevel, 2, 1, Color.white);
        // Application.LoadLevel(Application.loadedLevel);
     }
 
@@ -176,38 +208,48 @@ public class DeathLogic : MonoBehaviour {
 			//update mission progress
 			missionLogic.updateMissionProggressEndOfGame ();
 			Time.timeScale = 0;
-            updateCurrencyGui();
+
 		});   
     }
 
-    private void updateCurrencyGui()
+    public void updateCurrencyGui()
     {
-        {
-            //update highscore
-            if (currentHighScore < scoreBegin || currentHighScore < scoreEnd)
+        
+        //update highscore
+        if (currentHighScore < scoreBegin || currentHighScore < scoreEnd) {
+			newHighScore = true;
+			//TODO: do something with this information (show "new high score") 
+           
+		}
+            if (scoreBegin < scoreEnd)
             {
-                newHighScore = true;
-                //TODO: do something with this information (show "new high score") 
-                if (scoreBegin < scoreEnd)
-                {
-                    finalAchivedScore = scoreEnd;
-                    updatePJcurrency(finalAchivedScore);
-                }
-                else
-                {
-                    finalAchivedScore = scoreBegin;
-                    updatePJcurrency(finalAchivedScore);
-                }
+                finalAchivedScore = scoreEnd;
             }
-        }
+            else
+            {
+                finalAchivedScore = scoreBegin;
+            }
+            updatePJcurrency(finalAchivedScore);
+       
+        
     }
 
     private void updatePJcurrency(int score)
     {
         addedCurrency = currencyLogic.updateCurrencyByScore(score);
         currencyDiviser = currencyLogic.deviderToScore;
-        shouldWriteCurrency = true;
+        if (!changeScoreText)
+        {
+            shouldWriteCurrency = true;
+        }
+        
     }
+
+    public void startChangingScoreForCurrency()
+    {
+
+    }
+    
 
     private void GetScoreData()
     {
@@ -245,8 +287,8 @@ public class DeathLogic : MonoBehaviour {
     internal void switchMissionsOnComplete(MissionModel[] missionModel)
     {
         updateNewMissions(missionModel);
-        moveOldMissionsAndReplaceWithNew();
         multiplyScore(missionLogic.getTier());
+        moveOldMissionsAndReplaceWithNew();
        // saveScoreAndMissions();
     }
 
@@ -258,17 +300,23 @@ public class DeathLogic : MonoBehaviour {
 
     private void multiplyScore(int tier)
     {
+
        scoreBegin = scoreLogic.score;
-       scoreEnd = scoreLogic.multiplyScoreAfterFinishingMissions(tier);
-       changeScoreText = true;
+       bonus = scoreLogic.AddBonusToScoreAfterFinishingMissions();
+       scoreEnd = scoreBegin + bonus;
+
+       
     }
 
 
 
     private void moveOldMissionsAndReplaceWithNew()
     {
-        int i = 0;
-        moveOldMission(i);
+        //start animation of bonus. when finishes it will call  moveOldMission(i); with i = 0
+        bonusText.text = string.Format("FINISHED ALL MISSION\n +{0}", bonus);
+        bonusAnimator.SetTrigger("finished");
+        //int i = 0;
+        //moveOldMission(i);
 
     }
     private void moveNewMission(int i)
@@ -283,12 +331,20 @@ public class DeathLogic : MonoBehaviour {
                   {
                       moveOldMission(i);
                   }
+                  else
+                  {
+                      // no more updates to score
+					  changeScoreText = true;
+                      updateCurrencyGui();
+                      saveScoreAndMissions();
+                      
+                  }
 
               }
           );
     }
 
-    private void moveOldMission(int i)
+    public void moveOldMission(int i)
     {
         Debug.Log("move old mission");
         //TODO: SOUND - move old mission sound
@@ -313,6 +369,7 @@ public class DeathLogic : MonoBehaviour {
 
     internal void playerDie(int sign)
     {
+        pauseBtn.interactable = false;
         soundLogic.playDeathSound();
         movmentLogic.movePlayerDie(sign);
         touch.SetDisableMovment();

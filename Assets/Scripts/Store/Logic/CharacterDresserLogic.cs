@@ -16,8 +16,11 @@ public class CharacterDresserLogic : MonoBehaviour {
     void Start()
     
     {
-        
-        playerStats = GameObject.Find("PlayerManager").GetComponent<PlayerStatsLogic>();
+		var stats = GameObject.Find ("Logic");
+        if (stats != null) {
+			playerStats = stats.GetComponent<PlayerStatsLogic>();
+		}
+       
         sword = GameObject.Find("PlayerManager/arm/glove/SWORD");
         ponchoeFront = GameObject.Find("PlayerManager/PONCHO 1");
         ponchoeFront2 = GameObject.Find("PlayerManager/PONCHO 1/PONCHO 2");
@@ -86,9 +89,12 @@ public class CharacterDresserLogic : MonoBehaviour {
         int dashNumBoost = ClothLogic.clothLogic.getDashNumBoost();
         int hpBoost = ClothLogic.clothLogic.getHPBoost();
         int dashDistBoost = ClothLogic.clothLogic.getDashDistBoost();
-        playerStats.addDashNumBoost(dashNumBoost);
-        playerStats.addDashDistBoost(dashDistBoost);
-        playerStats.addDashHPBoost(hpBoost);
+        if (!Application.loadedLevelName.Equals("Store"))
+        {
+            playerStats.addDashNumBoost(dashNumBoost);
+            playerStats.addDashDistBoost(dashDistBoost);
+            playerStats.addDashHPBoost(hpBoost);
+        }
     }
 
 

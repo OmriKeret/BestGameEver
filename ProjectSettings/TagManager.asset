@@ -24,7 +24,7 @@ TagManager:
   - Podium
   - Background
   - Commet
-  - 
+  - forground
   - 
   - 
   - 
@@ -52,4 +52,7 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 1747990833
+    locked: 0
+  - name: forground
+    uniqueID: 1359535733
     locked: 0

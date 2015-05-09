@@ -192,15 +192,30 @@ public class MissionLogic : MonoBehaviour {
 
     public void updateMissionProggressEndOfGame()
     {
-        if(missionStats.updateMissionStats(this.missions))
-         {
-             deathLogic.switchMissionsOnComplete(missionStats.switchMissions());
-         }  
+        if (missionStats.updateMissionStats(this.missions))
+        {
+            deathLogic.switchMissionsOnComplete(missionStats.switchMissions());
+        }
+        else
+        {
+            //no more updates to score
+            deathLogic.updateCurrencyGui();
+        }
     }
 
     internal int getTier()
     {
         return missionStats.getTier();
+    }
+
+    internal int getBonusForFinishingAllMission()
+    {
+        var tier = missionStats.getTier();
+        if (tier < 3)
+        {
+            return tier * 1200;
+        }
+         return (int)Mathf.Pow(10,tier);
     }
 
     internal void saveMissionData()
