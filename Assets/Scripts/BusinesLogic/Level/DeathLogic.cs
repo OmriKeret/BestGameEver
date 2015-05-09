@@ -181,6 +181,7 @@ public class DeathLogic : MonoBehaviour {
     private void DeathScreen(float delay)
     {
         pauseBtn.interactable = false;
+        touch.SetDisableMovment();
         GetMissionData();
         GetScoreData();
         MoveGUI(delay);
