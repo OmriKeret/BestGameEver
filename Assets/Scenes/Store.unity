@@ -944,7 +944,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
-    m_PressedColor: {r: 1, g: .5, b: .5, a: 1}
+    m_PressedColor: {r: .784313738, g: .784313738, b: .784313738, a: 1}
     m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: .501960814}
     m_ColorMultiplier: 1
     m_FadeDuration: .100000001
@@ -1500,7 +1500,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 478954, guid: 3a10c0ae6be4ae14cb1c59371bd250aa, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 5.67000008
+      value: 5.11999989
       objectReference: {fileID: 0}
     - target: {fileID: 478954, guid: 3a10c0ae6be4ae14cb1c59371bd250aa, type: 2}
       propertyPath: m_LocalPosition.y
