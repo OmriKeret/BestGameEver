@@ -60,8 +60,12 @@ public class UIManagerScript : MonoBehaviour {
 
     IEnumerator playSoundThenLoad(string levelName)
     {
-        screenSlash.SetTrigger("change");
-        isAnimating = true;
+        if (!Application.loadedLevelName.Equals("Prototype"))
+        {
+            screenSlash.SetTrigger("change");
+            isAnimating = true;
+        }
+        
         yield return new WaitForSeconds(audioSource.clip.length);
         while (isAnimating)
         {
