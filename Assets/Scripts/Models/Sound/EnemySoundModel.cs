@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemySoundModel{
+public struct EnemySoundModel{
 
     public AudioClip[] deathSound;
     public AudioClip[] spawnSound;

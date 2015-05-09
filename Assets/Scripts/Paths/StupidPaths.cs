@@ -29,8 +29,12 @@ using UnityEngine;
         public Vector3[] topMid = new Vector3[]
        {
                     SceneStats.TopMid, 
-                    new Vector3(7.75f,9.75f), 
-                    new Vector3(-7.75f,0f), 
+                    new Vector3(0.866f*14f+2,14f),
+                    new Vector3(7.75f+2,9.75f),
+                    new Vector3(0.866f*4f+2,4f),
+                    new Vector3(0.866f*4f+2,4f),
+                    new Vector3(-7.75f-4,-1f), 
+                    new Vector3(0.866f*-9,-5f), 
                     new Vector3(0,SceneStats.BottomEdge)
                 };
         public Vector3[] midLeft = new Vector3[]
