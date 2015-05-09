@@ -39,9 +39,26 @@ public class WaveLogicFactory {
             new EnemyLocation[]{EnemyLocation.BottomLeft,EnemyLocation.TopMid,EnemyLocation.BottomRight,EnemyLocation.TopLeft,EnemyLocation.TopRight,EnemyLocation.BottomLeft,EnemyLocation.TopMid,EnemyLocation.BottomRight,EnemyLocation.TopLeft,EnemyLocation.TopRight},
             new int[]{1,1,1,1,1,1,1,1,1,1}) ,
             //6               
-            new WaveLogic(new EnemyType[]{EnemyType.Spike},
-            new EnemyLocation[]{EnemyLocation.BottomLeft},
-            new int[]{1}) ,
+            new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid,EnemyType.Spike,EnemyType.Stupid},
+            new EnemyLocation[]{EnemyLocation.BottomRight,EnemyLocation.MidRight,EnemyLocation.BottomRight,EnemyLocation.MidRight,EnemyLocation.MidRight},
+            new int[]{1,1,1,1,1}) ,
+            //7               
+            new WaveLogic(new EnemyType[]{EnemyType.Spike,EnemyType.Stupid,EnemyType.Stupid,EnemyType.Spike,EnemyType.Stupid,EnemyType.Spike,EnemyType.Stupid,EnemyType.Stupid,EnemyType.Spike},
+            new EnemyLocation[]{EnemyLocation.MidLeft,EnemyLocation.TopLeft,EnemyLocation.BottomLeft,EnemyLocation.MidLeft,EnemyLocation.TopMid,EnemyLocation.TopRight,EnemyLocation.TopRight,EnemyLocation.MidLeft,EnemyLocation.MidRight},
+            new int[]{1,1,2,1,1,1,1,1}) ,
+            //8               
+            new WaveLogic(new EnemyType[]{EnemyType.Spike,EnemyType.Stupid,EnemyType.Stupid,EnemyType.Spike,EnemyType.Stupid,EnemyType.Spike,EnemyType.Stupid,EnemyType.Stupid,EnemyType.Spike},
+            new EnemyLocation[]{EnemyLocation.TopRight,EnemyLocation.TopMid,EnemyLocation.BottomRight,EnemyLocation.MidLeft,EnemyLocation.TopMid,EnemyLocation.TopRight,EnemyLocation.TopRight,EnemyLocation.MidLeft,EnemyLocation.MidRight},
+            new int[]{1,1,1,1,2,1,2}) ,
+            //9               
+            new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Tank,EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid,EnemyType.Tank,EnemyType.Stupid,EnemyType.Stupid},
+            new EnemyLocation[]{EnemyLocation.TopRight,EnemyLocation.TopMid,EnemyLocation.BottomRight,EnemyLocation.MidLeft,EnemyLocation.TopMid,EnemyLocation.TopRight,EnemyLocation.TopRight,EnemyLocation.MidLeft,EnemyLocation.MidRight},
+            new int[]{1,1,2,1,1,2}) ,
+            //10           
+            new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Spike,EnemyType.Tank,EnemyType.Stupid,EnemyType.Stupid,EnemyType.Spike,EnemyType.Tank,EnemyType.Stupid,EnemyType.Tank,EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid,EnemyType.Spike,EnemyType.Spike,EnemyType.Tank},
+            new EnemyLocation[]{EnemyLocation.TopMid,EnemyLocation.TopRight,EnemyLocation.TopMid,EnemyLocation.MidLeft,EnemyLocation.TopLeft,EnemyLocation.MidRight,EnemyLocation.TopMid,EnemyLocation.TopRight,EnemyLocation.TopLeft,EnemyLocation.BottomLeft,EnemyLocation.TopLeft,EnemyLocation.TopRight,EnemyLocation.BottomRight,EnemyLocation.BottomRight,EnemyLocation.TopMid,EnemyLocation.TopRight},
+            new int[]{2,2,3,2,4,3}) ,
+
 
 
         };

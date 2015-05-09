@@ -35,8 +35,6 @@ public abstract class AEnemyStats : MonoBehaviour {
 
     }
 
-
-
 	public void lifeDown(int i_hp){
         life = life - i_hp;	
 	}
@@ -56,12 +54,13 @@ public abstract class AEnemyStats : MonoBehaviour {
             {EnemyMode.None, AllSprites[0]},
             {EnemyMode.Attack, AllSprites[1]}
         };
+
     }
 
     public Sprite GetCurrentAnimation()
     {
-        Sprite sprite;
-        _AnimationState.TryGetValue(_mode,out sprite);
+        Sprite sprite = null;
+        _AnimationState.TryGetValue(_mode, out sprite);
         return sprite;
     }
 }
