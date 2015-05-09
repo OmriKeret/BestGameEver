@@ -24,18 +24,23 @@ public class PlayerStatsLogic : MonoBehaviour {
     //logic
     private MovmentLogic movmentLogic;
 	// Use this for initialization
-	void Start () {
+    void OnEnable()
+    {
+		maxHP = HP;
         HPBar = this.GetComponent<HPBarLogic>();
         staminaBar = this.GetComponent<StaminaBarLogic>();
         guiHP = GameObject.Find("HpContainer");
 		comboText = GameObject.Find("ComboText").GetComponent<Text>();
         _LifeFullPrefab = Resources.Load("lifeFull") as GameObject;
         _LifeEmptyPrefab = Resources.Load("lifeEmpty") as GameObject;
-        firstTimeWriteHp();
-        movmentLogic = this.GetComponent<MovmentLogic>();
-        maxHP = HP;
-        staminaBar.setMaximumStamina(dashNum);
 
+	}
+	void Start() 
+	{
+		firstTimeWriteHp();
+		movmentLogic = this.GetComponent<MovmentLogic>();
+		maxHP = HP;
+		staminaBar.setMaximumStamina(dashNum);
 	}
 	
 	// Update is called once per frame
@@ -128,7 +133,7 @@ public class PlayerStatsLogic : MonoBehaviour {
     internal void addDashDistBoost(int dashDistBoost)
     {
         dashDist += dashDistBoost;
-        movmentLogic.dashDist = dashDist;
+        //movmentLogic.dashDist = dashDist;
     }
 
     internal void addDashHPBoost(int hpBoost)

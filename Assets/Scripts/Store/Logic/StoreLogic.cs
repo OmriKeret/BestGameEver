@@ -19,10 +19,10 @@ public class StoreLogic : MonoBehaviour {
     private Text name;
     private Text price;
     private GameObject buyButton;
-    private Image image; // itemImage
+   // private Image image; // itemImage
     public Sprite btnBuy;
     public Sprite btnEquiped;
-
+    private Text moneyAmount;
     // dreser 
     private CharacterDresserLogic dresser;
 	// Use this for initialization
@@ -33,18 +33,25 @@ public class StoreLogic : MonoBehaviour {
         swords.swords = ClothLogic.clothLogic.swords.swords;
         var i = MemoryAccess.memoryAccess.LoadCurrency();
         currentPJ = i.PJ;
-        currentJem = i.jems;
+        currentJem = i.gems;
 		dresser = GameObject.Find("CharacterDresser").GetComponent<CharacterDresserLogic>();
 
         //gui elements
         description = GameObject.Find("Canvas/Description/DescriptionText").GetComponent<Text>();
         price = GameObject.Find("Description/PriceText").GetComponent<Text>();
         name = GameObject.Find("Description/NameText").GetComponent<Text>();
-        image = GameObject.Find("Description/Image").GetComponent<Image>();
+       // image = GameObject.Find("Description/Image").GetComponent<Image>();
         buyButton = GameObject.Find("Buy button");
 		ChangeItemGroup(BodyPart.sword);
-        
+        moneyAmount = GameObject.Find("Currency/CurrencyAmount").GetComponent<Text>();
+        writeCurrentCurrency();
 	}
+
+    private void writeCurrentCurrency()
+    {
+        moneyAmount.text = string.Format("{0}",currentPJ);
+        //TODO: write current gems
+    }
 
     private List<ClothModel> clone(List<ClothModel> list)
     {
@@ -74,22 +81,24 @@ public class StoreLogic : MonoBehaviour {
         if (currentPJ >= currentDisplayed.PJPrice)
         {
             currentPJ = currentPJ - currentDisplayed.PJPrice;
-            MemoryAccess.memoryAccess.SaveCurrency(new IOCurrencyModel { jems = currentJem, PJ = currentPJ });
+            MemoryAccess.memoryAccess.SaveCurrency(new IOCurrencyModel { gems = currentJem, PJ = currentPJ });
             ClothLogic.clothLogic.buyItem(currentDisplayed);
             ClothLogic.clothLogic.equipItem(currentDisplayed, currentGroup);
+            writeCurrentCurrency();
             return true;
         }
         return false;
     }
 
-    public bool buyItemWithJem()
+    public bool buyItemWithGem()
     {
         if (currentPJ >= currentDisplayed.jemPrice)
         {
             currentJem = currentJem - currentDisplayed.jemPrice;
-            MemoryAccess.memoryAccess.SaveCurrency(new IOCurrencyModel { jems = currentJem, PJ = currentPJ });
+            MemoryAccess.memoryAccess.SaveCurrency(new IOCurrencyModel { gems = currentJem, PJ = currentPJ });
             ClothLogic.clothLogic.buyItem(currentDisplayed);
             updateDisplayData();
+            //TODO: rewrite gem num
             return true;
         }
         return false;
@@ -144,15 +153,17 @@ public class StoreLogic : MonoBehaviour {
         //TODO: add jem price here 
 
         //change image of item
-        image.sprite = (Sprite)Resources.Load(currentDisplayed.storeImg, typeof(Sprite));
+        //image.sprite = (Sprite)Resources.Load(currentDisplayed.storeImg, typeof(Sprite));
 
         //change inage of buy button accordinly
         if (currentDisplayed.owned)
         {
+            Debug.Log("item owned");
             //own item
             //change button buy/equip image
-            var btnBuySprite = buyButton.GetComponent<Sprite>();
-            btnBuySprite = btnEquiped;
+            var btn = buyButton.GetComponent<Image>();
+
+             btn.sprite = btnEquiped;
 
             if (currentDisplayed.selected)
             {
@@ -167,9 +178,9 @@ public class StoreLogic : MonoBehaviour {
         else
         {
             //dont own item
-            var btnBuySprite = buyButton.GetComponent<Sprite>();
+            var btn = buyButton.GetComponent<Image>();
             buyButton.GetComponent<Button>().interactable = true;
-            btnBuySprite = btnBuy;
+            btn.sprite = btnBuy;
         }
     }
 
