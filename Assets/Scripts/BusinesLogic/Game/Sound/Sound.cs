@@ -2,7 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Sound : MonoBehaviour {
+public class Sound : MonoBehaviour
+{
     public AudioClip[] goblinDeath;
     public AudioClip[] goblinSpawn;
     public AudioClip[] jump;
@@ -34,7 +35,7 @@ public class Sound : MonoBehaviour {
     }
     void Start()
     {
-   //     initilaizDictionary();
+        //     initilaizDictionary();
     }
 
     private void initilaizDictionary()
@@ -46,7 +47,7 @@ public class Sound : MonoBehaviour {
     public AudioClip playerGetRandomJumpSound()
     {
         int max = jump.Length;
-        return jump[UnityEngine.Random.Range(0,max)];
+        return jump[UnityEngine.Random.Range(0, max)];
     }
     public AudioClip playerGetRandomSpinSound()
     {
