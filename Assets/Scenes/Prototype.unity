@@ -1402,7 +1402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MAX_DASH_NUM: 3
   maxHP: 0
-  HP: 1
+  HP: 3
   Strength: 1
   combo: 0
   dashNum: 3
@@ -4493,6 +4493,26 @@ Prefab:
     - target: {fileID: 157064, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5072738, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_FixedAngle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111156, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 778e9edadff81d2489baf84d1fd84a6f, type: 2}
+    - target: {fileID: 6111156, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_Offset.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111156, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_Offset.y
+      value: .74646312
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111156, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_Size.y
+      value: 14.92805
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
