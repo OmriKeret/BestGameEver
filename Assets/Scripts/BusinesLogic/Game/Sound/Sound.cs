@@ -25,6 +25,7 @@ public class Sound : MonoBehaviour {
         {
             DontDestroyOnLoad(gameObject);
             sound = this;
+            initilaizDictionary();
         }
         else if (sound != this)
         {
@@ -33,7 +34,7 @@ public class Sound : MonoBehaviour {
     }
     void Start()
     {
-        initilaizDictionary();
+   //     initilaizDictionary();
     }
 
     private void initilaizDictionary()

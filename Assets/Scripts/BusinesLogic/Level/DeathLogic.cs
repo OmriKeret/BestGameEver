@@ -195,7 +195,7 @@ public class DeathLogic : MonoBehaviour {
     public void Reset()
     {
 		Time.timeScale = 1;
-        AutoFade.LoadLevel(Application.loadedLevel, 2, 1, Color.black);
+        AutoFade.LoadLevel(Application.loadedLevel, 2, 1, Color.white);
        // Application.LoadLevel(Application.loadedLevel);
     }
 

@@ -9,7 +9,10 @@ public class UIManagerScript : MonoBehaviour {
     public bool isAnimating;
     void Start() 
     {
-        screenSlash = GameObject.Find("ScreenSlash").GetComponent<Animator>();
+        var screenSlh = GameObject.Find("ScreenSlash");
+        if(screenSlh != null ) {
+             screenSlash = screenSlh.GetComponent<Animator>();
+        }
         startSound = Sound.sound.getStartButtonSound();
         clickSound = Sound.sound.getButtonPushSound();
         audioSource = this.gameObject.GetComponent<AudioSource>();
