@@ -19,7 +19,7 @@ public interface IEnemy {
     
     bool isDead();
 
-    void StartRandomPath(int speed);
+    //void StartRandomPath(int speed);
 
     void StartOrderPath(int i_speed, EnemyLocation i_Location);
 
@@ -29,9 +29,9 @@ public interface IEnemy {
 
     void FinishedMoving();
 
-    void selectRandomPath(out Vector3[] i_path);
+   // void selectRandomPath(out Vector3[] i_path);
 
-    void selectOrderPath(out Vector3[] i_path, int i_WaveNumber);
+  //  void selectOrderPath(out Vector3[] i_path, int i_WaveNumber);
 
     EnemyMode GetEnemyMode();
 
