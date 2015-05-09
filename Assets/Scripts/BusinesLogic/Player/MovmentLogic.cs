@@ -67,7 +67,7 @@ public class MovmentLogic : MonoBehaviour {
         animationLogic.SetDashing();
 
         LeanTween.cancel(character.gameObject,true);
-        LeanTween.move(model.player.gameObject, (Vector2)target, CalculateTimeForDistance(distToGo)).setEase(LeanTweenType.easeInOutQuad).setOnComplete(
+		LeanTween.move(model.player.gameObject, (Vector2)target, CalculateTimeForDistance(distToGo)).setEase(LeanTweenType.easeInOutCubic).setOnComplete(
             () =>
             {
                 FinishedMoving(playerStatsLogic.combo);
