@@ -265,6 +265,36 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 97095076}
+<<<<<<< HEAD
+=======
+--- !u!1 &120256080
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 120256081}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &120256081
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 120256080}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 18.0100002, y: 9.01000023, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 21
+>>>>>>> 148d734fd0e4af7c4c79a46ed67cf7c2997c20fa
 --- !u!1 &141120384
 GameObject:
   m_ObjectHideFlags: 0
@@ -1363,9 +1393,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfSecBetweenEnemies: 2
-  enemy1Loc: {x: 0, y: 0}
-  enemy2Loc: {x: 0, y: 0}
-  enemy3Loc: {x: 0, y: 0}
   instantiateLocations: []
   waveEnded: 1
 --- !u!114 &605148567
@@ -1833,7 +1860,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &665893021
 Transform:
   m_ObjectHideFlags: 0
@@ -1857,7 +1884,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a6d2c3d9b84ba49be8996dac02f3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenWaves: .5
+  stupidEnemy: {fileID: 0}
+  TimeBetweenWaves: 150
 --- !u!114 &665893023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1870,9 +1898,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfSecBetweenEnemies: .5
-  enemy1Loc: {x: 0, y: 0}
-  enemy2Loc: {x: 0, y: 0}
-  enemy3Loc: {x: 0, y: 0}
   instantiateLocations: []
   waveEnded: 1
 --- !u!1 &667210678

@@ -8,21 +8,15 @@ public class GenerateWaveLogic : MonoBehaviour {
 	EnemyGeneratorLogic enemyGenerator;
 	private int waveNumber;
 	public float numberOfSecBetweenEnemies = 0.5f;
-	public Vector2 enemy1Loc;
-	public Vector2 enemy2Loc;
-	public Vector2 enemy3Loc;
     public Vector3[][] paths;
     public Vector2[] instantiateLocations;
-    public bool waveEnded = true;
+    public bool waveEnded = false;
 
 	void Start () {
-		 enemy1Loc = new Vector2(-10.5f, 14.9f);
-		 enemy2Loc = new Vector2(10.5f, 14.9f);
-		 enemy3Loc = new Vector2(0f, 14.9f);
 		_wave = new WaveLogicFactory ();
 		enemyGenerator = new EnemyGeneratorLogic ();
 		waveNumber = 1;
-        waveEnded = true;
+        waveEnded = false;
 	}
 
 

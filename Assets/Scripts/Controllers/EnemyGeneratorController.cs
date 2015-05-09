@@ -3,27 +3,41 @@ using System.Collections;
 
 public class EnemyGeneratorController : MonoBehaviour {
 
-	GameObject stupidEnemy ;
-	GenerateWaveLogic generateWaveLogic;
-	public float timeBetweenWaves = 9f;
-	private float fixedTimeStart = -10;
+	public GameObject stupidEnemy ;
+	private GenerateWaveLogic generateWaveLogic;
 	private int _waveNumber = 0;
+    private int counter = 0;
+    public int TimeBetweenWaves = 150;
+    bool startCounter = false;
 	// Use this for initialization
 
 	void Start () {
-		generateWaveLogic = GameObject.Find("Logic").GetComponent<GenerateWaveLogic>();
-		//_leftBodyPart = Instantiate (_leftBodyPartResouce, i_location, Quaternion.identity) as GameObject;
-        //GenerateWave();   
-        Debug.Log("Begin the debug");
+        //Debug only: start from wave x
+        _waveNumber = 6;
+        Debug.Log("Debug mode: Starting from wave " + _waveNumber);
+        //End debug
+        generateWaveLogic = GameObject.Find("Logic").GetComponent<GenerateWaveLogic>();
+        GenerateWave();
+        counter = 0;
+        startCounter = false;
 	}
 
 	void FixedUpdate(){
         if (generateWaveLogic.waveEnded)
         {
-            Debug.Log("generate from controller");
             generateWaveLogic.waveEnded = false;
-            GenerateWave();
+            startCounter = true;
 		}
+        if (startCounter)
+        {
+            counter++;
+        }
+        if (counter == TimeBetweenWaves)
+        {
+            startCounter = false;
+            counter = 0;
+            GenerateWave();
+        }
 	}
 
 	void GenerateWave(){

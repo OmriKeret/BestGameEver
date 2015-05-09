@@ -6,20 +6,24 @@ using UnityEngine;
     {
         public Vector3[] topRight = new Vector3[]
                 {
-                    SceneStats.TopRight, 
-                    new Vector3(30.4f,17.27f), 
-                    new Vector3(18.9f,-18.1f), 
-                    new Vector3(0.2f,5.21f), 
-                    new Vector3(0.2f,5.21f), 
-                    new Vector3(-11.21f,14.34f), 
-                    new Vector3(-26.5f,5.14f), 
+                    new Vector3(SceneStats.RightEdge,18f), 
+                    new Vector3(23.5f,9f),
+                    new Vector3(18f,6f),
+                    new Vector3(10.5f,10f),
+                    new Vector3(10.5f,10f),
+                    new Vector3(-3f,16.1f), 
+                    new Vector3(-13f,8.1f), 
                     new Vector3(SceneStats.LeftEdge,0)
                 };
         public Vector3[] topLeft = new Vector3[]
        {
-                    SceneStats.TopLeft, 
-                    new Vector3(-22f,5.3f), 
-                    new Vector3(22f,5.5f), 
+                    new Vector3(SceneStats.LeftEdge,18f), 
+                    new Vector3(-21.5f,9f),
+                    new Vector3(-16f,6f),
+                    new Vector3(-8.5f,10f),
+                    new Vector3(-8.5f,10f),
+                    new Vector3(5f,16.1f), 
+                    new Vector3(15f,8.1f), 
                     new Vector3(SceneStats.RightEdge,0)
                 };
         public Vector3[] topMid = new Vector3[]

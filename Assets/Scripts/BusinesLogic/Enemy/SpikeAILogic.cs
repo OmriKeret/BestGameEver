@@ -12,14 +12,19 @@ public class SpikeAILogic : MonoBehaviour, IEnemy {
     public float timeToFinishPath = 15f;
     public float minTimeForPath = 4f;
     public float maxTimeForPath = 30f;
-    private Vector3[][] _allPaths;
     private SpriteRenderer _spriteRenderer;
     AudioSource _audioSource;
     private int stateCounter = 0;
     public int normalTime = 90;
     public int spikeTime = 150;
+    private Vector3[][] _allPaths;
+    private Dictionary<EnemyLocation, Vector3[]> _pathMap;
+    private StupidPaths _allVectorPaths;
+
+
     
 
+    // Use this for initialization
     // Use this for initialization
     void Awake()
     {
@@ -29,12 +34,31 @@ public class SpikeAILogic : MonoBehaviour, IEnemy {
         _leftBodyPartResouce = Resources.Load("spikeL") as GameObject;
         _rightBodyPartResouce = Resources.Load("spikeR") as GameObject;
         GetComponent<Rigidbody2D>().gravityScale = 0;
+        _allVectorPaths = new StupidPaths();
         initPaths();
-        _stats.initAnimation();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-
-
     }
+
+    public bool lifeDown(int str)
+    {
+        _stats.lifeDown(str);
+        return isDead();
+    }
+
+    public bool isDead()
+    {
+        return _stats.life <= 0;
+    }
+
+    void IEnemy.Death()
+    {
+        Destroy(this.gameObject);
+    }
+
+    Vector2 IEnemy.MoveToPoint(Vector2 point)
+    {
+        return (new Vector2(point.x * (-1), point.y * (-1))).normalized;
+    }
+
 
     void FixedUpdate()
     {
@@ -61,33 +85,6 @@ public class SpikeAILogic : MonoBehaviour, IEnemy {
     {
         _stats._mode = EnemyMode.None;
         _spriteRenderer.sprite = _stats.GetCurrentAnimation();
-    }
-
-    public bool lifeDown(int str)
-    {
-        _stats.lifeDown(str);
-        return isDead();
-    }
-
-    public bool isDead()
-    {
-        return _stats.life <= 0;
-    }
-
-    void IEnemy.Death()
-    {
-        Destroy(this.gameObject);
-    }
-
-    Vector2 IEnemy.MoveToPoint(Vector2 point)
-    {
-        return (new Vector2(point.x * (-1), point.y * (-1))).normalized;
-    }
-
-    //TODO: Get the location from the game manager
-    Vector2 IEnemy.FindPlayerLocation()
-    {
-        return new Vector2(0, 0);
     }
 
     public void SetStats(AEnemyStats i_stats)
@@ -117,11 +114,24 @@ public class SpikeAILogic : MonoBehaviour, IEnemy {
         }
     }
 
-    //TODO: change this to map
+    //TODO: Get the location from the game manager
+    Vector2 IEnemy.FindPlayerLocation()
+    {
+        return new Vector2(0, 0);
+    }
+
+
+
     public void StartOrderPath(int i_speed, EnemyLocation i_Location)
     {
-        Vector3[] path = null;
-        //selectOrderPath(out path, i_WaveNumber);
+        Vector3[] path;
+        if (!_pathMap.TryGetValue(i_Location, out path))
+        {
+            Debug.Log("Error choosing path (StartOrderPath in stupid)");
+            Debug.Log("Caused by " + i_Location);
+        }
+
+        //selectOrderPath(out path, i_PathNumber);
 
         LeanTween.move(this.gameObject, path, calculateTime(i_speed)).setEase(LeanTweenType.linear).setOnComplete(() =>
         {
@@ -177,9 +187,16 @@ public class SpikeAILogic : MonoBehaviour, IEnemy {
         return minTimeForPath * (_stats.MAX_SPEED / speed);
     }
 
-    //TODO: set to map
     public void initPaths()
     {
+        _pathMap = new Dictionary<EnemyLocation, Vector3[]>();
+        _pathMap.Add(EnemyLocation.TopLeft, _allVectorPaths.topLeft);
+        _pathMap.Add(EnemyLocation.TopRight, _allVectorPaths.topRight);
+        _pathMap.Add(EnemyLocation.MidRight, _allVectorPaths.midRight);
+        _pathMap.Add(EnemyLocation.MidLeft, _allVectorPaths.midLeft);
+        _pathMap.Add(EnemyLocation.TopMid, _allVectorPaths.topMid);
+        _pathMap.Add(EnemyLocation.BottomLeft, _allVectorPaths.bottomLeft);
+        _pathMap.Add(EnemyLocation.BottomRight, _allVectorPaths.bottomRight);
 
     }
     public void playSpawnSound()
