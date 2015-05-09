@@ -10,26 +10,35 @@ public class AnimationLogic : MonoBehaviour
     public bool isSlicing = false;
     public float hitChangeColorTIme = 0.3f;
 	public GameObject character ;
-	public GameObject playerContainer;
+ 
     public LayerMask whatIsGround;
 	public Animator animator;
     private float groundRadius = 0.5f;
+    bool fliping;
 	void Start() {
-		playerContainer = GameObject.Find("PlayerContainer");
 		character = GameObject.Find("PlayerManager");
-        animator = character.GetComponent<Animator>();
+		animator = GameObject.Find("PlayerManager").GetComponent<Animator>();
 		groundCheck = GameObject.Find("PlayerManager/GroundCheck").GetComponentInChildren<Transform>();
 	}
 	void Update() {
         CheckIfGrounded();
 	}
+    void LateUpdate()
+    {
+        if (fliping)
+        {
+            Debug.Log("late update");
+            Flip();
+            fliping = false;
+        }
+    }
 	public void OnMoveSetDirection(moveAnimationModel model) 
 	{
         Debug.Log("moving direction is positive: " + (model.direction.x > 0));
 		if (model.direction.x > 0 && !faceRight)
-			Flip ();
+            Flip();
 		else if (model.direction.x < 0 && faceRight)
-			Flip ();
+            Flip();
 	}
     
 
@@ -62,9 +71,9 @@ public class AnimationLogic : MonoBehaviour
 	{
 		faceRight = !faceRight;
         Debug.Log("changing local scale");
-		Vector3 theScale = playerContainer.transform.localScale;
+		Vector3 theScale = character.transform.localScale;
 		theScale.x *= -1;
-		playerContainer.transform.localScale = theScale;	
+		character.transform.localScale = theScale;	
 	}
 
     internal void playerHit()
