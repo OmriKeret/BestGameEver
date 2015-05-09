@@ -124,7 +124,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 437954, guid: 529b187838370da419ab3502d624e310, type: 2}
       propertyPath: m_RootOrder
-      value: 19
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 11433534, guid: 529b187838370da419ab3502d624e310, type: 2}
       propertyPath: playerHitted
@@ -1402,7 +1402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MAX_DASH_NUM: 3
   maxHP: 0
-  HP: 1
+  HP: 3
   Strength: 1
   combo: 0
   dashNum: 3
@@ -1483,7 +1483,7 @@ MonoBehaviour:
   groundCheck: {fileID: 0}
   faceRight: 1
   isDashing: 0
-  grounded: 1
+  grounded: 0
   isSlicing: 0
   hitChangeColorTIme: .300000012
   character: {fileID: 0}
@@ -1491,7 +1491,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   animator: {fileID: 0}
-  groundRadius: .5
 --- !u!114 &605148573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3679,7 +3678,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 17
 --- !u!1 &1357191031
 GameObject:
   m_ObjectHideFlags: 0
@@ -4201,7 +4200,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 19
 --- !u!1 &1607429113
 GameObject:
   m_ObjectHideFlags: 0
@@ -4460,7 +4459,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 477874, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -.400000006
+      value: 2.77999997
       objectReference: {fileID: 0}
     - target: {fileID: 477874, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
       propertyPath: m_LocalPosition.y
@@ -4489,10 +4488,6 @@ Prefab:
     - target: {fileID: 477874, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 157064, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
-      propertyPath: m_TagString
-      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
@@ -5124,7 +5119,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 457674, guid: 18b1c969bf9bc8f4cb1c2c5345cde54c, type: 2}
       propertyPath: m_RootOrder
-      value: 17
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 170498, guid: 18b1c969bf9bc8f4cb1c2c5345cde54c, type: 2}
       propertyPath: m_Name

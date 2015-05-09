@@ -51,7 +51,7 @@ public class MovmentLogic : MonoBehaviour {
 		playerStatsLogic.removeOneDash();
         soundLogic.playJumpSound();
         ResetRotation();
-        animationLogic.SetDashing();
+        
 
         Vector2 target = new Vector2 (model.touchPoint.x, model.touchPoint.y);
 		Vector2 vecBetween = target - model.player.position;
@@ -64,7 +64,7 @@ public class MovmentLogic : MonoBehaviour {
 		target = model.player.position + model.Direction * distToGo;
         RotateToDash(vecBetween);
 		animationLogic.OnMoveSetDirection (new moveAnimationModel{direction = vecBetween.normalized});
-        
+        animationLogic.SetDashing();
 
         LeanTween.cancel(character.gameObject,true);
         LeanTween.move(model.player.gameObject, (Vector2)target, CalculateTimeForDistance(distToGo)).setEase(LeanTweenType.easeInOutQuad).setOnComplete(
