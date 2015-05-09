@@ -13,7 +13,7 @@ public class AnimationLogic : MonoBehaviour
  
     public LayerMask whatIsGround;
 	public Animator animator;
-    private float groundRadius = 0.6f;
+    private float groundRadius = 1f;
     bool fliping;
 	void Start() {
 		character = GameObject.Find("PlayerManager");

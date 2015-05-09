@@ -134,6 +134,10 @@ Prefab:
       propertyPath: playerDie
       value: 
       objectReference: {fileID: 8300000, guid: ac3196d1252a55e439cdf05baba567e8, type: 3}
+    - target: {fileID: 11433534, guid: 529b187838370da419ab3502d624e310, type: 2}
+      propertyPath: backgroundMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: aeb89bb82e0ab0c4cb18266e27bf2be2, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 529b187838370da419ab3502d624e310, type: 2}
   m_IsPrefabParent: 0
@@ -731,7 +735,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 484, y: 1063}
+  m_AnchoredPosition: {x: 573, y: 1063}
   m_SizeDelta: {x: 634, y: 760}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &200420846
@@ -1099,7 +1103,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 894772056da7cbe4a8c9d3fc0d157cf8, type: 3}
+  m_audioClip: {fileID: 8300000, guid: aeb89bb82e0ab0c4cb18266e27bf2be2, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -4818,7 +4822,7 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: .5, y: 0}
   m_AnchorMax: {x: .5, y: 0}
-  m_AnchoredPosition: {x: 3, y: 1068}
+  m_AnchoredPosition: {x: 44, y: 1068}
   m_SizeDelta: {x: 634, y: 760}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1378797009
@@ -5599,6 +5603,14 @@ Prefab:
     - target: {fileID: 6111156, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
       propertyPath: m_Size.x
       value: 6.34646702
+      objectReference: {fileID: 0}
+    - target: {fileID: 418808, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 3.9000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 418808, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -4.69999981
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
