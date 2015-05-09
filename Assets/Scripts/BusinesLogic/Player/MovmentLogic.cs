@@ -55,12 +55,13 @@ public class MovmentLogic : MonoBehaviour {
 
         Vector2 target = new Vector2 (model.touchPoint.x, model.touchPoint.y);
 		Vector2 vecBetween = target - model.player.position;
-		//var distToGo = vecBetween.magnitude;
-        //if (distToGo > dashDist) {
-        var distToGo = dashDist;
-        //    target = model.player.position + model.Direction * dashDist;
-        //}
-        target = model.player.position + model.Direction * dashDist;
+        var distToGo = vecBetween.magnitude;
+        if (distToGo > dashDist)
+        {
+            distToGo = dashDist;
+           //target = model.player.position + model.Direction * dashDist;
+        }
+		target = model.player.position + model.Direction * distToGo;
         RotateToDash(vecBetween);
 		animationLogic.OnMoveSetDirection (new moveAnimationModel{direction = vecBetween.normalized});
         

@@ -60,8 +60,8 @@ public abstract class AEnemyStats : MonoBehaviour {
 
     public Sprite GetCurrentAnimation()
     {
-        Sprite sprite;
-        _AnimationState.TryGetValue(_mode,out sprite);
+        Sprite sprite = null;
+     //   _AnimationState.TryGetValue(_mode,out sprite); //put in commant cuz of errors
         return sprite;
     }
 }
