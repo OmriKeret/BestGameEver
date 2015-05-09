@@ -24,7 +24,7 @@ Transform:
   m_GameObject: {fileID: 173494}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.44999981, y: 6.17999983, z: 79.7799988}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -65,12 +65,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 072cec892b7c4204e98e23517079f2c8, type: 3}
   - {fileID: 8300000, guid: 08a528ddb9516bf44a431b63890c5e50, type: 3}
   - {fileID: 8300000, guid: c8bf631831c17c644996d1e9619336ed, type: 3}
-  backgroundMusic: {fileID: 8300000, guid: 894772056da7cbe4a8c9d3fc0d157cf8, type: 3}
+  backgroundMusic: {fileID: 8300000, guid: aeb89bb82e0ab0c4cb18266e27bf2be2, type: 3}
   landingSound: {fileID: 8300000, guid: 815e541b989d5774ebb15b91931f770f, type: 3}
   startMusicQ: {fileID: 8300000, guid: 5444db68280f24c408489ae54801a122, type: 3}
   startButton: {fileID: 8300000, guid: 0b65fa463323ab2438d277f9ee725018, type: 3}
   fall: {fileID: 8300000, guid: e3fcf8f47534f0847885f0494c00da55, type: 3}
   buttonPush: {fileID: 8300000, guid: e48ac953b7703af4c80ec7ec3896bc88, type: 3}
+  playerHitted: {fileID: 8300000, guid: d50de0d111cae5c40820c2970ba544fa, type: 3}
+  playerDie: {fileID: 8300000, guid: ac3196d1252a55e439cdf05baba567e8, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
