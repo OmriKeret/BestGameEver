@@ -6,8 +6,8 @@ using System;
 public class Swords  {
 
     public List<ClothModel> swords = new List<ClothModel> {
-        new ClothModel{id = 1, description = "normal mexican sword", jemPrice = -1, name = "Mexican sword", owned = true, part = BodyPart.sword, PJPrice = 0,characterSpriteFront = "Cloth/Sword/sword", selected = true, statsImprove = new StatsImprovementModel{}},
-        new ClothModel{id = 2, description = "leather cowboy sword", jemPrice = -1, name = "cowboy sword", owned = false, part = BodyPart.sword, PJPrice = 0,characterSpriteFront = "Cloth/Sword/sword2", selected = false, statsImprove = new StatsImprovementModel{}}
+        new ClothModel{id = 1, description = "Bringing old school back.", jemPrice = -1, name = "Samurai Sword", owned = true, part = BodyPart.sword, PJPrice = 0,characterSpriteFront = "Cloth/Sword/sword", selected = true, statsImprove = new StatsImprovementModel{}},
+		new ClothModel{id = 2, description = "This sword can slice the toughest of demon skins. also really good for sandwiches!", jemPrice = -1, name = "Sword of Kickassery", owned = false, part = BodyPart.sword, PJPrice = 0,characterSpriteFront = "Cloth/Sword/sword2", selected = false, statsImprove = new StatsImprovementModel{}}
 
         };
 
