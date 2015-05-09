@@ -5,5 +5,5 @@ using System;
 public class IOCurrencyModel  {
 
     public int PJ;
-    public int jems;
+    public int gems;
 }

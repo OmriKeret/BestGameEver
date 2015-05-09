@@ -238,7 +238,11 @@ public class DeathLogic : MonoBehaviour {
     {
         addedCurrency = currencyLogic.updateCurrencyByScore(score);
         currencyDiviser = currencyLogic.deviderToScore;
-        //shouldWriteCurrency = true;
+        if (!changeScoreText)
+        {
+            shouldWriteCurrency = true;
+        }
+        
     }
 
     public void startChangingScoreForCurrency()

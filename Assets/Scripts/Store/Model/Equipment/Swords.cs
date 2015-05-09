@@ -7,7 +7,7 @@ public class Swords  {
 
     public List<ClothModel> swords = new List<ClothModel> {
         new ClothModel{id = 1, description = "normal mexican sword", jemPrice = -1, name = "Mexican sword", owned = true, part = BodyPart.sword, PJPrice = 0,characterSpriteFront = "Cloth/Sword/sword", selected = true, statsImprove = new StatsImprovementModel{}},
-        new ClothModel{id = 2, description = "leather cowboy sword", jemPrice = -1, name = "cowboy sword", owned = false, part = BodyPart.sword, PJPrice = 5,characterSpriteFront = "Cloth/Sword/sword2", selected = false, statsImprove = new StatsImprovementModel{}}
+        new ClothModel{id = 2, description = "leather cowboy sword", jemPrice = -1, name = "cowboy sword", owned = false, part = BodyPart.sword, PJPrice = 0,characterSpriteFront = "Cloth/Sword/sword2", selected = false, statsImprove = new StatsImprovementModel{}}
 
         };
 
