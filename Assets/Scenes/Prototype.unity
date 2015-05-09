@@ -87,56 +87,6 @@ NavMeshSettings:
     cellSize: .166666672
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &8497465
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 437954, guid: 529b187838370da419ab3502d624e310, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 5.44999981
-      objectReference: {fileID: 0}
-    - target: {fileID: 437954, guid: 529b187838370da419ab3502d624e310, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 6.17999983
-      objectReference: {fileID: 0}
-    - target: {fileID: 437954, guid: 529b187838370da419ab3502d624e310, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 79.7799988
-      objectReference: {fileID: 0}
-    - target: {fileID: 437954, guid: 529b187838370da419ab3502d624e310, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 437954, guid: 529b187838370da419ab3502d624e310, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 437954, guid: 529b187838370da419ab3502d624e310, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 437954, guid: 529b187838370da419ab3502d624e310, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 437954, guid: 529b187838370da419ab3502d624e310, type: 2}
-      propertyPath: m_RootOrder
-      value: 21
-      objectReference: {fileID: 0}
-    - target: {fileID: 11433534, guid: 529b187838370da419ab3502d624e310, type: 2}
-      propertyPath: playerHitted
-      value: 
-      objectReference: {fileID: 8300000, guid: d50de0d111cae5c40820c2970ba544fa, type: 3}
-    - target: {fileID: 11433534, guid: 529b187838370da419ab3502d624e310, type: 2}
-      propertyPath: playerDie
-      value: 
-      objectReference: {fileID: 8300000, guid: ac3196d1252a55e439cdf05baba567e8, type: 3}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 529b187838370da419ab3502d624e310, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &14876875
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,6 +149,59 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 14876875}
+--- !u!1 &21635186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 173494, guid: 529b187838370da419ab3502d624e310, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 21635188}
+  - 114: {fileID: 21635187}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &21635187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11433534, guid: 529b187838370da419ab3502d624e310,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 21635186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 387d119d56bc41f4bb0feb63b0a5c348, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goblinDeath: []
+  goblinSpawn: []
+  jump: []
+  spin: []
+  swordSlice: []
+  backgroundMusic: {fileID: 0}
+  landingSound: {fileID: 0}
+  startMusicQ: {fileID: 0}
+  startButton: {fileID: 0}
+  fall: {fileID: 0}
+  buttonPush: {fileID: 0}
+  playerHitted: {fileID: 0}
+  playerDie: {fileID: 0}
+--- !u!4 &21635188
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 437954, guid: 529b187838370da419ab3502d624e310, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 21635186}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.44999981, y: 6.17999983, z: 79.7799988}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 20
 --- !u!1 &97095076
 GameObject:
   m_ObjectHideFlags: 0
@@ -1487,7 +1490,6 @@ MonoBehaviour:
   isSlicing: 0
   hitChangeColorTIme: .300000012
   character: {fileID: 0}
-  playerContainer: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1024
