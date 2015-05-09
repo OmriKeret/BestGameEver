@@ -124,7 +124,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 437954, guid: 529b187838370da419ab3502d624e310, type: 2}
       propertyPath: m_RootOrder
-      value: 20
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 11433534, guid: 529b187838370da419ab3502d624e310, type: 2}
       propertyPath: playerHitted
@@ -265,8 +265,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 97095076}
-<<<<<<< HEAD
-=======
 --- !u!1 &120256080
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,7 +292,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 21
->>>>>>> 148d734fd0e4af7c4c79a46ed67cf7c2997c20fa
 --- !u!1 &141120384
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,7 +838,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 392089936}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01bffa8aa898b437183cd5617f7b5303, type: 3}
   m_Name: 
@@ -849,13 +846,13 @@ MonoBehaviour:
   pathName: EnemyPath1
   pathColor: {r: 0, g: 1, b: 1, a: 1}
   nodes:
-  - {x: 23.1682053, y: 32.7776146, z: 0}
-  - {x: 16.5362663, y: 23.9460239, z: 0}
-  - {x: 15.8000002, y: -5.75, z: 0}
-  - {x: 5.78999996, y: 10.1099997, z: 0}
-  - {x: -19.6414394, y: -4.12390852, z: 0}
-  - {x: -7.59688616, y: -1.11000001, z: 0}
-  - {x: -34.6086044, y: 0, z: 0}
+  - {x: 32, y: 22, z: 0}
+  - {x: 30.3999996, y: 17.2700005, z: 0}
+  - {x: 19.2999992, y: -2.0999999, z: 0}
+  - {x: 3.4000001, y: 11.21, z: 0}
+  - {x: -11.21, y: 14.3400002, z: 0}
+  - {x: -26.5, y: 5.13999987, z: 0}
+  - {x: -29, y: 0, z: 0}
   nodeCount: 7
   initialized: 1
   initialName: New Path 1
@@ -1309,12 +1306,9 @@ GameObject:
   - 114: {fileID: 605148573}
   - 114: {fileID: 605148574}
   - 114: {fileID: 605148575}
-<<<<<<< HEAD
-=======
   - 114: {fileID: 605148576}
   - 114: {fileID: 605148577}
   - 114: {fileID: 605148578}
->>>>>>> 1512325dae472849a1df48f0622528cbbf0434b4
   m_Layer: 0
   m_Name: Logic
   m_TagString: Untagged
@@ -1554,8 +1548,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sliceDelay: 0
   fallDelay: .300000012
-<<<<<<< HEAD
-=======
 --- !u!114 &605148576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1599,7 +1591,6 @@ MonoBehaviour:
   progressBarFull: {fileID: 0}
   changeColorDuration: .200000003
   speed: .300000012
->>>>>>> 1512325dae472849a1df48f0622528cbbf0434b4
 --- !u!1 &617068833
 GameObject:
   m_ObjectHideFlags: 0
@@ -1734,8 +1725,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-<<<<<<< HEAD
-=======
 --- !u!1 &639179930
 GameObject:
   m_ObjectHideFlags: 0
@@ -1843,7 +1832,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 663038035}
->>>>>>> 1512325dae472849a1df48f0622528cbbf0434b4
 --- !u!1 &665893020
 GameObject:
   m_ObjectHideFlags: 0
@@ -3825,6 +3813,7 @@ RectTransform:
   - {fileID: 914580400}
   - {fileID: 468269596}
   - {fileID: 1019887433}
+  - {fileID: 663038036}
   m_Father: {fileID: 1993472764}
   m_RootOrder: 3
   m_AnchorMin: {x: .5, y: 0}
@@ -5135,7 +5124,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 457674, guid: 18b1c969bf9bc8f4cb1c2c5345cde54c, type: 2}
       propertyPath: m_RootOrder
-      value: 18
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 170498, guid: 18b1c969bf9bc8f4cb1c2c5345cde54c, type: 2}
       propertyPath: m_Name
@@ -5144,6 +5133,21 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 18b1c969bf9bc8f4cb1c2c5345cde54c, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1973416763 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 170498, guid: 18b1c969bf9bc8f4cb1c2c5345cde54c, type: 2}
+  m_PrefabInternal: {fileID: 1973416762}
+--- !u!114 &1973416764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1973416763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28d30cce34b185848a7395434a80e1e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1984550132
 GameObject:
   m_ObjectHideFlags: 0

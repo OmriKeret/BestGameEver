@@ -134,8 +134,8 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 532, y: 52}
-  m_SizeDelta: {x: 160, y: 134}
+  m_AnchoredPosition: {x: 512, y: 156}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &158444189
 MonoBehaviour:
@@ -203,7 +203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: b8eda41b69955c241bd51d2ac9975253, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1521f45263f32d844b83a666bc2ef28d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: c5aa8e697512a254ab3c48cdeff1c7ad, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 86813442d59358b4db81470d11e9d9fe, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -330,7 +330,7 @@ RectTransform:
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: -1, y: -227}
-  m_SizeDelta: {x: 185, y: 183}
+  m_SizeDelta: {x: 185, y: 185}
   m_Pivot: {x: .5, y: .5}
 --- !u!1 &613278342
 GameObject:
@@ -379,7 +379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: 555869bf0a60bdd44a315a2bba3a71d2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 256e868ae21298a4cb115230fe14785c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
