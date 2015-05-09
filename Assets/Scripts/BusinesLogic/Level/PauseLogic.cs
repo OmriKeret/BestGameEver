@@ -12,6 +12,7 @@ public class PauseLogic : MonoBehaviour {
     Image buttonImage;
     AudioSource audioSource;
     AudioClip clickSound;
+    TouchInterpeter touch;
 	// Use this for initialization
 	void Start () {
         PauseMenu = GameObject.Find("PauseMenu");
@@ -22,6 +23,7 @@ public class PauseLogic : MonoBehaviour {
         imageOpen = Resources.Load<Sprite>("resume1");
         buttonImage = GameObject.Find("Pause").GetComponent<Image>();
         clickSound = Sound.sound.getButtonPushSound();
+        touch = GameObject.Find("TouchInterpter").GetComponent<TouchInterpeter>();
 	}
 	
 	// Update is called once per frame
@@ -32,10 +34,12 @@ public class PauseLogic : MonoBehaviour {
     public void onPause(){
         if (isMenuOpen)
         {
+            touch.UnsetDisableMovment();
             closeMenu();
         }
         else
         {
+            touch.SetDisableMovment();
             openMenu();
         }
     }

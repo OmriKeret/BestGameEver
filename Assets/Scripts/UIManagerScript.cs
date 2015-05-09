@@ -20,6 +20,7 @@ public class UIManagerScript : MonoBehaviour {
 
 	public void StartGame()
 	{
+		Time.timeScale = 1;
         AudioClip sound = startSound;
         if (Application.loadedLevelName.Equals("Prototype"))
         {
@@ -34,6 +35,7 @@ public class UIManagerScript : MonoBehaviour {
    
 	public void ToMainMenu()
 	{
+		Time.timeScale = 1;
        // audioSource.clip = clickSound;
         AudioClip sound = startSound;
         if (Application.loadedLevelName.Equals("Prototype"))
@@ -47,6 +49,7 @@ public class UIManagerScript : MonoBehaviour {
 
 	public void ToStore()
 	{
+		Time.timeScale = 1;
         AudioClip sound = startSound;
         if (Application.loadedLevelName.Equals("Prototype"))
         {
@@ -71,6 +74,7 @@ public class UIManagerScript : MonoBehaviour {
         {
             yield return new WaitForSeconds(0.1f);
         }
+       
         AutoFade.LoadLevel(levelName, 0, 1, Color.white);
        // Application.LoadLevel(levelName);
     }
