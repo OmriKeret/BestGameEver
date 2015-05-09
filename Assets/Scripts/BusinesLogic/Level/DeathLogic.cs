@@ -60,7 +60,7 @@ public class DeathLogic : MonoBehaviour {
         missionLogic = this.gameObject.GetComponent<MissionLogic>();
         losePanel = GameObject.Find("LosePanel");
         OrigPos = losePanel.transform.position;// new Vector3(0, 30, 0);
-        EndPos = new Vector3(OrigPos.x, 8, 0);
+        EndPos = new Vector3(OrigPos.x, 12, 0);
         touch = GameObject.Find("TouchInterpter").GetComponent<TouchInterpeter>();
         movmentLogic = this.gameObject.GetComponent<MovmentLogic>();
         playerStatsLogic = this.gameObject.GetComponent<PlayerStatsLogic>();
@@ -101,7 +101,7 @@ public class DeathLogic : MonoBehaviour {
         deathMissionsToggleAndTextNew[missionNum].missionText = GameObject.Find("LosePanel/LoseMission3New/LoseMissionText3").GetComponent<Text>();
         deathMissionsToggleAndTextNew[missionNum].missionToggle = GameObject.Find("LosePanel/LoseMission3New").GetComponent<Toggle>();
 
-        origMissionTextX = deathMissionsToggleAndText[missionNum].missionToggle.transform.position.x - 1;
+        origMissionTextX = deathMissionsToggleAndText[missionNum].missionToggle.transform.position.x;
         EndMissionTextX = origMissionTextX - 30;
 		deathScore = GameObject.Find("LosePanel/LoseScore").GetComponent<Text>();
         currencyText = GameObject.Find("LosePanel/LosePJ").GetComponent<Text>();
