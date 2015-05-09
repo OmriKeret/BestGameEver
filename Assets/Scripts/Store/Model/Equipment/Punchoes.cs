@@ -6,8 +6,8 @@ using System;
 public class Punchoes {
 
     public List<ClothModel> pounchoes = new List<ClothModel> {
-        new ClothModel{id = 1, description = "normal mexican pouncho", jemPrice = -1, name = "Mexican pouncho", owned = true, part = BodyPart.puncho, PJPrice = 0,characterSpriteFront = "Cloth/Poncho/poncho",characterSpriteBack = "Cloth/Poncho/poncho back", selected = true, statsImprove = new StatsImprovementModel{} },
-        new ClothModel{id = 2, description = "leather cowboy pouncho", jemPrice = -1, name = "cowboy pouncho", owned = false, part = BodyPart.puncho, PJPrice = 5,characterSpriteFront = "Cloth/Poncho/poncho2",characterSpriteBack = "Cloth/Poncho/poncho back", selected = false, statsImprove = new StatsImprovementModel{}}
+        new ClothModel{id = 1, description = "Given to him at birth, the Poncho is Ponchjoe's source of awesomeness.", jemPrice = -1, name = "Classic Poncho", owned = true, part = BodyPart.puncho, PJPrice = 0,characterSpriteFront = "Cloth/Poncho/poncho",characterSpriteBack = "Cloth/Poncho/poncho back", selected = true, statsImprove = new StatsImprovementModel{} },
+		new ClothModel{id = 2, description = "Imbued with epic stuff. 'nuff said.", jemPrice = -1, name = "Black Sun Poncho", owned = false, part = BodyPart.puncho, PJPrice = 5,characterSpriteFront = "Cloth/Poncho/poncho2",characterSpriteBack = "Cloth/Poncho/poncho back", selected = false, statsImprove = new StatsImprovementModel{}}
 
         };
 
