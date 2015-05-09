@@ -1341,7 +1341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 971e4ca46819a7a4aa07c20d6148bc1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashTime: .300000012
+  dashTime: .200000003
   dashDist: 15
   hoverTime: .100000001
   timeToRotate: .5
@@ -1469,6 +1469,7 @@ MonoBehaviour:
   timeToRemoveMission: .300000012
   missionTitle: {fileID: 0}
   missionTitleNew: {fileID: 0}
+  timeToWaitFromScoreLastUpdateToCurrencyChange: 1
 --- !u!114 &605148572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4653,11 +4654,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 477874, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 2.77999997
+      value: .899999976
       objectReference: {fileID: 0}
     - target: {fileID: 477874, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 13.5600004
+      value: -2.5999999
       objectReference: {fileID: 0}
     - target: {fileID: 477874, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
       propertyPath: m_LocalPosition.z
