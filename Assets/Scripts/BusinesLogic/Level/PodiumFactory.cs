@@ -17,7 +17,14 @@ using System.Collections.Generic;
                 new PodiumModel[]{new PodiumModel(0)},
                 new PodiumModel[]{new PodiumModel(0)},
                 new PodiumModel[]{new PodiumModel(0)},
-                new PodiumModel[]{new PodiumModel(0)}
+                new PodiumModel[]{new PodiumModel(0)},
+                new PodiumModel[]{new PodiumModel(0)},
+                new PodiumModel[]{new PodiumModel(new Vector3(-10.99f, -7.22f, 0)),new PodiumModel(new Vector3(10.99f, 7.22f, 0))},
+                new PodiumModel[]{new PodiumModel(0)},
+                new PodiumModel[]{new PodiumModel(new Vector3(-10.99f, -7.22f, 0)),new PodiumModel(new Vector3(10.99f, 7.22f, 0))},
+                new PodiumModel[]{new PodiumModel(new Vector3(-10.99f, 7.22f, 0)),new PodiumModel(new Vector3(10.99f, -7.22f, 0))},
+                new PodiumModel[]{new PodiumModel(new Vector3(-10.99f, -7.22f, 0)),new PodiumModel(new Vector3(10.99f, 7.22f, 0))},
+                new PodiumModel[]{new PodiumModel(new Vector3(-10.99f, 7.22f, 0)),new PodiumModel(new Vector3(10.99f, 7.22f, 0)),new PodiumModel(0)},
             };
         }
 
@@ -48,7 +55,10 @@ using System.Collections.Generic;
         {
             foreach (GameObject currentPodium in activePodiums)
             {
-                GameObject.Destroy(currentPodium);
+                if (currentPodium != null)
+                {
+                    currentPodium.GetComponent<PodiumLogic>().downForGood();
+                }
             }
         }
 

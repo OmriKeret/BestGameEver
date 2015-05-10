@@ -142,8 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7706a84143c71ac47ab4c0f2779b9f26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToFinishPath: 45
-  minTimeForPath: 15
+  timeToFinishPath: 40
+  minTimeForPath: 10
   maxTimeForPath: 40
 --- !u!114 &11424654
 MonoBehaviour:

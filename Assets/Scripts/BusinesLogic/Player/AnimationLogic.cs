@@ -34,7 +34,7 @@ public class AnimationLogic : MonoBehaviour
     }
 	public void OnMoveSetDirection(moveAnimationModel model) 
 	{
-        Debug.Log("moving direction is positive: " + (model.direction.x > 0));
+        //Debug.Log("moving direction is positive: " + (model.direction.x > 0));
 		if (model.direction.x > 0 && !faceRight)
             Flip();
 		else if (model.direction.x < 0 && faceRight)
@@ -70,7 +70,7 @@ public class AnimationLogic : MonoBehaviour
 	private void Flip()
 	{
 		faceRight = !faceRight;
-        Debug.Log("changing local scale");
+        //Debug.Log("changing local scale");
 		Vector3 theScale = character.transform.localScale;
 		theScale.x *= -1;
 		character.transform.localScale = theScale;	

@@ -12,8 +12,8 @@ public class PodiumLogic : MonoBehaviour {
     public float angleToShakeTo = 4;
 
     //podium general parameters
-    public float podiumOriginalX = 2f;
-    public float podiumOriginalY = -7.22f;
+    public Vector3 originalLocation;
+    public Vector3 downLocation;
 
     //platform time managment
     public float immunityTimeFromBeginning;
@@ -21,21 +21,37 @@ public class PodiumLogic : MonoBehaviour {
     public float timeToWaitDown;
 
     private bool goingDown = false;
+    private bool firstJump = true;
+    private bool secondJump = true;
     GameObject podium;
 	// Use this for initialization
 	void Start () {
-        podium = this.gameObject;
+        immunityTimeFromBeginning = 0.1f;
+        goingDown = false;
+        firstJump = true;
+        secondJump = true;
 	}
     void FixedUpdate()
     {
     }
 
+    public void initPodium(GameObject i_Podium)
+    {
+        podium = i_Podium;
+        originalLocation = podium.transform.position;
+        downLocation = originalLocation - new Vector3(0, 20, 0);
+        podium.transform.position = downLocation;
+        startGoUp();
+    }
+
     private void startGoUp()
     {
         goingDown = false;
+        firstJump = true;
+        secondJump = true;
         LeanTween.cancel(podium,false);
         resetRotation();
-        LeanTween.move(podium, new Vector2(podiumOriginalX, podiumOriginalY), timeToComeBackUp).setDelay(timeToWaitDown);
+        LeanTween.move(podium, originalLocation, timeToComeBackUp).setDelay(timeToWaitDown);
 
     }
 
@@ -56,9 +72,15 @@ public class PodiumLogic : MonoBehaviour {
         //if you are still immune return
         //Debug.Log("fixed time is : " + Time.fixedTime);
         //Debug.Log("immunityTimeFromBeginning: " + immunityTimeFromBeginning);
-        if (Time.fixedTime - immunityTimeFromBeginning < 0)
+        if (firstJump)
         {
+            firstJump = false;
             return; 
+        }
+        if (secondJump)
+        {
+            secondJump = false;
+            return;
         }
         if (goingDown)
         {
@@ -68,17 +90,32 @@ public class PodiumLogic : MonoBehaviour {
         {
             goingDown = true;
         }
-       // Debug.Log("podium go down");
+       Debug.Log("podium go down ");
+       LeanTween.rotateZ(podium, angleToShakeTo, shakingTime).setDelay(timeToWaitBeforeShaking).setOnComplete(
+          () =>
+          {
+              shakingPingPong();
+          });
+       LeanTween.move(podium, downLocation, timeToGoDown).setDelay(timeToShake + timeToWaitBeforeShaking).setOnComplete(
+          () =>
+          {
+              startGoUp();
+          });
+    }
+
+    public void downForGood()
+    {
+        Debug.Log("podium go down and out");
         LeanTween.rotateZ(podium, angleToShakeTo, shakingTime).setDelay(timeToWaitBeforeShaking).setOnComplete(
            () =>
            {
                shakingPingPong();
            });
-        LeanTween.move(podium, new Vector2(podiumOriginalX, podiumOriginalY - 20), timeToGoDown).setDelay(timeToShake + timeToWaitBeforeShaking).setOnComplete(
+        LeanTween.move(podium, downLocation, timeToGoDown).setDelay(timeToShake + timeToWaitBeforeShaking).setOnComplete(
            () =>
-           {  
-               startGoUp();
-           }); ;
+           {
+               Destroy(podium);
+           });
     }
     private void shakingPingPong()
     {

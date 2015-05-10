@@ -71,9 +71,14 @@ using UnityEngine;
         public Vector3[] bottomLeft = new Vector3[]
        {
                     SceneStats.BottomLeft, 
-                    new Vector3(SceneStats.LeftEdge+0.25f*SceneStats.Width,SceneStats.TopEdge), 
-                    new Vector3(SceneStats.LeftEdge+0.5f*SceneStats.Width,SceneStats.BottomEdge), 
-                    SceneStats.MidRight
+                    new Vector3(SceneStats.LeftEdge+0.25f*SceneStats.Width,SceneStats.BottomLeft.y*1.2f), 
+                    new Vector3(SceneStats.LeftEdge+0.5f*SceneStats.Width,SceneStats.BottomLeft.y*1.5f), 
+                    SceneStats.UpTopMid,
+                    SceneStats.UpTopMid,
+                    new Vector3(SceneStats.LeftEdge+0.5f*SceneStats.Width,SceneStats.BottomLeft.y*1.5f), 
+                    new Vector3(SceneStats.LeftEdge+0.75f*SceneStats.Width,SceneStats.BottomLeft.y*1.2f), 
+                    SceneStats.BottomRight
+                    
                 };
         public Vector3[] bottomRight = new Vector3[]
        {
