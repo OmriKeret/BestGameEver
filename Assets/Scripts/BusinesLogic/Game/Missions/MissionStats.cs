@@ -10,7 +10,7 @@ public class MissionStats : MonoBehaviour {
     MissionAssigner missionAssigner;
     Dictionary<int, string> tierTitle;
 	// Use this for initialization
-    void OnEnable()
+    void Start()
     {
         IOMissionModel missionsFromDisc = null ;
         initalizeDictionary();
