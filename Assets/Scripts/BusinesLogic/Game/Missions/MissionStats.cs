@@ -9,8 +9,9 @@ public class MissionStats : MonoBehaviour {
     MissionModel[] currentMissions;
     MissionAssigner missionAssigner;
     Dictionary<int, string> tierTitle;
+    public bool finishedInit = false;
 	// Use this for initialization
-    void Start()
+	void Start()
     {
         IOMissionModel missionsFromDisc = null ;
         initalizeDictionary();
@@ -24,21 +25,33 @@ public class MissionStats : MonoBehaviour {
             }
             catch
             {
-                
+                throw new UnityException();
             }
 			finally {
           //  var missionsFromDisc = MemoryAccess.memoryAccess.LoadMission();
 	            if (missionsFromDisc == null)
 	            {
-	                tier = 1;
+                    Debug.Log("Disc is null");
+                    tier = 1;
 	                currentMissions = missionAssigner.getNewMissions(tier);
 	            }
 	            else
 	            {
-	                currentMissions = missionsFromDisc.missions;
-	                tier = missionsFromDisc.tier;
+                    Debug.Log("Disc is not null, missions "+missionsFromDisc.missions);
+                    //currentMissions = missionsFromDisc.missions;
+                    currentMissions = new MissionModel[missionsFromDisc.missions.Length];
+                    for (int i = 0; i < currentMissions.Length; i++)
+                    {
+                        currentMissions[i] = missionsFromDisc.missions[i];
+                    }
+                    tier = missionsFromDisc.tier;
 	            }
-			}
+                Debug.Log(currentMissions);
+                Debug.Log(currentMissions[0]);
+                Debug.Log(currentMissions[1]);
+                Debug.Log(currentMissions[2]);
+
+            }
         }
  
 	}
@@ -58,7 +71,13 @@ public class MissionStats : MonoBehaviour {
     }
     public string getTitle() 
     {
-        return tierTitle[tier];
+        string s = "";
+        if (tierTitle.TryGetValue(tier, out s))
+        {
+            return s;
+        }
+        Debug.Log("Title got is null! tier is " + tier);
+        return tierTitle[1];
     }
     public void upgradeTier()
     {
@@ -107,6 +126,9 @@ public class MissionStats : MonoBehaviour {
 
     private MissionModel[] cloneMissions(MissionModel[] currentMissions)
     {
+        Debug.Log(currentMissions == null);
+        //Debug.Log(currentMissions[0] == null);
+
         MissionModel[] result = new MissionModel[3];
         for (int i = 0; i < result.Length; i++)
         {

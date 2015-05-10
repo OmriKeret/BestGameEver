@@ -54,7 +54,7 @@ public class HPBarLogic : MonoBehaviour {
 
     public void updateCurrentHP(int hp)
     {
-        Debug.Log("updatedCurrentHP");
+        //Debug.Log("updatedCurrentHP");
 
         currentHp = hp;
         updateRatio();

@@ -5,7 +5,8 @@ public class PodiumController : MonoBehaviour {
     PodiumLogic podiumLogic;
 	// Use this for initialization
 	void Start () {
-        podiumLogic = GameObject.Find("Logic").GetComponent<PodiumLogic>();
+        podiumLogic = GetComponent<PodiumLogic>();
+        podiumLogic.initPodium(this.gameObject);
 	}
 	
 	// Update is called once per frame

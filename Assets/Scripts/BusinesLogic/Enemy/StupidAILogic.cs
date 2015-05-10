@@ -127,7 +127,7 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
 
     public void playSpawnSound()
     {
-        _audioSource.PlayOneShot(Sound.sound.EnemyGetSpawnSound(_stats._type));
+		_audioSource.PlayOneShot(Sound.sound.EnemyGetSpawnSound(_stats._type));
     }
 
     public void playDeathSound()

@@ -17,7 +17,14 @@ using System.Collections.Generic;
                 new PodiumModel[]{new PodiumModel(0)},
                 new PodiumModel[]{new PodiumModel(0)},
                 new PodiumModel[]{new PodiumModel(0)},
-                new PodiumModel[]{new PodiumModel(0)}
+                new PodiumModel[]{new PodiumModel(0)},
+                new PodiumModel[]{new PodiumModel(0)},
+                new PodiumModel[]{new PodiumModel(new Vector3(-10.99f, -7.22f, 0)),new PodiumModel(new Vector3(10.99f, 7.22f, 0))},
+                new PodiumModel[]{new PodiumModel(0)},
+                new PodiumModel[]{new PodiumModel(new Vector3(-10.99f, -7.22f, 0)),new PodiumModel(new Vector3(10.99f, 7.22f, 0))},
+                new PodiumModel[]{new PodiumModel(new Vector3(-10.99f, 7.22f, 0)),new PodiumModel(new Vector3(10.99f, -7.22f, 0))},
+                new PodiumModel[]{new PodiumModel(new Vector3(-10.99f, -7.22f, 0)),new PodiumModel(new Vector3(10.99f, 7.22f, 0))},
+                new PodiumModel[]{new PodiumModel(new Vector3(-10.99f, 7.22f, 0)),new PodiumModel(new Vector3(10.99f, 7.22f, 0)),new PodiumModel(0)},
             };
         }
 
@@ -27,7 +34,7 @@ using System.Collections.Generic;
             //for debug
             if (!(i_WaveNumber < allLevels.Length))
             {
-                i_WaveNumber = 0;
+                i_WaveNumber = allLevels.Length-1;
             }
             //end debug
             InitLevelPodium(allLevels[i_WaveNumber]);
@@ -48,7 +55,10 @@ using System.Collections.Generic;
         {
             foreach (GameObject currentPodium in activePodiums)
             {
-                GameObject.Destroy(currentPodium);
+                if (currentPodium != null)
+                {
+                    currentPodium.GetComponent<PodiumLogic>().downForGood();
+                }
             }
         }
 

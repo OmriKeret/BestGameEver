@@ -44,7 +44,7 @@ public class CharacterDresserLogic : MonoBehaviour {
 
     private void updatePonchoe()
     {
-        Debug.Log("punchoe is :" + ClothLogic.clothLogic.equipedPoncho.description);
+        //Debug.Log("punchoe is :" + ClothLogic.clothLogic.equipedPoncho.description);
         var itemSpriteFront = (Sprite)Resources.Load(ClothLogic.clothLogic.equipedPoncho.characterSpriteFront, typeof(Sprite));
         ponchoeFront.GetComponent<SpriteRenderer>().sprite = itemSpriteFront;
         ponchoeFront2.GetComponent<SpriteRenderer>().sprite = itemSpriteFront;
