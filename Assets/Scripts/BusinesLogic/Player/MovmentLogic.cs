@@ -123,7 +123,7 @@ public class MovmentLogic : MonoBehaviour {
                                              new Vector3(1f ,8.917604f),
                                         };
 
-        LeanTween.move(character.gameObject, path, timeToReturnFromFall).setEase(LeanTweenType.easeInOutQuad).setDelay(hoverTime).setOnComplete(() => 
+		LeanTween.move(character.gameObject, path, timeToReturnFromFall).setEase(LeanTweenType.easeInCubic).setDelay(hoverTime).setOnComplete(() => 
             {
                 FinishedReturningFromFall();
             });
