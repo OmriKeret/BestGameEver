@@ -84,7 +84,8 @@ public class WaveLogicFactory {
         Debug.Log("Init wave " + i_model.waveNumber);
         if (i_model.waveNumber >= _orderWaves.Length)
         {
-            i_model.waveNumber = 0;
+            i_model.waveNumber = _orderWaves.Length-1;
+            Debug.Log("No more waves!");
         }
         //end for debug
         return new WaveLogic(_orderWaves[i_model.waveNumber]);

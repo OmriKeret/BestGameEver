@@ -34,7 +34,7 @@ using System.Collections.Generic;
             //for debug
             if (!(i_WaveNumber < allLevels.Length))
             {
-                i_WaveNumber = 0;
+                i_WaveNumber = allLevels.Length-1;
             }
             //end debug
             InitLevelPodium(allLevels[i_WaveNumber]);

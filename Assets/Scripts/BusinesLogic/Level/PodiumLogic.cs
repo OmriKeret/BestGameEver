@@ -23,7 +23,7 @@ public class PodiumLogic : MonoBehaviour {
     private bool goingDown = false;
     private bool firstJump = true;
     private bool secondJump = true;
-    GameObject podium;
+    protected GameObject podium;
 	// Use this for initialization
 	void Start () {
         immunityTimeFromBeginning = 0.1f;
