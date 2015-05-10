@@ -11,7 +11,7 @@ public class MissionStats : MonoBehaviour {
     Dictionary<int, string> tierTitle;
     public bool finishedInit = false;
 	// Use this for initialization
-    void Start()
+	void Start()
     {
         IOMissionModel missionsFromDisc = null ;
         initalizeDictionary();
@@ -29,7 +29,7 @@ public class MissionStats : MonoBehaviour {
             }
 			finally {
           //  var missionsFromDisc = MemoryAccess.memoryAccess.LoadMission();
-	            if (missionsFromDisc == null||true)
+	            if (missionsFromDisc == null)
 	            {
                     Debug.Log("Disc is null");
                     tier = 1;
@@ -127,7 +127,7 @@ public class MissionStats : MonoBehaviour {
     private MissionModel[] cloneMissions(MissionModel[] currentMissions)
     {
         Debug.Log(currentMissions == null);
-        Debug.Log(currentMissions[0] == null);
+        //Debug.Log(currentMissions[0] == null);
 
         MissionModel[] result = new MissionModel[3];
         for (int i = 0; i < result.Length; i++)

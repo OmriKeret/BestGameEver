@@ -1559,8 +1559,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MAX_DASH_NUM: 3
-  maxHP: 0
-  HP: 1
+  maxHP: 3
+  HP: 3
   Strength: 1
   combo: 0
   dashNum: 3
