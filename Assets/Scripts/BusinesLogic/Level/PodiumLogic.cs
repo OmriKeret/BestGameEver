@@ -17,12 +17,12 @@ public class PodiumLogic : MonoBehaviour {
 
     //platform time managment
     public float immunityTimeFromBeginning;
-//    private float timeFromGoingDown = 100000f;
+//    protected float timeFromGoingDown = 100000f;
     public float timeToWaitDown;
 
-    private bool goingDown = false;
-    private bool firstJump = true;
-    private bool secondJump = true;
+    protected bool goingDown = false;
+    protected bool firstJump = true;
+    protected bool secondJump = true;
     protected GameObject podium;
 	// Use this for initialization
 	void Start () {
@@ -44,7 +44,7 @@ public class PodiumLogic : MonoBehaviour {
         startGoUp();
     }
 
-    private void startGoUp()
+    protected void startGoUp()
     {
         goingDown = false;
         firstJump = true;
@@ -55,7 +55,7 @@ public class PodiumLogic : MonoBehaviour {
 
     }
 
-    private void resetRotation()
+    protected void resetRotation()
     {
         podium.transform.rotation = Quaternion.identity;
     }
@@ -66,7 +66,7 @@ public class PodiumLogic : MonoBehaviour {
         startGoDown();
     }
 
-    private void startGoDown()
+    protected void startGoDown()
     {
 
         //if you are still immune return
@@ -117,7 +117,7 @@ public class PodiumLogic : MonoBehaviour {
                Destroy(podium);
            });
     }
-    private void shakingPingPong()
+    protected void shakingPingPong()
     {
         LeanTween.rotateZ(podium, angleToShakeTo * -1, shakingTime).setLoopPingPong();
     }
