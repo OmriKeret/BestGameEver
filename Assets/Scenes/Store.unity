@@ -261,7 +261,7 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -327, y: -173}
+  m_AnchoredPosition: {x: -395, y: -170}
   m_SizeDelta: {x: 145, y: 135}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &170878956
@@ -643,7 +643,7 @@ RectTransform:
   m_RootOrder: 7
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 384.5, y: 188}
+  m_AnchoredPosition: {x: 456, y: 221}
   m_SizeDelta: {x: 86, y: 86}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &619972365
@@ -842,7 +842,7 @@ Transform:
   m_GameObject: {fileID: 764613138}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 100}
-  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_LocalScale: {x: .69167906, y: .69167906, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1079,7 +1079,7 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -275, y: 25}
+  m_AnchoredPosition: {x: -343, y: 28}
   m_SizeDelta: {x: 242, y: 152}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1055571366
@@ -1163,6 +1163,21 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1055571364}
+--- !u!1 &1097993169 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 157064, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+  m_PrefabInternal: {fileID: 1261479886}
+--- !u!114 &1097993178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1097993169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82f3882bf0ac1e44d8e77121761f1369, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1124611784 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11417856, guid: c7681deb0223c994cb4473c605c57bad,
@@ -1502,11 +1517,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 478954, guid: 3a10c0ae6be4ae14cb1c59371bd250aa, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 5.11999989
+      value: 5.0999999
       objectReference: {fileID: 0}
     - target: {fileID: 478954, guid: 3a10c0ae6be4ae14cb1c59371bd250aa, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -6.57000017
+      value: -9.80000019
       objectReference: {fileID: 0}
     - target: {fileID: 478954, guid: 3a10c0ae6be4ae14cb1c59371bd250aa, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1752,7 +1767,7 @@ Prefab:
         type: 3}
     - target: {fileID: 5072738, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
       propertyPath: m_GravityScale
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 477874, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
       propertyPath: m_LocalScale.x
@@ -1796,17 +1811,22 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22439412, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 5.9000001
+      value: 6.80000019
       objectReference: {fileID: 0}
     - target: {fileID: 22439412, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -1.39999998
+      value: -.899999976
       objectReference: {fileID: 0}
     - target: {fileID: 22439412, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
       propertyPath: m_LocalScale.x
-      value: -.300000012
+      value: -.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 22439412, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
+      propertyPath: m_LocalScale.y
+      value: .5
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 11430140, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1cf2af8173d16424a86877d4aa6aa376, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1394864428
@@ -1908,7 +1928,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -327, y: 152}
+  m_AnchoredPosition: {x: -395, y: 155}
   m_SizeDelta: {x: 206, y: 168}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1404189651

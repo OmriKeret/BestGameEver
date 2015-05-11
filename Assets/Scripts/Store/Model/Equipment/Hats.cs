@@ -7,9 +7,9 @@ public class Hats {
 
     public List<ClothModel> hats = new List<ClothModel> {
 		new ClothModel{id = 1, description = "Ponchjoe's trusty hat, no big deal.", jemPrice = -1, name = "Cowboy Hat", owned = true,characterSpriteFront = "Cloth/Hat/normal", part = BodyPart.hat, PJPrice = 0,selected = true, statsImprove = new StatsImprovementModel{}},
-        new ClothModel{id = 2, description = "Imbued with epic stuff. 'nuff said.", jemPrice = -1, name = "Black Sun Hat", owned = false, part = BodyPart.hat,characterSpriteFront = "Cloth/Hat/leather", PJPrice = 5, selected = false, statsImprove = new StatsImprovementModel{}},
-         new ClothModel{id = 3, description = "It's a hat that is also a chicken, deal-with-it.", jemPrice = -1, name = "Chicken Hat", owned = false, part = BodyPart.hat,characterSpriteFront = "Cloth/Hat/chicken", PJPrice = 10, selected = false, statsImprove = new StatsImprovementModel{}},
-		new ClothModel{id = 4, description = "Half sheep, half bee, all hat.", jemPrice = -1, name = "The Bee-Sheep Hat", owned = false, part = BodyPart.hat,characterSpriteFront = "Cloth/Hat/bee hat", PJPrice = 15, selected = false, statsImprove = new StatsImprovementModel{}}
+        new ClothModel{id = 2, description = "Imbued with epic stuff. 'nuff said.", jemPrice = -1, name = "Black Sun Hat", owned = false, part = BodyPart.hat,characterSpriteFront = "Cloth/Hat/leather", PJPrice = 0, selected = false, statsImprove = new StatsImprovementModel{}},
+         new ClothModel{id = 3, description = "It's a hat that is also a chicken, deal-with-it.", jemPrice = -1, name = "Chicken Hat", owned = false, part = BodyPart.hat,characterSpriteFront = "Cloth/Hat/chicken", PJPrice = 0, selected = false, statsImprove = new StatsImprovementModel{}},
+		new ClothModel{id = 4, description = "Half sheep, half bee, all hat.", jemPrice = -1, name = "The Bee-Sheep Hat", owned = false, part = BodyPart.hat,characterSpriteFront = "Cloth/Hat/bee hat", PJPrice = 0, selected = false, statsImprove = new StatsImprovementModel{}}
 
         };
 

@@ -51,9 +51,9 @@ public class MemoryAccess : MonoBehaviour {
         }
         catch
         {
-            return new IOScoreModel();
+            return null;
         }
-        return new IOScoreModel();
+        return null;
     }
 
     public void SaveCurrency(IOCurrencyModel currency)
@@ -108,6 +108,7 @@ public class MemoryAccess : MonoBehaviour {
     {
         try
         {
+
             if (File.Exists(Application.persistentDataPath + missionsFileName))
             {
                 BinaryFormatter bf = new BinaryFormatter();
@@ -119,9 +120,12 @@ public class MemoryAccess : MonoBehaviour {
         }
         catch
         {
-            return new IOMissionModel();
+            Debug.Log("didn't load missions");
+            return null;
         }
-        return new IOMissionModel();
+          Debug.Log("didn't load missions");
+        return null;
+        
     }
 
     //equipment
