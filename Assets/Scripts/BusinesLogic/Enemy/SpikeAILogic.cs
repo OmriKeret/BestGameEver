@@ -9,6 +9,7 @@ public class SpikeAILogic : MonoBehaviour, IEnemy {
     Rigidbody2D _rigidbody;
     GameObject _leftBodyPartResouce, _rightBodyPartResouce;
     GameObject _leftBodyPart, _rightBodyPart;
+    GameObject _blood;
     public float timeToFinishPath = 15f;
     public float minTimeForPath = 4f;
     public float maxTimeForPath = 30f;
@@ -32,6 +33,7 @@ public class SpikeAILogic : MonoBehaviour, IEnemy {
         _rigidbody = GetComponent<Rigidbody2D>();
         _leftBodyPartResouce = Resources.Load("spikeL") as GameObject;
         _rightBodyPartResouce = Resources.Load("spikeR") as GameObject;
+        _blood = Resources.Load("BloodSplash") as GameObject;
         GetComponent<Rigidbody2D>().gravityScale = 0;
         _allVectorPaths = new StupidPaths();
         initPaths();
@@ -189,5 +191,11 @@ public class SpikeAILogic : MonoBehaviour, IEnemy {
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+    // splash blood
+    public void hit()
+    {
+        Instantiate(_blood, this.transform.position, Quaternion.identity);
     }
 }

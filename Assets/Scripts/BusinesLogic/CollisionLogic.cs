@@ -156,7 +156,8 @@ public class CollisionLogic : MonoBehaviour  {
 	            hitPlayer(); break;
              case EnemyMode.Both: hitPlayer(); enemyDefende(); break; 
             case EnemyMode.Defence: enemyDefende(); break;
-            case EnemyMode.None: if (enemy.lifeDown(playerStatsLogic.Strength)) //if enemy dead
+            case EnemyMode.None:
+                if (hitEnemy(model)) //if enemy dead
                  {
                    //  Debug.Log("kill enemy");
                      scoreLogic.addPoint(new AddPointModel { type = enemyController.type, combo = playerStatsLogic.combo });
@@ -176,7 +177,13 @@ public class CollisionLogic : MonoBehaviour  {
 
 	}
 
+    private bool hitEnemy(CollisionModel model)
+    {
 
+        var enemy = model.mainCollider.GetComponent<IEnemy>();
+        enemy.hit();
+        return enemy.lifeDown(playerStatsLogic.Strength);
+    }
     //TODO: Omri - what to do when the enemy is on defence mode (e.g. tank)
     private void enemyDefende()
     {
