@@ -41,5 +41,5 @@ public interface IEnemy {
 
     void goRight();
 
-    void hit();
+    void hit(int combo, Vector2 dir);
 }

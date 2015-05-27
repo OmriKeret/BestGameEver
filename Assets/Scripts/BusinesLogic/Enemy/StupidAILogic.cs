@@ -16,6 +16,9 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
     private Dictionary<EnemyLocation, Vector3[]> _pathMap;
     private StupidPaths _allVectorPaths;
 
+    // blood splash data
+    private EnemyGeneralAnimationLogic _generalAnimationLogic;
+
     AudioSource _audioSource;
 	// Use this for initialization
 	void Awake () {
@@ -28,6 +31,7 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
 		GetComponent<Rigidbody2D> ().gravityScale = 0;
         _allVectorPaths = new StupidPaths();
 	    initPaths();
+        _generalAnimationLogic = GameObject.Find("Logic").GetComponent<EnemyGeneralAnimationLogic>();
 	}
    public bool lifeDown(int str)
     {
@@ -145,8 +149,20 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
     }
 
     // splash blood
-    public void hit()
+    public void hit(int combo, Vector2 dir)
     {
-        Instantiate(_blood, this.transform.position, Quaternion.identity);
+        int minNum = _generalAnimationLogic.minEmissioNum;
+        int maxNum = _generalAnimationLogic.maxEmission;
+        if (combo != 0)
+        {
+            minNum = minNum * combo;
+            maxNum = maxNum * combo;
+        }
+        dir = dir * _generalAnimationLogic.magnitude;
+        var bloodObject = Instantiate(_blood, this.transform.position, Quaternion.identity) as GameObject;
+        var bloodEmiter = bloodObject.GetComponent<EllipsoidParticleEmitter>();
+        bloodEmiter.minEmission = minNum;
+        bloodEmiter.maxEmission = maxNum;
+        bloodEmiter.localVelocity = new Vector3(dir.x, dir.y, 0);
     }
 }
