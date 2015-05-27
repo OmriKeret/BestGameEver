@@ -9,11 +9,15 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
 	Rigidbody2D _rigidbody;
 	GameObject _leftBodyPartResouce,_rightBodyPartResouce;
 	GameObject _leftBodyPart,_rightBodyPart;
+    GameObject _blood;
     public float timeToFinishPath = 15f;
     public float minTimeForPath = 4f;
     public float maxTimeForPath = 30f;
     private Dictionary<EnemyLocation, Vector3[]> _pathMap;
     private StupidPaths _allVectorPaths;
+
+    // blood splash data
+    private EnemyGeneralAnimationLogic _generalAnimationLogic;
 
     AudioSource _audioSource;
 	// Use this for initialization
@@ -23,9 +27,11 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
 		_rigidbody = GetComponent<Rigidbody2D> ();
 		_leftBodyPartResouce = Resources.Load ("stupidL") as GameObject;
 		_rightBodyPartResouce = Resources.Load ("stupidR") as GameObject;
+        _blood = Resources.Load("BloodSplash") as GameObject;
 		GetComponent<Rigidbody2D> ().gravityScale = 0;
         _allVectorPaths = new StupidPaths();
 	    initPaths();
+        _generalAnimationLogic = GameObject.Find("Logic").GetComponent<EnemyGeneralAnimationLogic>();
 	}
    public bool lifeDown(int str)
     {
@@ -140,5 +146,23 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+    // splash blood
+    public void hit(int combo, Vector2 dir)
+    {
+        int minNum = _generalAnimationLogic.minEmissioNum;
+        int maxNum = _generalAnimationLogic.maxEmission;
+        if (combo != 0)
+        {
+            minNum = minNum * combo;
+            maxNum = maxNum * combo;
+        }
+        dir = dir * _generalAnimationLogic.magnitude;
+        var bloodObject = Instantiate(_blood, this.transform.position, Quaternion.identity) as GameObject;
+        var bloodEmiter = bloodObject.GetComponent<EllipsoidParticleEmitter>();
+        bloodEmiter.minEmission = minNum;
+        bloodEmiter.maxEmission = maxNum;
+        bloodEmiter.localVelocity = new Vector3(dir.x, dir.y, 0);
     }
 }
