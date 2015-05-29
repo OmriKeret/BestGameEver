@@ -6,12 +6,14 @@ public class SoundLogic : MonoBehaviour {
     AudioClip currentlyPlaying;
     AudioSource audioSource1;
     AudioSource audioSource2;
+    AudioSource audioSource3;
     public float sliceDelay = 0.1f;
     public float fallDelay = 0.3f;
 	// Use this for initialization
 	void Start () {
         audioSource1 = GameObject.Find("SoundSourcePlayer1").GetComponent<AudioSource>();
         audioSource2 = GameObject.Find("SoundSourcePlayer2").GetComponent<AudioSource>();
+        audioSource3 = GameObject.Find("Camera").GetComponent<AudioSource>();
 	}
     public void playFallSound() 
     {   
@@ -65,6 +67,29 @@ public class SoundLogic : MonoBehaviour {
         audioSource2.Stop();
         audioSource2.PlayOneShot(currentlyPlaying);
     }
-	
-    
+
+    public void playChangeMoneySound()
+    {
+        if(currentlyPlaying != Sound.sound.scoreGetScoreToCashSound()) {
+            currentlyPlaying = Sound.sound.scoreGetScoreToCashSound();
+            Debug.Log("playing change sound");
+            audioSource3.clip = currentlyPlaying;
+            audioSource3.loop = true;
+            audioSource3.Play();
+        }
+        
+    }
+
+
+
+    internal void playchangeMoneyEndSound()
+    {
+        if (currentlyPlaying != Sound.sound.scoreGetScoreToCashEndSound())
+        {
+            currentlyPlaying = Sound.sound.scoreGetScoreToCashEndSound();
+            audioSource3.clip = currentlyPlaying;
+            audioSource3.loop = false;
+            audioSource3.Play();
+        }
+    }
 }

@@ -35,7 +35,7 @@ public class DeathLogic : MonoBehaviour {
     private int currentHighScore;
     private bool changeScoreText = false;
     private bool newHighScore;
-    private int finalAchivedScore;
+    private float finalAchivedScore;
     private int bonus;
     private Animator HighScore;
     Animator bonusAnimator;
@@ -47,8 +47,17 @@ public class DeathLogic : MonoBehaviour {
     int currencyDiviser;
     bool shouldWriteCurrency;
     private Text currencyText;
-    int currentDisplayedCurrency;
-	// Use this for initialization
+    float currentDisplayedCurrency;
+    private float TimeToCashIn = 2f;
+	private float TimeToCashInChange;
+    private float cashInDeviser;
+    private float deviserRatio;
+    private float timeSinceStartedCurrency;
+    private float currentScore;
+    private GameObject particles;
+
+
+	// Initialization
     void Start()
     {
         var bonus = GameObject.Find("LosePanel/FinishedAllMissions");
@@ -105,7 +114,9 @@ public class DeathLogic : MonoBehaviour {
         EndMissionTextX = origMissionTextX - 60;
 		deathScore = GameObject.Find("LosePanel/LoseScore").GetComponent<Text>();
         currencyText = GameObject.Find("LosePanel/LosePJ").GetComponent<Text>();
-        
+        timeSinceStartedCurrency = -1;
+		TimeToCashInChange = TimeToCashIn ;
+        particles = GameObject.Find("LosePanel/LosePJ/Particles");
     }
 
     void Update()
@@ -135,22 +146,40 @@ public class DeathLogic : MonoBehaviour {
         }
         else if (shouldWriteCurrency && (Time.realtimeSinceStartup - lastScoreUpdate > timeToWaitFromScoreLastUpdateToCurrencyChange))
         {
-            if (finalAchivedScore - currencyDiviser >= 0)
+            turnOnParticles();
+            // If just started chagning, store the time started
+            timeSinceStartedCurrency = timeSinceStartedCurrency == -1 ? Time.realtimeSinceStartup : timeSinceStartedCurrency;
+            float deltaTime = Time.realtimeSinceStartup - timeSinceStartedCurrency;
+            calculateAndSetTimeToCashIn(deltaTime);
+            
+            if (finalAchivedScore - cashInDeviser >= 0)
             {
-                //TODO: SOUND - change score to money
-
-                //updating score text
-                finalAchivedScore -= (currencyDiviser * 2);
+                // Sound
+                if (deltaTime > TimeToCashIn - 1.00f)
+                {
+                    soundLogic.playchangeMoneyEndSound();
+                }
+                else
+                {
+                    soundLogic.playChangeMoneySound();
+                }
+                
+                // Currenct score is updated in calculateAndSetTimeToCashIn()
                 var scoreTxt = string.Format(System.Globalization.CultureInfo.InvariantCulture,
-                    "{0:0,0}", finalAchivedScore);
+                    "{0:0,0}", (int)currentScore);
                 deathScore.text = string.Format("{0}", scoreTxt);
 
                 //updating currency text
-                currentDisplayedCurrency += 2;
-                currencyText.text = string.Format("PJ:{0}", currentDisplayedCurrency);
+                currentDisplayedCurrency += deviserRatio;
+                currencyText.text = string.Format("PJ:{0}", (int)currentDisplayedCurrency);
+                if (currentScore < 1)
+                {
+					finalAchivedScore = 0;
+				}
             }
             else
             {
+                turnOffParticles();
                 //showing score as 0
                 var scoreTxt = string.Format(System.Globalization.CultureInfo.InvariantCulture,
                                     "{0:0,0}", 0);
@@ -197,18 +226,18 @@ public class DeathLogic : MonoBehaviour {
     {
 		Time.timeScale = 1;
         AutoFade.LoadLevel(Application.loadedLevel, 2, 1, Color.white);
-       // Application.LoadLevel(Application.loadedLevel);
     }
 
     //brings death screen up
     private void MoveGUI(float delay)
     {
-        //TODO: unable the player to interact
+        touch.SetDisableMovment();
+        pauseBtn.enabled = false;
         LeanTween.move (losePanel, EndPos, timeToOpenDeathMenu).setDelay (delay).setIgnoreTimeScale (true).setOnComplete (() => 
 		{
 			//update mission progress
 			missionLogic.updateMissionProggressEndOfGame ();
-			Time.timeScale = 0;
+			Time.timeScale = 1;
 
 		});   
     }
@@ -230,15 +259,20 @@ public class DeathLogic : MonoBehaviour {
             {
                 finalAchivedScore = scoreBegin;
             }
+
+            // currency var
+            currentScore = finalAchivedScore;
             updatePJcurrency(finalAchivedScore);
        
         
     }
 
-    private void updatePJcurrency(int score)
+    private void updatePJcurrency(float score)
     {
-        addedCurrency = currencyLogic.updateCurrencyByScore(score);
+        addedCurrency = currencyLogic.updateCurrencyByScore((int)score);
         currencyDiviser = currencyLogic.deviderToScore;
+        
+        //calculateAndSetTimeToCashIn();
         if (!changeScoreText)
         {
             shouldWriteCurrency = true;
@@ -246,11 +280,23 @@ public class DeathLogic : MonoBehaviour {
         
     }
 
-    public void startChangingScoreForCurrency()
+    private void calculateAndSetTimeToCashIn(float deltaTime)
     {
-
+        var factor = Easing.easeInOut(deltaTime, TimeToCashIn);
+        float currentTemp = finalAchivedScore - (finalAchivedScore * factor);
+        cashInDeviser = currentScore - currentTemp;
+        currentScore = currentTemp;
+        deviserRatio = (cashInDeviser / currencyDiviser);
     }
-    
+
+    private void turnOnParticles()
+    {
+        particles.SetActive(true);
+    }
+    private void turnOffParticles()
+    {
+        particles.GetComponent<ParticleSystem>().Stop();
+    }
 
     private void GetScoreData()
     {

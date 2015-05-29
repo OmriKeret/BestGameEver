@@ -10,6 +10,7 @@ public class TankAILogic : MonoBehaviour, IEnemy {
     Rigidbody2D _rigidbody;
     GameObject _leftBodyPartResouce, _rightBodyPartResouce;
     GameObject _leftBodyPart, _rightBodyPart;
+    GameObject _blood;
     public float timeToFinishPath = 15f;
     public float minTimeForPath = 4f;
     public float maxTimeForPath = 30f;
@@ -19,6 +20,9 @@ public class TankAILogic : MonoBehaviour, IEnemy {
     private Dictionary<EnemyLocation, Vector3[]> _pathMap;
     private StupidPaths _allVectorPaths;
 
+    // blood splash data
+    private EnemyGeneralAnimationLogic _generalAnimationLogic;
+
     // Use this for initialization
     void Awake()
     {
@@ -27,11 +31,13 @@ public class TankAILogic : MonoBehaviour, IEnemy {
         _rigidbody = GetComponent<Rigidbody2D>();
         _leftBodyPartResouce = Resources.Load("tankL") as GameObject;
         _rightBodyPartResouce = Resources.Load("tankR") as GameObject;
+        _blood = Resources.Load("BloodSplash") as GameObject;
         GetComponent<Rigidbody2D>().gravityScale = 0;
         _allVectorPaths = new StupidPaths();
         initPaths();
         commet = GetComponentInChildren<CommetLogic>();
         switchSides = true;
+        _generalAnimationLogic = GameObject.Find("Logic").GetComponent<EnemyGeneralAnimationLogic>();
     }
 
     void Update()
@@ -170,5 +176,24 @@ public class TankAILogic : MonoBehaviour, IEnemy {
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+    // splash blood
+    // splash blood
+    public void hit(int combo, Vector2 dir)
+    {
+        int minNum = _generalAnimationLogic.minEmissioNum;
+        int maxNum = _generalAnimationLogic.maxEmission;
+        if (combo != 0)
+        {
+            minNum = minNum * combo;
+            maxNum = maxNum * combo;
+        }
+        dir = dir * _generalAnimationLogic.magnitude;
+        var bloodObject = Instantiate(_blood, this.transform.position, Quaternion.identity) as GameObject;
+        var bloodEmiter = bloodObject.GetComponent<EllipsoidParticleEmitter>();
+        bloodEmiter.minEmission = minNum;
+        bloodEmiter.maxEmission = maxNum;
+        bloodEmiter.localVelocity = new Vector3(dir.x, dir.y, 0);
     }
 }

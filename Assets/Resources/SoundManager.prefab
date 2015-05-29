@@ -73,6 +73,9 @@ MonoBehaviour:
   buttonPush: {fileID: 8300000, guid: e48ac953b7703af4c80ec7ec3896bc88, type: 3}
   playerHitted: {fileID: 8300000, guid: d50de0d111cae5c40820c2970ba544fa, type: 3}
   playerDie: {fileID: 8300000, guid: ac3196d1252a55e439cdf05baba567e8, type: 3}
+  changeScoreToCash: {fileID: 8300000, guid: 361fd23f8498830429fac1a1fb7d5cf9, type: 3}
+  finishChangingScoreToCash: {fileID: 8300000, guid: 8090b4c3df325c54f8c6519e9a35966f,
+    type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

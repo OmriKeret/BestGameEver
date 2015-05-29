@@ -25,7 +25,7 @@ TagManager:
   - Background
   - Commet
   - forground
-  - 
+  - blood
   - 
   - 
   - 
@@ -55,4 +55,7 @@ TagManager:
     locked: 0
   - name: forground
     uniqueID: 1359535733
+    locked: 0
+  - name: blood
+    uniqueID: 2813280549
     locked: 0

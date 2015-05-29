@@ -40,4 +40,6 @@ public interface IEnemy {
     void playDeathSound();
 
     void goRight();
+
+    void hit(int combo, Vector2 dir);
 }

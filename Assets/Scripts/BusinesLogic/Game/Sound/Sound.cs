@@ -17,6 +17,8 @@ public class Sound : MonoBehaviour
     public AudioClip buttonPush;
     public AudioClip playerHitted;
     public AudioClip playerDie;
+    public AudioClip changeScoreToCash;
+    public AudioClip finishChangingScoreToCash;
     private Dictionary<EnemyType, EnemySoundModel> enemieSounds;
     public static Sound sound;
     // Use this for initialization
@@ -35,7 +37,6 @@ public class Sound : MonoBehaviour
     }
     void Start()
     {
-        //     initilaizDictionary();
     }
 
     private void initilaizDictionary()
@@ -44,6 +45,16 @@ public class Sound : MonoBehaviour
             {EnemyType.General,new EnemySoundModel {deathSound = goblinDeath, enemyType = EnemyType.General, spawnSound = goblinSpawn} }
         };
     }
+    public AudioClip scoreGetScoreToCashSound()
+    {
+        return changeScoreToCash;
+    }
+
+    public AudioClip scoreGetScoreToCashEndSound()
+    {
+        return finishChangingScoreToCash;
+    }
+
     public AudioClip playerGetRandomJumpSound()
     {
         int max = jump.Length;
