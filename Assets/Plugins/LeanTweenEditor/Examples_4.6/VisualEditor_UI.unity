@@ -296,6 +296,7 @@ MonoBehaviour:
       ease: 16
       easeStr: 65617365496e4f757453696e65
       animationCurve:
+        serializedVersion: 2
         m_Curve:
         - time: 0
           value: 0
@@ -311,11 +312,7 @@ MonoBehaviour:
         m_PostInfinity: 2
       from: {x: 1, y: .300000012, z: 1}
       to: {x: 1, y: 1, z: 1}
-      colorTo:
-        r: 1
-        g: 0
-        b: 0
-        a: 1
+      colorTo: {r: 1, g: 0, b: 0, a: 1}
       axis: {x: 0, y: 0, z: 1}
       duration: 1.79999995
       delay: 0
@@ -1690,6 +1687,7 @@ MonoBehaviour:
       ease: 24
       easeStr: 656173654f7574426f756e6365
       animationCurve:
+        serializedVersion: 2
         m_Curve:
         - time: 0
           value: 0
@@ -1705,11 +1703,7 @@ MonoBehaviour:
         m_PostInfinity: 2
       from: {x: 0, y: 0, z: 0}
       to: {x: 1, y: 1, z: 1}
-      colorTo:
-        r: 1
-        g: 0
-        b: 0
-        a: 1
+      colorTo: {r: 1, g: 0, b: 0, a: 1}
       axis: {x: 0, y: 0, z: 1}
       duration: 1.5
       delay: 0
@@ -1822,6 +1816,7 @@ MonoBehaviour:
       ease: 1
       easeStr: 6c696e656172
       animationCurve:
+        serializedVersion: 2
         m_Curve:
         - time: 0
           value: 0
@@ -1837,11 +1832,7 @@ MonoBehaviour:
         m_PostInfinity: 2
       from: {x: 0, y: 0, z: 0}
       to: {x: 360, y: 0, z: 0}
-      colorTo:
-        r: 1
-        g: 0
-        b: 0
-        a: 1
+      colorTo: {r: 1, g: 0, b: 0, a: 1}
       axis: {x: 0, y: 0, z: 1}
       duration: 12
       delay: 0
@@ -1954,6 +1945,7 @@ MonoBehaviour:
       ease: 13
       easeStr: 65617365496e4f75745175696e74
       animationCurve:
+        serializedVersion: 2
         m_Curve:
         - time: 0
           value: 0
@@ -1969,11 +1961,7 @@ MonoBehaviour:
         m_PostInfinity: 2
       from: {x: 1, y: .100000001, z: 1}
       to: {x: 1, y: .5, z: 1}
-      colorTo:
-        r: 1
-        g: 0
-        b: 0
-        a: 1
+      colorTo: {r: 1, g: 0, b: 0, a: 1}
       axis: {x: 0, y: 0, z: 1}
       duration: 3
       delay: .5
@@ -2086,6 +2074,7 @@ MonoBehaviour:
       ease: 1
       easeStr: 6c696e656172
       animationCurve:
+        serializedVersion: 2
         m_Curve:
         - time: 0
           value: 0
@@ -2101,11 +2090,7 @@ MonoBehaviour:
         m_PostInfinity: 2
       from: {x: 0, y: 0, z: 0}
       to: {x: -360, y: 0, z: 0}
-      colorTo:
-        r: 1
-        g: 0
-        b: 0
-        a: 1
+      colorTo: {r: 1, g: 0, b: 0, a: 1}
       axis: {x: 0, y: 0, z: 1}
       duration: 18
       delay: 0
@@ -2446,6 +2431,7 @@ MonoBehaviour:
       ease: 24
       easeStr: 656173654f7574426f756e6365
       animationCurve:
+        serializedVersion: 2
         m_Curve:
         - time: 0
           value: 0
@@ -2461,11 +2447,7 @@ MonoBehaviour:
         m_PostInfinity: 2
       from: {x: -180, y: 0, z: 0}
       to: {x: 0, y: 0, z: 0}
-      colorTo:
-        r: 1
-        g: 0
-        b: 0
-        a: 1
+      colorTo: {r: 1, g: 0, b: 0, a: 1}
       axis: {x: 0, y: 1, z: 0}
       duration: 3
       delay: 0
@@ -2821,6 +2803,7 @@ MonoBehaviour:
       ease: 1
       easeStr: 6c696e656172
       animationCurve:
+        serializedVersion: 2
         m_Curve:
         - time: 0
           value: 0
@@ -2836,11 +2819,7 @@ MonoBehaviour:
         m_PostInfinity: 2
       from: {x: 0, y: 0, z: 0}
       to: {x: 0, y: 0, z: 0}
-      colorTo:
-        r: 1
-        g: 0
-        b: 0
-        a: 1
+      colorTo: {r: 1, g: 0, b: 0, a: 1}
       axis: {x: 0, y: 0, z: 1}
       duration: 9.99999975e-05
       delay: 0
@@ -2865,6 +2844,7 @@ MonoBehaviour:
       ease: 2
       easeStr: 656173654f757451756164
       animationCurve:
+        serializedVersion: 2
         m_Curve:
         - time: 0
           value: 0
@@ -2880,11 +2860,7 @@ MonoBehaviour:
         m_PostInfinity: 2
       from: {x: 0, y: 0, z: 0}
       to: {x: 1, y: 0, z: 0}
-      colorTo:
-        r: 1
-        g: 0
-        b: 0
-        a: 1
+      colorTo: {r: 1, g: 0, b: 0, a: 1}
       axis: {x: 0, y: 0, z: 1}
       duration: 1
       delay: 2
@@ -2909,6 +2885,7 @@ MonoBehaviour:
       ease: 2
       easeStr: 656173654f757451756164
       animationCurve:
+        serializedVersion: 2
         m_Curve:
         - time: 0
           value: 0
@@ -2924,11 +2901,7 @@ MonoBehaviour:
         m_PostInfinity: 2
       from: {x: 0, y: -330, z: 0}
       to: {x: 0, y: -330, z: 0}
-      colorTo:
-        r: 1
-        g: 0
-        b: 0
-        a: 1
+      colorTo: {r: 1, g: 0, b: 0, a: 1}
       axis: {x: 0, y: 0, z: 1}
       duration: 1
       delay: 2
@@ -3016,6 +2989,7 @@ MonoBehaviour:
       ease: 1
       easeStr: 6c696e656172
       animationCurve:
+        serializedVersion: 2
         m_Curve:
         - time: 0
           value: 0
@@ -3031,11 +3005,7 @@ MonoBehaviour:
         m_PostInfinity: 2
       from: {x: 0, y: 0, z: 0}
       to: {x: 0, y: 0, z: 0}
-      colorTo:
-        r: 1
-        g: 0
-        b: 0
-        a: 1
+      colorTo: {r: 1, g: 0, b: 0, a: 1}
       axis: {x: 0, y: 0, z: 1}
       duration: 9.99999975e-05
       delay: 0
@@ -3060,6 +3030,7 @@ MonoBehaviour:
       ease: 1
       easeStr: 6c696e656172
       animationCurve:
+        serializedVersion: 2
         m_Curve:
         - time: 0
           value: 0
@@ -3075,11 +3046,7 @@ MonoBehaviour:
         m_PostInfinity: 2
       from: {x: 0, y: 0, z: 0}
       to: {x: 0, y: 0, z: 0}
-      colorTo:
-        r: 1
-        g: 0
-        b: 0
-        a: 1
+      colorTo: {r: 1, g: 0, b: 0, a: 1}
       axis: {x: 0, y: 0, z: 1}
       duration: 9.99999975e-05
       delay: 0
@@ -3104,6 +3071,7 @@ MonoBehaviour:
       ease: 2
       easeStr: 656173654f757451756164
       animationCurve:
+        serializedVersion: 2
         m_Curve:
         - time: 0
           value: 0
@@ -3119,11 +3087,7 @@ MonoBehaviour:
         m_PostInfinity: 2
       from: {x: 0, y: 0, z: 0}
       to: {x: 1, y: 0, z: 0}
-      colorTo:
-        r: 1
-        g: 0
-        b: 0
-        a: 1
+      colorTo: {r: 1, g: 0, b: 0, a: 1}
       axis: {x: 0, y: 0, z: 1}
       duration: 1
       delay: 4
@@ -3148,6 +3112,7 @@ MonoBehaviour:
       ease: 2
       easeStr: 656173654f757451756164
       animationCurve:
+        serializedVersion: 2
         m_Curve:
         - time: 0
           value: 0
@@ -3163,11 +3128,7 @@ MonoBehaviour:
         m_PostInfinity: 2
       from: {x: 0, y: 0, z: 0}
       to: {x: 1, y: 0, z: 0}
-      colorTo:
-        r: 1
-        g: 0
-        b: 0
-        a: 1
+      colorTo: {r: 1, g: 0, b: 0, a: 1}
       axis: {x: 0, y: 0, z: 1}
       duration: 1
       delay: 4
@@ -3323,6 +3284,7 @@ MonoBehaviour:
       ease: 34
       easeStr: 70756e6368
       animationCurve:
+        serializedVersion: 2
         m_Curve:
         - time: 0
           value: 0
@@ -3338,11 +3300,7 @@ MonoBehaviour:
         m_PostInfinity: 2
       from: {x: -200, y: 100, z: 0}
       to: {x: -50, y: 0, z: -150}
-      colorTo:
-        r: 1
-        g: 0
-        b: 0
-        a: 1
+      colorTo: {r: 1, g: 0, b: 0, a: 1}
       axis: {x: 0, y: 0, z: 1}
       duration: 2
       delay: 3.5
@@ -3367,6 +3325,7 @@ MonoBehaviour:
       ease: 24
       easeStr: 656173654f7574426f756e6365
       animationCurve:
+        serializedVersion: 2
         m_Curve:
         - time: 0
           value: 0
@@ -3382,11 +3341,7 @@ MonoBehaviour:
         m_PostInfinity: 2
       from: {x: -150, y: 120, z: 0}
       to: {x: 360, y: 0, z: 0}
-      colorTo:
-        r: 1
-        g: 0
-        b: 0
-        a: 1
+      colorTo: {r: 1, g: 0, b: 0, a: 1}
       axis: {x: 0, y: 0, z: 1}
       duration: 2
       delay: 5.5
@@ -3606,6 +3561,7 @@ MonoBehaviour:
       ease: 6
       easeStr: 656173654f75744375626963
       animationCurve:
+        serializedVersion: 2
         m_Curve:
         - time: 0
           value: 0
@@ -3621,11 +3577,7 @@ MonoBehaviour:
         m_PostInfinity: 2
       from: {x: 0, y: 0, z: 0}
       to: {x: 0, y: 0, z: 0}
-      colorTo:
-        r: .507352948
-        g: .892410338
-        b: 1
-        a: 1
+      colorTo: {r: .507352948, g: .892410338, b: 1, a: 1}
       axis: {x: 0, y: 0, z: 1}
       duration: 1
       delay: 0
@@ -3650,6 +3602,7 @@ MonoBehaviour:
       ease: 5
       easeStr: 65617365496e4375626963
       animationCurve:
+        serializedVersion: 2
         m_Curve:
         - time: 0
           value: 0
@@ -3665,11 +3618,7 @@ MonoBehaviour:
         m_PostInfinity: 2
       from: {x: 0, y: 0, z: 0}
       to: {x: 0, y: 0, z: 0}
-      colorTo:
-        r: .218966261
-        g: .323303699
-        b: .367647052
-        a: 1
+      colorTo: {r: .218966261, g: .323303699, b: .367647052, a: 1}
       axis: {x: 0, y: 0, z: 1}
       duration: 1
       delay: 1
@@ -3922,6 +3871,7 @@ MonoBehaviour:
       ease: 4
       easeStr: 65617365496e4f757451756164
       animationCurve:
+        serializedVersion: 2
         m_Curve:
         - time: 0
           value: 0
@@ -3937,11 +3887,7 @@ MonoBehaviour:
         m_PostInfinity: 2
       from: {x: 0, y: 0, z: 0}
       to: {x: 0, y: 0, z: 0}
-      colorTo:
-        r: 1
-        g: 0
-        b: 0
-        a: 1
+      colorTo: {r: 1, g: 0, b: 0, a: 1}
       axis: {x: 0, y: 0, z: 1}
       duration: 1.67999995
       delay: 0
@@ -4066,6 +4012,7 @@ MonoBehaviour:
       ease: 16
       easeStr: 65617365496e4f757453696e65
       animationCurve:
+        serializedVersion: 2
         m_Curve:
         - time: 0
           value: 0
@@ -4081,11 +4028,7 @@ MonoBehaviour:
         m_PostInfinity: 2
       from: {x: .170752004, y: .0900000036, z: .180752009}
       to: {x: .170752004, y: .150000006, z: .180752009}
-      colorTo:
-        r: 1
-        g: 0
-        b: 0
-        a: 1
+      colorTo: {r: 1, g: 0, b: 0, a: 1}
       axis: {x: 0, y: 0, z: 1}
       duration: .300000012
       delay: 0

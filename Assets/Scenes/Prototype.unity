@@ -2084,8 +2084,6 @@ GameObject:
   - 124: {fileID: 392089939}
   - 92: {fileID: 392089938}
   - 81: {fileID: 392089937}
-  - 114: {fileID: 392089942}
-  - 114: {fileID: 392089943}
   - 82: {fileID: 392089944}
   m_Layer: 0
   m_Name: Camera
@@ -2159,55 +2157,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
---- !u!114 &392089942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 392089936}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01bffa8aa898b437183cd5617f7b5303, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pathName: EnemyPath1
-  pathColor: {r: 0, g: 1, b: 1, a: 1}
-  nodes:
-  - {x: 32, y: 22, z: 0}
-  - {x: 30.3999996, y: 17.2700005, z: 0}
-  - {x: 19.2999992, y: -2.0999999, z: 0}
-  - {x: 3.4000001, y: 11.21, z: 0}
-  - {x: -11.21, y: 14.3400002, z: 0}
-  - {x: -26.5, y: 5.13999987, z: 0}
-  - {x: -29, y: 0, z: 0}
-  nodeCount: 7
-  initialized: 1
-  initialName: New Path 1
-  pathVisible: 1
---- !u!114 &392089943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 392089936}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01bffa8aa898b437183cd5617f7b5303, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pathName: EnemyPath2
-  pathColor: {r: 1, g: 0, b: .0206894875, a: 1}
-  nodes:
-  - {x: -10.5930252, y: 32.9118729, z: 0}
-  - {x: -8.75884438, y: 14.0671787, z: 0}
-  - {x: -11.5799999, y: 4.35473633, z: 0}
-  - {x: 14.8077011, y: 10.3250942, z: 0}
-  - {x: -16.2399998, y: 10.627718, z: 0}
-  - {x: 34.8400002, y: 7.10329819, z: 0}
-  nodeCount: 6
-  initialized: 1
-  initialName: New Path 4
-  pathVisible: 1
 --- !u!82 &392089944
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3328,7 +3277,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'PJ: 100'
+  m_Text: 'PJ: '
 --- !u!222 &663038038
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3351,7 +3300,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &665893021
 Transform:
   m_ObjectHideFlags: 0
@@ -5016,7 +4965,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1179589242
 RectTransform:
   m_ObjectHideFlags: 0

@@ -49,7 +49,7 @@ public class LeanTweenPathControl : MonoBehaviour {
 		this.isControl = isControl;
 		this.i = i;
 		createMaterials();
-		gameObject.renderer.material = isControl ? matPoints : matControls;
+		gameObject.GetComponent<Renderer>().material = isControl ? matPoints : matControls;
 
 		lastPos = transform.position;
 		this.controlRef = controlRef;
@@ -64,7 +64,7 @@ public class LeanTweenPathControl : MonoBehaviour {
 	public void init( int i ){
 		this.i = i;
 		createMaterials();
-		gameObject.renderer.material = matPoints;
+		gameObject.GetComponent<Renderer>().material = matPoints;
 		isBezier = false;
 	}
 

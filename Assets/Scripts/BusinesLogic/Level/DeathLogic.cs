@@ -29,6 +29,7 @@ public class DeathLogic : MonoBehaviour {
     public InternalMissionModel[] deathMissionsToggleAndTextNew;
     //pause menu
     Button pauseBtn;
+
     //score
     private int scoreBegin;
     private int scoreEnd;
@@ -40,7 +41,10 @@ public class DeathLogic : MonoBehaviour {
     private Animator HighScore;
     Animator bonusAnimator;
     Text bonusText;
-    //currency
+    private float timeStartedToChangeScore;
+    private float TimeToScoreUp = 3f;
+    private float displayedScore;
+    // currency
     public float timeToWaitFromScoreLastUpdateToCurrencyChange = 1f;
     private float lastScoreUpdate;
     int addedCurrency;
@@ -117,17 +121,20 @@ public class DeathLogic : MonoBehaviour {
         timeSinceStartedCurrency = -1;
 		TimeToCashInChange = TimeToCashIn ;
         particles = GameObject.Find("LosePanel/LosePJ/Particles");
+        timeStartedToChangeScore = -1;
     }
 
     void Update()
     {
-        if (changeScoreText && scoreBegin < scoreEnd)
+        if (changeScoreText && displayedScore < scoreEnd)
         {
+            timeStartedToChangeScore = timeStartedToChangeScore == -1 ? Time.realtimeSinceStartup : timeStartedToChangeScore;
             //TODO: SOUND - change score by mission sound
-            scoreBegin = scoreBegin + 100;
-            if (scoreBegin >= scoreEnd)
+
+            float deltaTime = Time.realtimeSinceStartup - timeStartedToChangeScore;
+            calculateAndSetTimeToScore(deltaTime);
+            if (displayedScore >= scoreEnd)
             {
-                scoreBegin = scoreEnd;
                 changeScoreText = false;
                 if (newHighScore)
                 {
@@ -140,7 +147,7 @@ public class DeathLogic : MonoBehaviour {
                 }
             }
             var scoreTxt = string.Format(System.Globalization.CultureInfo.InvariantCulture,
-                         "{0:0,0}", scoreBegin);
+                         "{0:0,0}", displayedScore);
             deathScore.text = string.Format("{0}", scoreTxt);
 
         }
@@ -259,6 +266,8 @@ public class DeathLogic : MonoBehaviour {
             {
                 finalAchivedScore = scoreBegin;
             }
+            
+            lastScoreUpdate = Time.realtimeSinceStartup;
 
             // currency var
             currentScore = finalAchivedScore;
@@ -275,7 +284,11 @@ public class DeathLogic : MonoBehaviour {
         //calculateAndSetTimeToCashIn();
         if (!changeScoreText)
         {
-            shouldWriteCurrency = true;
+            if (score > 0)
+            {
+                shouldWriteCurrency = true;
+            }
+
         }
         
     }
@@ -288,7 +301,13 @@ public class DeathLogic : MonoBehaviour {
         currentScore = currentTemp;
         deviserRatio = (cashInDeviser / currencyDiviser);
     }
-
+    
+    private void calculateAndSetTimeToScore(float deltaTime)
+    {
+		float currentTemp = 0f;
+		var factor = Easing.easeInOut(deltaTime, TimeToScoreUp);
+        displayedScore = scoreBegin + (scoreEnd - scoreBegin) * factor;
+    }
     private void turnOnParticles()
     {
         particles.SetActive(true);
