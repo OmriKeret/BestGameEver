@@ -9,6 +9,8 @@ public class MemoryAccess : MonoBehaviour {
     private static string clothHatsFileName = "/playerInfoClothHats.dat";
     private static string clothPonchoesFileName = "/playerInfoClothPonchoes.dat";
     private static string clothSwordsFileName = "/playerInfoClothSwords.dat";
+    private static string toturialBasicFileName = "/playerInfoToturialBasic.dat";
+   // private static string toturialBasicFileName = "/playerInfoToturialBasic.dat";
     public static MemoryAccess memoryAccess;
 	// Use this for initialization
 	void Awake () {
@@ -227,6 +229,40 @@ public class MemoryAccess : MonoBehaviour {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Create(Application.persistentDataPath + clothSwordsFileName);
             bf.Serialize(file, Swords);
+            file.Close();
+        }
+        catch
+        {
+        }
+    }
+
+    public IOBasicToturialModel LoadBasicToturial()
+    {
+        try
+        {
+            if (File.Exists(Application.persistentDataPath + clothSwordsFileName))
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                FileStream file = File.Open(Application.persistentDataPath + toturialBasicFileName, FileMode.Open);
+                IOBasicToturialModel data = (IOBasicToturialModel)bf.Deserialize(file);
+                file.Close();
+                return data;
+            }
+        }
+        catch
+        {
+            return null;
+        }
+        return null;
+    }
+
+    public void SaveBasicToturial(IOBasicToturialModel data)
+    {
+        try
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Create(Application.persistentDataPath + toturialBasicFileName);
+            bf.Serialize(file, data);
             file.Close();
         }
         catch

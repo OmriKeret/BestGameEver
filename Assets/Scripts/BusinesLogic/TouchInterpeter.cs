@@ -13,7 +13,7 @@ public class TouchInterpeter : MonoBehaviour {
 	public Vector2 direction;
 	Vector2 realWorldTouch;
     public Button pauseButton;
-    bool isMovmentDisabled;
+    public bool isMovmentDisabled;
 	// Use this for initialization
 	void Start () {
 		playerPhyisicsController = GameObject.Find("PlayerManager").GetComponent<PhyisicsController>();
@@ -32,7 +32,9 @@ public class TouchInterpeter : MonoBehaviour {
             Vector2 realWorldCharPos;
             if (Input.GetMouseButtonDown(0))
             {
-                realWorldTouch = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                var touchPos = Input.mousePosition;
+                touchPos.z = 20f;
+                realWorldTouch = Camera.main.ScreenToWorldPoint(touchPos);
                 realWorldCharPos = player.position;
                 direction = realWorldTouch - realWorldCharPos;
                 directionChosen = true;
