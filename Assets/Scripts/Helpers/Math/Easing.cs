@@ -11,6 +11,10 @@ public static class Easing {
     {
         float alpha = 2f;
         float x = currentTime / totalTweenTime;
+        if (x > 1)
+        {
+            x = 1;
+        }
         float xPowered = Mathf.Pow(x, alpha);
 
         return xPowered / (xPowered + Mathf.Pow((1 - x),alpha));

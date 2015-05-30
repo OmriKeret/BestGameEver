@@ -13,32 +13,23 @@ public class MissionStats : MonoBehaviour {
 	// Use this for initialization
 	void Start()
     {
-        Debug.Log("line num: " + 16 + "\n");
         IOMissionModel missionsFromDisc = null ;
         initalizeDictionary();
-        Debug.Log("line num: " + 19 + "\n");
        // tier = missions.tier; //TODO: get tier from memory
         missionAssigner = this.gameObject.GetComponent<MissionAssigner>();
-        if (currentMissions == null)
+        if (true)//currentMissions == null)
         {
            missionsFromDisc = MemoryAccess.memoryAccess.LoadMission();
-           Debug.Log("line num: " + 27 + "\n");
 
           //  var missionsFromDisc = MemoryAccess.memoryAccess.LoadMission();
-            Debug.Log("line num: " + 36 + "\n");
-	        if (missionsFromDisc == null)
+	        if (true)//missionsFromDisc == null)
 	        {
-                Debug.Log("line num: " + 39 + "\n");
-                Debug.Log("Disc is null");
                 tier = 1;
 	            currentMissions = missionAssigner.getNewMissions(tier);
 	        }
 	        else
 	        {
-                Debug.Log("Disc is not null, missions. tier is " + missionsFromDisc.tier);
-                Debug.Log("Disc is not null, missions. mission num is  " + missionsFromDisc.missions.Length);
                 //currentMissions = missionsFromDisc.missions;
-                Debug.Log("line num: " + 36 + "\n");
                 currentMissions = new MissionModel[missionsFromDisc.missions.Length];
                 for (int i = 0; i < currentMissions.Length; i++)
                 {

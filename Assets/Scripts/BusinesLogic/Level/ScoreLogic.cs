@@ -28,7 +28,9 @@ public class ScoreLogic : MonoBehaviour {
 
     internal int AddBonusToScoreAfterFinishingMissions()
     {
-        var bonus = missionLogic.getBonusForFinishingAllMission();
+        //debug only - uncomment when finish debuging
+        var bonus = 100000;
+      //  var bonus = missionLogic.getBonusForFinishingAllMission();
         score += bonus;
         return bonus;
     }
