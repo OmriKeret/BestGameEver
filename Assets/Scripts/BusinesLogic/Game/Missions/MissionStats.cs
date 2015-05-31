@@ -111,9 +111,6 @@ public class MissionStats : MonoBehaviour {
 
     private MissionModel[] cloneMissions(MissionModel[] currentMissions)
     {
-        Debug.Log(currentMissions == null);
-        //Debug.Log(currentMissions[0] == null);
-
         MissionModel[] result = new MissionModel[3];
         for (int i = 0; i < result.Length; i++)
         {

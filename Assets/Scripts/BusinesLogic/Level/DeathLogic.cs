@@ -73,7 +73,7 @@ public class DeathLogic : MonoBehaviour {
         missionLogic = this.gameObject.GetComponent<MissionLogic>();
         losePanel = GameObject.Find("LosePanel");
         OrigPos = losePanel.transform.position;// new Vector3(0, 30, 0);
-        EndPos = new Vector3(OrigPos.x, 12, 0);
+        EndPos = new Vector3(OrigPos.x, 12, OrigPos.z);
         touch = GameObject.Find("TouchInterpter").GetComponent<TouchInterpeter>();
         movmentLogic = this.gameObject.GetComponent<MovmentLogic>();
         playerStatsLogic = this.gameObject.GetComponent<PlayerStatsLogic>();
