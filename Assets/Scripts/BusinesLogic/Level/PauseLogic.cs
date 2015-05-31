@@ -13,12 +13,13 @@ public class PauseLogic : MonoBehaviour {
     AudioSource audioSource;
     AudioClip clickSound;
     TouchInterpeter touch;
+    bool touchDisabled;
 	// Use this for initialization
 	void Start () {
         PauseMenu = GameObject.Find("PauseMenu");
         audioSource = GameObject.Find("Camera").GetComponent<AudioSource>();
         menuOrigPos = PauseMenu.transform.position; ;//new Vector3(0, 30, 0);
-        menuEndPos = new Vector3(menuOrigPos.x, 12, 0);
+        menuEndPos = new Vector3(menuOrigPos.x, 12, menuOrigPos.z);
         imageClose = Resources.Load<Sprite>("pause1");
         imageOpen = Resources.Load<Sprite>("resume1");
         buttonImage = GameObject.Find("Pause").GetComponent<Image>();
@@ -32,13 +33,18 @@ public class PauseLogic : MonoBehaviour {
 	}
 
     public void onPause(){
+
         if (isMenuOpen)
         {
-            touch.UnsetDisableMovment();
+            if (!touchDisabled)
+            {
+                touch.UnsetDisableMovment();
+            }
             closeMenu();
         }
         else
         {
+            touchDisabled = touch.isMovmentDisabled;
             touch.SetDisableMovment();
             openMenu();
         }

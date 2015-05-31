@@ -10,6 +10,7 @@ TagManager:
   - Wall
   - PowerUp
   - Commet
+  - TouchCheck
   layers:
   - Default
   - TransparentFX
@@ -26,8 +27,8 @@ TagManager:
   - Commet
   - forground
   - blood
-  - 
-  - 
+  - toturialTouchCheck
+  - darkShade
   - 
   - 
   - 
@@ -46,6 +47,9 @@ TagManager:
   m_SortingLayers:
   - name: Background
     uniqueID: 1223548685
+    locked: 0
+  - name: darkShade
+    uniqueID: 1609760803
     locked: 0
   - name: Default
     uniqueID: 0
