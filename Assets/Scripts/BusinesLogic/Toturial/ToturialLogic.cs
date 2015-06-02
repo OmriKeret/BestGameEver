@@ -107,6 +107,8 @@ public class ToturialLogic : MonoBehaviour {
         }
         else
         {
+            // Set camera for game
+            camera.transform.position = new Vector3(1f, 6.07f, -20.2f);
             PowerUpManager.SetActive(true);
             enemyManager.SetActive(true);
             //Destroy this?

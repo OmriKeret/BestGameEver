@@ -68,8 +68,9 @@ public class TouchInterpeter : MonoBehaviour {
 			    case TouchPhase.Ended:
 				    playerPhyisicsController.StopHoverPhyisics();
 				    //touch is in pixels, we convert to unity world point
-				    realWorldTouch =  (Vector2)Camera.main.ScreenToWorldPoint(touch.position);
-				    realWorldCharPos =  player.position;
+					Vector3 touchFixedPosition = new Vector3(touch.position.x,touch.position.y, 20f);
+					realWorldTouch =  (Vector2)Camera.main.ScreenToWorldPoint(touchFixedPosition);
+					realWorldCharPos =  player.position;
 
 				    direction = realWorldTouch - realWorldCharPos;
  				    directionChosen = true;
