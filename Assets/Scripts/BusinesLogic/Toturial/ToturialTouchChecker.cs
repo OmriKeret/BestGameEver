@@ -99,7 +99,8 @@ public class ToturialTouchChecker : MonoBehaviour {
 
     internal void setCheckingPosition(Vector3 vector3)
     {
+
         touchBox.transform.position = vector3;
-        touchBox.size = new Vector2(8.321003f, 6.547585f);
+        touchBox.size = new Vector2(5f, 4f);
     }
 }
