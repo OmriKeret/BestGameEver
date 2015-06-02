@@ -40,7 +40,8 @@ public class ToturialTouchChecker : MonoBehaviour {
 						if(hit.transform.tag.Equals("TouchCheck")) {
 	                        //if touched do something
 	                        toturialLogic.playerTouchedTheArrow();
-	                        realWorldTouch = (Vector2)Camera.main.ScreenToWorldPoint(touch.position);
+							Vector3 touchFixedPosition = new Vector3(touch.position.x,touch.position.y, 20f);
+							realWorldTouch = (Vector2)Camera.main.ScreenToWorldPoint(touchFixedPosition);
 	                        realWorldCharPos = player.position;
 	                        var direction = realWorldTouch - realWorldCharPos;
 	                        direction.Normalize();
@@ -98,7 +99,8 @@ public class ToturialTouchChecker : MonoBehaviour {
 
     internal void setCheckingPosition(Vector3 vector3)
     {
+
         touchBox.transform.position = vector3;
-        touchBox.size = new Vector2(8.321003f, 6.547585f);
+        touchBox.size = new Vector2(5f, 4f);
     }
 }

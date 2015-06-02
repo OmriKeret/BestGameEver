@@ -78,13 +78,13 @@ public class ToturialLogic : MonoBehaviour {
 
     private void startToturial()
     {
-       setCameraPositionForToturial();
-       touch.SetDisableMovment();
-       toturialEnemySpanner.spawnEnemie();
+        setCameraPositionForToturial();
+        touch.SetDisableMovment();
+        toturialEnemySpanner.spawnEnemie();
 
         //DEBUG ONLY
-        //shouldCheckForPlayerTouchingThePodiumFirstTime = true;
-        //playerIsOnThePodium();
+       //shouldCheckForPlayerTouchingThePodiumFirstTime = true;
+       //playerIsOnThePodium();
     }
 
     private void setCameraPositionForToturial()
@@ -107,6 +107,8 @@ public class ToturialLogic : MonoBehaviour {
         }
         else
         {
+            // Set camera for game
+            camera.transform.position = new Vector3(1f, 6.07f, -20.2f);
             PowerUpManager.SetActive(true);
             enemyManager.SetActive(true);
             //TODO: remove line
@@ -247,7 +249,7 @@ public class ToturialLogic : MonoBehaviour {
              () =>
              {
                  // Set animation and touch checker position
-                 toturialTouch.setCheckingPosition(new Vector3(17.26f, 7f, 0f));
+                 toturialTouch.setCheckingPosition(new Vector3(17.26f, 8f, 0f));
                  fingerAnimationContainer.transform.position = new Vector3(14.26f, 6f, 0f);
 
                  toturialEnemySpanner.spawnEnemiesForWaveTwo();
@@ -268,7 +270,7 @@ public class ToturialLogic : MonoBehaviour {
    {
 		Debug.Log ("Got to showStaminaAndTouchChecker");
 		Time.timeScale = 0;
-       toturialTouch.setCheckingPosition(new Vector3(-10.74f, 9.31f, 0f));
+       toturialTouch.setCheckingPosition(new Vector3(-8.74f, 13.31f, 0f));
        fingerAnimationContainer.transform.position = new Vector3(-10.74f, 9.31f, 0f);
        darkScreen(highlightStamina);
        //screenShade.SetBool("darkScreen", true);

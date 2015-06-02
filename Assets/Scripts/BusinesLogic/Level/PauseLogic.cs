@@ -19,7 +19,7 @@ public class PauseLogic : MonoBehaviour {
         PauseMenu = GameObject.Find("PauseMenu");
         audioSource = GameObject.Find("Camera").GetComponent<AudioSource>();
         menuOrigPos = PauseMenu.transform.position; ;//new Vector3(0, 30, 0);
-        menuEndPos = new Vector3(menuOrigPos.x, 12, menuOrigPos.z);
+        menuEndPos = new Vector3(menuOrigPos.x, 35, menuOrigPos.z);
         imageClose = Resources.Load<Sprite>("pause1");
         imageOpen = Resources.Load<Sprite>("resume1");
         buttonImage = GameObject.Find("Pause").GetComponent<Image>();
