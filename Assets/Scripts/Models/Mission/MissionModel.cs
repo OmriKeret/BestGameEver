@@ -7,6 +7,7 @@ public class MissionModel {
    public MissionType type;
    public EnemyType enemyType;
    public PowerUpType powerUpType;
+   public CollectableTypes collectableType;
    public int numberToAchive;
    public int currentNumberAchived;
    public string missionText;

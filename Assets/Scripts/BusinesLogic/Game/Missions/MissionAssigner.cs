@@ -7,7 +7,7 @@ public class MissionAssigner : MonoBehaviour {
 
     MissionModel[] missions;
     Dictionary<EnemyType, string> enemyTypeString;
-    Dictionary<PowerUpType, string> powerUpTypeString;
+    Dictionary<CollectableTypes, string> collactableTypeString;
 	// Use this for initialization
 	void Awake () {
         DontDestroyOnLoad(gameObject);
@@ -50,9 +50,9 @@ public class MissionAssigner : MonoBehaviour {
         if(mission.type == MissionType.killTypeOfEnemy) {
             mission.missionText = string.Format("Kill total of {0} {1}{2}", mission.numberToAchive, enemyTypeString[mission.enemyType], inOneGame);
         }
-        if (mission.type == MissionType.takePowerUp)
+        if (mission.type == MissionType.takeCollectable)
         {
-            mission.missionText = string.Format("Get total of {0} {1}{2}", mission.numberToAchive, powerUpTypeString[mission.powerUpType], inOneGame);
+            mission.missionText = string.Format("Get total of {0} {1}{2}", mission.numberToAchive, collactableTypeString[mission.collectableType], inOneGame);
         }
         if (mission.type == MissionType.getScoreOf)
         {
@@ -82,13 +82,13 @@ public class MissionAssigner : MonoBehaviour {
                                              new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 1, missionText ="Kill five stupid enemies!", enemyType = EnemyType.Stupid, needToBeCompletedInOneGame = true }, 
                                              new MissionModel {type = MissionType.getScoreOf , numberToAchive = 1, missionText ="Get score of 10,000!" , needToBeCompletedInOneGame = true},
                                              new MissionModel {type = MissionType.survival , numberToAchive = 1, missionText ="Survive for:" , needToBeCompletedInOneGame = true},
-                                             new MissionModel {type = MissionType.takePowerUp , numberToAchive = 1, powerUpType = PowerUpType.SUPERHIT , needToBeCompletedInOneGame = true},
+                                             new MissionModel {type = MissionType.takeCollectable , numberToAchive = 1, collectableType = CollectableTypes.COIN, needToBeCompletedInOneGame = true},
                                              new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 1, missionText ="Kill Total of five enemies!", enemyType = EnemyType.General, needToBeCompletedInOneGame = false }, 
                                              new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 1, missionText ="Kill five stupid enemies!", enemyType = EnemyType.Stupid, needToBeCompletedInOneGame = false }, 
                                              new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 1, missionText ="Kill five stupid enemies!", enemyType = EnemyType.Spike, needToBeCompletedInOneGame = false }, 
                                              new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 1, missionText ="Kill five stupid enemies!", enemyType = EnemyType.Tank, needToBeCompletedInOneGame = false }, 
                                              new MissionModel {type = MissionType.getScoreOf , numberToAchive = 1, missionText ="Get score of 10,000!" , needToBeCompletedInOneGame = false},
-                                             new MissionModel {type = MissionType.takePowerUp , numberToAchive = 1, powerUpType = PowerUpType.SUPERHIT , needToBeCompletedInOneGame = false},
+                                             new MissionModel {type = MissionType.takeCollectable , numberToAchive = 1 ,collectableType = CollectableTypes.COIN, needToBeCompletedInOneGame = false},
                                              //new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 20, missionText ="Kill Total of five enemies!", enemyType = EnemyType.General, needToBeCompletedInOneGame = true }, 
                                              //new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 6, missionText ="Kill five stupid enemies!", enemyType = EnemyType.Stupid, needToBeCompletedInOneGame = true }, 
                                              //new MissionModel {type = MissionType.getScoreOf , numberToAchive = 10000, missionText ="Get score of 10,000!" , needToBeCompletedInOneGame = true},
@@ -108,9 +108,9 @@ public class MissionAssigner : MonoBehaviour {
             {EnemyType.Spike, "fat flying thoug"},
             {EnemyType.Tank, "fire deamon"}
         };
-        powerUpTypeString = new Dictionary<PowerUpType, string> 
+        collactableTypeString = new Dictionary<CollectableTypes, string> 
         {
-            {PowerUpType.SUPERHIT, "Super Hit PowerUPs"}
+            {CollectableTypes.COIN, "Deamon Coins!"}
         };
     }
 

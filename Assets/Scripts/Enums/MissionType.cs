@@ -6,6 +6,7 @@ public enum MissionType {
 	survival = 1,
     killTypeOfEnemy = 2,
     getScoreOf = 3,
-    takePowerUp = 4
+    takePowerUp = 4,
+    takeCollectable = 5
 
 }

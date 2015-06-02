@@ -1,41 +1,41 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &138780
+--- !u!1 &164770
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 413994}
-  - 212: {fileID: 21283178}
-  - 114: {fileID: 11478392}
-  - 58: {fileID: 5899488}
+  - 4: {fileID: 487356}
+  - 212: {fileID: 21279066}
+  - 58: {fileID: 5844552}
+  - 114: {fileID: 11479276}
   m_Layer: 0
-  m_Name: SuperHitPowerUp
+  m_Name: Coin
   m_TagString: PowerUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &413994
+--- !u!4 &487356
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 138780}
+  m_GameObject: {fileID: 164770}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.92961025, y: 7.74194431, z: 0}
   m_LocalScale: {x: .351496816, y: .351496816, z: .351496816}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!58 &5899488
+--- !u!58 &5844552
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 138780}
+  m_GameObject: {fileID: 164770}
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -43,26 +43,26 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2.5
---- !u!114 &11478392
+--- !u!114 &11479276
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 138780}
+  m_GameObject: {fileID: 164770}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c32ec743ce98ab4481037d5b83c1d65, type: 3}
+  m_Script: {fileID: 11500000, guid: f94ca63e69d46ac47b07cb8273264f67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
-  timeToAppear: 1
-  timeToDisapear: 2
---- !u!212 &21283178
+  type: 1
+  timeToAppear: 2
+  timeToDisapear: 1
+--- !u!212 &21279066
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 138780}
+  m_GameObject: {fileID: 164770}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -92,5 +92,5 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 138780}
+  m_RootGameObject: {fileID: 164770}
   m_IsPrefabParent: 1
