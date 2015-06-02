@@ -14,6 +14,7 @@ public class TouchInterpeter : MonoBehaviour {
 	Vector2 realWorldTouch;
     public Button pauseButton;
     public bool isMovmentDisabled;
+    Camera camera;
 	// Use this for initialization
 	void Start () {
 		playerPhyisicsController = GameObject.Find("PlayerManager").GetComponent<PhyisicsController>();
@@ -21,6 +22,7 @@ public class TouchInterpeter : MonoBehaviour {
 		player = GameObject.Find("PlayerManager").GetComponent<Rigidbody2D>();
         pauseButton = GameObject.Find("Pause").GetComponent<Button>();
         events = GameObject.Find("EventSystem").GetComponent<EventSystem>();
+        camera = GameObject.Find("Camera").GetComponent<Camera>();
 	}
 	
 	// Update is called once per frame
@@ -34,7 +36,7 @@ public class TouchInterpeter : MonoBehaviour {
             {
                 var touchPos = Input.mousePosition;
                 touchPos.z = 20f;
-                realWorldTouch = Camera.main.ScreenToWorldPoint(touchPos);
+                realWorldTouch = camera.ScreenToWorldPoint(touchPos);
                 realWorldCharPos = player.position;
                 direction = realWorldTouch - realWorldCharPos;
                 directionChosen = true;
@@ -68,7 +70,8 @@ public class TouchInterpeter : MonoBehaviour {
 			    case TouchPhase.Ended:
 				    playerPhyisicsController.StopHoverPhyisics();
 				    //touch is in pixels, we convert to unity world point
-				    realWorldTouch =  (Vector2)Camera.main.ScreenToWorldPoint(touch.position);
+                    var touchPos = touch.position;
+				    realWorldTouch =  (Vector2)camera.ScreenToWorldPoint(touch.position);
 				    realWorldCharPos =  player.position;
 
 				    direction = realWorldTouch - realWorldCharPos;

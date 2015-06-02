@@ -101,7 +101,7 @@ public class ToturialLogic : MonoBehaviour {
             shouldDoBasicToturial = !data.finishedBasicToturial;
         }
 
-        if (shouldDoBasicToturial)
+        if (true)
         {
             startToturial();
         }
@@ -109,6 +109,8 @@ public class ToturialLogic : MonoBehaviour {
         {
             PowerUpManager.SetActive(true);
             enemyManager.SetActive(true);
+            //TODO: remove line
+            Destroy(this.gameObject);
             //Destroy this?
         }
     }

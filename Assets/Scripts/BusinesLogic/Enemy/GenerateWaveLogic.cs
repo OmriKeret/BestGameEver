@@ -31,7 +31,7 @@ public class GenerateWaveLogic : MonoBehaviour {
         }
     }
 
-
+    
 	// Use this for initialization
 	public void generateWave(WaveGenerateModel i_model) {
 		/** --omri's code

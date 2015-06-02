@@ -15,7 +15,7 @@ public class WaveLogicFactory {
         podiumMaker = new PodiumFactory();
         _orderWaves = new WaveLogic[]{
             //0
-            new WaveLogic(new EnemyType[]{EnemyType.Cannon,EnemyType.Cannon},
+            new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid},
             new EnemyLocation[]{EnemyLocation.TopRight,EnemyLocation.TopRight},
             new int[]{1,1}),
             //1                
