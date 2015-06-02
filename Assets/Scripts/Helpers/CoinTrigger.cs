@@ -7,10 +7,13 @@ public class CoinTrigger : MonoBehaviour {
     public float timeToAppear = 1f;
     public float timeToDisapear;
     CollectableLogic collectableLogic;
+
+    GameObject particles;
     // Use this for initialization
     void Awake()
     {
         collectableLogic = GameObject.Find("Logic").GetComponent<CollectableLogic>();
+        particles = Resources.Load("Collectables/CoinParticles") as GameObject;
     }
 
 
@@ -33,7 +36,7 @@ public class CoinTrigger : MonoBehaviour {
         {
             collectableLogic.GotCollactable(type);
             LeanTween.cancel(this.gameObject);
-            //TODO: create particals
+            Instantiate(particles, this.transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
     }
