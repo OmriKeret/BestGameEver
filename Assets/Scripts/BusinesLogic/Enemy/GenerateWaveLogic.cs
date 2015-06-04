@@ -11,6 +11,7 @@ public class GenerateWaveLogic : MonoBehaviour {
     public Vector3[][] paths;
     public Vector2[] instantiateLocations;
     public bool waveEnded = false;
+    private int TimeToFinishPath = 50;
 
 	void Start () {
 		_wave = new WaveLogicFactory ();
@@ -30,7 +31,7 @@ public class GenerateWaveLogic : MonoBehaviour {
         }
     }
 
-
+    
 	// Use this for initialization
 	public void generateWave(WaveGenerateModel i_model) {
 		/** --omri's code
@@ -64,7 +65,7 @@ public class GenerateWaveLogic : MonoBehaviour {
             GameObject currentEnemy = Instantiate(enemyGenerator.getEnemy(currentType), enemyLocation, Quaternion.identity) as GameObject;
             IEnemy currentEnemyLogic = currentEnemy.GetComponent<IEnemy>();
             currentEnemyLogic.playSpawnSound();
-            currentEnemyLogic.StartOrderPath(5 * 10, currentLocation);
+            currentEnemyLogic.StartOrderPath(TimeToFinishPath, currentLocation);
             //If there are more enemies in row, don't wait.
             if (lastInRow)
             {

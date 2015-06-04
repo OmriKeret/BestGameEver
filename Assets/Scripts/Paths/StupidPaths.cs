@@ -4,18 +4,18 @@ using UnityEngine;
 
     public class StupidPaths
     {
-        public Vector3[] topRight = new Vector3[]
-                {
+        public Vector3[] topRight = new Vector3[] { 
+                    
                     new Vector3(SceneStats.RightEdge,18f), 
-                    new Vector3(23.5f,9f),
-                    new Vector3(18f,6f),
-                    new Vector3(10.5f,10f),
-                    new Vector3(10.5f,10f),
-                    new Vector3(-3f,16.1f), 
-                    new Vector3(-13f,8.1f), 
-                    new Vector3(SceneStats.LeftEdge,0)
-                };
-        public Vector3[] topLeft = new Vector3[]
+                    new Vector3(21.5f,9f),
+                    new Vector3(16f,6f),
+                    new Vector3(8.5f,10f),
+                    new Vector3(8.5f,10f),
+                    new Vector3(-5f,16.1f), 
+                    new Vector3(-15f,8.1f),
+                    new Vector3(SceneStats.LeftEdge,0) };
+        
+            public Vector3[] topLeft = new Vector3[]
        {
                     new Vector3(SceneStats.LeftEdge,18f), 
                     new Vector3(-21.5f,9f),

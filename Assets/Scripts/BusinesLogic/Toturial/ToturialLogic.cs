@@ -101,7 +101,7 @@ public class ToturialLogic : MonoBehaviour {
             shouldDoBasicToturial = !data.finishedBasicToturial;
         }
 
-        if (shouldDoBasicToturial)
+        if (true)
         {
             startToturial();
         }
@@ -111,6 +111,8 @@ public class ToturialLogic : MonoBehaviour {
             camera.transform.position = new Vector3(1f, 6.07f, -20.2f);
             collactableManager.SetActive(true);
             enemyManager.SetActive(true);
+            //TODO: remove line
+            Destroy(this.gameObject);
             //Destroy this?
         }
     }
