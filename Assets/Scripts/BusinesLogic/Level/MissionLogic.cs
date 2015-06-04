@@ -7,6 +7,7 @@ public class MissionLogic : MonoBehaviour {
   MissionModel[] missions;
   Dictionary<EnemyType, int> enemyKills;
   Dictionary<PowerUpType, int> powerUpstaken;
+  Dictionary<CollectableTypes, int>collactablesTaken;
   public InternalMissionModel[] MissionsToggleAndText;
   int TrackTimeForMissionNumber;
   DeathLogic deathLogic; 
@@ -24,6 +25,10 @@ public class MissionLogic : MonoBehaviour {
 		};
         powerUpstaken = new Dictionary<PowerUpType, int>	{ 
 			{ PowerUpType.SUPERHIT, 0 }
+		};
+
+        collactablesTaken = new Dictionary<CollectableTypes, int>	{ 
+			{ CollectableTypes.COIN, 0 }
 		};
 		MissionsToggleAndText = new InternalMissionModel[] {
 			new InternalMissionModel(),
@@ -76,6 +81,10 @@ public class MissionLogic : MonoBehaviour {
            if (missions[i].type == MissionType.takePowerUp)
            {
                powerUpstaken[missions[i].powerUpType] = missions[i].currentNumberAchived;
+           }
+           if (missions[i].type == MissionType.takeCollectable)
+           {
+               collactablesTaken[missions[i].collectableType] = missions[i].currentNumberAchived;
            }
            if (missions[i].type == MissionType.survival)
            {  
@@ -221,5 +230,25 @@ public class MissionLogic : MonoBehaviour {
     internal void saveMissionData()
     {
         missionStats.SaveMissionProgression();
+    }
+
+    internal void addCollactable(CollectableTypes collactable)
+    {
+        if (!collactablesTaken.ContainsKey(collactable))
+        {
+            return;
+        }
+        collactablesTaken[collactable]++;
+        for (int i = 0; i < missions.Length; i++)
+        {
+            if (missions[i].type == MissionType.takePowerUp && missions[i].collectableType == collactable)
+            {
+                updateNumberAchived(i, collactablesTaken[collactable]);
+                if (missions[i].type == MissionType.takePowerUp && missions[i].collectableType == collactable && missions[i].numberToAchive <= collactablesTaken[collactable])
+                {
+                    finishedMission(i);
+                }
+            }
+        }
     }
 }
