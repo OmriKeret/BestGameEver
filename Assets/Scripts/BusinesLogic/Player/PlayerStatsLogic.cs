@@ -23,6 +23,7 @@ public class PlayerStatsLogic : MonoBehaviour {
     StaminaBarLogic staminaBar;
     //logic
     private MovmentLogic movmentLogic;
+    private SuperPowerLogic superPower;
 	// Use this for initialization
     void OnEnable()
     {
@@ -31,8 +32,10 @@ public class PlayerStatsLogic : MonoBehaviour {
         staminaBar = this.GetComponent<StaminaBarLogic>();
         guiHP = GameObject.Find("HpContainer");
 		comboText = GameObject.Find("ComboText").GetComponent<Text>();
+        superPower = this.GetComponent<SuperPowerLogic>();
         _LifeFullPrefab = Resources.Load("lifeFull") as GameObject;
         _LifeEmptyPrefab = Resources.Load("lifeEmpty") as GameObject;
+        
 
 	}
 	void Start() 
@@ -52,6 +55,7 @@ public class PlayerStatsLogic : MonoBehaviour {
     public void addOneToCombo()
     {
         combo += 1;
+        superPower.changeState(combo);
 		reWrithCombo ();
     }
 
@@ -91,35 +95,11 @@ public class PlayerStatsLogic : MonoBehaviour {
     {
         HPBar.setMaximumHP(HP);
         HPBar.updateCurrentHP(HP);
-     
-        //lifes = new GameObject[HP];
-        //for (int i = 0; i < HP; i++)
-        //{
-        //  //  Debug.Log("creating");
-        //    Vector3 pos = guiHP.transform.position;
-        //    pos.x = (float)(pos.x + 4 * i);
-        //    lifes[i] = Instantiate(_LifeFullPrefab, pos, Quaternion.identity) as GameObject;
-        //    lifes[i].transform.parent = guiHP.transform;
-        //}
     }
     private void ReWriteHP()
     {
         HPBar.updateCurrentHP(HP);
-        //for (int i = 0; i < lifes.Length; i++)
-        //{
-        //    if (i + 1 <= HP)
-        //    {
 
-        //    }
-        //    else
-        //    {
-        //        Vector3 pos = guiHP.transform.position;
-        //        pos.x = (float)(pos.x + 4 * i);
-        //        Destroy(lifes[i].gameObject);
-        //        lifes[i] = Instantiate(_LifeEmptyPrefab, pos, Quaternion.identity) as GameObject;
-        //    }
-        //}
-      //  HPText.text = numOfHearts;
     }
 
 
@@ -133,12 +113,10 @@ public class PlayerStatsLogic : MonoBehaviour {
     internal void addDashDistBoost(int dashDistBoost)
     {
         dashDist += dashDistBoost;
-        //movmentLogic.dashDist = dashDist;
     }
 
     internal void addDashHPBoost(int hpBoost)
-    {
-        
+    {    
         HP += hpBoost;
         firstTimeWriteHp();
     }

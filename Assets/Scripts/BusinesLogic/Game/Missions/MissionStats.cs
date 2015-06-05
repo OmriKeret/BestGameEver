@@ -122,6 +122,7 @@ public class MissionStats : MonoBehaviour {
             result[i].needToBeCompletedInOneGame = currentMissions[i].needToBeCompletedInOneGame;
             result[i].numberToAchive = currentMissions[i].numberToAchive;
             result[i].powerUpType = currentMissions[i].powerUpType;
+            result[i].collectableType = currentMissions[i].collectableType;
             result[i].type = currentMissions[i].type;
         }
         return result;

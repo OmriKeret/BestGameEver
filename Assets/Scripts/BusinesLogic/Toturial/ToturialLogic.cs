@@ -40,7 +40,7 @@ public class ToturialLogic : MonoBehaviour {
     private Action finishedBrightScreenFunc;
     private bool shouldSetBrightScreenFunction;
     // colloectable
-    private GameObject PowerUpManager;
+    private GameObject collactableManager;
     
     // delay problems
     private GameObject tapArrowObject;
@@ -60,9 +60,9 @@ public class ToturialLogic : MonoBehaviour {
         IOManager = this.GetComponent<ToturialIOManager>();
 
         enemyManager = GameObject.Find("EnemyManager");
-        PowerUpManager = GameObject.Find("PowerUpManager");
+        collactableManager = GameObject.Find("CollectableManager");
         enemyManager.SetActive(false);
-        PowerUpManager.SetActive(false);
+        collactableManager.SetActive(false);
     }
 
     void Update()
@@ -109,7 +109,7 @@ public class ToturialLogic : MonoBehaviour {
         {
             // Set camera for game
             camera.transform.position = new Vector3(1f, 6.07f, -20.2f);
-            PowerUpManager.SetActive(true);
+            collactableManager.SetActive(true);
             enemyManager.SetActive(true);
             //TODO: remove line
             Destroy(this.gameObject);
@@ -238,7 +238,7 @@ public class ToturialLogic : MonoBehaviour {
    {
        touch.UnsetDisableMovment();
        IOManager.saveBasicToturialInfo(new IOBasicToturialModel {finishedBasicToturial = true });
-       PowerUpManager.SetActive(true);
+       collactableManager.SetActive(true);
        enemyManager.SetActive(true);
        Debug.Log("Player finished toturial!");
    }
