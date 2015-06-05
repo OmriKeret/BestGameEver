@@ -101,6 +101,6 @@ public class ToturialTouchChecker : MonoBehaviour {
     {
 
         touchBox.transform.position = vector3;
-        touchBox.size = new Vector2(5f, 4f);
+        touchBox.size = new Vector2(3f, 4f);
     }
 }

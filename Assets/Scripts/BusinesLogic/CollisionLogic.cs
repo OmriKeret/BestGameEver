@@ -13,10 +13,17 @@ public class CollisionLogic : MonoBehaviour  {
     private ScoreLogic scoreLogic;
     private PlayerStatsLogic playerStatsLogic;
     private MissionLogic missionLogic;
+    private TouchInterpeter touch;
+
     AnimationLogic animationLogic;
     SoundLogic soundLogic;
     DeathLogic deathLogic;
+
+    //landing
+    private GameObject landDust;
+
 	void Start () {
+        landDust = Resources.Load("Spurt") as GameObject;
 		physicsLogic = this.gameObject.GetComponent<PhysicsLogic> ();
 		movmentLogic = this.gameObject.GetComponent<MovmentLogic> ();
         scoreLogic = this.gameObject.GetComponent<ScoreLogic>();
@@ -25,6 +32,7 @@ public class CollisionLogic : MonoBehaviour  {
         animationLogic = this.gameObject.GetComponent<AnimationLogic>();
         soundLogic = this.gameObject.GetComponent<SoundLogic>();
         deathLogic = this.gameObject.GetComponent<DeathLogic>();
+        touch = GameObject.Find("TouchInterpter").GetComponent<TouchInterpeter>();
 	}
     public void playerCollideWithCommet(CollisionModel model)
     {
@@ -100,10 +108,10 @@ public class CollisionLogic : MonoBehaviour  {
         //building path
        
         Vector3[] path = new Vector3[] {
-                                             new Vector3(playerPosition.x + (-2.697063f * sign) ,playerPosition.y),
-                                             new Vector3(playerPosition.x + (-1.397063f * sign),playerPosition.y + 5.108706f),
-                                             new Vector3(playerPosition.x + (0.397063f * sign),playerPosition.y + 6.408706f),
-                                             new Vector3(playerPosition.x + (1f * sign),playerPosition.y + 7.749998f),
+                                             new Vector3(playerPosition.x + (4.48f * sign) ,playerPosition.y),
+                                             new Vector3(playerPosition.x + (5f * sign),playerPosition.y + 1.81f),
+                                             new Vector3(playerPosition.x + (5.519f * sign),playerPosition.y + 0.8f),
+                                             new Vector3(playerPosition.x + (2.55f * sign),playerPosition.y + 2.59f),
                                         };
  
 
@@ -111,7 +119,7 @@ public class CollisionLogic : MonoBehaviour  {
             {
                 stopAfterBounce(new StopAfterCollisionModel{collidedWith = model.CollidedWith.gameObject, subject = model.mainCollider.GetComponent<Rigidbody2D> ()});
             });
-        rollOver(model.mainCollider);       
+      //  rollOver(model.mainCollider);       
         animationLogic.UnSetDashing();
         animationLogic.SetSlicing();
 	}
@@ -209,11 +217,38 @@ public class CollisionLogic : MonoBehaviour  {
     }
 	public void playerCollidedWithWall(CollisionModel model) 
 	{
-        LeanTween.cancel(model.mainCollider.gameObject, true);
-        movmentLogic.ResetRotation();
-        animationLogic.UnSetDashing();
-        //animationLogic.CheckIfGrounded();
-        soundLogic.playLandingSound();
-        playerStatsLogic.resetDash();
+            LeanTween.cancel(model.mainCollider.gameObject, true);
+
+            movmentLogic.ResetRotation();
+            animationLogic.UnSetDashing();
+            animationLogic.Land();
+            var podiumCollider = model.CollidedWith.GetComponent<BoxCollider2D>();
+
+            // Reseting the rotation
+            var storedRotation = podiumCollider.transform.rotation;
+
+            Vector2 size = podiumCollider.size;
+            Vector3 centerPoint = new Vector3(podiumCollider.offset.x, podiumCollider.offset.y, 0f);
+            Vector3 worldPos = model.CollidedWith.gameObject.transform.TransformPoint(podiumCollider.offset);
+            float btm = worldPos.y - ((size.y * podiumCollider.transform.localScale.y) / 2f);
+            float top = worldPos.y + ((size.y * podiumCollider.transform.localScale.y) / 2f);
+            float left = worldPos.x - ((size.x * podiumCollider.transform.localScale.x) / 2f);
+            float right = worldPos.x + ((size.x * podiumCollider.transform.localScale.x) / 2f);
+            Vector3 topLeft = new Vector3(left, top, worldPos.z);
+            Vector3 topRight = new Vector3(right, top, worldPos.z);
+
+            var podiumLogic = model.CollidedWith.gameObject.GetComponent<PodiumLogic>();
+            if(!podiumLogic.isMoving()) {
+                var pos = model.CollidedWith.transform.position;
+                pos.y = top;
+                Instantiate(landDust, pos, Quaternion.identity);
+            }
+ 
+            model.mainCollider.gameObject.transform.position = new Vector3((topLeft.x + topRight.x) / 2, top);
+
+            soundLogic.playLandingSound();
+            playerStatsLogic.resetDash();
+
 	}
+
 }

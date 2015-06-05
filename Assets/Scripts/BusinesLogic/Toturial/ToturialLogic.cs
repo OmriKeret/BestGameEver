@@ -59,10 +59,7 @@ public class ToturialLogic : MonoBehaviour {
         highlightAnimation = highlightContainer.GetComponentInChildren<Animator>();
         IOManager = this.GetComponent<ToturialIOManager>();
 
-        enemyManager = GameObject.Find("EnemyManager");
-        collactableManager = GameObject.Find("CollectableManager");
-        enemyManager.SetActive(false);
-        collactableManager.SetActive(false);
+
     }
 
     void Update()
@@ -85,6 +82,10 @@ public class ToturialLogic : MonoBehaviour {
         //DEBUG ONLY
        //shouldCheckForPlayerTouchingThePodiumFirstTime = true;
        //playerIsOnThePodium();
+        enemyManager = GameObject.Find("EnemyManager");
+        collactableManager = GameObject.Find("CollectableManager");
+        enemyManager.SetActive(false);
+        collactableManager.SetActive(false);
     }
 
     private void setCameraPositionForToturial()
@@ -101,7 +102,7 @@ public class ToturialLogic : MonoBehaviour {
             shouldDoBasicToturial = !data.finishedBasicToturial;
         }
 
-        if (true)
+        if (shouldDoBasicToturial)
         {
             startToturial();
         }
@@ -109,8 +110,8 @@ public class ToturialLogic : MonoBehaviour {
         {
             // Set camera for game
             camera.transform.position = new Vector3(1f, 6.07f, -20.2f);
-            collactableManager.SetActive(true);
-            enemyManager.SetActive(true);
+            //collactableManager.SetActive(true);
+            //enemyManager.SetActive(true);
             //TODO: remove line
             Destroy(this.gameObject);
             //Destroy this?
@@ -215,10 +216,6 @@ public class ToturialLogic : MonoBehaviour {
        toturialTouch.setShouldNotCheckTouch();
    }
 
-   private void playerTouchedTheArrowDelay()
-   {
-      Time.timeScale = 1f;
-   }
    internal void playerIsOnThePodium()
    {
        Debug.Log("player got to poium and checker is set to " + shouldCheckForPlayerTouchingThePodiumFirstTime);
@@ -249,6 +246,7 @@ public class ToturialLogic : MonoBehaviour {
              () =>
              {
                  // Set animation and touch checker position
+                 
                  toturialTouch.setCheckingPosition(new Vector3(17.26f, 8f, 0f));
                  fingerAnimationContainer.transform.position = new Vector3(14.26f, 6f, 0f);
 

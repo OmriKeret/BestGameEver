@@ -20,6 +20,10 @@ public class PodiumLogic : MonoBehaviour {
 //    protected float timeFromGoingDown = 100000f;
     public float timeToWaitDown;
 
+    private bool currentlyGoingdown = false; // going down is for sync. this var is for gui
+    private bool shouldCount;
+    private float timeStartedCounting;
+    protected bool goingUp = false;
     protected bool goingDown = false;
     protected bool firstJump = true;
     protected bool secondJump = true;
@@ -31,10 +35,18 @@ public class PodiumLogic : MonoBehaviour {
         firstJump = true;
         secondJump = true;
 	}
-    void FixedUpdate()
+    void Update()
     {
+        if (Time.time - timeStartedCounting > timeToShake + timeToWaitBeforeShaking && shouldCount)
+        {
+            currentlyGoingdown = true;
+			shouldCount = false;
+        }
     }
-
+    public bool isMoving()
+    {
+        return currentlyGoingdown || goingUp;
+    }
     public void initPodium(GameObject i_Podium)
     {
         podium = i_Podium;
@@ -55,13 +67,14 @@ public class PodiumLogic : MonoBehaviour {
 
     protected void startGoUp()
     {
+        goingUp = true;
         goingDown = false;
+        currentlyGoingdown = false;
         firstJump = true;
         secondJump = true;
         LeanTween.cancel(podium,false);
         resetRotation();
-        LeanTween.move(podium, originalLocation, timeToComeBackUp).setDelay(timeToWaitDown);
-
+        LeanTween.move(podium, originalLocation, timeToComeBackUp).setDelay(timeToWaitDown).setOnComplete(() => {goingUp = false;});
     }
 
     protected void resetRotation()
@@ -99,12 +112,15 @@ public class PodiumLogic : MonoBehaviour {
         {
             goingDown = true;
         }
-       Debug.Log("podium go down ");
-       LeanTween.rotateZ(podium, angleToShakeTo, shakingTime).setDelay(timeToWaitBeforeShaking).setOnComplete(
-          () =>
-          {
-              shakingPingPong();
-          });
+       
+        // Podium before fall animation
+        //LeanTween.rotateZ(podium, angleToShakeTo, shakingTime).setDelay(timeToWaitBeforeShaking).setOnComplete(
+        //   () =>
+        //   {
+        //       shakingPingPong();
+        //   });
+        timeStartedCounting = Time.time;
+		shouldCount = true;
        LeanTween.move(podium, downLocation, timeToGoDown).setDelay(timeToShake + timeToWaitBeforeShaking).setOnComplete(
           () =>
           {
@@ -114,12 +130,13 @@ public class PodiumLogic : MonoBehaviour {
 
     public void downForGood()
     {
-        Debug.Log("podium go down and out");
-        LeanTween.rotateZ(podium, angleToShakeTo, shakingTime).setDelay(timeToWaitBeforeShaking).setOnComplete(
-           () =>
-           {
-               shakingPingPong();
-           });
+        
+        // Podium before fall animation
+        //LeanTween.rotateZ(podium, angleToShakeTo, shakingTime).setDelay(timeToWaitBeforeShaking).setOnComplete(
+        //   () =>
+        //   {
+        //       shakingPingPong();
+        //   });
         LeanTween.move(podium, downLocation, timeToGoDown).setDelay(timeToShake + timeToWaitBeforeShaking).setOnComplete(
            () =>
            {

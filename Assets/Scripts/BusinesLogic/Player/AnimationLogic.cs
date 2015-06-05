@@ -19,11 +19,15 @@ public class AnimationLogic : MonoBehaviour
     private float startCoolDownTime = 0f;
     private bool turnDownTrail = false;
 
+    // Landing
     public LayerMask whatIsGround;
 	public Animator animator;
     private float groundRadius = 1f;
+   
+
     bool fliping;
 	void Start() {
+       
         character = GameObject.Find("PlayerManager");
         trail = character.GetComponent<TrailRenderer>();
 
@@ -45,14 +49,7 @@ public class AnimationLogic : MonoBehaviour
             }
         }
 	}
-    void LateUpdate()
-    {
-        //if (fliping)
-        //{
-        //    Flip();
-        //    fliping = false;
-        //}
-    }
+
 	public void OnMoveSetDirection(moveAnimationModel model) 
 	{
         //Debug.Log("moving direction is positive: " + (model.direction.x > 0));
@@ -90,6 +87,13 @@ public class AnimationLogic : MonoBehaviour
         animator.SetBool("Grounded",grounded);  
     }
 
+    public void Land()
+    {
+        animator.SetTrigger("Land");
+        grounded = true;
+        animator.SetBool("Grounded", grounded);     
+    }
+
     public void SetSlicing()
     {
         animator.SetTrigger("Slicing");
@@ -104,7 +108,10 @@ public class AnimationLogic : MonoBehaviour
 		theScale.x *= -1;
 		character.transform.localScale = theScale;	
 	}
-
+    public void playerDie()
+    {
+        animator.SetTrigger("Die");
+    }
     internal void playerHit()
     {
         //LeanTween.color(character.gameObject, Color.white, 0);
