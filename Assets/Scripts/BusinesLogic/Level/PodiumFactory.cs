@@ -14,8 +14,8 @@ using System.Collections.Generic;
             podiumPrefab = Resources.Load("Podium") as GameObject;
             activePodiums = new List<GameObject>();
             allLevels = new PodiumModel[][]{
-                new PodiumModel[]{new PodiumModel(PodiumPaths.AxisX)},
-                new PodiumModel[]{new PodiumModel(PodiumPaths.AxisX)},
+                new PodiumModel[]{new PodiumModel(PodiumPaths.NotMoveing)},
+                new PodiumModel[]{new PodiumModel(PodiumPaths.NotMoveing)},
                 new PodiumModel[]{new PodiumModel(0)},
                 new PodiumModel[]{new PodiumModel(0)},
                 new PodiumModel[]{new PodiumModel(0)},
@@ -47,8 +47,8 @@ using System.Collections.Generic;
             {
                 GameObject currentPodium = GameObject.Instantiate(podiumPrefab, currentPodiumStats.location, Quaternion.identity) as GameObject;
                 currentPodium.transform.localScale = currentPodiumStats.scale;
-                currentPodium.GetComponent<PodiumLogic>().Move(currentPodiumStats.path);
                 activePodiums.Add(currentPodium);
+                currentPodium.GetComponent<PodiumLogic>().Move(currentPodiumStats.path);
             }
         }
 

@@ -64,6 +64,11 @@ public class WaveLogicFactory {
         };
 
         _easyWaves = new WaveLogic[]{
+            //0
+            new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid},
+            new EnemyLocation[]{EnemyLocation.TopRight,EnemyLocation.TopRight},
+            new int[]{1,1}),
+
 		};
         _mediumWaves = new WaveLogic[]{
 			
@@ -99,7 +104,8 @@ public class WaveLogicFactory {
 
 
 	public WaveLogic createEasyWave(){
-		return createWave(_easyWaves);
+        podiumMaker.SetupNewWave(1);
+        return createWave(_easyWaves);
 	}
 
 }

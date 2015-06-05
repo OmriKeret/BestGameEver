@@ -39,7 +39,8 @@ public class GenerateWaveLogic : MonoBehaviour {
             return;
         }
         */
-        _wave.createWaveByOrder(i_model);
+        //_wave.createWaveByOrder(i_model);
+        i_model.wave = _wave.createEasyWave();
         StartCoroutine(GenerateEnemiesWithPause(i_model));
         waveNumber++;
         
