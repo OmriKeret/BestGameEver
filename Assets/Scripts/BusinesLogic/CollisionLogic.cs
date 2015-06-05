@@ -18,7 +18,12 @@ public class CollisionLogic : MonoBehaviour  {
     AnimationLogic animationLogic;
     SoundLogic soundLogic;
     DeathLogic deathLogic;
+
+    //landing
+    private GameObject landDust;
+
 	void Start () {
+        landDust = Resources.Load("Spurt") as GameObject;
 		physicsLogic = this.gameObject.GetComponent<PhysicsLogic> ();
 		movmentLogic = this.gameObject.GetComponent<MovmentLogic> ();
         scoreLogic = this.gameObject.GetComponent<ScoreLogic>();
@@ -212,11 +217,6 @@ public class CollisionLogic : MonoBehaviour  {
     }
 	public void playerCollidedWithWall(CollisionModel model) 
 	{
-        //var playerPos = model.mainCollider.transform.position;
-        //var podiumPos = model.CollidedWith.transform.position;
-        //var comeFromTop = podiumPos.y < playerPos.y;
-        //if (comeFromTop)
-        //{
             LeanTween.cancel(model.mainCollider.gameObject, true);
 
             movmentLogic.ResetRotation();
@@ -224,46 +224,31 @@ public class CollisionLogic : MonoBehaviour  {
             animationLogic.Land();
             var podiumCollider = model.CollidedWith.GetComponent<BoxCollider2D>();
 
-            //now to know the world position of top most level of the wall:
-            //float topMost = model.CollidedWith.transform.position.y + (podiumCollider.size.y * podiumCollider.transform.lossyScale.y) / 2f;
-            //float middle = model.CollidedWith.transform.position.x;
-            //model.mainCollider.gameObject.transform.position = new Vector3(middle, topMost);
-            
             // Reseting the rotation
             var storedRotation = podiumCollider.transform.rotation;
-            podiumCollider.transform.rotation = Quaternion.identity;
 
             Vector2 size = podiumCollider.size;
             Vector3 centerPoint = new Vector3(podiumCollider.offset.x, podiumCollider.offset.y, 0f);
             Vector3 worldPos = model.CollidedWith.gameObject.transform.TransformPoint(podiumCollider.offset);
-
+            float btm = worldPos.y - ((size.y * podiumCollider.transform.localScale.y) / 2f);
             float top = worldPos.y + ((size.y * podiumCollider.transform.localScale.y) / 2f);
             float left = worldPos.x - ((size.x * podiumCollider.transform.localScale.x) / 2f);
             float right = worldPos.x + ((size.x * podiumCollider.transform.localScale.x) / 2f);
             Vector3 topLeft = new Vector3(left, top, worldPos.z);
             Vector3 topRight = new Vector3(right, top, worldPos.z);
 
+            var podiumLogic = model.CollidedWith.gameObject.GetComponent<PodiumLogic>();
+            if(!podiumLogic.isMoving()) {
+                var pos = model.CollidedWith.transform.position;
+                pos.y = top;
+                Instantiate(landDust, pos, Quaternion.identity);
+            }
+ 
             model.mainCollider.gameObject.transform.position = new Vector3((topLeft.x + topRight.x) / 2, top);
-            model.CollidedWith.transform.rotation = storedRotation;
-            model.mainCollider.gameObject.transform.rotation = storedRotation;
 
             soundLogic.playLandingSound();
             playerStatsLogic.resetDash();
 
-        //}
 	}
 
-    private Vector3[] GetColliderVertexPositions ( BoxCollider2D obj) {
-    var vertices = new Vector3[2];
-    var thisMatrix = obj.transform.localToWorldMatrix;
-    var storedRotation = obj.transform.rotation;
-    obj.transform.rotation = Quaternion.identity;
-
-    var extents = obj.bounds.extents;
-    vertices[0] = thisMatrix.MultiplyPoint3x4(new Vector3(-extents.x, extents.y, extents.z));
-    vertices[1] = thisMatrix.MultiplyPoint3x4( new Vector3(extents.x, extents.y, extents.z));
-
-    obj.transform.rotation = storedRotation;
-    return vertices;
-}
 }

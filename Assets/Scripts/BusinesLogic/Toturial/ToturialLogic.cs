@@ -59,10 +59,7 @@ public class ToturialLogic : MonoBehaviour {
         highlightAnimation = highlightContainer.GetComponentInChildren<Animator>();
         IOManager = this.GetComponent<ToturialIOManager>();
 
-        enemyManager = GameObject.Find("EnemyManager");
-        collactableManager = GameObject.Find("CollectableManager");
-        enemyManager.SetActive(false);
-        collactableManager.SetActive(false);
+
     }
 
     void Update()
@@ -85,6 +82,10 @@ public class ToturialLogic : MonoBehaviour {
         //DEBUG ONLY
        //shouldCheckForPlayerTouchingThePodiumFirstTime = true;
        //playerIsOnThePodium();
+        enemyManager = GameObject.Find("EnemyManager");
+        collactableManager = GameObject.Find("CollectableManager");
+        enemyManager.SetActive(false);
+        collactableManager.SetActive(false);
     }
 
     private void setCameraPositionForToturial()
@@ -109,8 +110,8 @@ public class ToturialLogic : MonoBehaviour {
         {
             // Set camera for game
             camera.transform.position = new Vector3(1f, 6.07f, -20.2f);
-            collactableManager.SetActive(true);
-            enemyManager.SetActive(true);
+            //collactableManager.SetActive(true);
+            //enemyManager.SetActive(true);
             //TODO: remove line
             Destroy(this.gameObject);
             //Destroy this?
