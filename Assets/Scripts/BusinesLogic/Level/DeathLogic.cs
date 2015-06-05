@@ -12,6 +12,8 @@ public class DeathLogic : MonoBehaviour {
     TouchInterpeter touch;
     SoundLogic soundLogic;
     CurrencyLogic currencyLogic;
+
+    AnimationLogic animationLogic;
     Text deathScore;
     GameObject losePanel;
     Vector3 OrigPos;
@@ -64,6 +66,7 @@ public class DeathLogic : MonoBehaviour {
 	// Initialization
     void Start()
     {
+        animationLogic = this.gameObject.GetComponent<AnimationLogic>();
         var bonus = GameObject.Find("LosePanel/FinishedAllMissions");
         HighScore = GameObject.Find("LosePanel/NewHighScore").GetComponent<Animator>();
         bonusAnimator = bonus.GetComponent<Animator>();
@@ -435,6 +438,7 @@ public class DeathLogic : MonoBehaviour {
 
     internal void playerDie(int sign)
     {
+        animationLogic.playerDie();
         pauseBtn.interactable = false;
         soundLogic.playDeathSound();
         movmentLogic.movePlayerDie(sign);

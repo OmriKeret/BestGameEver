@@ -215,10 +215,6 @@ public class ToturialLogic : MonoBehaviour {
        toturialTouch.setShouldNotCheckTouch();
    }
 
-   private void playerTouchedTheArrowDelay()
-   {
-      Time.timeScale = 1f;
-   }
    internal void playerIsOnThePodium()
    {
        Debug.Log("player got to poium and checker is set to " + shouldCheckForPlayerTouchingThePodiumFirstTime);

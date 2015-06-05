@@ -104,7 +104,10 @@ public class AnimationLogic : MonoBehaviour
 		theScale.x *= -1;
 		character.transform.localScale = theScale;	
 	}
-
+    public void playerDie()
+    {
+        animator.SetTrigger("Die");
+    }
     internal void playerHit()
     {
         //LeanTween.color(character.gameObject, Color.white, 0);

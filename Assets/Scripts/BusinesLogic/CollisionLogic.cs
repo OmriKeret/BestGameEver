@@ -13,6 +13,8 @@ public class CollisionLogic : MonoBehaviour  {
     private ScoreLogic scoreLogic;
     private PlayerStatsLogic playerStatsLogic;
     private MissionLogic missionLogic;
+    private TouchInterpeter touch;
+
     AnimationLogic animationLogic;
     SoundLogic soundLogic;
     DeathLogic deathLogic;
@@ -25,6 +27,7 @@ public class CollisionLogic : MonoBehaviour  {
         animationLogic = this.gameObject.GetComponent<AnimationLogic>();
         soundLogic = this.gameObject.GetComponent<SoundLogic>();
         deathLogic = this.gameObject.GetComponent<DeathLogic>();
+        touch = GameObject.Find("TouchInterpter").GetComponent<TouchInterpeter>();
 	}
     public void playerCollideWithCommet(CollisionModel model)
     {
@@ -100,10 +103,10 @@ public class CollisionLogic : MonoBehaviour  {
         //building path
        
         Vector3[] path = new Vector3[] {
-                                             new Vector3(playerPosition.x + (-2.697063f * sign) ,playerPosition.y),
-                                             new Vector3(playerPosition.x + (-1.397063f * sign),playerPosition.y + 5.108706f),
-                                             new Vector3(playerPosition.x + (0.397063f * sign),playerPosition.y + 6.408706f),
-                                             new Vector3(playerPosition.x + (1f * sign),playerPosition.y + 7.749998f),
+                                             new Vector3(playerPosition.x + (4.48f * sign) ,playerPosition.y),
+                                             new Vector3(playerPosition.x + (5f * sign),playerPosition.y + 1.81f),
+                                             new Vector3(playerPosition.x + (5.519f * sign),playerPosition.y + 0.8f),
+                                             new Vector3(playerPosition.x + (2.55f * sign),playerPosition.y + 2.59f),
                                         };
  
 
@@ -111,7 +114,7 @@ public class CollisionLogic : MonoBehaviour  {
             {
                 stopAfterBounce(new StopAfterCollisionModel{collidedWith = model.CollidedWith.gameObject, subject = model.mainCollider.GetComponent<Rigidbody2D> ()});
             });
-        rollOver(model.mainCollider);       
+      //  rollOver(model.mainCollider);       
         animationLogic.UnSetDashing();
         animationLogic.SetSlicing();
 	}
@@ -209,11 +212,25 @@ public class CollisionLogic : MonoBehaviour  {
     }
 	public void playerCollidedWithWall(CollisionModel model) 
 	{
-        LeanTween.cancel(model.mainCollider.gameObject, true);
-        movmentLogic.ResetRotation();
-        animationLogic.UnSetDashing();
-        //animationLogic.CheckIfGrounded();
-        soundLogic.playLandingSound();
-        playerStatsLogic.resetDash();
+        //var playerPos = model.mainCollider.transform.position;
+        //var podiumPos = model.CollidedWith.transform.position;
+        //var comeFromTop = podiumPos.y < playerPos.y;
+        //if (comeFromTop)
+        //{
+            LeanTween.cancel(model.mainCollider.gameObject, true);
+
+            movmentLogic.ResetRotation();
+            animationLogic.UnSetDashing();
+            var podiumCollider = model.CollidedWith.GetComponent<BoxCollider2D>();
+
+            //now to know the world position of top most level of the wall:
+            float topMost = model.CollidedWith.transform.position.y + podiumCollider.size.y / 2;
+            float middle = model.CollidedWith.transform.position.x;
+            //TODO: animate landing!
+            model.mainCollider.gameObject.transform.position = new Vector3(middle, topMost);
+            soundLogic.playLandingSound();
+            playerStatsLogic.resetDash();
+
+        //}
 	}
 }
