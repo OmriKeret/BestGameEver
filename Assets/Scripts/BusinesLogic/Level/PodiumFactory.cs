@@ -14,7 +14,7 @@ using System.Collections.Generic;
             podiumPrefab = Resources.Load("Podium") as GameObject;
             activePodiums = new List<GameObject>();
             allLevels = new PodiumModel[][]{
-                new PodiumModel[]{new PodiumModel(PodiumPaths.NotMoveing)},
+                new PodiumModel[]{new PodiumModel(PodiumPaths.AxisX)},
                 new PodiumModel[]{new PodiumModel(PodiumPaths.AxisX)},
                 new PodiumModel[]{new PodiumModel(0)},
                 new PodiumModel[]{new PodiumModel(0)},
