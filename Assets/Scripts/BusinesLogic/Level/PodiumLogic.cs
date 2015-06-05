@@ -44,6 +44,15 @@ public class PodiumLogic : MonoBehaviour {
         startGoUp();
     }
 
+    public void Move(Vector3[] i_Path)
+    {
+        if (!i_Path.Equals(PodiumPaths.NotMoveing))
+        {
+            LeanTween.move(this.gameObject, i_Path, 5).setEase(LeanTweenType.linear);
+        }
+        
+    }
+
     protected void startGoUp()
     {
         goingDown = false;
