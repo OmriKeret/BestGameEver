@@ -23,7 +23,7 @@ public class CollisionController : MonoBehaviour {
         {
             if (Time.fixedTime - lastCollisionWithPodium < intervalBetweenCollisionWithPodium)
             {
-                return;
+                //return;
             }
             lastCollisionWithPodium = Time.fixedTime;
         }

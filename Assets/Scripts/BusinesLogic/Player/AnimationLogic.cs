@@ -90,6 +90,13 @@ public class AnimationLogic : MonoBehaviour
         animator.SetBool("Grounded",grounded);  
     }
 
+    public void Land()
+    {
+        animator.SetTrigger("Land");
+        grounded = true;
+        animator.SetBool("Grounded", grounded);
+    }
+
     public void SetSlicing()
     {
         animator.SetTrigger("Slicing");

@@ -101,7 +101,7 @@ public class ToturialLogic : MonoBehaviour {
             shouldDoBasicToturial = !data.finishedBasicToturial;
         }
 
-        if (true)
+        if (shouldDoBasicToturial)
         {
             startToturial();
         }
@@ -245,6 +245,7 @@ public class ToturialLogic : MonoBehaviour {
              () =>
              {
                  // Set animation and touch checker position
+                 
                  toturialTouch.setCheckingPosition(new Vector3(17.26f, 8f, 0f));
                  fingerAnimationContainer.transform.position = new Vector3(14.26f, 6f, 0f);
 

@@ -52,19 +52,9 @@ public class TouchInterpeter : MonoBehaviour {
 				    directionChosen = false;
 				    holdingScreen = true;
 				    break;
-				    // Determine if finger is touching the screen
-		    //	case TouchPhase.Stationary:
-			    //	startPos = touch.position;
-		    //		directionChosen = false;
-		    //		holdingScreen = true;
-		    //		break;
-				    // Determine direction by comparing the current touch position with the initial one.
 			    case TouchPhase.Moved:
-				    //direction = touch.position - startPos;
 				    holdingScreen = true;
 				    break;
-				
-				    // Report that a direction has been chosen when the finger is lifted.
 			    case TouchPhase.Ended:
 				    playerPhyisicsController.StopHoverPhyisics();
 				    //touch is in pixels, we convert to unity world point
