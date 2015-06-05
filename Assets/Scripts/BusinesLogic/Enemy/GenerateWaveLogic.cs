@@ -13,7 +13,7 @@ public class GenerateWaveLogic : MonoBehaviour {
     public bool waveEnded = false;
     private int TimeToFinishPath = 50;
 
-	void Start () {
+	void Awake () {
 		_wave = new WaveLogicFactory ();
 		enemyGenerator = new EnemyGeneratorLogic ();
 		waveNumber = 1;
