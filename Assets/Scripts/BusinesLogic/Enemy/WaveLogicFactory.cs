@@ -77,7 +77,7 @@ public class WaveLogicFactory {
 
 	}
 
-    public WaveLogic createWaveByOrder(WaveGenerateModel i_model)
+    public void createWaveByOrder(WaveGenerateModel i_model)
     {
         podiumMaker.SetupNewWave(i_model.waveNumber);
         //for debug
@@ -88,7 +88,7 @@ public class WaveLogicFactory {
             Debug.Log("No more waves!");
         }
         //end for debug
-        return new WaveLogic(_orderWaves[i_model.waveNumber]);
+        i_model.wave =  new WaveLogic(_orderWaves[i_model.waveNumber]);
     }
 
 	private WaveLogic createWave(WaveLogic[] i_waves){

@@ -13,13 +13,12 @@ public class GenerateWaveLogic : MonoBehaviour {
     public bool waveEnded = false;
     private int TimeToFinishPath = 50;
 
-	void Start () {
+	void Awake () {
 		_wave = new WaveLogicFactory ();
 		enemyGenerator = new EnemyGeneratorLogic ();
 		waveNumber = 1;
-        waveEnded = false;
+		waveEnded = false;
 	}
-
 
     public void generateNonEmpty(WaveGenerateModel i_model)
     {
@@ -40,10 +39,10 @@ public class GenerateWaveLogic : MonoBehaviour {
             return;
         }
         */
-
-        i_model.wave = _wave.createWaveByOrder(i_model);
-		StartCoroutine(GenerateEnemiesWithPause(i_model));
-		waveNumber++;
+        _wave.createWaveByOrder(i_model);
+        StartCoroutine(GenerateEnemiesWithPause(i_model));
+        waveNumber++;
+        
 	}
 
     IEnumerator GenerateEnemiesWithPause(WaveGenerateModel i_waveModel)

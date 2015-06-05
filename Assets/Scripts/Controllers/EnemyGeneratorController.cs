@@ -41,7 +41,7 @@ public class EnemyGeneratorController : MonoBehaviour {
 	}
 
 	void GenerateWave(){
-        WaveGenerateModel wm = new WaveGenerateModel { waveNumber = _waveNumber };
+        WaveGenerateModel wm = new WaveGenerateModel(_waveNumber);
         generateWaveLogic.generateWave(wm);
         _waveNumber++;
 	}
