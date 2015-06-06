@@ -228,6 +228,11 @@ public class WaveLogic {
      * */
     private bool combinationFullCheck(WaveLogic i_Wave)
     {
+        //If both sets have more than 1, the combination makes a messy screen
+        if (LastSet > 1 && i_Wave.FirstSet > 1)
+        {
+            return false;
+        }
         int[] locations = new int[Enum.GetNames(typeof(EnemyLocation)).Length];
         try
         {

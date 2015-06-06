@@ -112,12 +112,27 @@ public class WaveLogicFactory {
             new WaveLogic(new EnemyType[]{EnemyType.Spike,EnemyType.Stupid,EnemyType.Tank},
             new EnemyLocation[]{EnemyLocation.BottomLeft,EnemyLocation.TopMid,EnemyLocation.BottomRight},
             new int[]{1,1,1}),
+            //Mike&Ike
+            new WaveLogic(new EnemyType[]{EnemyType.Spike,EnemyType.Tank},
+            new EnemyLocation[]{EnemyLocation.MidLeft,EnemyLocation.MidRight},
+            new int[]{2}),
+            //2
+            new WaveLogic(new EnemyType[]{EnemyType.Spike,EnemyType.Tank},
+            new EnemyLocation[]{EnemyLocation.MidRight,EnemyLocation.MidLeft},
+            new int[]{2}),
 		};
         _hardWaves = new WaveLogic[]{
+            //Arials
+            new WaveLogic(new EnemyType[]{EnemyType.Tank,EnemyType.Tank,EnemyType.Hawk},
+            new EnemyLocation[]{EnemyLocation.TopLeft,EnemyLocation.TopRight,EnemyLocation.TopMid},
+            new int[]{2,1}),
 			
 		};
         _extremeWaves = new WaveLogic[]{
-			
+			//Square of death
+            new WaveLogic(new EnemyType[]{EnemyType.Tank,EnemyType.Tank,EnemyType.Tank,EnemyType.Tank},
+            new EnemyLocation[]{EnemyLocation.TopLeft,EnemyLocation.BottomRight,EnemyLocation.TopRight,EnemyLocation.BottomLeft},
+            new int[]{2,2}),
 		};
 
 	}
