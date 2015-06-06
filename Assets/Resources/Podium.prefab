@@ -548,11 +548,22 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 163396}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6098da4456852f44d96e0cc8d6209a04, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b40e4120146a90458c3ff177254b397, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeToGoDown: 1
+  timeToComeBackUp: 1
+  timeToShake: 0
+  timeToWaitBeforeShaking: 1
+  shakingTime: .100000001
+  angleToShakeTo: 4
+  originalLocation: {x: 0, y: 0, z: 0}
+  downLocation: {x: 0, y: -5, z: 0}
+  immunityTimeFromBeginning: 0
+  timeToWaitDown: 5
+  PodiumSpeed: 1
 --- !u!114 &11438750
 MonoBehaviour:
   m_ObjectHideFlags: 1
