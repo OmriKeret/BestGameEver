@@ -8,4 +8,5 @@ public class StatsImprovementModel {
     public int hp;
     public int dashDist;
     public int dashNum;
+    public int dmg;
 }

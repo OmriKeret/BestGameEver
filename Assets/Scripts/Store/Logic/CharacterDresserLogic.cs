@@ -89,10 +89,12 @@ public class CharacterDresserLogic : MonoBehaviour {
         int dashNumBoost = ClothLogic.clothLogic.getDashNumBoost();
         int hpBoost = ClothLogic.clothLogic.getHPBoost();
         int dashDistBoost = ClothLogic.clothLogic.getDashDistBoost();
+        int dmgBoost = ClothLogic.clothLogic.getDashDmgBoost();
         if (!Application.loadedLevelName.Equals("Store"))
         {
             playerStats.addDashNumBoost(dashNumBoost);
             playerStats.addDashDistBoost(dashDistBoost);
+            playerStats.addDmgBoost(dmgBoost);
             playerStats.addDashHPBoost(hpBoost);
         }
     }

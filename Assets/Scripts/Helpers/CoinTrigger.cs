@@ -23,8 +23,7 @@ public class CoinTrigger : MonoBehaviour {
         {
             LeanTween.alpha(this.gameObject, 0f, 1f).setDelay(timeToDisapear).setOnComplete(() =>
             {
-                LeanTween.cancel(this.gameObject);
-                Destroy(this);
+                Destroy(this.gameObject);
             });
         }); ;
 
