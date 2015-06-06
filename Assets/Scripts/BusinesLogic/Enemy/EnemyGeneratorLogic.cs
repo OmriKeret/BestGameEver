@@ -10,7 +10,7 @@ public class EnemyGeneratorLogic  {
 
 	public EnemyGeneratorLogic(){
 		stupid = Resources.Load ("stupidEnemy") as GameObject;
-        spike = Resources.Load ("spikeEnemyOld") as GameObject;
+        spike = Resources.Load ("spikeEnemy") as GameObject;
         tank = Resources.Load("tankEnemy") as GameObject;
         cannon = Resources.Load("cannonEnemy") as GameObject;
 		maker = new Dictionary<EnemyType,GameObject>  	
