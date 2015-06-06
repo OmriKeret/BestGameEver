@@ -1079,9 +1079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeToGoDown: 0
   timeToComeBackUp: 0
-  timeToShake: 0
-  timeToWaitBeforeShaking: 1
-  shakingTime: .100000001
+  delayToGoDown: 1.29999995
   angleToShakeTo: 4
   originalLocation: {x: 0, y: 0, z: 0}
   downLocation: {x: 0, y: 0, z: 0}
@@ -3296,9 +3294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeToGoDown: 5
   timeToComeBackUp: 2
-  timeToShake: 2
-  timeToWaitBeforeShaking: 1
-  shakingTime: .100000001
+  delayToGoDown: 1.29999995
   angleToShakeTo: 4
   originalLocation: {x: 0, y: 0, z: 0}
   downLocation: {x: 0, y: 0, z: 0}
