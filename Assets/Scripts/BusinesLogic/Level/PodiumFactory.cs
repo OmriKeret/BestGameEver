@@ -1,13 +1,17 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
-    public class PodiumFactory
+public class PodiumFactory
     {
         private GameObject podiumPrefab;
         List<GameObject> activePodiums;
+        private readonly Vector3 Mid = new Vector3(0f, -7.22f, 0);
         private readonly Vector3 TopLeft = new Vector3(-10.99f, 0f, 0);
         private readonly Vector3 BottomLeft = new Vector3(-10.99f, -7.22f, 0);
+        private readonly Vector3 TopRight = new Vector3(10.99f, 0f, 0);
+        private readonly Vector3 BottomRight = new Vector3(10.99f, -7.22f, 0);
 
         PodiumModel[][] allLevels;
 
@@ -40,6 +44,36 @@ using System.Collections.Generic;
             }
             //end debug
             InitLevelPodium(allLevels[i_WaveNumber]);
+        }
+
+        public void SetupNewWave(WaveLogic i_Wave)
+        {
+            DestroyLevelPodium();
+            int[] sides = {0, 0, -1};//-1 since the "End" is always in the right
+            foreach (EnemyLocation location in i_Wave.Locations)
+            {
+                if ((int) location < 4)
+                {
+                    sides[2]++;
+                }
+                else if ((int)location>4)
+                {
+                    sides[0]++;
+                }
+                else
+                {
+                    sides[1]++;
+                }
+            }
+
+            List<PodiumModel> podiumsToInit = new List<PodiumModel>();
+            podiumsToInit.Add(new PodiumModel(Mid));
+            if (sides[0] == sides[2])
+            {
+                
+            }
+
+            InitLevelPodium(podiumsToInit.ToArray());
         }
 
 

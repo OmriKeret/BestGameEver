@@ -176,6 +176,11 @@ public class WaveLogic {
         get { return _locations[0]; }
     }
 
+    public EnemyLocation[] Locations
+    {
+        get { return _locations; }
+    }
+
     public EnemyLocation LastLocation
     {
         get { return _locations[_locations.Length - 2]; }
