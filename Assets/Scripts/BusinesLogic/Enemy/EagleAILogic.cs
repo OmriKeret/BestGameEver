@@ -6,6 +6,9 @@ using System.Linq;
 public class EagleAILogic : MonoBehaviour, IEnemy
 {
 
+    // Animation 
+    Animator _animation;
+
     AEnemyStats _stats;
     Rigidbody2D _rigidbody;
     GameObject _leftBodyPartResouce, _rightBodyPartResouce;
@@ -24,6 +27,7 @@ public class EagleAILogic : MonoBehaviour, IEnemy
     // Use this for initialization
     void Awake()
     {
+        _animation = this.GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
         _stats = GetComponent<AEnemyStats>();
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -193,5 +197,24 @@ public class EagleAILogic : MonoBehaviour, IEnemy
         controller2 = new Vector3(2*i_PlayerLocation.x-controller1.x,controller1.y,0);
         Vector3[] path = {currentLocation,controller1,controller2,endLocation};
         return path;
+    }
+
+    public void enemyDie(int combo, Vector2 dir)
+    {
+        GetComponent<Collider2D>().enabled = false;
+        _animation.SetTrigger("Die");
+        int minNum = _generalAnimationLogic.minEmissioNum;
+        int maxNum = _generalAnimationLogic.maxEmission;
+        if (combo != 0)
+        {
+            minNum = minNum * combo;
+            maxNum = maxNum * combo;
+        }
+        dir = dir * _generalAnimationLogic.magnitude;
+        var bloodObject = Instantiate(_blood, this.transform.position, Quaternion.identity) as GameObject;
+        var bloodEmiter = bloodObject.GetComponent<EllipsoidParticleEmitter>();
+        bloodEmiter.minEmission = minNum;
+        bloodEmiter.maxEmission = maxNum;
+        bloodEmiter.localVelocity = new Vector3(dir.x, dir.y, 0);
     }
 }

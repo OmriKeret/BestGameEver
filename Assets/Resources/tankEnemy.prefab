@@ -125,7 +125,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 169894}
   m_LocalRotation: {x: 0, y: 0, z: .130699784, w: -.991421998}
-  m_LocalPosition: {x: 0, y: .430000007, z: 0}
+  m_LocalPosition: {x: -1.13999999, y: .629999995, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 484794}
@@ -137,7 +137,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 187814}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -.340000004, z: 0}
+  m_LocalPosition: {x: -.74000001, y: -.829999983, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 484794}
@@ -149,7 +149,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118292}
   m_LocalRotation: {x: 0, y: 0, z: .00152130926, w: -.999998868}
-  m_LocalPosition: {x: -.760000229, y: .600000381, z: 0}
+  m_LocalPosition: {x: .819999993, y: .0599999987, z: 0}
   m_LocalScale: {x: .997150898, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 484794}
@@ -161,7 +161,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 180834}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.30999994, z: 0}
+  m_LocalPosition: {x: -1.16999996, y: -.529999971, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 484794}
@@ -173,7 +173,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 105980}
   m_LocalRotation: {x: 0, y: 0, z: .243928254, w: .96979332}
-  m_LocalPosition: {x: 0, y: .389999986, z: 0}
+  m_LocalPosition: {x: .389999986, y: .639999986, z: 0}
   m_LocalScale: {x: -1.44093573, y: 1.03606403, z: 1}
   m_Children: []
   m_Father: {fileID: 484794}
@@ -185,7 +185,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 167146}
   m_LocalRotation: {x: 0, y: 0, z: .0945418105, w: .99552089}
-  m_LocalPosition: {x: 0, y: -.379999995, z: 0}
+  m_LocalPosition: {x: .109999999, y: -1.09000003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 484794}
@@ -233,7 +233,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -1, y: 0}
+  m_Offset: {x: -.289999992, y: 0}
   serializedVersion: 2
   m_Radius: 1.40932846
 --- !u!82 &8223736

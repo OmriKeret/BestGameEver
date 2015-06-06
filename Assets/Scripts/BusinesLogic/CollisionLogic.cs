@@ -187,14 +187,22 @@ public class CollisionLogic : MonoBehaviour  {
 
     private bool hitEnemy(CollisionModel model)
     {
+      
         var enemyPosition = model.CollidedWith.transform.position;
         var playerPosition = model.mainCollider.transform.position;
         var VectorForce = (Vector2)((playerPosition - enemyPosition).normalized);
         var signX = VectorForce.x > 0 ? 1 : -1;
         var signY = VectorForce.y > 0 ? 1 : -1;
         var enemy = model.mainCollider.GetComponent<IEnemy>();
-        enemy.hit(playerStatsLogic.combo, VectorForce);
-        return enemy.lifeDown(playerStatsLogic.Strength);
+        bool dead = enemy.lifeDown(playerStatsLogic.Strength);
+        if (dead)
+        {
+            enemy.enemyDie(playerStatsLogic.combo, VectorForce);
+        } else {
+            // GUI
+            enemy.hit(playerStatsLogic.combo, VectorForce);
+        }
+        return dead;
     }
     //TODO: Omri - what to do when the enemy is on defence mode (e.g. tank)
     private void enemyDefende()

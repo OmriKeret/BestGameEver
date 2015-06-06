@@ -10,6 +10,10 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
 	GameObject _leftBodyPartResouce,_rightBodyPartResouce;
 	GameObject _leftBodyPart,_rightBodyPart;
     GameObject _blood;
+
+    // Animation 
+    Animator _animation;
+
     public float timeToFinishPath = 15f;
     public float minTimeForPath = 4f;
     public float maxTimeForPath = 30f;
@@ -22,6 +26,7 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
     AudioSource _audioSource;
 	// Use this for initialization
 	void Awake () {
+        _animation = this.GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
         _stats = GetComponent<AEnemyStats>();
 		_rigidbody = GetComponent<Rigidbody2D> ();
@@ -151,6 +156,25 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
     // splash blood
     public void hit(int combo, Vector2 dir)
     {
+        _animation.SetTrigger("Hit");
+        int minNum = _generalAnimationLogic.minEmissioNum;
+        int maxNum = _generalAnimationLogic.maxEmission;
+        if (combo != 0)
+        {
+            minNum = minNum * combo;
+            maxNum = maxNum * combo;
+        }
+        dir = dir * _generalAnimationLogic.magnitude;
+        var bloodObject = Instantiate(_blood, this.transform.position, Quaternion.identity) as GameObject;
+        var bloodEmiter = bloodObject.GetComponent<EllipsoidParticleEmitter>();
+        bloodEmiter.minEmission = minNum;
+        bloodEmiter.maxEmission = maxNum;
+        bloodEmiter.localVelocity = new Vector3(dir.x, dir.y, 0);
+    }
+    public void enemyDie(int combo, Vector2 dir)
+    {
+        GetComponent<Collider2D>().enabled = false;
+        _animation.SetTrigger("Die");
         int minNum = _generalAnimationLogic.minEmissioNum;
         int maxNum = _generalAnimationLogic.maxEmission;
         if (combo != 0)

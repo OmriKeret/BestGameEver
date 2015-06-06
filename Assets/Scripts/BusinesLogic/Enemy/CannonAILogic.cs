@@ -6,6 +6,9 @@ using System.Linq;
 public class CannonAILogic : MonoBehaviour, IEnemy
 {
 
+    // Animation 
+    Animator _animation;
+
     AEnemyStats _stats;
     Rigidbody2D _rigidbody;
     GameObject _leftBodyPartResouce, _rightBodyPartResouce;
@@ -24,6 +27,7 @@ public class CannonAILogic : MonoBehaviour, IEnemy
     // Use this for initialization
     void Awake()
     {
+        _animation = this.GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
         _stats = GetComponent<AEnemyStats>();
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -164,6 +168,25 @@ public class CannonAILogic : MonoBehaviour, IEnemy
     // splash blood
     public void hit(int combo, Vector2 dir)
     {
+        int minNum = _generalAnimationLogic.minEmissioNum;
+        int maxNum = _generalAnimationLogic.maxEmission;
+        if (combo != 0)
+        {
+            minNum = minNum * combo;
+            maxNum = maxNum * combo;
+        }
+        dir = dir * _generalAnimationLogic.magnitude;
+        var bloodObject = Instantiate(_blood, this.transform.position, Quaternion.identity) as GameObject;
+        var bloodEmiter = bloodObject.GetComponent<EllipsoidParticleEmitter>();
+        bloodEmiter.minEmission = minNum;
+        bloodEmiter.maxEmission = maxNum;
+        bloodEmiter.localVelocity = new Vector3(dir.x, dir.y, 0);
+    }
+
+    public void enemyDie(int combo, Vector2 dir)
+    {
+        GetComponent<Collider2D>().enabled = false;
+        _animation.SetTrigger("Die");
         int minNum = _generalAnimationLogic.minEmissioNum;
         int maxNum = _generalAnimationLogic.maxEmission;
         if (combo != 0)

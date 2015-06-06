@@ -49,6 +49,7 @@ namespace Soomla.Store
 		/// <exception cref="VirtualItemNotFoundException">Thrown if the item to be bought is not found.</exception>
 		/// <exception cref="InsufficientFundsException">Thrown if the user does not have enough funds.</exception>
 		public static void BuyItem(string itemId) {
+            Debug.Log("the item not found is " + itemId);
 			BuyItem(itemId, "");
 		}
 		

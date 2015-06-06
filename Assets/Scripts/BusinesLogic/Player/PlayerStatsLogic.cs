@@ -9,7 +9,7 @@ public class PlayerStatsLogic : MonoBehaviour {
     public int Strength = 1;
     public int combo = 0;
     public int dashNum = 5;
-    public int dashDist = 15;
+    public int dashDist = 5;
     public PowerUpType powerUpModeActive;
     public GameObject guiHP;
     public GameObject _LifeFullPrefab;
@@ -35,13 +35,14 @@ public class PlayerStatsLogic : MonoBehaviour {
         superPower = this.GetComponent<SuperPowerLogic>();
         _LifeFullPrefab = Resources.Load("lifeFull") as GameObject;
         _LifeEmptyPrefab = Resources.Load("lifeEmpty") as GameObject;
+		movmentLogic = this.GetComponent<MovmentLogic>();
         
 
 	}
 	void Start() 
 	{
 		firstTimeWriteHp();
-		movmentLogic = this.GetComponent<MovmentLogic>();
+
 		maxHP = HP;
 		staminaBar.setMaximumStamina(dashNum);
 	}
@@ -113,11 +114,13 @@ public class PlayerStatsLogic : MonoBehaviour {
     internal void addDashDistBoost(int dashDistBoost)
     {
         dashDist += dashDistBoost;
+        movmentLogic.dashDist = this.dashDist;
     }
 
     internal void addDashHPBoost(int hpBoost)
     {    
         HP += hpBoost;
+        maxHP = HP;
         firstTimeWriteHp();
     }
 

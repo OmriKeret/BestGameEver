@@ -5,7 +5,7 @@ public class MovmentLogic : MonoBehaviour {
 
     //dash
     public float dashTime = 1f;
-    private float dashDist = 5f;
+    public float dashDist = 5f;
 
     //hover
     public float hoverTime = 1f;
@@ -31,6 +31,10 @@ public class MovmentLogic : MonoBehaviour {
     SoundLogic soundLogic;
     private PlayerStatsLogic playerStatsLogic;
 
+    void Awake()
+    {
+
+    }
 	// Use this for initialization
 	void Start () {
 	//	physicsLogic = this.gameObject.GetComponent<PhysicsLogic> ();
