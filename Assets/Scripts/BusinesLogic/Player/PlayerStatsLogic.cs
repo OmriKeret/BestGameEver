@@ -14,7 +14,6 @@ public class PlayerStatsLogic : MonoBehaviour {
     public GameObject guiHP;
     public GameObject _LifeFullPrefab;
     public GameObject _LifeEmptyPrefab;
-    private char hearSymbole = '♥';
 	public Text comboText;
     public GameObject[] lifes;
 

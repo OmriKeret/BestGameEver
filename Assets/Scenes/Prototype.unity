@@ -1079,9 +1079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeToGoDown: 0
   timeToComeBackUp: 0
-  timeToShake: 0
-  timeToWaitBeforeShaking: 1
-  shakingTime: .100000001
+  delayToGoDown: 1.29999995
   angleToShakeTo: 4
   originalLocation: {x: 0, y: 0, z: 0}
   downLocation: {x: 0, y: 0, z: 0}
@@ -3296,9 +3294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeToGoDown: 5
   timeToComeBackUp: 2
-  timeToShake: 2
-  timeToWaitBeforeShaking: 1
-  shakingTime: .100000001
+  delayToGoDown: 1.29999995
   angleToShakeTo: 4
   originalLocation: {x: 0, y: 0, z: 0}
   downLocation: {x: 0, y: 0, z: 0}
@@ -5578,7 +5574,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1144559058}
   - 212: {fileID: 1144559059}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: health bar empty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5592,7 +5588,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1144559057}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1596}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 18.9695129, y: 18.9695129, z: 18.9695129}
   m_Children: []
   m_Father: {fileID: 639179931}
@@ -5619,8 +5615,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1747990833
-  m_SortingOrder: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 212270c10e5d1ef42be8a7bc6102c0f5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1179589241
@@ -11348,10 +11344,10 @@ MonoBehaviour:
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 0
-  m_FillOrigin: 3
+  m_FillOrigin: 0
 --- !u!222 &2067009045
 CanvasRenderer:
   m_ObjectHideFlags: 0

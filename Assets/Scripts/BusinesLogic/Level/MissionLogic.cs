@@ -244,7 +244,7 @@ public class MissionLogic : MonoBehaviour {
             if (missions[i].type == MissionType.takePowerUp && missions[i].collectableType == collactable)
             {
                 updateNumberAchived(i, collactablesTaken[collactable]);
-                if (missions[i].type == MissionType.takePowerUp && missions[i].collectableType == collactable && missions[i].numberToAchive <= collactablesTaken[collactable])
+                if (missions[i].type == MissionType.takeCollectable && missions[i].collectableType == collactable && missions[i].numberToAchive <= collactablesTaken[collactable])
                 {
                     finishedMission(i);
                 }
