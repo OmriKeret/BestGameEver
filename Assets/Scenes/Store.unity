@@ -87,6 +87,48 @@ NavMeshSettings:
     cellSize: .166666672
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &28828301
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: ba3e663b077e7401a83d69fff7548944, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ba3e663b077e7401a83d69fff7548944, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ba3e663b077e7401a83d69fff7548944, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ba3e663b077e7401a83d69fff7548944, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ba3e663b077e7401a83d69fff7548944, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ba3e663b077e7401a83d69fff7548944, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ba3e663b077e7401a83d69fff7548944, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ba3e663b077e7401a83d69fff7548944, type: 2}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: ba3e663b077e7401a83d69fff7548944, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &63549963
 GameObject:
   m_ObjectHideFlags: 0
@@ -1530,7 +1572,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 478954, guid: 3a10c0ae6be4ae14cb1c59371bd250aa, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11469770, guid: 3a10c0ae6be4ae14cb1c59371bd250aa, type: 2}
       propertyPath: m_Enabled
@@ -2017,6 +2059,48 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1404189649}
+--- !u!1001 &1482460239
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 5d99d2a7afd4a4856b8b091c814944c3, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5d99d2a7afd4a4856b8b091c814944c3, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5d99d2a7afd4a4856b8b091c814944c3, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5d99d2a7afd4a4856b8b091c814944c3, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5d99d2a7afd4a4856b8b091c814944c3, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5d99d2a7afd4a4856b8b091c814944c3, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5d99d2a7afd4a4856b8b091c814944c3, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5d99d2a7afd4a4856b8b091c814944c3, type: 2}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 5d99d2a7afd4a4856b8b091c814944c3, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1555768577
 GameObject:
   m_ObjectHideFlags: 0
@@ -2724,6 +2808,7 @@ MonoBehaviour:
         hp: 0
         dashDist: 0
         dashNum: 0
+        dmg: 0
     - id: 2
       part: 1
       PJPrice: 5
@@ -2739,6 +2824,7 @@ MonoBehaviour:
         hp: 0
         dashDist: 0
         dashNum: 0
+        dmg: 0
   punchoes:
     pounchoes:
     - id: 1
@@ -2756,6 +2842,7 @@ MonoBehaviour:
         hp: 0
         dashDist: 0
         dashNum: 0
+        dmg: 0
     - id: 2
       part: 3
       PJPrice: 5
@@ -2771,6 +2858,7 @@ MonoBehaviour:
         hp: 0
         dashDist: 0
         dashNum: 0
+        dmg: 0
   swords:
     swords:
     - id: 1
@@ -2788,6 +2876,7 @@ MonoBehaviour:
         hp: 0
         dashDist: 0
         dashNum: 0
+        dmg: 0
     - id: 2
       part: 2
       PJPrice: 5
@@ -2803,6 +2892,7 @@ MonoBehaviour:
         hp: 0
         dashDist: 0
         dashNum: 0
+        dmg: 0
   currentPJ: 0
   currentJem: 0
   index: 0
@@ -2930,6 +3020,7 @@ MonoBehaviour:
         hp: 0
         dashDist: 0
         dashNum: 0
+        dmg: 0
     - id: 2
       part: 1
       PJPrice: 5
@@ -2945,6 +3036,7 @@ MonoBehaviour:
         hp: 0
         dashDist: 0
         dashNum: 0
+        dmg: 0
   punchoes:
     pounchoes:
     - id: 1
@@ -2962,6 +3054,7 @@ MonoBehaviour:
         hp: 0
         dashDist: 0
         dashNum: 0
+        dmg: 0
     - id: 2
       part: 3
       PJPrice: 5
@@ -2977,6 +3070,7 @@ MonoBehaviour:
         hp: 0
         dashDist: 0
         dashNum: 0
+        dmg: 0
   swords:
     swords:
     - id: 1
@@ -2994,6 +3088,7 @@ MonoBehaviour:
         hp: 0
         dashDist: 0
         dashNum: 0
+        dmg: 0
     - id: 2
       part: 2
       PJPrice: 5
@@ -3009,6 +3104,7 @@ MonoBehaviour:
         hp: 0
         dashDist: 0
         dashNum: 0
+        dmg: 0
   equipedHat:
     id: 0
     part: 0
@@ -3025,6 +3121,7 @@ MonoBehaviour:
       hp: 0
       dashDist: 0
       dashNum: 0
+      dmg: 0
   equipedPoncho:
     id: 0
     part: 0
@@ -3041,6 +3138,7 @@ MonoBehaviour:
       hp: 0
       dashDist: 0
       dashNum: 0
+      dmg: 0
   equipedSword:
     id: 0
     part: 0
@@ -3057,6 +3155,7 @@ MonoBehaviour:
       hp: 0
       dashDist: 0
       dashNum: 0
+      dmg: 0
 --- !u!4 &2040995369
 Transform:
   m_ObjectHideFlags: 0
