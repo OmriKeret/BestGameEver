@@ -35,13 +35,14 @@ public class PlayerStatsLogic : MonoBehaviour {
         superPower = this.GetComponent<SuperPowerLogic>();
         _LifeFullPrefab = Resources.Load("lifeFull") as GameObject;
         _LifeEmptyPrefab = Resources.Load("lifeEmpty") as GameObject;
+		movmentLogic = this.GetComponent<MovmentLogic>();
         
 
 	}
 	void Start() 
 	{
 		firstTimeWriteHp();
-		movmentLogic = this.GetComponent<MovmentLogic>();
+
 		maxHP = HP;
 		staminaBar.setMaximumStamina(dashNum);
 	}
@@ -119,6 +120,7 @@ public class PlayerStatsLogic : MonoBehaviour {
     internal void addDashHPBoost(int hpBoost)
     {    
         HP += hpBoost;
+        maxHP = HP;
         firstTimeWriteHp();
     }
 

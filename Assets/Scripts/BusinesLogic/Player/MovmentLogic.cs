@@ -31,6 +31,10 @@ public class MovmentLogic : MonoBehaviour {
     SoundLogic soundLogic;
     private PlayerStatsLogic playerStatsLogic;
 
+    void Awake()
+    {
+
+    }
 	// Use this for initialization
 	void Start () {
 	//	physicsLogic = this.gameObject.GetComponent<PhysicsLogic> ();
