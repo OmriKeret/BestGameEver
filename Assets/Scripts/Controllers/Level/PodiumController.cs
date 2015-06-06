@@ -4,7 +4,7 @@ using System.Collections;
 public class PodiumController : MonoBehaviour {
     PodiumLogic podiumLogic;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         podiumLogic = GetComponent<PodiumLogic>();
         podiumLogic.initPodium(this.gameObject);
 	}

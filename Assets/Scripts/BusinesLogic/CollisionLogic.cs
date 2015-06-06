@@ -160,10 +160,10 @@ public class CollisionLogic : MonoBehaviour  {
 
 	    switch (mode)
 	    {
-	         case EnemyMode.Attack:
-	            hitPlayer(); break;
-             case EnemyMode.Both: hitPlayer(); enemyDefende(); break; 
+            case EnemyMode.Both: hitPlayer(); enemyDefende(); break; 
             case EnemyMode.Defence: enemyDefende(); break;
+            case EnemyMode.Attack: hitPlayer();
+	            goto case EnemyMode.None;
             case EnemyMode.None:
                 if (hitEnemy(model)) //if enemy dead
                  {

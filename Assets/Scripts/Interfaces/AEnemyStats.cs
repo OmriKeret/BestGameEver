@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 public abstract class AEnemyStats : MonoBehaviour {
 
@@ -14,8 +15,7 @@ public abstract class AEnemyStats : MonoBehaviour {
 	public Dictionary <EnemyMode,Sprite> _AnimationState;
     public Sprite[] AllSprites;
     private float priorLocation;
-    private float scale;
-    private bool flip = false,toRight;
+    private bool movesToRight;
 
 	public void lifeDown(){
 		lifeDown (BASIC_HP_DOWN);
@@ -23,19 +23,36 @@ public abstract class AEnemyStats : MonoBehaviour {
 
     void Start()
     {
-        scale = transform.localScale.x;
-        flip = false;
-        toRight = false;
+        
     }
 
-    void Update()
+    public void initFlip()
     {
-        
+        movesToRight = this.gameObject.GetComponent<Rigidbody2D>().velocity.x > 0;
+        Debug.Log(this.gameObject.GetComponent<Rigidbody2D>().velocity.x);
+    }
+
+    void FixedUpdate()
+    {
+        if (movesToRight && this.gameObject.GetComponent<Rigidbody2D>().velocity.x < 0 ||
+            !movesToRight && this.gameObject.GetComponent<Rigidbody2D>().velocity.x > 0)
+        {
+            Debug.Log(string.Format("Flip from {0} to {1}", movesToRight ? "right" : "left", !movesToRight ? "right" : "left"));
+            movesToRight = !movesToRight;
+            flip();
+        }
         
 
     }
 
-	public void lifeDown(int i_hp){
+    private void flip()
+    {
+        Vector3 theScale = this.gameObject.transform.localScale;
+        theScale.x *= -1;
+        this.gameObject.transform.localScale = theScale;
+    }
+
+    public void lifeDown(int i_hp){
         life = life - i_hp;	
 	}
 	

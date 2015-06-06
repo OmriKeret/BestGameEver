@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Collections;
 using System;
+using System.Threading;
+
 public class GenerateWaveLogic : MonoBehaviour {
 	
-	WaveLogicFactory _wave;
+	WaveLogicFactory _waveFactory;
 	EnemyGeneratorLogic enemyGenerator;
 	private int waveNumber;
 	public float numberOfSecBetweenEnemies = 0.5f;
@@ -12,14 +14,14 @@ public class GenerateWaveLogic : MonoBehaviour {
     public Vector2[] instantiateLocations;
     public bool waveEnded = false;
     private int TimeToFinishPath = 50;
+    public int MaxEasyEnemies = 4;
 
 	void Awake () {
-		_wave = new WaveLogicFactory ();
+		_waveFactory = new WaveLogicFactory ();
 		enemyGenerator = new EnemyGeneratorLogic ();
 		waveNumber = 1;
-        waveEnded = false;
+		waveEnded = false;
 	}
-
 
     public void generateNonEmpty(WaveGenerateModel i_model)
     {
@@ -40,10 +42,12 @@ public class GenerateWaveLogic : MonoBehaviour {
             return;
         }
         */
-
-        i_model.wave = _wave.createWaveByOrder(i_model);
-		StartCoroutine(GenerateEnemiesWithPause(i_model));
-		waveNumber++;
+        //_waveFactory.createWaveByOrder(i_model);
+	    WaveType waveType = _waveFactory.ChooseRandomWaveType(i_model.waveNumber);
+        i_model.wave = _waveFactory.CreateWave(waveType);
+        StartCoroutine(GenerateEnemiesWithPause(i_model));
+        waveNumber++;
+        
 	}
 
     IEnumerator GenerateEnemiesWithPause(WaveGenerateModel i_waveModel)
@@ -52,6 +56,10 @@ public class GenerateWaveLogic : MonoBehaviour {
         EnemyLocation currentLocation;
         while (true)
         {
+            if (GameObject.FindGameObjectsWithTag("Enemy").Length >= MaxEasyEnemies)
+            {
+                Thread.Sleep(2);
+            }
             //Init the enemy propreties
             bool lastInRow = i_waveModel.wave.InitEnemy(out currentType, out currentLocation);
             //Check if wave ended
