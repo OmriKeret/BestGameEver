@@ -28,6 +28,7 @@ public class PodiumLogic : MonoBehaviour {
     protected bool firstJump = true;
     protected bool secondJump = true;
     protected GameObject podium;
+    public float PodiumSpeed;
 	// Use this for initialization
 	void Start () {
         immunityTimeFromBeginning = 0.1f;
@@ -54,6 +55,16 @@ public class PodiumLogic : MonoBehaviour {
         downLocation = originalLocation - new Vector3(0, 20, 0);
         podium.transform.position = downLocation;
         startGoUp();
+    }
+
+    public void Move(Vector3[] i_Path)
+    {
+        startGoUp();
+        if (!i_Path.Equals(PodiumPaths.NotMoveing))
+        {
+            LeanTween.move(podium, i_Path, 5).setEase(LeanTweenType.linear);
+        }
+        
     }
 
     protected void startGoUp()

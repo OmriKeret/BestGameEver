@@ -89,7 +89,7 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
         
         //selectOrderPath(out path, i_PathNumber);
         
-        LeanTween.moveSpline(this.gameObject, path, calculateTime(i_speed)).setEase(LeanTweenType.linear).setOnComplete(() =>
+        LeanTween.move(this.gameObject, path, calculateTime(i_speed)).setEase(LeanTweenType.linear).setOnComplete(() =>
         {
             FinishedMoving();
         });

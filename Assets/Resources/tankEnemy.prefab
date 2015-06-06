@@ -18,7 +18,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &118292
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -129,7 +129,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 484794}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!4 &408540
 Transform:
   m_ObjectHideFlags: 1
@@ -141,7 +141,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 484794}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!4 &427220
 Transform:
   m_ObjectHideFlags: 1
@@ -149,10 +149,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118292}
   m_LocalRotation: {x: 0, y: 0, z: .00152130926, w: -.999998868}
-  m_LocalPosition: {x: -.75999999, y: -1.71000004, z: 0}
+  m_LocalPosition: {x: -.760000229, y: .600000381, z: 0}
   m_LocalScale: {x: .997150898, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 447622}
+  m_Father: {fileID: 484794}
   m_RootOrder: 0
 --- !u!4 &447622
 Transform:
@@ -163,10 +163,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.30999994, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 427220}
+  m_Children: []
   m_Father: {fileID: 484794}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!4 &460366
 Transform:
   m_ObjectHideFlags: 1
@@ -178,7 +177,7 @@ Transform:
   m_LocalScale: {x: -1.44093573, y: 1.03606403, z: 1}
   m_Children: []
   m_Father: {fileID: 484794}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!4 &480008
 Transform:
   m_ObjectHideFlags: 1
@@ -190,7 +189,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 484794}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!4 &484794
 Transform:
   m_ObjectHideFlags: 1
@@ -201,6 +200,7 @@ Transform:
   m_LocalPosition: {x: -10.1000004, y: 20.3999996, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 427220}
   - {fileID: 447622}
   - {fileID: 480008}
   - {fileID: 402884}

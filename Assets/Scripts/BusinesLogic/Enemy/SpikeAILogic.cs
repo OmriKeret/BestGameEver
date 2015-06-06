@@ -142,6 +142,8 @@ public class SpikeAILogic : MonoBehaviour, IEnemy {
         {
             FinishedMoving();
         });
+
+        //Goto gameObj logic => animationLogic =>isDashing
     }
 
 
