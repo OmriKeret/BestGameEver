@@ -5,6 +5,9 @@ using System.Linq;
 
 public class SpikeAILogic : MonoBehaviour, IEnemy {
 
+    // Animation 
+    Animator _animation;
+
     AEnemyStats _stats;
     Rigidbody2D _rigidbody;
     GameObject _leftBodyPartResouce, _rightBodyPartResouce;
@@ -30,6 +33,7 @@ public class SpikeAILogic : MonoBehaviour, IEnemy {
     // Use this for initialization
     void Awake()
     {
+        _animation = this.GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
         _stats = GetComponent<AEnemyStats>();
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -67,30 +71,30 @@ public class SpikeAILogic : MonoBehaviour, IEnemy {
 
     void FixedUpdate()
     {
-        stateCounter++;
-        if (stateCounter == normalTime)
-        {
-            normalMode();
-        }
-        else if (stateCounter == spikeTime)
-        {
-            spikeMode();
-            stateCounter = 0;
-        }
+        //stateCounter++;
+        //if (stateCounter == normalTime)
+        //{
+        //    normalMode();
+        //}
+        //else if (stateCounter == spikeTime)
+        //{
+        //    spikeMode();
+        //    stateCounter = 0;
+        //}
         
     }
 
-    private void spikeMode()
-    {
-        _stats._mode = EnemyMode.Attack;
-        _spriteRenderer.sprite = _stats.GetCurrentAnimation();
-    }
+    //private void spikeMode()
+    //{
+    //    _stats._mode = EnemyMode.Attack;
+    //    _spriteRenderer.sprite = _stats.GetCurrentAnimation();
+    //}
 
-    private void normalMode()
-    {
-        _stats._mode = EnemyMode.None;
-        _spriteRenderer.sprite = _stats.GetCurrentAnimation();
-    }
+    //private void normalMode()
+    //{
+    //    _stats._mode = EnemyMode.None;
+    //    _spriteRenderer.sprite = _stats.GetCurrentAnimation();
+    //}
 
     public void SetStats(AEnemyStats i_stats)
     {
@@ -214,5 +218,35 @@ public class SpikeAILogic : MonoBehaviour, IEnemy {
         bloodEmiter.minEmission = minNum;
         bloodEmiter.maxEmission = maxNum;
         bloodEmiter.localVelocity = new Vector3(dir.x, dir.y, 0);
+    }
+
+    public void enemyDie(int combo, Vector2 dir)
+    {
+        GetComponent<Collider2D>().enabled = false;
+        _animation.SetTrigger("Die");
+        int minNum = _generalAnimationLogic.minEmissioNum;
+        int maxNum = _generalAnimationLogic.maxEmission;
+        if (combo != 0)
+        {
+            minNum = minNum * combo;
+            maxNum = maxNum * combo;
+        }
+        dir = dir * _generalAnimationLogic.magnitude;
+        var bloodObject = Instantiate(_blood, this.transform.position, Quaternion.identity) as GameObject;
+        var bloodEmiter = bloodObject.GetComponent<EllipsoidParticleEmitter>();
+        bloodEmiter.minEmission = minNum;
+        bloodEmiter.maxEmission = maxNum;
+        bloodEmiter.localVelocity = new Vector3(dir.x, dir.y, 0);
+    }
+
+    // Animation driven
+    public void spikesOut()
+    {
+        _stats._mode = EnemyMode.Attack;
+    }
+
+    public void spikesIn()
+    {
+        _stats._mode = EnemyMode.None;
     }
 }

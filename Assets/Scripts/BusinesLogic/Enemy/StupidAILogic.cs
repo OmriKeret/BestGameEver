@@ -171,4 +171,22 @@ public class StupidAILogic : MonoBehaviour , IEnemy{
         bloodEmiter.maxEmission = maxNum;
         bloodEmiter.localVelocity = new Vector3(dir.x, dir.y, 0);
     }
+    public void enemyDie(int combo, Vector2 dir)
+    {
+        GetComponent<Collider2D>().enabled = false;
+        _animation.SetTrigger("Die");
+        int minNum = _generalAnimationLogic.minEmissioNum;
+        int maxNum = _generalAnimationLogic.maxEmission;
+        if (combo != 0)
+        {
+            minNum = minNum * combo;
+            maxNum = maxNum * combo;
+        }
+        dir = dir * _generalAnimationLogic.magnitude;
+        var bloodObject = Instantiate(_blood, this.transform.position, Quaternion.identity) as GameObject;
+        var bloodEmiter = bloodObject.GetComponent<EllipsoidParticleEmitter>();
+        bloodEmiter.minEmission = minNum;
+        bloodEmiter.maxEmission = maxNum;
+        bloodEmiter.localVelocity = new Vector3(dir.x, dir.y, 0);
+    }
 }

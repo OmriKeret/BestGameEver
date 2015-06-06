@@ -34,52 +34,6 @@ AnimatorController:
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
   m_MultiThreadedStateMachine: 1
---- !u!1101 &110179888
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: Hit
-    m_EventTreshold: 0
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 110294392}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: .100000001
-  m_TransitionOffset: 0
-  m_ExitTime: .899999976
-  m_HasExitTime: 0
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
---- !u!1101 &110194718
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: Die
-    m_EventTreshold: 0
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 110238060}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: .100000001
-  m_TransitionOffset: 0
-  m_ExitTime: .899999976
-  m_HasExitTime: 0
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
 --- !u!1102 &110207408
 AnimatorState:
   serializedVersion: 5
@@ -192,16 +146,16 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 110233534}
-    m_Position: {x: 264, y: 60, z: 0}
+    m_Position: {x: 48, y: -60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110294392}
-    m_Position: {x: -264, y: 96, z: 0}
+    m_Position: {x: -216, y: 0, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110238060}
-    m_Position: {x: -264, y: 36, z: 0}
+    m_Position: {x: -216, y: -60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110252038}
-    m_Position: {x: -229, y: 101, z: 0}
+    m_Position: {x: -216, y: -132, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110207408}
     m_Position: {x: -194, y: 166, z: 0}
@@ -209,9 +163,7 @@ AnimatorStateMachine:
     m_State: {fileID: 110274934}
     m_Position: {x: -159, y: 231, z: 0}
   m_ChildStateMachines: []
-  m_AnyStateTransitions:
-  - {fileID: 110194718}
-  - {fileID: 110179888}
+  m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions:
     data:

@@ -44,10 +44,7 @@ public class PodiumLogic : MonoBehaviour {
 			shouldCount = false;
         }
     }
-    public bool isMoving()
-    {
-        return currentlyGoingdown || goingUp;
-    }
+
     public void initPodium(GameObject i_Podium)
     {
         podium = i_Podium;
@@ -87,10 +84,10 @@ public class PodiumLogic : MonoBehaviour {
 
     internal void playerLandedOnPlatform()
     {
-        startGoDown();
+        startGoDownTrigger();
     }
 
-    protected void startGoDown()
+    protected void startGoDownTrigger()
     {
 
         //if you are still immune return
@@ -115,12 +112,6 @@ public class PodiumLogic : MonoBehaviour {
             goingDown = true;
         }
        
-        // Podium before fall animation
-        //LeanTween.rotateZ(podium, angleToShakeTo, shakingTime).setDelay(timeToWaitBeforeShaking).setOnComplete(
-        //   () =>
-        //   {
-        //       shakingPingPong();
-        //   });
         timeStartedCounting = Time.time;
 		shouldCount = true;
        LeanTween.move(podium, downLocation, timeToGoDown).setDelay(timeToShake + timeToWaitBeforeShaking).setOnComplete(
