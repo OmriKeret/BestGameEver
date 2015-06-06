@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!1 &111582
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -141,11 +141,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 112394}
   m_LocalRotation: {x: 0, y: 0, z: .130699784, w: -.991421998}
-  m_LocalPosition: {x: -.550000012, y: 0, z: 0}
+  m_LocalPosition: {x: -.810000002, y: .870000005, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 446526}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!4 &414234
 Transform:
   m_ObjectHideFlags: 1
@@ -153,12 +153,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 113488}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -.910000026, y: -.709999979, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 474560}
+  m_Children: []
   m_Father: {fileID: 446526}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!4 &415026
 Transform:
   m_ObjectHideFlags: 1
@@ -166,11 +165,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 148172}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -.460000008, y: -1.27999997, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 446526}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!4 &441490
 Transform:
   m_ObjectHideFlags: 1
@@ -178,7 +177,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 169240}
   m_LocalRotation: {x: 0, y: 0, z: .0379754119, w: -.999278665}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -.939999998, y: .180000007, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 446526}
@@ -190,10 +189,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190574}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 13.8999996, z: 0}
+  m_LocalPosition: {x: -.200000003, y: 13.8599997, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 441490}
+  - {fileID: 474560}
   - {fileID: 414234}
   - {fileID: 491156}
   - {fileID: 409510}
@@ -208,23 +208,23 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 164356}
   m_LocalRotation: {x: 0, y: 0, z: .243928254, w: .96979332}
-  m_LocalPosition: {x: .629999995, y: 0, z: 0}
+  m_LocalPosition: {x: .579999983, y: 1.01999998, z: 0}
   m_LocalScale: {x: -1.44093573, y: 1.03606403, z: 1}
   m_Children: []
   m_Father: {fileID: 446526}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!4 &474560
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 111582}
-  m_LocalRotation: {x: 0, y: 0, z: .00152130926, w: -.999998868}
-  m_LocalPosition: {x: .330000013, y: -1.22000003, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.13, y: .310000002, z: 0}
   m_LocalScale: {x: .997150898, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 414234}
-  m_RootOrder: 0
+  m_Father: {fileID: 446526}
+  m_RootOrder: 1
 --- !u!4 &491156
 Transform:
   m_ObjectHideFlags: 1
@@ -232,11 +232,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 150196}
   m_LocalRotation: {x: 0, y: 0, z: .0945418105, w: .99552089}
-  m_LocalPosition: {x: .100000001, y: 0, z: 0}
+  m_LocalPosition: {x: .589999974, y: -1.34000003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 446526}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!50 &5090436
 Rigidbody2D:
   m_ObjectHideFlags: 1
@@ -445,7 +445,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: e9f645d0e19d86f4bb711afa0012b8bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &21218438
