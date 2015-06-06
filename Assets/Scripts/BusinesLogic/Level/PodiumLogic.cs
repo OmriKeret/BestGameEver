@@ -1,14 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class PodiumLogic : MonoBehaviour {
     
     //platrofm down and up parameters
     public float timeToGoDown;
     public float timeToComeBackUp;
-    public float timeToShake;
-    public float timeToWaitBeforeShaking = 1f;
-    public float shakingTime = 0.1f;
+    public float delayToGoDown = 1.3f;
     public float angleToShakeTo = 4;
 
     //podium general parameters
@@ -18,10 +17,11 @@ public class PodiumLogic : MonoBehaviour {
     //platform time managment
     public float immunityTimeFromBeginning;
 //    protected float timeFromGoingDown = 100000f;
-    public float timeToWaitDown;
+    public float timeToWaitDown = 2f;
 
-    private bool currentlyGoingdown = false; // going down is for sync. this var is for gui
-    private bool shouldCount;
+    
+    private bool shouldCountForBreak;
+    private bool shouldCountForBuild;
     private float timeStartedCounting;
     protected bool goingUp = false;
     protected bool goingDown = false;
@@ -30,6 +30,8 @@ public class PodiumLogic : MonoBehaviour {
     protected GameObject podium;
     public float PodiumSpeed;
 
+    // action to do when finishing to break (destroy or go down)
+    Action actionToDoWhenFinisheToBreak;
     //animation
     Animator animation;
     Collider2D collider;
@@ -44,10 +46,16 @@ public class PodiumLogic : MonoBehaviour {
 	}
     void Update()
     {
-        if (Time.time - timeStartedCounting > timeToShake + timeToWaitBeforeShaking && shouldCount)
+        if (Time.time - timeStartedCounting > delayToGoDown && shouldCountForBreak)
         {
-            currentlyGoingdown = true;
-			shouldCount = false;
+            breakPodium();
+			shouldCountForBreak = false;
+        }
+        else if (Time.time - timeStartedCounting > timeToWaitDown && shouldCountForBuild)
+        {
+            buildPodium();
+            shouldCountForBuild = false;
+       
         }
     }
 
@@ -74,7 +82,6 @@ public class PodiumLogic : MonoBehaviour {
     {
         goingUp = true;
         goingDown = false;
-        currentlyGoingdown = false;
         firstJump = true;
         secondJump = true;
         LeanTween.cancel(podium,false);
@@ -119,36 +126,38 @@ public class PodiumLogic : MonoBehaviour {
         }
        
         timeStartedCounting = Time.time;
-		shouldCount = true;
-       //LeanTween.move(podium, downLocation, timeToGoDown).setDelay(timeToShake + timeToWaitBeforeShaking).setOnComplete(
-       //   () =>
-       //   {
-       //       startGoUp();
-       //   });
+		shouldCountForBreak = true;
     }
 
     public void breakPodium() {
        collider.enabled = false;
-        animation.SetTrigger("Break");
+       animation.SetTrigger("Break");
+       
+    }
+
+    private void buildPodium()
+    {
+        collider.enabled = true;
+        animation.SetTrigger("Build");
+    }
+
+    public void finishedBreaking()
+    {
+        if (actionToDoWhenFinisheToBreak == null)
+        {
+            this.transform.position = downLocation;
+            shouldCountForBuild = true;
+            timeStartedCounting = Time.time;
+        }
+        else
+        {
+            actionToDoWhenFinisheToBreak.Invoke();
+        }
     }
 
     public void downForGood()
     {
-        
-        // Podium before fall animation
-        //LeanTween.rotateZ(podium, angleToShakeTo, shakingTime).setDelay(timeToWaitBeforeShaking).setOnComplete(
-        //   () =>
-        //   {
-        //       shakingPingPong();
-        //   });
-        LeanTween.move(podium, downLocation, timeToGoDown).setDelay(timeToShake + timeToWaitBeforeShaking).setOnComplete(
-           () =>
-           {
-               Destroy(podium);
-           });
-    }
-    protected void shakingPingPong()
-    {
-        LeanTween.rotateZ(podium, angleToShakeTo * -1, shakingTime).setLoopPingPong();
+        breakPodium();
+        actionToDoWhenFinisheToBreak = ()=>{Destroy(this.gameObject);};
     }
 }
