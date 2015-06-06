@@ -198,16 +198,20 @@ public class WaveLogicFactory {
 
     public WaveLogic CreateWave(WaveType i_WaveType)
     {
+        WaveLogic wave = null;
         switch (i_WaveType)
         {
                 case WaveType.Easy:
-                    return createEasyWave(); 
+                    wave = createEasyWave(); break;
                 case WaveType.Medium:
-                    return createMediumWave();
+                    wave = createMediumWave(); break;
 
             default:
-                return createEasyWave();
+                wave = createEasyWave(); break;
         }
+
+        podiumMaker.SetupNewWave(wave);
+        return wave;
     }
 
 	private WaveLogic createEasyWave()
