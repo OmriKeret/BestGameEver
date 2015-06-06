@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.UI;
+using Soomla.Store;
 public class StoreLogic : MonoBehaviour {
 
     public Hats hats;
@@ -27,6 +28,7 @@ public class StoreLogic : MonoBehaviour {
     private CharacterDresserLogic dresser;
 	// Use this for initialization
 	void Start () {
+      
         index = 0;
         hats.hats = ClothLogic.clothLogic.hats.hats;
         punchoes.pounchoes = ClothLogic.clothLogic.punchoes.pounchoes;
@@ -239,4 +241,13 @@ public class StoreLogic : MonoBehaviour {
     {
         ClothLogic.clothLogic.equipItem(currentDisplayed,currentGroup);
     }
+
+    public void updatePJS(int PJS) {
+          currentPJ = currentPJ + PJS;
+            MemoryAccess.memoryAccess.SaveCurrency(new IOCurrencyModel { gems = currentJem, PJ = currentPJ });
+            ClothLogic.clothLogic.buyItem(currentDisplayed);
+            ClothLogic.clothLogic.equipItem(currentDisplayed, currentGroup);
+            writeCurrentCurrency();
+    }
+
 }

@@ -89,7 +89,9 @@ namespace Soomla.Store
 		/// <returns>Item with the given id.</returns>
 		public static VirtualItem GetItemByItemId(string itemId) {
 			SoomlaUtils.LogDebug(TAG, "Trying to fetch an item with itemId: " + itemId);
-
+			var deb = VirtualItems.Keys.ToArray ();
+			var bed = VirtualItems.Values.ToArray ();
+			var x = VirtualItems[itemId];
 			VirtualItem item;
 			if (VirtualItems != null && VirtualItems.TryGetValue(itemId, out item)) {
 				return item;

@@ -28,8 +28,24 @@ MonoBehaviour:
     - name: GPlayBP
       value: True
     - name: AndroidPublicKey
-      value: com.kiwi.ponchjoe
+      value: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAld/A8IklWQPcqs2WYCRg12NaE6aT9tjrfhmzBiBGU/ddfD+dmnG+v+FgUIaTP0cNRdfRiDoNbeMU6zByLH2QvU4BKviUofDdK86j2lOWelD8u40yG2KIwa+36WJqmzoUD+dq71tXlwG0uLF2SXhn+xY2TOKs7nqP0xOs1sJ21nOLkUZgVruxiUdelEwAaQeRnin7AoveQShUnjwHIf1dnCTHgnyipBOBl3vvCJOUq4tvpb/wNeNTVoQsLEi7pT8JiRVzNjBo3z1Jkl0vIx4E+gasH5PEZo08AJDGIsyZF61kaGG6RE9HzIft7QbCky2nLrCcyneD7dJjClVFwg2kPQIDAQAB
     - name: NoneBP
       value: False
     - name: AndroidTestPurchases
       value: True
+    - name: HighwayGameKey
+      value: b12e221b-6bd2-43b7-8348-aca7bde49954
+    - name: HighwayEnvKey
+      value: 5398c8a1-c408-457c-83f8-a6e40b5811e8
+    - name: DebugMessages
+      value: True
+    - name: FBPermissions
+      value: email,user_birthday,user_photos,user_friends,read_stream
+    - name: TwitterConsumerKey
+      value: YOUR TWITTER CONSUMER KEY
+    - name: TwitterConsumerSecret
+      value: YOUR TWITTER CONSUMER SECRET
+    - name: GPClientId
+      value: YOUR GOOGLE+ CLIENT ID
+    - name: SocialIntegration
+      value: facebook,1
