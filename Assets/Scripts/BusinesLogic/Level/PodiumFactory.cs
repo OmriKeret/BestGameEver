@@ -13,6 +13,10 @@ public class PodiumFactory
         private readonly Vector3 TopRight = new Vector3(10.99f, 0f, 0);
         private readonly Vector3 BottomRight = new Vector3(10.99f, -7.22f, 0);
 
+        private const int Put2Podiums = 10;
+        private const int Put3Podiums = 15;
+        
+
         PodiumModel[][] allLevels;
 
         public PodiumFactory()
@@ -67,10 +71,27 @@ public class PodiumFactory
             }
 
             List<PodiumModel> podiumsToInit = new List<PodiumModel>();
-            podiumsToInit.Add(new PodiumModel(Mid));
-            if (sides[0] == sides[2])
+
+            int max = MathUtils.Max(sides);
+            if (sides[0] == sides[2] || sides[1] == max)
             {
-                
+                podiumsToInit.Add(new PodiumModel(Mid));   
+            }
+            else if (sides[0] == max)
+            {
+                podiumsToInit.Add(new PodiumModel(TopLeft));
+                if (MathUtils.SumOfArray(sides) >= Put2Podiums)
+                {
+                    podiumsToInit.Add(new PodiumModel(BottomRight));
+                }
+            }
+            else
+            {
+                podiumsToInit.Add(new PodiumModel(TopRight));
+                if (MathUtils.SumOfArray(sides) >= Put2Podiums)
+                {
+                    podiumsToInit.Add(new PodiumModel(BottomLeft));
+                }
             }
 
             InitLevelPodium(podiumsToInit.ToArray());

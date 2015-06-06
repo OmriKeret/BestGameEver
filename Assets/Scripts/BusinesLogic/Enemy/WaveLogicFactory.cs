@@ -205,7 +205,7 @@ public class WaveLogicFactory {
                     wave = createEasyWave(); break;
                 case WaveType.Medium:
                     wave = createMediumWave(); break;
-
+                
             default:
                 wave = createEasyWave(); break;
         }

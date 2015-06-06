@@ -30,3 +30,5 @@ obj/
 ehthumbs.db
 Thumbs.db
 
+/Assets/HOTween.meta
+/Assets/Plugins/DOTween.meta
