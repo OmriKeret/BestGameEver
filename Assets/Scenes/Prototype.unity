@@ -1248,6 +1248,7 @@ MonoBehaviour:
   downLocation: {x: 0, y: 0, z: 0}
   immunityTimeFromBeginning: 0
   timeToWaitDown: 0
+  PodiumSpeed: 0
 --- !u!1 &218245146
 GameObject:
   m_ObjectHideFlags: 0
@@ -3692,6 +3693,7 @@ MonoBehaviour:
   numberOfSecBetweenEnemies: 2
   instantiateLocations: []
   waveEnded: 1
+  MaxEasyEnemies: 4
 --- !u!114 &605148567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3838,6 +3840,7 @@ MonoBehaviour:
   downLocation: {x: 0, y: 0, z: 0}
   immunityTimeFromBeginning: 3
   timeToWaitDown: 2
+  PodiumSpeed: 0
 --- !u!114 &605148575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10627,7 +10630,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 151052, guid: 78a965b0363c6eb45be3d1ab8a59ba3f, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78a965b0363c6eb45be3d1ab8a59ba3f, type: 2}

@@ -14,7 +14,6 @@ public class SpikeStats : AEnemyStats
         _mode = EnemyMode.None;
         _type = EnemyType.Stupid;
         initAnimation();
-        Debug.Log(_AnimationState.Values);
     }
 
 

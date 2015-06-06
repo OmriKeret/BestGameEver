@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
+using Random = UnityEngine.Random;
 
 public class WaveLogicFactory {
 
@@ -64,14 +66,52 @@ public class WaveLogicFactory {
         };
 
         _easyWaves = new WaveLogic[]{
-            //0
+            //2 right right
             new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid},
             new EnemyLocation[]{EnemyLocation.TopRight,EnemyLocation.TopRight},
             new int[]{1,1}),
+            //2 left
+            new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid},
+            new EnemyLocation[]{EnemyLocation.TopLeft,EnemyLocation.TopLeft},
+            new int[]{1,1}),
+            // left right
+            new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid},
+            new EnemyLocation[]{EnemyLocation.MidRight,EnemyLocation.MidLeft},
+            new int[]{1,1}),
+            //triangle
+            new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid},
+            new EnemyLocation[]{EnemyLocation.BottomLeft,EnemyLocation.BottomRight,EnemyLocation.TopMid},
+            new int[]{3}),
+            //one spike
+            new WaveLogic(new EnemyType[]{EnemyType.Spike},
+            new EnemyLocation[]{EnemyLocation.TopMid},
+            new int[]{1}),
+            //one spike
+            new WaveLogic(new EnemyType[]{EnemyType.Spike},
+            new EnemyLocation[]{EnemyLocation.MidLeft},
+            new int[]{1}),
+            //one spike
+            new WaveLogic(new EnemyType[]{EnemyType.Spike},
+            new EnemyLocation[]{EnemyLocation.MidRight},
+            new int[]{1}),
+            
+
+
 
 		};
         _mediumWaves = new WaveLogic[]{
-			
+			//2 spike
+            new WaveLogic(new EnemyType[]{EnemyType.Spike,EnemyType.Spike},
+            new EnemyLocation[]{EnemyLocation.TopLeft,EnemyLocation.TopRight},
+            new int[]{1,1}),
+            //2 spike
+            new WaveLogic(new EnemyType[]{EnemyType.Spike,EnemyType.Spike},
+            new EnemyLocation[]{EnemyLocation.BottomLeft,EnemyLocation.BottomRight},
+            new int[]{2}),
+            //trio
+            new WaveLogic(new EnemyType[]{EnemyType.Spike,EnemyType.Stupid,EnemyType.Tank},
+            new EnemyLocation[]{EnemyLocation.BottomLeft,EnemyLocation.TopMid,EnemyLocation.BottomRight},
+            new int[]{1,1,1}),
 		};
         _hardWaves = new WaveLogic[]{
 			
@@ -98,14 +138,76 @@ public class WaveLogicFactory {
 
 	private WaveLogic createWave(WaveLogic[] i_waves){
 		int waveNumber = UnityEngine.Random.Range (0,i_waves.Length);
-	    WaveLogic wave = new WaveLogic(i_waves[waveNumber]);
+	    WaveLogic wave = i_waves[waveNumber];
 		return wave;
 	}
 
+    public WaveType ChooseRandomWaveType(int waveNumber)
+    {
+        int[] TypeChances = {   100 - 10*waveNumber, 
+                                (int)(-0.25 * waveNumber * waveNumber + 7.5 * waveNumber + 1.5), 
+                                (int)(-0.0067 * waveNumber * waveNumber * waveNumber + 0.2524 * waveNumber * waveNumber - 0.1905 * waveNumber - 0.9524), 
+                                (int)(0.1048*waveNumber*waveNumber - 0.8571*waveNumber + 0.2381) };
+        Debug.Log(string.Format("Before adding: {0} {1} {2} {3}", TypeChances[0], TypeChances[1], TypeChances[2], TypeChances[3]));
+        for (int i = 1; i < TypeChances.Length; i++)
+        {
+            TypeChances[i] = TypeChances[i] < 0 ? 0 : TypeChances[i];//Can't be below 0
+            if (TypeChances[i] == 0)
+            {
+                TypeChances[i - 1] = 100;
+            }
+            TypeChances[i] += TypeChances[i - 1];
+        }
+        Debug.Log(string.Format("After adding: {0} {1} {2} {3}", TypeChances[0], TypeChances[1], TypeChances[2], TypeChances[3]));
+        int randomPick = Random.Range(0, 100);
+        int correctType = -1;
+        for (correctType = 0; correctType < TypeChances.Length; correctType++)
+        {
+            if (randomPick < TypeChances[correctType])
+            {
+                break;
+            }
+        }
+        return (WaveType) correctType;
 
-	public WaveLogic createEasyWave(){
-        podiumMaker.SetupNewWave(1);
-        return createWave(_easyWaves);
+    }
+
+    public WaveLogic CreateWave(WaveType i_WaveType)
+    {
+        switch (i_WaveType)
+        {
+                case WaveType.Easy:
+                    return createEasyWave(); 
+                case WaveType.Medium:
+                    return createMediumWave();
+
+            default:
+                return createEasyWave();
+        }
+    }
+
+	private WaveLogic createEasyWave()
+	{
+	    WaveLogic one = createWave(_easyWaves);
+        WaveLogic two = createWave(_easyWaves);
+	    if (!one.IsLow()&&!two.IsLow())
+	    {
+            two = createWave(_easyWaves);
+	    }
+
+        WaveLogic merge = one.MergeWaves(two);
+	    return merge;
 	}
+
+    private WaveLogic createMediumWave()
+    {
+        bool type = Random.Range(0, 2) == 0 ? true : false;
+        WaveLogic one =     type ? createWave(_easyWaves) : createWave(_mediumWaves);
+        WaveLogic two =     type ? createWave(_mediumWaves) : createWave(_easyWaves);
+        WaveLogic three =   type ? createWave(_easyWaves) : createWave(_mediumWaves);
+
+        WaveLogic merge = one.MergeWaves(two).MergeWaves(three);
+        return merge;
+    }
 
 }

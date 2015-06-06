@@ -14,7 +14,6 @@ public class EnemyGeneratorController : MonoBehaviour {
 	void Start () {
         //Debug only: start from wave x
         _waveNumber = 0;
-        Debug.Log("Debug mode: Starting from wave " + _waveNumber);
         //End debug
         generateWaveLogic = GameObject.Find("Logic").GetComponent<GenerateWaveLogic>();
         GenerateWave();
