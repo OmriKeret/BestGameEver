@@ -232,4 +232,13 @@ public class ClothLogic : MonoBehaviour {
         result += equipedPoncho.statsImprove.dashDist;
         return result;
     }
+
+    internal int getDashDmgBoost()
+    {
+        int result = 0;
+        result += equipedHat.statsImprove.dmg;
+        result += equipedSword.statsImprove.dmg;
+        result += equipedPoncho.statsImprove.dmg;
+        return result;
+    }
 }

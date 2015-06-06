@@ -120,4 +120,9 @@ public class PlayerStatsLogic : MonoBehaviour {
         HP += hpBoost;
         firstTimeWriteHp();
     }
+
+    internal void addDmgBoost(int dmgBoost)
+    {
+        Strength += dmgBoost;
+    }
 }
