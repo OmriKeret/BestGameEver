@@ -29,8 +29,14 @@ public class PodiumLogic : MonoBehaviour {
     protected bool secondJump = true;
     protected GameObject podium;
     public float PodiumSpeed;
+
+    //animation
+    Animator animation;
+    Collider2D collider;
 	// Use this for initialization
 	void Start () {
+        animation = GetComponent<Animator>();
+        collider = GetComponent<Collider2D>();
         immunityTimeFromBeginning = 0.1f;
         goingDown = false;
         firstJump = true;
@@ -114,11 +120,16 @@ public class PodiumLogic : MonoBehaviour {
        
         timeStartedCounting = Time.time;
 		shouldCount = true;
-       LeanTween.move(podium, downLocation, timeToGoDown).setDelay(timeToShake + timeToWaitBeforeShaking).setOnComplete(
-          () =>
-          {
-              startGoUp();
-          });
+       //LeanTween.move(podium, downLocation, timeToGoDown).setDelay(timeToShake + timeToWaitBeforeShaking).setOnComplete(
+       //   () =>
+       //   {
+       //       startGoUp();
+       //   });
+    }
+
+    public void breakPodium() {
+       collider.enabled = false;
+        animation.SetTrigger("Break");
     }
 
     public void downForGood()
