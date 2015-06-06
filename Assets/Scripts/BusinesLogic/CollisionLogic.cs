@@ -195,8 +195,10 @@ public class CollisionLogic : MonoBehaviour  {
         var signY = VectorForce.y > 0 ? 1 : -1;
         var enemy = model.mainCollider.GetComponent<IEnemy>();
         bool dead = enemy.lifeDown(playerStatsLogic.Strength);
-        if (!dead)
+        if (dead)
         {
+            enemy.enemyDie(playerStatsLogic.combo, VectorForce);
+        } else {
             // GUI
             enemy.hit(playerStatsLogic.combo, VectorForce);
         }
