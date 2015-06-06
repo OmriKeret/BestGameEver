@@ -246,11 +246,10 @@ public class CollisionLogic : MonoBehaviour  {
             Vector3 topRight = new Vector3(right, top, worldPos.z);
 
             var podiumLogic = model.CollidedWith.gameObject.GetComponent<PodiumLogic>();
-            if(!podiumLogic.isMoving()) {
-                var pos = model.CollidedWith.transform.position;
-                pos.y = top;
-                Instantiate(landDust, pos, Quaternion.identity);
-            }
+            var pos = model.CollidedWith.transform.position;
+            pos.y = top;
+            Instantiate(landDust, pos, Quaternion.identity);
+
  
             model.mainCollider.gameObject.transform.position = new Vector3((topLeft.x + topRight.x) / 2, top);
 
