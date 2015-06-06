@@ -3110,6 +3110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashTime: .200000003
+  dashDist: 5
   hoverTime: .100000001
   timeToRotate: .5
   delayTillRotat: .0799999982
