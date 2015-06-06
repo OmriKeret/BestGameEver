@@ -9,6 +9,9 @@ public class CannonAILogic : MonoBehaviour, IEnemy
     // Animation 
     Animator _animation;
 
+    // Cannon params
+    Vector3 playerPosition;
+
     AEnemyStats _stats;
     Rigidbody2D _rigidbody;
     GameObject _leftBodyPartResouce, _rightBodyPartResouce;
@@ -38,6 +41,9 @@ public class CannonAILogic : MonoBehaviour, IEnemy
         _allVectorPaths = new StupidPaths();
         initPaths();
         _generalAnimationLogic = GameObject.Find("Logic").GetComponent<EnemyGeneralAnimationLogic>();
+
+        // player position
+        playerPosition = GameObject.Find("PlayerManager").transform.position;
         
     }
     public bool lifeDown(int str)
@@ -200,5 +206,10 @@ public class CannonAILogic : MonoBehaviour, IEnemy
         bloodEmiter.minEmission = minNum;
         bloodEmiter.maxEmission = maxNum;
         bloodEmiter.localVelocity = new Vector3(dir.x, dir.y, 0);
+    }
+
+    public void finishedCharge()
+    {
+        //TODO: set enemy path, dont forget u already got player position!
     }
 }

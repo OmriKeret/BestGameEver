@@ -160,4 +160,9 @@ public class PodiumLogic : MonoBehaviour {
         breakPodium();
         actionToDoWhenFinisheToBreak = ()=>{Destroy(this.gameObject);};
     }
+
+    internal void playerIsCamping()
+    {
+        //TODO: initiaite CANNON
+    }
 }
