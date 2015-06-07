@@ -35,6 +35,11 @@ public abstract class AEnemyStats : MonoBehaviour {
         Debug.Log(this.gameObject.GetComponent<Rigidbody2D>().velocity.x);
     }
 
+    public Vector3 Direction
+    {
+        get { return currLocation - prevLocation; }
+    }
+
     void FixedUpdate()
     {
         prevLocation = currLocation;

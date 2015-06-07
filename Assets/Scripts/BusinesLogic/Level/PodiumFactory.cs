@@ -37,7 +37,7 @@ public class PodiumFactory
                 new PodiumModel[]{new PodiumModel(new Vector3(-10.99f, -7.22f, 0)),new PodiumModel(new Vector3(10.99f, 7.22f, 0))},
                 new PodiumModel[]{new PodiumModel(new Vector3(-10.99f, 7.22f, 0)),new PodiumModel(new Vector3(10.99f, 7.22f, 0)),new PodiumModel(0)},
             };
-            SetupNewWave(0);
+            
         }
 
         public void SetupNewWave(int i_WaveNumber)
