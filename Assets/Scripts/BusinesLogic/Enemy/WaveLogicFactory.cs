@@ -135,6 +135,15 @@ public class WaveLogicFactory {
             new WaveLogic(new EnemyType[]{EnemyType.Tank,EnemyType.Tank,EnemyType.Hawk},
             new EnemyLocation[]{EnemyLocation.TopLeft,EnemyLocation.TopRight,EnemyLocation.TopMid},
             new int[]{2,1}),
+            //
+            new WaveLogic(new EnemyType[]{EnemyType.Hawk,EnemyType.Spike,EnemyType.Spike,EnemyType.Hawk},
+            new EnemyLocation[]{EnemyLocation.TopLeft,EnemyLocation.BottomRight,EnemyLocation.BottomLeft,EnemyLocation.TopRight},
+            new int[]{1,2,1}),
+            //Pentagon
+            new WaveLogic(new EnemyType[]{EnemyType.Spike,EnemyType.Spike,EnemyType.Stupid,EnemyType.Spike,EnemyType.Spike},
+            new EnemyLocation[]{EnemyLocation.BottomLeft,EnemyLocation.TopMid,EnemyLocation.BottomRight,EnemyLocation.TopLeft,EnemyLocation.TopRight},
+            new int[]{1,1,1,1,1}),
+            
 			
 		};
         _extremeWaves = new WaveLogic[]{
@@ -142,6 +151,10 @@ public class WaveLogicFactory {
             new WaveLogic(new EnemyType[]{EnemyType.Tank,EnemyType.Tank,EnemyType.Tank,EnemyType.Tank},
             new EnemyLocation[]{EnemyLocation.TopLeft,EnemyLocation.BottomRight,EnemyLocation.TopRight,EnemyLocation.BottomLeft},
             new int[]{2,2}),
+            //All
+            new WaveLogic(new EnemyType[]{EnemyType.Spike,EnemyType.Stupid,EnemyType.Tank,EnemyType.Hawk},
+            new EnemyLocation[]{EnemyLocation.BottomLeft,EnemyLocation.BottomRight,EnemyLocation.TopLeft,EnemyLocation.TopRight},
+            new int[]{4}),
 		};
 
 	}
@@ -201,10 +214,12 @@ public class WaveLogicFactory {
         WaveLogic wave = null;
         switch (i_WaveType)
         {
-                case WaveType.Easy:
-                    wave = createEasyWave(); break;
-                case WaveType.Medium:
-                    wave = createMediumWave(); break;
+            case WaveType.Easy:
+                wave = createEasyWave(); break;
+            case WaveType.Medium:
+                wave = createMediumWave(); break;
+            case WaveType.Hard:
+                wave = createHardWave(); break;
                 
             default:
                 wave = createEasyWave(); break;
@@ -233,6 +248,28 @@ public class WaveLogicFactory {
         WaveLogic one =     type ? createWave(_easyWaves) : createWave(_mediumWaves);
         WaveLogic two =     type ? createWave(_mediumWaves) : createWave(_easyWaves);
         WaveLogic three =   type ? createWave(_easyWaves) : createWave(_mediumWaves);
+
+        WaveLogic merge = one.MergeWaves(two).MergeWaves(three);
+        return merge;
+    }
+
+    private WaveLogic createHardWave()
+    {
+        bool type = Random.Range(0, 2) == 0 ? true : false;
+        WaveLogic one = type ? createWave(_hardWaves) : createWave(_mediumWaves);
+        WaveLogic two = type ? createWave(_mediumWaves) : createWave(_hardWaves);
+        WaveLogic three = type ? createWave(_hardWaves) : createWave(_mediumWaves);
+
+        WaveLogic merge = one.MergeWaves(two).MergeWaves(three);
+        return merge;
+    }
+
+    private WaveLogic createExtremeWave()
+    {
+        bool type = Random.Range(0, 2) == 0 ? true : false;
+        WaveLogic one = type ? createWave(_hardWaves) : createWave(_extremeWaves);
+        WaveLogic two = type ? createWave(_extremeWaves) : createWave(_hardWaves);
+        WaveLogic three = type ? createWave(_hardWaves) : createWave(_extremeWaves);
 
         WaveLogic merge = one.MergeWaves(two).MergeWaves(three);
         return merge;
