@@ -32,13 +32,13 @@ public class CannonPaths
 
     public static Vector3[] flyFromLeft = new Vector3[]
     {
-        new Vector3(-25f, -4.35f, 0.03f), new Vector3(10f, 20f, 0.03064619f), new Vector3(-10f, 20f, 0.03064619f),
-        new Vector3(25f, -4.6f, 0.03f)
+        new Vector3(-20f, -8.35f, 0.03f), new Vector3(10f, 20f, 0.03064619f), new Vector3(-10f, 20f, 0.03064619f),
+        new Vector3(20f, -11.6f, 0.03f)
     };
 
     public static Vector3[] flyFromRight = new Vector3[]
     {
-        new Vector3(25f, -4.599999f, 0.03f), new Vector3(-10f, 20f, 0.03064619f), new Vector3(10f, 20f, 0.03064619f),
-        new Vector3(-25f, -4.349999f, 0.03f)
+        new Vector3(20f, -8.599999f, 0.03f), new Vector3(-10f, 20f, 0.03064619f), new Vector3(10f, 20f, 0.03064619f),
+        new Vector3(-20f, -11.349999f, 0.03f)
     };
 }

@@ -12,6 +12,7 @@ public class CannonAILogic : MonoBehaviour, IEnemy
     // Cannon params
     Vector3 playerPosition;
     bool isinitilized;
+    
 
     AEnemyStats _stats;
     Rigidbody2D _rigidbody;
@@ -42,7 +43,7 @@ public class CannonAILogic : MonoBehaviour, IEnemy
         _blood = Resources.Load("BloodSplash") as GameObject;
         GetComponent<Rigidbody2D>().gravityScale = 0;
         _allVectorPaths = new StupidPaths();
-        initPaths();
+       // initPaths();
         _generalAnimationLogic = GameObject.Find("Logic").GetComponent<EnemyGeneralAnimationLogic>();
 
         // player position
@@ -52,13 +53,7 @@ public class CannonAILogic : MonoBehaviour, IEnemy
 
     private void FixedUpdate()
     {
-        Vector3 velocity = gameObject.GetComponent<Rigidbody2D>().velocity;
-        if (velocity.magnitude != 0)
-        {
-            float angle = Vector2.Angle(velocity, new Vector2(0, 1));
-            transform.rotation = new Quaternion(0, 0, angle, 0);
-
-        }
+        RotateToDirection(_stats.Direction.normalized);
     }
 
     public bool lifeDown(int str)
@@ -123,13 +118,6 @@ public class CannonAILogic : MonoBehaviour, IEnemy
             Debug.Log("Error choosing path (StartOrderPath in stupid)");
             Debug.Log("Caused by " + i_Location);
         }
-
-        //selectOrderPath(out path, i_PathNumber);
-        
-        //LeanTween.move(this.gameObject, path, calculateTime(i_speed)).setEase(LeanTweenType.linear).setOnComplete(() =>
-        //{
-        //    FinishedMoving();
-        //});
          
     }
 
@@ -232,9 +220,9 @@ public class CannonAILogic : MonoBehaviour, IEnemy
             Vector3 playerLocation = playerPosition;
             Vector3[] path = playerLocation.x > 0 ? CannonPaths.flyFromLeft : CannonPaths.flyFromRight;
             path[2].x = (path[0].x - playerLocation.x) / 2;
-            path[2].y = playerLocation.y;
+            path[2].y = playerLocation.y + 4f;
             path[1].x = (path[3].x - playerLocation.x) / 2;
-            path[1].y = playerLocation.y;
+            path[1].y = playerLocation.y + 4f;
 
             LeanTween.move(this.gameObject, path, timeToFinishJump).setEase(LeanTweenType.easeInOutCubic).setOnComplete(() =>
             {
@@ -242,5 +230,22 @@ public class CannonAILogic : MonoBehaviour, IEnemy
             });
         }
         
+    }
+
+    private void RotateToDirection(Vector2 dir)
+    {
+        Vector2 dashAnimationVector;
+        var x = dir.normalized.x;
+        if (x > 0)
+        {
+            dashAnimationVector = new Vector2(1f, 0.5f);
+        }
+        else
+        {
+            dashAnimationVector = new Vector2(-1f, 0.5f);
+        }
+        //  Quaternion newRotation = Quaternion.LookRotation(dir);
+
+        this.transform.rotation = Quaternion.FromToRotation(dashAnimationVector, dir);
     }
 }
