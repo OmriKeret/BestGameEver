@@ -15,6 +15,7 @@ public class MissionAssigner : MonoBehaviour {
         MissionInitializer();
 	}
 
+    void OnEnable() { }
 
     public MissionModel[] getNewMissions(int tier)
     {
@@ -39,6 +40,10 @@ public class MissionAssigner : MonoBehaviour {
     private MissionModel getRandomMission(int tier)
     {
         MissionModel mission = new MissionModel();
+        if (missions == null)
+        {
+            MissionInitializer();
+        }
         int max = missions.Length;
         var selectedMission = missions[UnityEngine.Random.Range(0, max)];
         mission.type = selectedMission.type;
