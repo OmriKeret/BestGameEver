@@ -11029,6 +11029,14 @@ Prefab:
       propertyPath: PickUpCoin
       value: 
       objectReference: {fileID: 8300000, guid: 448c19d3729a6cf48886033b5a873a59, type: 3}
+    - target: {fileID: 11433534, guid: 529b187838370da419ab3502d624e310, type: 2}
+      propertyPath: pauseBtnIn
+      value: 
+      objectReference: {fileID: 8300000, guid: acb2aba6a1094a64c8900b83cc3cdd5b, type: 3}
+    - target: {fileID: 11433534, guid: 529b187838370da419ab3502d624e310, type: 2}
+      propertyPath: pauseBtnOut
+      value: 
+      objectReference: {fileID: 8300000, guid: e2f3acbdcc740d64c95d2704d741df3d, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 529b187838370da419ab3502d624e310, type: 2}
   m_IsPrefabParent: 0
