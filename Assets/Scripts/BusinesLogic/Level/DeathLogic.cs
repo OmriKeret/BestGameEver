@@ -119,7 +119,7 @@ public class DeathLogic : MonoBehaviour {
         deathMissionsToggleAndTextNew[missionNum].missionToggle = GameObject.Find("LosePanel/LoseMission3New").GetComponent<Toggle>();
 
         origMissionTextX = deathMissionsToggleAndText[missionNum].missionToggle.transform.position.x;
-        EndMissionTextX = origMissionTextX - 150;
+        EndMissionTextX = origMissionTextX - 200;
 		deathScore = GameObject.Find("LosePanel/LoseScore").GetComponent<Text>();
         currencyText = GameObject.Find("LosePanel/LosePJ").GetComponent<Text>();
         timeSinceStartedCurrency = -1;
