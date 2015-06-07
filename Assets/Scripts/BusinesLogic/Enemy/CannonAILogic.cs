@@ -11,6 +11,7 @@ public class CannonAILogic : MonoBehaviour, IEnemy
 
     // Cannon params
     Vector3 playerPosition;
+    bool isinitilized;
 
     AEnemyStats _stats;
     Rigidbody2D _rigidbody;
@@ -26,6 +27,8 @@ public class CannonAILogic : MonoBehaviour, IEnemy
     // blood splash data
     private EnemyGeneralAnimationLogic _generalAnimationLogic;
 
+    // time to jump and stuff
+    private float timeToFinishJump = 5f;
     AudioSource _audioSource;
     // Use this for initialization
     void Awake()
@@ -123,10 +126,10 @@ public class CannonAILogic : MonoBehaviour, IEnemy
 
         //selectOrderPath(out path, i_PathNumber);
         
-        LeanTween.move(this.gameObject, path, calculateTime(i_speed)).setEase(LeanTweenType.linear).setOnComplete(() =>
-        {
-            FinishedMoving();
-        });
+        //LeanTween.move(this.gameObject, path, calculateTime(i_speed)).setEase(LeanTweenType.linear).setOnComplete(() =>
+        //{
+        //    FinishedMoving();
+        //});
          
     }
 
@@ -223,17 +226,21 @@ public class CannonAILogic : MonoBehaviour, IEnemy
     public void finishedCharge()
     {
         //TODO: set enemy path, dont forget u already got player position!
-
-        Vector3 playerLocation = playerPosition;
-        Vector3[] path = playerLocation.x > 0 ? CannonPaths.flyFromLeft : CannonPaths.flyFromRight;
-        path[2].x = (path[0].x-playerLocation.x)/2;
-        path[2].y = playerLocation.y;
-        path[1].x = (path[3].x - playerLocation.x) / 2;
-        path[1].y = playerLocation.y;
-
-        LeanTween.move(this.gameObject, path, calculateTime(5)).setEase(LeanTweenType.linear).setOnComplete(() =>
+        if (!isinitilized)
         {
-            FinishedMoving();
-        });
+            isinitilized = true;
+            Vector3 playerLocation = playerPosition;
+            Vector3[] path = playerLocation.x > 0 ? CannonPaths.flyFromLeft : CannonPaths.flyFromRight;
+            path[2].x = (path[0].x - playerLocation.x) / 2;
+            path[2].y = playerLocation.y;
+            path[1].x = (path[3].x - playerLocation.x) / 2;
+            path[1].y = playerLocation.y;
+
+            LeanTween.move(this.gameObject, path, timeToFinishJump).setEase(LeanTweenType.easeInOutCubic).setOnComplete(() =>
+            {
+                FinishedMoving();
+            });
+        }
+        
     }
 }

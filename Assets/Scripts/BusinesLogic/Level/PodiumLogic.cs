@@ -19,6 +19,8 @@ public class PodiumLogic : MonoBehaviour {
 //    protected float timeFromGoingDown = 100000f;
     public float timeToWaitDown = 2f;
 
+    //cannon anti camper
+    private GameObject cannonPrefab;
     
     private bool shouldCountForBreak;
     private bool shouldCountForBuild;
@@ -46,6 +48,7 @@ public class PodiumLogic : MonoBehaviour {
         firstJump = true;
         secondJump = true;
 	    cannonManager = FindObjectOfType<CannonManagerLogic>();
+        cannonPrefab = Resources.Load<GameObject>("cannonEnemy");
 	}
     void FixedUpdate()
     {
@@ -167,6 +170,14 @@ public class PodiumLogic : MonoBehaviour {
 
     internal void playerIsCamping()
     {
-        //TODO: initiaite CANNON
+        bool playerOnRight = GameObject.Find("PlayerManager").transform.position.x > 0;
+        if (playerOnRight)
+        {
+            Instantiate(cannonPrefab, new Vector3(-25, -5, 0), Quaternion.identity);
+        }
+        else
+        {
+            Instantiate(cannonPrefab, new Vector3(25, -5, 0), Quaternion.identity);
+        }
     }
 }
