@@ -219,10 +219,11 @@ public class CannonAILogic : MonoBehaviour, IEnemy
             isinitilized = true;
             Vector3 playerLocation = playerPosition;
             Vector3[] path = playerLocation.x > 0 ? CannonPaths.flyFromLeft : CannonPaths.flyFromRight;
-            path[2].x = (path[0].x - playerLocation.x) / 2;
-            path[2].y = playerLocation.y + 4f;
-            path[1].x = (path[3].x - playerLocation.x) / 2;
-            path[1].y = playerLocation.y + 4f;
+            path[2].x = 2*(path[0].x - playerLocation.x) / 4;
+            path[2].y = playerLocation.y + 8f;
+            path[1].x = 3
+                *(path[3].x - playerLocation.x) / 4;
+            path[1].y = playerLocation.y + 8f;
 
             LeanTween.move(this.gameObject, path, timeToFinishJump).setEase(LeanTweenType.easeInOutCubic).setOnComplete(() =>
             {
