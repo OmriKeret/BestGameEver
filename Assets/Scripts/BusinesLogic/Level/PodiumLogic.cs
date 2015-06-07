@@ -7,7 +7,7 @@ public class PodiumLogic : MonoBehaviour {
     //platrofm down and up parameters
     public float timeToGoDown;
     public float timeToComeBackUp;
-    public float delayToGoDown = 1.3f;
+    private float delayToGoDown = 0f;
     public float angleToShakeTo = 4;
 
     //podium general parameters
@@ -111,11 +111,11 @@ public class PodiumLogic : MonoBehaviour {
             firstJump = false;
             return; 
         }
-        if (secondJump)
-        {
-            secondJump = false;
-            return;
-        }
+        //if (secondJump)
+        //{
+        //    secondJump = false;
+        //    return;
+        //}
         if (goingDown)
         {
             return;
