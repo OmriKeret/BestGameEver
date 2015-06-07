@@ -115,11 +115,11 @@ public class PodiumLogic : MonoBehaviour {
             firstJump = false;
             return; 
         }
-        //if (secondJump)
-        //{
-        //    secondJump = false;
-        //    return;
-        //}
+        if (secondJump)
+        {
+            secondJump = false;
+            return;
+        }
         if (goingDown)
         {
             return;

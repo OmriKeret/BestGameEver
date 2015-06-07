@@ -5,7 +5,7 @@ public class ToturialController : MonoBehaviour {
 
     ToturialLogic toturialLogic;
     int numberOfEnemy;
-    void Start()
+    void OnEnable()
     {
         toturialLogic = this.GetComponent<ToturialLogic>();
         toturialLogic.checkIfNeededToStartToturial();
