@@ -133,7 +133,7 @@ public class WaveLogicFactory {
         _hardWaves = new WaveLogic[]{
             //Arials
             new WaveLogic(new EnemyType[]{EnemyType.Tank,EnemyType.Tank,EnemyType.Hawk},
-            new EnemyLocation[]{EnemyLocation.TopLeft,EnemyLocation.TopRight,EnemyLocation.TopMid},
+            new EnemyLocation[]{EnemyLocation.TopLeft,EnemyLocation.TopRight,EnemyLocation.TopRight},
             new int[]{2,1}),
             //
             new WaveLogic(new EnemyType[]{EnemyType.Hawk,EnemyType.Spike,EnemyType.Spike,EnemyType.Hawk},

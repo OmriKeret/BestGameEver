@@ -18,7 +18,7 @@ public class EagleAILogic : MonoBehaviour, IEnemy
     public float minTimeForPath = 4f;
     public float maxTimeForPath = 30f;
     private Dictionary<EnemyLocation, Vector3[]> _pathMap;
-    private StupidPaths _allVectorPaths;
+    private HawkPaths _allVectorPaths;
 
     // blood splash data
     private EnemyGeneralAnimationLogic _generalAnimationLogic;
@@ -27,6 +27,7 @@ public class EagleAILogic : MonoBehaviour, IEnemy
     // Use this for initialization
     void Awake()
     {
+        
         _animation = this.GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
         _stats = GetComponent<AEnemyStats>();
@@ -35,10 +36,16 @@ public class EagleAILogic : MonoBehaviour, IEnemy
         _rightBodyPartResouce = Resources.Load("stupidR") as GameObject;
         _blood = Resources.Load("BloodSplash") as GameObject;
         GetComponent<Rigidbody2D>().gravityScale = 0;
-        _allVectorPaths = new StupidPaths();
+        _allVectorPaths = new HawkPaths();//new StupidPaths();
         initPaths();
         _generalAnimationLogic = GameObject.Find("Logic").GetComponent<EnemyGeneralAnimationLogic>();
     }
+
+    private void FixedUpdate()
+    {
+        RotateToDirection(_stats.Direction.normalized);
+    }
+
     public bool lifeDown(int str)
     {
         _stats.lifeDown(str);
@@ -138,12 +145,6 @@ public class EagleAILogic : MonoBehaviour, IEnemy
         _pathMap = new Dictionary<EnemyLocation, Vector3[]>();
         _pathMap.Add(EnemyLocation.TopLeft, _allVectorPaths.topLeft);
         _pathMap.Add(EnemyLocation.TopRight, _allVectorPaths.topRight);
-        _pathMap.Add(EnemyLocation.MidRight, _allVectorPaths.midRight);
-        _pathMap.Add(EnemyLocation.MidLeft, _allVectorPaths.midLeft);
-        _pathMap.Add(EnemyLocation.TopMid, _allVectorPaths.topMid);
-        _pathMap.Add(EnemyLocation.BottomLeft, _allVectorPaths.bottomLeft);
-        _pathMap.Add(EnemyLocation.BottomRight, _allVectorPaths.bottomRight);
-
     }
 
     public void playSpawnSound()
@@ -216,5 +217,31 @@ public class EagleAILogic : MonoBehaviour, IEnemy
         bloodEmiter.minEmission = minNum;
         bloodEmiter.maxEmission = maxNum;
         bloodEmiter.localVelocity = new Vector3(dir.x, dir.y, 0);
+    }
+
+    private void RotateToDirection(Vector2 dir)
+    {
+        Vector2 dashAnimationVector;
+        var x = dir.normalized.x;
+        if (x > 0)
+        {
+            dashAnimationVector = new Vector2(1f, 0.5f);
+        }
+        else
+        {
+            dashAnimationVector = new Vector2(-1f, 0.5f);
+        }
+        //  Quaternion newRotation = Quaternion.LookRotation(dir);
+
+        this.transform.rotation = Quaternion.FromToRotation(dashAnimationVector, dir);
+    }
+
+    public void SetDash()
+    {
+        _stats._mode = EnemyMode.Attack;
+    }
+    public void SetNotDash()
+    {
+        _stats._mode = EnemyMode.None;
     }
 }

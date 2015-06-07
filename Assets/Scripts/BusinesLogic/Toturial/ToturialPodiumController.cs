@@ -4,7 +4,7 @@ using System.Collections;
 public class ToturialPodiumController : MonoBehaviour {
 
     PodiumLogic podiumLogic;
-
+    
     ToturialLogic toturialLogic;
     // Use this for initialization
     void Awake()
