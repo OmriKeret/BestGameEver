@@ -16,6 +16,8 @@ public abstract class AEnemyStats : MonoBehaviour {
     public Sprite[] AllSprites;
     private float priorLocation;
     private bool movesToRight;
+    private Vector3 prevLocation, currLocation;
+    private float xVelocity;
 
 	public void lifeDown(){
 		lifeDown (BASIC_HP_DOWN);
@@ -23,6 +25,7 @@ public abstract class AEnemyStats : MonoBehaviour {
 
     void Start()
     {
+        currLocation = gameObject.transform.position;
         
     }
 
@@ -34,8 +37,11 @@ public abstract class AEnemyStats : MonoBehaviour {
 
     void FixedUpdate()
     {
-        if (movesToRight && this.gameObject.GetComponent<Rigidbody2D>().velocity.x < 0 ||
-            !movesToRight && this.gameObject.GetComponent<Rigidbody2D>().velocity.x > 0)
+        prevLocation = currLocation;
+        currLocation = gameObject.transform.position;
+        xVelocity = currLocation.x - prevLocation.x;
+        if (movesToRight && xVelocity < 0 ||
+            !movesToRight && xVelocity > 0)
         {
             Debug.Log(string.Format("Flip from {0} to {1}", movesToRight ? "right" : "left", !movesToRight ? "right" : "left"));
             movesToRight = !movesToRight;
