@@ -31,7 +31,7 @@ public class DeathLogic : MonoBehaviour {
     public InternalMissionModel[] deathMissionsToggleAndTextNew;
     //pause menu
     Button pauseBtn;
-
+    Button superPower;
     //score
     private int scoreBegin;
     private int scoreEnd;
@@ -62,6 +62,7 @@ public class DeathLogic : MonoBehaviour {
     private float currentScore;
     private GameObject particles;
 
+    Animator darkScreen;
 
 	// Initialization
     void Start()
@@ -83,7 +84,7 @@ public class DeathLogic : MonoBehaviour {
         missionLogic = this.gameObject.GetComponent<MissionLogic>();
         scoreLogic = this.gameObject.GetComponent<ScoreLogic>();
         currencyLogic = this.gameObject.GetComponent<CurrencyLogic>();
-
+        darkScreen = GameObject.Find("Canvas/DarkScreen").GetComponent<Animator>();
         missionsToggleAndText = new InternalMissionModel[] {
 			new InternalMissionModel(),
 			new InternalMissionModel(),
@@ -118,13 +119,14 @@ public class DeathLogic : MonoBehaviour {
         deathMissionsToggleAndTextNew[missionNum].missionToggle = GameObject.Find("LosePanel/LoseMission3New").GetComponent<Toggle>();
 
         origMissionTextX = deathMissionsToggleAndText[missionNum].missionToggle.transform.position.x;
-        EndMissionTextX = origMissionTextX - 150;
+        EndMissionTextX = origMissionTextX - 200;
 		deathScore = GameObject.Find("LosePanel/LoseScore").GetComponent<Text>();
         currencyText = GameObject.Find("LosePanel/LosePJ").GetComponent<Text>();
         timeSinceStartedCurrency = -1;
 		TimeToCashInChange = TimeToCashIn ;
         particles = GameObject.Find("LosePanel/LosePJ/Particles");
         timeStartedToChangeScore = -1;
+        superPower = GameObject.Find("Canvas/SuperHit").GetComponent<Button>();
     }
 
     void Update()
@@ -220,6 +222,7 @@ public class DeathLogic : MonoBehaviour {
     private void DeathScreen(float delay)
     {
         pauseBtn.interactable = false;
+        superPower.interactable = false;
         touch.SetDisableMovment();
         GetMissionData();
         GetScoreData();
@@ -241,6 +244,7 @@ public class DeathLogic : MonoBehaviour {
     //brings death screen up
     private void MoveGUI(float delay)
     {
+        darkScreen.SetBool("darkScreen", true);
         touch.SetDisableMovment();
         pauseBtn.enabled = false;
         LeanTween.move (losePanel, EndPos, timeToOpenDeathMenu).setDelay (delay).setIgnoreTimeScale (true).setOnComplete (() => 
@@ -438,11 +442,13 @@ public class DeathLogic : MonoBehaviour {
 
     internal void playerDie(int sign)
     {
+        GameObject.Find("PlayerManager").GetComponent<Collider2D>().enabled = false;
+        touch.SetDisableMovment();
         animationLogic.playerDie();
         pauseBtn.interactable = false;
+        superPower.interactable = false;
         soundLogic.playDeathSound();
         movmentLogic.movePlayerDie(sign);
-        touch.SetDisableMovment();
         DeathScreen(delayToMoveDeathPanelUp);
     }
 }

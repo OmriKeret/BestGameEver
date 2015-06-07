@@ -15,10 +15,13 @@ public class Sound : MonoBehaviour
     public AudioClip startButton;
     public AudioClip fall;
     public AudioClip buttonPush;
+    public AudioClip pauseBtnIn;
+    public AudioClip pauseBtnOut;
     public AudioClip playerHitted;
     public AudioClip playerDie;
     public AudioClip changeScoreToCash;
     public AudioClip finishChangingScoreToCash;
+	public AudioClip PickUpCoin;
     private Dictionary<EnemyType, EnemySoundModel> enemieSounds;
     public static Sound sound;
     // Use this for initialization
@@ -115,5 +118,14 @@ public class Sound : MonoBehaviour
     public AudioClip getButtonPushSound()
     {
         return buttonPush;
+    }
+
+    public AudioClip getPauseBtnIn()
+    {
+        return pauseBtnIn;
+    }
+    public AudioClip getPauseBtnOut()
+    {
+        return pauseBtnOut;
     }
 }

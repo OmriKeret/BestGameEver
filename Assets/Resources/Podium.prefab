@@ -555,7 +555,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeToGoDown: 1
   timeToComeBackUp: 1
-  delayToGoDown: 1.29999995
   angleToShakeTo: 4
   originalLocation: {x: 0, y: 0, z: 0}
   downLocation: {x: 0, y: -5, z: 0}

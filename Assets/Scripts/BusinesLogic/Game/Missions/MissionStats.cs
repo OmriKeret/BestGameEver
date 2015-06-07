@@ -47,11 +47,17 @@ public class MissionStats : MonoBehaviour {
     }
     private void initalizeDictionary()
     {
-        tierTitle = new Dictionary<int, string>{
-            {1, "Novice samurai"},
-            {2, "Lucky samurai"},
-            {3, "Mexican burrito"},
-            {4, "Samurai Jack!"}
+        tierTitle = new Dictionary<int, string>{ //All names here are subject to change
+            {1, "Novice"},
+            {2, "Beginner Samurai"},
+            {3, "Amateur Samurai"},
+            {4, "Samurai Apprentice"},
+			{5, "Samurai"},
+            {6, "La Llorona"},
+            {7, "Nijna"},
+            {8, "Chupacabra"},
+			{9, "Iturbide"},
+            {10, "Master of the Heike Clan"}
         };
     }
     public string getTitle() 

@@ -9,7 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 463418}
   - 212: {fileID: 21254610}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: monst arm 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 452414}
   - 212: {fileID: 21242408}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: torso down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 467030}
   - 212: {fileID: 21267628}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: monst arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 449176}
   - 212: {fileID: 21224856}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: torso up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 449246}
   - 212: {fileID: 21213824}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: monst_leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 458674}
   - 212: {fileID: 21271850}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: monst_leg 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,9 +111,9 @@ GameObject:
   - 114: {fileID: 11409068}
   - 114: {fileID: 11410908}
   - 82: {fileID: 8228242}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: spikeEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,7 +127,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 494852}
   - 212: {fileID: 21240122}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: spikes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +226,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 197458}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.3999996, y: 16.6000004, z: 0}
+  m_LocalPosition: {x: -8.91467094, y: 12.4376793, z: 0}
   m_LocalScale: {x: .686862946, y: .686862886, z: .686862886}
   m_Children:
   - {fileID: 452414}

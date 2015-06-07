@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PodiumController : MonoBehaviour {
     PodiumLogic podiumLogic;
+    private CannonManagerLogic cannonManager;
 
     // Cannon parametets
     public float timeOnPodiumBeforeCannonArrives = 2.5f;
@@ -13,6 +14,11 @@ public class PodiumController : MonoBehaviour {
         podiumLogic = GetComponent<PodiumLogic>();
         podiumLogic.initPodium(this.gameObject);
 	}
+
+    void Start()
+    {
+        cannonManager = new CannonManagerLogic();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -27,6 +33,7 @@ public class PodiumController : MonoBehaviour {
         if (other.collider.tag.Equals("Player"))
         {
             timeLandedOnPodium = Time.time;
+            cannonManager.StartTimer();
         }
     }
 
@@ -36,6 +43,7 @@ public class PodiumController : MonoBehaviour {
         {
             timeLandedOnPodium = 1000000000; // big value so it wont initiate
             podiumLogic.playerLandedOnPlatform();
+            cannonManager.StopTimer();
         }
     }
 }

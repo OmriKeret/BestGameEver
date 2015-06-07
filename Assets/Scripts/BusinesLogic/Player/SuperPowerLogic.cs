@@ -10,9 +10,12 @@ public class SuperPowerLogic : MonoBehaviour {
     public float superHitTime = 1f;
     private int count;
     private int originalStr;
-    int comboToAchiveToSuperHit = 8;
+    int comboToAchiveToSuperHit = 1;
     int maxComboReached;
     bool canSuperPower;
+
+    // animator
+    private Animator superPowerIndicator;
 
     // General
     TouchInterpeter touch;
@@ -32,6 +35,7 @@ public class SuperPowerLogic : MonoBehaviour {
         movmentLogic = this.gameObject.GetComponent<MovmentLogic>();
         animationLogic = this.gameObject.GetComponent<AnimationLogic>();
         character = GameObject.Find("PlayerManager");
+        superPowerIndicator = GameObject.Find("Canvas/HealthHolder/FIRE").GetComponent<Animator>();
 	}
 
     public void doSuperHit() {
@@ -55,6 +59,7 @@ public class SuperPowerLogic : MonoBehaviour {
             {
                 maxComboReached = comboToAchiveToSuperHit;
                 canSuperPower = true;
+                superPowerIndicator.SetBool("CanSuperHit", true);
             }
 
             //TODO: animation            
@@ -64,6 +69,7 @@ public class SuperPowerLogic : MonoBehaviour {
 
     private void SuperHit()
     {
+        touch.SetDisableMovment();
         // Debug.Log("doing super hit");
         playerStatsLogic.powerUpModeActive = PowerUpType.SUPERHIT;
         touch.SetDisableMovment();
@@ -87,11 +93,13 @@ public class SuperPowerLogic : MonoBehaviour {
                 enemyCollider.enabled = false;
             }
         }
-        punchEnemies(enemiesObject);
+        LeanTween.cancel(character.gameObject, true);
         if (enemiesObject.Count == 0)
         {
             finishedSuperHit();
         }
+        punchEnemies(enemiesObject);
+
     }
     void punchEnemies(Stack<GameObject> enemyStack)
     {
@@ -140,7 +148,7 @@ public class SuperPowerLogic : MonoBehaviour {
         Vector2 vecBetween = target - (Vector2)model.character.transform.position;
         movmentLogic.RotateToDash(vecBetween);
         animationLogic.OnMoveSetDirection(new moveAnimationModel { direction = vecBetween.normalized });
-        LeanTween.move(model.character, (Vector2)target, superHitTime).setEase(LeanTweenType.punch).setIgnoreTimeScale(true).setOnComplete(() =>
+        LeanTween.move(model.character, (Vector2)target, superHitTime).setEase(LeanTweenType.easeInOutElastic).setIgnoreTimeScale(true).setOnComplete(() =>
         {
 
             finishedSuperHit();
@@ -174,6 +182,9 @@ public class SuperPowerLogic : MonoBehaviour {
         Time.timeScale = 1f;
         LeanTween.resumeAll();
         playerStatsLogic.powerUpModeActive = PowerUpType.NONE;
+        changeState(0);
+        superPowerIndicator.SetBool("CanSuperHit", false);
+        maxComboReached = 0;
     }
 
     private void killEnemy(GameObject enemy)

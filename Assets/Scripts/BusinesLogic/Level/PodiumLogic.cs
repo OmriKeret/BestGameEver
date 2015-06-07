@@ -30,6 +30,8 @@ public class PodiumLogic : MonoBehaviour {
     protected GameObject podium;
     public float PodiumSpeed;
 
+    private CannonManagerLogic cannonManager;
+
     // action to do when finishing to break (destroy or go down)
     Action actionToDoWhenFinisheToBreak;
     //animation
@@ -43,8 +45,9 @@ public class PodiumLogic : MonoBehaviour {
         goingDown = false;
         firstJump = true;
         secondJump = true;
+	    cannonManager = FindObjectOfType<CannonManagerLogic>();
 	}
-    void Update()
+    void FixedUpdate()
     {
         if (Time.time - timeStartedCounting > delayToGoDown && shouldCountForBreak)
         {
@@ -57,6 +60,7 @@ public class PodiumLogic : MonoBehaviour {
             shouldCountForBuild = false;
        
         }
+        
     }
 
     public void initPodium(GameObject i_Podium)
@@ -86,7 +90,7 @@ public class PodiumLogic : MonoBehaviour {
         secondJump = true;
         LeanTween.cancel(podium,false);
         resetRotation();
-        LeanTween.move(podium, originalLocation, timeToComeBackUp).setDelay(timeToWaitDown).setOnComplete(() => {goingUp = false;});
+        LeanTween.move(podium, originalLocation, timeToComeBackUp).setOnComplete(() => {goingUp = false;});
     }
 
     protected void resetRotation()
@@ -111,11 +115,11 @@ public class PodiumLogic : MonoBehaviour {
             firstJump = false;
             return; 
         }
-        //if (secondJump)
-        //{
-        //    secondJump = false;
-        //    return;
-        //}
+        if (secondJump)
+        {
+            secondJump = false;
+            return;
+        }
         if (goingDown)
         {
             return;

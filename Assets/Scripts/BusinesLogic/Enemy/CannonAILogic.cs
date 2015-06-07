@@ -46,6 +46,18 @@ public class CannonAILogic : MonoBehaviour, IEnemy
         playerPosition = GameObject.Find("PlayerManager").transform.position;
         
     }
+
+    private void FixedUpdate()
+    {
+        Vector3 velocity = gameObject.GetComponent<Rigidbody2D>().velocity;
+        if (velocity.magnitude != 0)
+        {
+            float angle = Vector2.Angle(velocity, new Vector2(0, 1));
+            transform.rotation = new Quaternion(0, 0, angle, 0);
+
+        }
+    }
+
     public bool lifeDown(int str)
     {
         _stats.lifeDown(str);
@@ -70,7 +82,7 @@ public class CannonAILogic : MonoBehaviour, IEnemy
     //TODO: Get the location from the game manager
     Vector2 IEnemy.FindPlayerLocation()
     {
-        return new Vector2(0, 0);
+        return FindObjectOfType<PlayerStatsController>().gameObject.transform.position;
     }
 
     public void SetStats(AEnemyStats i_stats)
@@ -211,5 +223,17 @@ public class CannonAILogic : MonoBehaviour, IEnemy
     public void finishedCharge()
     {
         //TODO: set enemy path, dont forget u already got player position!
+
+        Vector3 playerLocation = playerPosition;
+        Vector3[] path = playerLocation.x > 0 ? CannonPaths.flyFromLeft : CannonPaths.flyFromRight;
+        path[2].x = (path[0].x-playerLocation.x)/2;
+        path[2].y = playerLocation.y;
+        path[1].x = (path[3].x - playerLocation.x) / 2;
+        path[1].y = playerLocation.y;
+
+        LeanTween.move(this.gameObject, path, calculateTime(5)).setEase(LeanTweenType.linear).setOnComplete(() =>
+        {
+            FinishedMoving();
+        });
     }
 }
