@@ -48,7 +48,7 @@ public class ToturialLogic : MonoBehaviour {
 
     // super hit
     private Button superPower;
-    void OnEnable()
+    void Awake()
     {
       
         toturialTouch = this.GetComponent<ToturialTouchChecker>();

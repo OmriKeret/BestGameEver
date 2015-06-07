@@ -17,7 +17,7 @@ public class MissionStats : MonoBehaviour {
         initalizeDictionary();
        // tier = missions.tier; //TODO: get tier from memory
         missionAssigner = this.gameObject.GetComponent<MissionAssigner>();
-        if (true)//currentMissions == null)
+        if (currentMissions == null)
         {
            missionsFromDisc = MemoryAccess.memoryAccess.LoadMission();
 
