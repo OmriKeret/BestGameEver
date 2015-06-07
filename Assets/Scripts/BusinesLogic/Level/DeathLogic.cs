@@ -31,7 +31,7 @@ public class DeathLogic : MonoBehaviour {
     public InternalMissionModel[] deathMissionsToggleAndTextNew;
     //pause menu
     Button pauseBtn;
-
+    Button superPower;
     //score
     private int scoreBegin;
     private int scoreEnd;
@@ -126,6 +126,7 @@ public class DeathLogic : MonoBehaviour {
 		TimeToCashInChange = TimeToCashIn ;
         particles = GameObject.Find("LosePanel/LosePJ/Particles");
         timeStartedToChangeScore = -1;
+        superPower = GameObject.Find("Canvas/SuperHit").GetComponent<Button>();
     }
 
     void Update()
@@ -221,6 +222,7 @@ public class DeathLogic : MonoBehaviour {
     private void DeathScreen(float delay)
     {
         pauseBtn.interactable = false;
+        superPower.interactable = false;
         touch.SetDisableMovment();
         GetMissionData();
         GetScoreData();
@@ -440,11 +442,13 @@ public class DeathLogic : MonoBehaviour {
 
     internal void playerDie(int sign)
     {
+        GameObject.Find("PlayerManager").GetComponent<Collider2D>().enabled = false;
+        touch.SetDisableMovment();
         animationLogic.playerDie();
         pauseBtn.interactable = false;
+        superPower.interactable = false;
         soundLogic.playDeathSound();
         movmentLogic.movePlayerDie(sign);
-        touch.SetDisableMovment();
         DeathScreen(delayToMoveDeathPanelUp);
     }
 }

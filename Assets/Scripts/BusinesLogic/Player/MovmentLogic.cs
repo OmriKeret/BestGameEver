@@ -187,7 +187,7 @@ public class MovmentLogic : MonoBehaviour {
                                              new Vector3(playerPosition.x + (-2.697063f * sign) ,playerPosition.y),
                                              new Vector3(playerPosition.x + (-1.397063f * sign),playerPosition.y + 5.108706f),
                                              new Vector3(playerPosition.x + (0.397063f * sign),playerPosition.y + 6.408706f),
-                                             new Vector3(playerPosition.x + (1f * sign),playerPosition.y + 7.749998f),
+                                             new Vector3(playerPosition.x + (1f * sign),playerPosition.y + 11.749998f),
                                         };
         animationLogic.playerHit();
         LeanTween.move(character.gameObject, path, 0.4f).setOnComplete(() =>
@@ -264,7 +264,7 @@ public class MovmentLogic : MonoBehaviour {
                                              new Vector3(playerPosition.x + (0.397063f * sign),playerPosition.y + 6.408706f),
                                              new Vector3(playerPosition.x + (1f * sign),playerPosition.y + 7.749998f),
                                         };
-        animationLogic.playerHit();
+       // animationLogic.playerHit();
         fallDown();
     }
 }
