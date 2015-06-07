@@ -94,10 +94,15 @@ public class CollisionLogic : MonoBehaviour  {
         {
             soundLogic.playHittedSound();
            // Debug.Log("player Collided with commet");
-            movmentLogic.playerHit(model.CollidedWith.GetComponent<Collider2D>(), sign);
-            if (playerStatsLogic.removeHp(1))
+            var dead = playerStatsLogic.removeHp(1);
+
+            if (dead)
             {
                 deathLogic.playerDie(sign);
+            }
+            else
+            {
+                movmentLogic.playerHit(model.CollidedWith.GetComponent<Collider2D>(), sign);
             }
            
             return;

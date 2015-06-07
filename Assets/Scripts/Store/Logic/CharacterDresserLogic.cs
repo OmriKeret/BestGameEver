@@ -50,6 +50,8 @@ public class CharacterDresserLogic : MonoBehaviour {
         ponchoeFront2.GetComponent<SpriteRenderer>().sprite = itemSpriteFront;
 		var itemSpriteBack = (Sprite)Resources.Load(ClothLogic.clothLogic.equipedPoncho.characterSpriteBack, typeof(Sprite));
         ponchoeBack.GetComponent<SpriteRenderer>().sprite = itemSpriteBack;
+
+
     }
 
     private void updatePonchoe(ClothModel currentDisplayed)
@@ -59,6 +61,8 @@ public class CharacterDresserLogic : MonoBehaviour {
         ponchoeFront2.GetComponent<SpriteRenderer>().sprite = itemSpriteFront;
         var itemSpriteBack = (Sprite)Resources.Load(currentDisplayed.characterSpriteBack, typeof(Sprite));
         ponchoeBack.GetComponent<SpriteRenderer>().sprite = itemSpriteBack;
+
+
     }
 
     private void updateHat()
