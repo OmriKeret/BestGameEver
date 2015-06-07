@@ -44,4 +44,6 @@ public interface IEnemy {
     void hit(int combo, Vector2 dir);
 
     void enemyDie(int combo, Vector2 dir);
+
+    EnemyType getEnemyType();
 }

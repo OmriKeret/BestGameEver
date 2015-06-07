@@ -245,4 +245,8 @@ public class EagleAILogic : MonoBehaviour, IEnemy
     {
         _stats._mode = EnemyMode.None;
     }
+    public EnemyType getEnemyType()
+    {
+        return _stats._type;
+    }
 }

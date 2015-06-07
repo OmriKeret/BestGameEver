@@ -289,7 +289,7 @@ public class ToturialLogic : MonoBehaviour {
    {
 		Debug.Log ("Got to showStaminaAndTouchChecker");
 		Time.timeScale = 0;
-       toturialTouch.setCheckingPosition(new Vector3(-8.74f, 13.31f, 0f));
+       toturialTouch.setCheckingPosition(new Vector3(-7.74f, 11.31f, 0f));
        fingerAnimationContainer.transform.position = new Vector3(-10.74f, 9.31f, 0f);
        darkScreen(highlightStamina);
        //screenShade.SetBool("darkScreen", true);

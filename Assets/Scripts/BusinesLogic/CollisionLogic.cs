@@ -116,7 +116,7 @@ public class CollisionLogic : MonoBehaviour  {
                                              new Vector3(playerPosition.x + (4.48f * sign) ,playerPosition.y),
                                              new Vector3(playerPosition.x + (5f * sign),playerPosition.y + 1.81f),
                                              new Vector3(playerPosition.x + (5.519f * sign),playerPosition.y + 0.8f),
-                                             new Vector3(playerPosition.x + (2.55f * sign),playerPosition.y + 2.59f),
+                                             new Vector3(playerPosition.x + (2.55f * sign),playerPosition.y + 4.59f),
                                         };
  
 
@@ -124,7 +124,7 @@ public class CollisionLogic : MonoBehaviour  {
             {
                 stopAfterBounce(new StopAfterCollisionModel{collidedWith = model.CollidedWith.gameObject, subject = model.mainCollider.GetComponent<Rigidbody2D> ()});
             });
-      //  rollOver(model.mainCollider);       
+        rollOver(model.mainCollider);       
         animationLogic.UnSetDashing();
         animationLogic.SetSlicing();
 	}
@@ -137,7 +137,7 @@ public class CollisionLogic : MonoBehaviour  {
     public void rollOver(GameObject player)
     {
         soundLogic.playSpinningeSound();
-        float numberOfRolls = 5;
+        float numberOfRolls = 1;
         LeanTween.rotateZ(player, 360f * numberOfRolls, impactTimeOnPlayer + rollTime);
     }
 	public void stopAfterBounce(StopAfterCollisionModel model){
@@ -167,7 +167,11 @@ public class CollisionLogic : MonoBehaviour  {
 	    {
             case EnemyMode.Both: hitPlayer(); enemyDefende(); break; 
             case EnemyMode.Defence: enemyDefende(); break;
-            case EnemyMode.Attack: hitPlayer();
+            case EnemyMode.Attack:
+                if (animationLogic.isDashing && enemy.getEnemyType() == EnemyType.Spike)
+                {
+                    hitPlayer();
+                }
 	            goto case EnemyMode.None;
             case EnemyMode.None:
                 if (hitEnemy(model)) //if enemy dead

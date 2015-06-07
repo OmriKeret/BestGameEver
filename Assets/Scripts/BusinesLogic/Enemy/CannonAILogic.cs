@@ -249,4 +249,8 @@ public class CannonAILogic : MonoBehaviour, IEnemy
 
         this.transform.rotation = Quaternion.FromToRotation(dashAnimationVector, dir);
     }
+    public EnemyType getEnemyType()
+    {
+        return _stats._type;
+    }
 }

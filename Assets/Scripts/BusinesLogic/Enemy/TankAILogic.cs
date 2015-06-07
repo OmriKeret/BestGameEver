@@ -219,4 +219,10 @@ public class TankAILogic : MonoBehaviour, IEnemy {
         bloodEmiter.maxEmission = maxNum;
         bloodEmiter.localVelocity = new Vector3(dir.x, dir.y, 0);
     }
+
+    public EnemyType getEnemyType()
+    {
+        return _stats._type;
+    }
+
 }

@@ -13,10 +13,10 @@ public enum EnemyType
 {
     General = 0,
     Stupid = 1,
-    Spike,
-    Tank,
-    Hawk,
-    Cannon,
-    End,// This is NOT an enemy, just means that the way have ended
+    Spike = 2,
+    Tank = 3,
+    Hawk = 4,
+    Cannon = 5,
+    End = 6,// This is NOT an enemy, just means that the way have ended
     
 }

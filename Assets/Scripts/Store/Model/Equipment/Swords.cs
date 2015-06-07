@@ -25,7 +25,7 @@ public class Swords  {
 			name = "Heavy Sword of Kickassery", 
 			owned = false, 
 			part = BodyPart.sword, 
-			PJPrice = 970,
+			PJPrice = 97,
 			characterSpriteFront = "Cloth/Sword/sword3", 
 			selected = false, 
 			statsImprove = new StatsImprovementModel{dmg=1, dashDist=-2}
@@ -37,7 +37,7 @@ public class Swords  {
 			name = "Ninja Sword", 
 			owned = true, 
 			part = BodyPart.sword, 
-			PJPrice = 3087,
+			PJPrice = 308,
 			characterSpriteFront = "Cloth/Sword/sword2", 
 			selected = true, 
 			statsImprove = new StatsImprovementModel{dmg = 3}
@@ -49,7 +49,7 @@ public class Swords  {
 			name = "The Black Swan", 
 			owned = true, 
 			part = BodyPart.sword, 
-			PJPrice = 10000,
+			PJPrice = 1000,
 			characterSpriteFront = "Cloth/Sword/sword4", 
 			selected = true, 
 			statsImprove = new StatsImprovementModel{dmg = 7}
@@ -61,7 +61,7 @@ public class Swords  {
 			name = "Haragoho", 
 			owned = true, 
 			part = BodyPart.sword, 
-			PJPrice = 32100,
+			PJPrice = 3200,
 			characterSpriteFront = "Cloth/Sword/sword5", 
 			selected = true, 
 			statsImprove = new StatsImprovementModel{dmg = 15}
