@@ -39,7 +39,7 @@ public class SuperPowerLogic : MonoBehaviour {
 	}
 
     public void doSuperHit() {
-        Debug.Log("called super hit");
+     
         if (canSuperPower) {
             canSuperPower = false; 
             maxComboReached = 0;
@@ -142,7 +142,7 @@ public class SuperPowerLogic : MonoBehaviour {
     }
     void punchEnemies(SuperHitModel model)
     {
-        Debug.Log("play slice");
+   
         soundLogic.playSliceSound();
         Vector2 target = model.enemy.transform.position;
         Vector2 vecBetween = target - (Vector2)model.character.transform.position;

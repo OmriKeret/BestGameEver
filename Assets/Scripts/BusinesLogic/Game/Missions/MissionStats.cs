@@ -72,7 +72,7 @@ public class MissionStats : MonoBehaviour {
         {
             return s;
         }
-        Debug.Log("Title got is null! tier is " + tier);
+    
         return tierTitle[10];
     }
     public void upgradeTier()

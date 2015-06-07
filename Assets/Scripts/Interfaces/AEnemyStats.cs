@@ -32,7 +32,7 @@ public abstract class AEnemyStats : MonoBehaviour {
     public void initFlip()
     {
         movesToRight = this.gameObject.GetComponent<Rigidbody2D>().velocity.x > 0;
-        Debug.Log(this.gameObject.GetComponent<Rigidbody2D>().velocity.x);
+   
     }
 
     public Vector3 Direction
@@ -48,7 +48,7 @@ public abstract class AEnemyStats : MonoBehaviour {
         if (movesToRight && xVelocity < 0 ||
             !movesToRight && xVelocity > 0)
         {
-            Debug.Log(string.Format("Flip from {0} to {1}", movesToRight ? "right" : "left", !movesToRight ? "right" : "left"));
+          
             movesToRight = !movesToRight;
             flip();
         }

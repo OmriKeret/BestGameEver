@@ -48,7 +48,7 @@ public class Punchoes {
 		},
 		new ClothModel{
 			id = 4, 
-			description = "Fast, fast, fast, fast, fast", 
+			description = "\nFast, fast, fast, fast, fast", 
 			jemPrice = -1, 
 			name = "Do you have that in purple?", 
 			owned = false, 

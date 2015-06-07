@@ -20,7 +20,7 @@ public class Swords  {
 		},
 		new ClothModel{
 			id = 2, 
-			description = "This heavy sword can slice the toughest of demon skins! +DAMAGE, -SPEED", 
+			description = "\nThis heavy sword can slice the toughest of demon skins! +DAMAGE, -SPEED", 
 			jemPrice = -1, 
 			name = "Heavy Sword of Kickassery", 
 			owned = false, 

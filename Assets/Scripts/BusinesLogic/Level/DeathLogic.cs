@@ -394,7 +394,7 @@ public class DeathLogic : MonoBehaviour {
     }
     private void moveNewMission(int i)
     {
-        Debug.Log("move new mission");
+    
         //TODO: SOUND - move new mission sound
         LeanTween.moveX(deathMissionsToggleAndTextNew[i].missionToggle.gameObject, origMissionTextX, timeToEnterMission).setIgnoreTimeScale(true).setEase(LeanTweenType.easeInOutElastic).setDelay(delayBetweenMissionRemovalToEnterance).setOnComplete(
               () =>
@@ -419,7 +419,7 @@ public class DeathLogic : MonoBehaviour {
 
     public void moveOldMission(int i)
     {
-        Debug.Log("move old mission");
+    
         //TODO: SOUND - move old mission sound
         LeanTween.moveX(deathMissionsToggleAndText[i].missionToggle.gameObject, EndMissionTextX, timeToRemoveMission).setDelay(delayBetweenMissionRemovalToEnterance).setIgnoreTimeScale(true).setEase(LeanTweenType.easeInOutElastic).setOnComplete(
                 () =>

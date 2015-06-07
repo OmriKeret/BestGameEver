@@ -31,7 +31,7 @@ public class PodiumLogic : MonoBehaviour {
     protected bool secondJump = true;
     protected GameObject podium;
     public float PodiumSpeed;
-
+    
     private CannonManagerLogic cannonManager;
 
     // action to do when finishing to break (destroy or go down)

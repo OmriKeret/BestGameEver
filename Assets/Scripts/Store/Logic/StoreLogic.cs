@@ -147,7 +147,7 @@ public class StoreLogic : MonoBehaviour {
 
     private void updateGuiDisplay()
     {
-        Debug.Log("current display is " + currentDisplayed.description);
+       
         description.text = currentDisplayed.description;
         name.text = currentDisplayed.name;
         price.text = string.Format("{0} PJ", currentDisplayed.PJPrice);

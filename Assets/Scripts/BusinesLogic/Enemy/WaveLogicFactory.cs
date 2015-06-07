@@ -162,11 +162,11 @@ public class WaveLogicFactory {
     {
         podiumMaker.SetupNewWave(i_model.waveNumber);
         //for debug
-        Debug.Log("Init wave " + i_model.waveNumber);
+
         if (i_model.waveNumber >= _orderWaves.Length)
         {
             i_model.waveNumber = _orderWaves.Length-1;
-            Debug.Log("No more waves!");
+
         }
         //end for debug
         i_model.wave =  new WaveLogic(_orderWaves[i_model.waveNumber]);
@@ -184,7 +184,7 @@ public class WaveLogicFactory {
                                 (int)(-0.25 * waveNumber * waveNumber + 7.5 * waveNumber + 1.5), 
                                 (int)(-0.0067 * waveNumber * waveNumber * waveNumber + 0.2524 * waveNumber * waveNumber - 0.1905 * waveNumber - 0.9524), 
                                 (int)(0.1048*waveNumber*waveNumber - 0.8571*waveNumber + 0.2381) };
-        Debug.Log(string.Format("Before adding: {0} {1} {2} {3}", TypeChances[0], TypeChances[1], TypeChances[2], TypeChances[3]));
+      
         for (int i = 1; i < TypeChances.Length; i++)
         {
             TypeChances[i] = TypeChances[i] < 0 ? 0 : TypeChances[i];//Can't be below 0
@@ -194,7 +194,7 @@ public class WaveLogicFactory {
             }
             TypeChances[i] += TypeChances[i - 1];
         }
-        Debug.Log(string.Format("After adding: {0} {1} {2} {3}", TypeChances[0], TypeChances[1], TypeChances[2], TypeChances[3]));
+     
         int randomPick = Random.Range(0, 100);
         int correctType = -1;
         for (correctType = 0; correctType < TypeChances.Length; correctType++)

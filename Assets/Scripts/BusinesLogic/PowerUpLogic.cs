@@ -172,7 +172,7 @@ public class PowerUpLogic : MonoBehaviour {
     }
     void punchEnemies(SuperHitModel model)
     {
-        Debug.Log("play slice");
+    
         soundLogic.playSliceSound();
         Vector2 target = model.enemy.transform.position;
         Vector2 vecBetween = target - (Vector2)model.character.transform.position;

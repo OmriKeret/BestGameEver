@@ -179,7 +179,6 @@ public class MovmentLogic : MonoBehaviour {
     internal void playerHit(Collider2D collider2D, int sign)
     {
 
-        Debug.Log("disable collisions");
         character.GetComponent<Collider2D>().enabled = false;
         touch.SetDisableMovment();
         var playerPosition = character.position;

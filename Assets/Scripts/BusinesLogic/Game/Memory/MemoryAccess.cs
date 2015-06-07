@@ -124,10 +124,10 @@ public class MemoryAccess : MonoBehaviour {
         }
         catch
         {
-            Debug.Log("didn't load missions");
+       
             return null;
         }
-          Debug.Log("didn't load missions");
+        
         return null;
         
     }
@@ -253,7 +253,7 @@ public class MemoryAccess : MonoBehaviour {
             }
             else
             {
-                Debug.Log("couldn't find toturial data file ");
+              
             }
             
         }
@@ -266,7 +266,7 @@ public class MemoryAccess : MonoBehaviour {
 
     public bool SaveBasicToturial(IOBasicToturialModel data)
     {
-        Debug.Log("trying to save toturial info: finished basicToturial = " + data.finishedBasicToturial);
+      
         var success = false;
         try
         {
@@ -278,7 +278,7 @@ public class MemoryAccess : MonoBehaviour {
         }
         catch
         {
-            Debug.Log("couldn't save toturial data");
+           
         }
         return success;
     }

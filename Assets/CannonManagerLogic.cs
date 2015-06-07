@@ -23,12 +23,11 @@ public class CannonManagerLogic : MonoBehaviour
 	{
 	    if (oldTimer ^ timerOn)
 	    {
-	        Debug.Log("Switch to "+timerOn);
 	    }
 	    oldTimer = timerOn;
         if (timerOn)
 	    {
-	        Debug.Log(string.Format("{0}/{1}",currentTime,waitBeforeShoot));
+	    
             currentTime++;
 	    }
 	    

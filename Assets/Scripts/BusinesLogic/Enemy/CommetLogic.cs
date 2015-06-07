@@ -36,8 +36,7 @@ public class CommetLogic : MonoBehaviour
 
     internal void CollidedWithPlayer(Collider2D other)
     {
-        Debug.Log("collidded with orbit");
-        Debug.Log("tag:");
+
         var collisionController = other.GetComponent<CollisionController>();
         collisionController.OnCollisionEnter2DManual(gameObject);
     }

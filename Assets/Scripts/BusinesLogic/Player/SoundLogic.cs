@@ -72,7 +72,7 @@ public class SoundLogic : MonoBehaviour {
     {
         if(currentlyPlaying != Sound.sound.scoreGetScoreToCashSound()) {
             currentlyPlaying = Sound.sound.scoreGetScoreToCashSound();
-            Debug.Log("playing change sound");
+         
             audioSource3.clip = currentlyPlaying;
             audioSource3.loop = true;
             audioSource3.Play();

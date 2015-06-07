@@ -66,7 +66,7 @@ public class GenerateWaveLogic : MonoBehaviour {
             if (currentType.Equals(EnemyType.End))
             {
                 waveEnded = true;
-                Debug.Log("End wave");
+
                 yield break;
             }
             var enemyLocation = new Vector2(0f, 40f); ;//instantiateLocations[UnityEngine.Random.Range(0, locationMax)];

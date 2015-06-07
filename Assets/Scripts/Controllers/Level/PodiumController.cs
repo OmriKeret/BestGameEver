@@ -6,7 +6,7 @@ public class PodiumController : MonoBehaviour {
     private CannonManagerLogic cannonManager;
 
     // Cannon parametets
-    public float timeOnPodiumBeforeCannonArrives = 2.5f;
+    public float timeOnPodiumBeforeCannonArrives = 3f;
     private float timeLandedOnPodium = 1000000000; // big value so it wont initiate on begining
     private bool shouldCheckTime;
 

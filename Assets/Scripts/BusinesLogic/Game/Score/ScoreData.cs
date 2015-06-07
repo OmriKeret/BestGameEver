@@ -28,7 +28,7 @@ public class ScoreData : MonoBehaviour {
         }
         catch
         {
-            Debug.Log("Data Base ERROR!!!");
+           
         }
 
     }

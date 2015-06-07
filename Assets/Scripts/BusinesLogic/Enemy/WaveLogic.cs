@@ -282,8 +282,7 @@ public class WaveLogic {
         }
         catch (IndexOutOfRangeException iee)
         {
-            Debug.Log("Low level exception:");
-            Debug.Log(iee.Message);
+
             //throw new UnityException(iee.Message.ToString());
             return false;
         }

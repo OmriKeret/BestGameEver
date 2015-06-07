@@ -118,8 +118,7 @@ public class TankAILogic : MonoBehaviour, IEnemy {
         Vector3[] path;
         if (!_pathMap.TryGetValue(i_Location, out path))
         {
-            Debug.Log("Error choosing path (StartOrderPath in stupid)");
-            Debug.Log("Caused by " + i_Location);
+
         }
 
         //selectOrderPath(out path, i_PathNumber);

@@ -102,22 +102,11 @@ public class ToturialLogic : MonoBehaviour {
     internal void checkIfNeededToStartToturial()
     {
 
-        var data = IOManager.loadBasicToturialInfo();
-        Debug.Log("In loading toturial data module");
-        if (data == null)
-        {
-            Debug.Log("data is null");
-        }
-        else
-        {
-            Debug.Log("data of basic toturial is :" + data.finishedBasicToturial);
-        }
-      
+        var data = IOManager.loadBasicToturialInfo();     
         bool shouldDoBasicToturial = true;
         if(data != null) 
         {
             shouldDoBasicToturial = (!data.finishedBasicToturial);
-            Debug.Log("shouldDoBasicToturial = " + shouldDoBasicToturial);
             
         }
 
@@ -175,7 +164,6 @@ public class ToturialLogic : MonoBehaviour {
         }
         else if (numberOfEnemy == 2)
         {
-			Debug.Log("Killed second enemy");
             toturialTouch.setShouldNotCheckTouch();
             toturialTouch.MoveToNextPosition();
             func = darkScreenAndPointToPodium;
@@ -187,7 +175,6 @@ public class ToturialLogic : MonoBehaviour {
 
     void darkScreenAndPointToPodium()
     {
-		Debug.Log("Got to  darkScreenAndPointToPodium");
         // To freeze character in place.
         Time.timeScale = 0;
         darkScreen(showArrowOnPodium);
@@ -238,7 +225,6 @@ public class ToturialLogic : MonoBehaviour {
 
    internal void playerIsOnThePodium()
    {
-       Debug.Log("player got to poium and checker is set to " + shouldCheckForPlayerTouchingThePodiumFirstTime);
        if (shouldCheckForPlayerTouchingThePodiumFirstTime)
        {
            shouldCheckForPlayerTouchingThePodiumFirstTime = false;
@@ -258,7 +244,6 @@ public class ToturialLogic : MonoBehaviour {
        collactableManager.SetActive(true);
        enemyManager.SetActive(true);
        superPower.interactable = true;
-       Debug.Log("Player finished toturial!");
    }
 
    private void MoveCameraBackAndStartFirstToturialWave()
@@ -287,7 +272,6 @@ public class ToturialLogic : MonoBehaviour {
    }
    private void showStaminaAndTouchChecker()
    {
-		Debug.Log ("Got to showStaminaAndTouchChecker");
 		Time.timeScale = 0;
        toturialTouch.setCheckingPosition(new Vector3(-7.74f, 11.31f, 0f));
        fingerAnimationContainer.transform.position = new Vector3(-10.74f, 9.31f, 0f);
@@ -303,7 +287,6 @@ public class ToturialLogic : MonoBehaviour {
 
    private void highlightStamina()
    {
-		Debug.Log ("Got to highlight stamina");
        // Set highlighter position
        highlightContainer.transform.position = new Vector3(-16.74f,12.75f,0);
        highlightAnimation.SetBool("highlight", true);
@@ -318,7 +301,6 @@ public class ToturialLogic : MonoBehaviour {
 
    private void pointToThirdEnemy()
    {
-       Debug.Log("point to thrid enemy");
        showTap();
        highlightAnimation.SetBool("highlight", false);
        toturialTouch.setShouldCheckTouch();

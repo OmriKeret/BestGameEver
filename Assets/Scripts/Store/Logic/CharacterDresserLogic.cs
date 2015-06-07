@@ -129,7 +129,7 @@ public class CharacterDresserLogic : MonoBehaviour {
 				updateSword(currentDisplayed);  
                 break;
             default:
-                Debug.Log("Error equiping");
+             
                 break;
         }
     }

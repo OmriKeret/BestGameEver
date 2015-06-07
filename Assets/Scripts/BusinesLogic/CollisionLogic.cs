@@ -40,7 +40,6 @@ public class CollisionLogic : MonoBehaviour  {
         {
             return;
         }
-        Debug.Log("playerCollided with commet");
         movmentLogic.ResetRotation();
         LeanTween.cancel(model.mainCollider.gameObject, true);
         var fatherCollider = model.CollidedWith.transform.parent.GetComponent<Collider2D>();
