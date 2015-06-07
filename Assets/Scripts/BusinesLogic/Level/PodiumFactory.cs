@@ -7,11 +7,11 @@ public class PodiumFactory
     {
         private GameObject podiumPrefab;
         List<GameObject> activePodiums;
-        private readonly Vector3 Mid = new Vector3(0f, -17.22f, 0);
-        private readonly Vector3 TopLeft = new Vector3(-10.99f, -10f, 0);
-        private readonly Vector3 BottomLeft = new Vector3(-10.99f, -17.22f, 0);
-        private readonly Vector3 TopRight = new Vector3(10.99f, -10f, 0);
-        private readonly Vector3 BottomRight = new Vector3(10.99f, -17.22f, 0);
+        private readonly Vector3 Mid = new Vector3(0f, -12.22f, 0);
+        private readonly Vector3 TopLeft = new Vector3(-10.99f, -8f, 0);
+        private readonly Vector3 BottomLeft = new Vector3(-10.99f, -12.22f, 0);
+        private readonly Vector3 TopRight = new Vector3(10.99f, -8f, 0);
+        private readonly Vector3 BottomRight = new Vector3(10.99f, -12.22f, 0);
 
         private const int Put2Podiums = 10;
         private const int Put3Podiums = 15;

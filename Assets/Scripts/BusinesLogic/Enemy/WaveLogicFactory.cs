@@ -181,7 +181,7 @@ public class WaveLogicFactory {
 
     public WaveType ChooseRandomWaveType(int waveNumber)
     {
-        int[] TypeChances = {   100 - 10*waveNumber, 
+        int[] TypeChances = {   100 - 5*waveNumber, 
                                 (int)(-0.25 * waveNumber * waveNumber + 7.5 * waveNumber + 1.5), 
                                 (int)(-0.0067 * waveNumber * waveNumber * waveNumber + 0.2524 * waveNumber * waveNumber - 0.1905 * waveNumber - 0.9524), 
                                 (int)(0.1048*waveNumber*waveNumber - 0.8571*waveNumber + 0.2381) };
