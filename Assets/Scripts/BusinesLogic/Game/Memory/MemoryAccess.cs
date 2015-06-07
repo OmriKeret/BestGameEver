@@ -4,7 +4,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 public class MemoryAccess : MonoBehaviour {
     private static string scoreFileName = "/playerInfoScore.dat";
-    private static string missionsFileName = "/playerInfoMissions.dat";
+    private static string missionsFileName = "/playerInfoMissions.dat";//missions
     private static string currencyFileName = "/playerInfoCurrency.dat";
     private static string clothHatsFileName = "/playerInfoClothHats.dat";
     private static string clothPonchoesFileName = "/playerInfoClothPonchoes.dat";
@@ -12,8 +12,9 @@ public class MemoryAccess : MonoBehaviour {
     private static string toturialBasicFileName = "/playerInfoToturialBasic.dat";
    // private static string toturialBasicFileName = "/playerInfoToturialBasic.dat";
     public static MemoryAccess memoryAccess;
+
 	// Use this for initialization
-	void Awake () {
+	void Awake() {
         if (memoryAccess == null)
         {
             DontDestroyOnLoad(gameObject);
@@ -24,6 +25,19 @@ public class MemoryAccess : MonoBehaviour {
             Destroy(gameObject);
         }
 	}
+
+   //public void manualInitilize()
+   // {
+   //     if (memoryAccess == null)
+   //     {
+   //         DontDestroyOnLoad(gameObject);
+   //         memoryAccess = this;
+   //     }
+   //     else if (memoryAccess != this)
+   //     {
+   //         Destroy(gameObject);
+   //     }
+   // }
 
     public void SaveScore(IOScoreModel score)
     {
@@ -115,9 +129,9 @@ public class MemoryAccess : MonoBehaviour {
             {
                 BinaryFormatter bf = new BinaryFormatter();
                 FileStream file = File.Open(Application.persistentDataPath + missionsFileName, FileMode.Open);
-                IOMissionModel score = (IOMissionModel)bf.Deserialize(file);
+                IOMissionModel mission = (IOMissionModel)bf.Deserialize(file);
                 file.Close();
-                return score;
+                return mission;
             }
         }
         catch

@@ -10,8 +10,8 @@ public class MissionStats : MonoBehaviour {
     MissionAssigner missionAssigner;
     Dictionary<int, string> tierTitle;
     public bool finishedInit = false;
-	// Use this for initialization
-	void OnEnable()
+	// Use this for initialization.
+	void OnLevelWasLoaded()
     {
         IOMissionModel missionsFromDisc = null ;
         initalizeDictionary();
@@ -19,10 +19,14 @@ public class MissionStats : MonoBehaviour {
         missionAssigner = this.gameObject.GetComponent<MissionAssigner>();
         if (currentMissions == null)
         {
+            if (MemoryAccess.memoryAccess == null)
+            {
+                missionsFromDisc = null;
+            }
            missionsFromDisc = MemoryAccess.memoryAccess.LoadMission();
 
           //  var missionsFromDisc = MemoryAccess.memoryAccess.LoadMission();
-	        if (missionsFromDisc == null)
+           if (missionsFromDisc == null || missionsFromDisc.missions == null)
 	        {
                 tier = 1;
 	            currentMissions = missionAssigner.getNewMissions(tier);

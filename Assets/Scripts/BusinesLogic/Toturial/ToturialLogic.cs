@@ -66,6 +66,7 @@ public class ToturialLogic : MonoBehaviour {
 
     }
 
+    void OnEnable() { }
     void Update()
     {
         if (timerIsOn && (Time.realtimeSinceStartup - timeTouched >= timeToWait))
