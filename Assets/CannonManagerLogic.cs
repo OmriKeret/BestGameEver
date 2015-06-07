@@ -36,7 +36,7 @@ public class CannonManagerLogic : MonoBehaviour
 	    {
 	        currentTime = 0;
 	        timerOn = false;
-	        bool playerOnRight = FindObjectOfType<PlayerStatsController>().gameObject.transform.position.x > 0;
+	        bool playerOnRight = GameObject.Find("PlayerManager").transform.position.x > 0;
 	        if (playerOnRight)
 	        {
 	            Instantiate(cannonPrefab,new Vector3(-25,-5,0),Quaternion.identity);
@@ -49,19 +49,19 @@ public class CannonManagerLogic : MonoBehaviour
 	
 	}
 
-    public void StartTimer()
-    {
-        timerOn = true;
-        Debug.Log("Timer "+timerOn);
+    //public void StartTimer()
+    //{
+    //    timerOn = true;
+    //    Debug.Log("Timer "+timerOn);
         
-    }
+    //}
 
-    public void StopTimer()
-    {
-        if (timerOn)
-        {
-            timerOn = false;
-            currentTime = 0;
-        }
-    }
+    //public void StopTimer()
+    //{
+    //    if (timerOn)
+    //    {
+    //        timerOn = false;
+    //        currentTime = 0;
+    //    }
+    //}
 }
