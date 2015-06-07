@@ -5,7 +5,7 @@ using UnityEngine;
 public class CannonPaths
 {
 
-	public Vector3[] bottomLeft = new Vector3[] {
+	public static Vector3[] bottomLeft = new Vector3[] {
 		new Vector3 (-25.4f, -3.7f, 0f),
 		new Vector3 (-24.05f, -3.7f, 0f),
 		new Vector3 (-22f, -3.7f, 0f),
@@ -17,7 +17,7 @@ public class CannonPaths
 		new Vector3 (3.26f, 21.35f, 0f)
 		//TODO: Get here in 2 seconds.
 	};
-	public Vector3[] bottomRight = new Vector3[] {
+    public static Vector3[] bottomRight = new Vector3[] {
 		new Vector3 (25.4f, -3.7f, 0f),
 		new Vector3 (24.05f, -3.7f, 0f),
 		new Vector3 (22f, -3.7f, 0f),
@@ -29,4 +29,16 @@ public class CannonPaths
 		new Vector3 (3.26f, 21.35f, 0f)
 		//TODO: Get here in 2 seconds.
 	};
+
+    public static Vector3[] flyFromLeft = new Vector3[]
+    {
+        new Vector3(-25f, -4.35f, 0.03f), new Vector3(10f, 20f, 0.03064619f), new Vector3(-10f, 20f, 0.03064619f),
+        new Vector3(25f, -4.6f, 0.03f)
+    };
+
+    public static Vector3[] flyFromRight = new Vector3[]
+    {
+        new Vector3(25f, -4.599999f, 0.03f), new Vector3(-10f, 20f, 0.03064619f), new Vector3(10f, 20f, 0.03064619f),
+        new Vector3(-25f, -4.349999f, 0.03f)
+    };
 }
