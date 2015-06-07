@@ -380,7 +380,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 163396}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.8500004, y: -1.94000006, z: .100000001}
+  m_LocalPosition: {x: -3.81999993, y: -31.75, z: .100000001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 493750}
@@ -508,7 +508,7 @@ Rigidbody2D:
   m_AngularDrag: .0500000007
   m_GravityScale: 0
   m_FixedAngle: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -548,16 +548,14 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 163396}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b40e4120146a90458c3ff177254b397, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   timeToGoDown: 1
   timeToComeBackUp: 1
-  timeToShake: 0
-  timeToWaitBeforeShaking: 1
-  shakingTime: .100000001
+  delayToGoDown: 1.29999995
   angleToShakeTo: 4
   originalLocation: {x: 0, y: 0, z: 0}
   downLocation: {x: 0, y: -5, z: 0}
@@ -575,6 +573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6098da4456852f44d96e0cc8d6209a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeOnPodiumBeforeCannonArrives: 2.5
 --- !u!212 &21203156
 SpriteRenderer:
   m_ObjectHideFlags: 1

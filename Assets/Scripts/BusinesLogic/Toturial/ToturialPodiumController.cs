@@ -3,10 +3,13 @@ using System.Collections;
 
 public class ToturialPodiumController : MonoBehaviour {
 
+    PodiumLogic podiumLogic;
+
     ToturialLogic toturialLogic;
     // Use this for initialization
     void Awake()
     {
+        podiumLogic = GetComponent<PodiumLogic>();
         toturialLogic = GameObject.Find("ToturialManager").GetComponent<ToturialLogic>();
     }
 
@@ -17,4 +20,13 @@ public class ToturialPodiumController : MonoBehaviour {
             toturialLogic.playerIsOnThePodium();
         }
     }
+
+    void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.collider.tag.Equals("Player"))
+        {
+            podiumLogic.playerLandedOnPlatform();
+        }
+    }
+
 }
