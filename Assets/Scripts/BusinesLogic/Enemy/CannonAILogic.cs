@@ -70,7 +70,7 @@ public class CannonAILogic : MonoBehaviour, IEnemy
     //TODO: Get the location from the game manager
     Vector2 IEnemy.FindPlayerLocation()
     {
-        return new Vector2(0, 0);
+        return FindObjectOfType<PlayerStatsController>().gameObject.transform.position;
     }
 
     public void SetStats(AEnemyStats i_stats)
