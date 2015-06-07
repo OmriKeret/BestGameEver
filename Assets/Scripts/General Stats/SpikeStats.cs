@@ -12,7 +12,7 @@ public class SpikeStats : AEnemyStats
         life = BASIC_HP;
         MAX_SPEED = 10f;
         _mode = EnemyMode.None;
-        _type = EnemyType.Stupid;
+        _type = EnemyType.Spike;
         initAnimation();
     }
 

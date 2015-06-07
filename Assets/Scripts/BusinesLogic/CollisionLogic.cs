@@ -90,8 +90,8 @@ public class CollisionLogic : MonoBehaviour  {
 
         var sign = VectorForce.x > 0 ? 1 : -1;
         var enemyStats = model.CollidedWith.GetComponent<AEnemyStats>();
-        if (enemyStats._mode == EnemyMode.Attack || enemyStats._mode == EnemyMode.Both)
-        {
+		if ((enemyStats._mode == EnemyMode.Attack || enemyStats._mode == EnemyMode.Both) && (!animationLogic.isDashing || model.CollidedWith.gameObject.GetComponent<IEnemy>().getEnemyType() == EnemyType.Spike ))
+		{
             soundLogic.playHittedSound();
            // Debug.Log("player Collided with commet");
             var dead = playerStatsLogic.removeHp(1);
@@ -168,10 +168,7 @@ public class CollisionLogic : MonoBehaviour  {
             case EnemyMode.Both: hitPlayer(); enemyDefende(); break; 
             case EnemyMode.Defence: enemyDefende(); break;
             case EnemyMode.Attack:
-                if (animationLogic.isDashing && enemy.getEnemyType() == EnemyType.Spike)
-                {
                     hitPlayer();
-                }
 	            goto case EnemyMode.None;
             case EnemyMode.None:
                 if (hitEnemy(model)) //if enemy dead
