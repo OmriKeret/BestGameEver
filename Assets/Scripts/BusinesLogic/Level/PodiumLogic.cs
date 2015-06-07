@@ -60,6 +60,7 @@ public class PodiumLogic : MonoBehaviour {
             shouldCountForBuild = false;
        
         }
+        
     }
 
     public void initPodium(GameObject i_Podium)

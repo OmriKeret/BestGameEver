@@ -46,6 +46,18 @@ public class CannonAILogic : MonoBehaviour, IEnemy
         playerPosition = GameObject.Find("PlayerManager").transform.position;
         
     }
+
+    private void FixedUpdate()
+    {
+        Vector3 velocity = gameObject.GetComponent<Rigidbody2D>().velocity;
+        if (velocity.magnitude != 0)
+        {
+            float angle = Vector2.Angle(velocity, new Vector2(0, 1));
+            transform.rotation = new Quaternion(0, 0, angle, 0);
+
+        }
+    }
+
     public bool lifeDown(int str)
     {
         _stats.lifeDown(str);
