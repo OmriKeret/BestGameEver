@@ -17,7 +17,7 @@ public class StaminaBarLogic : MonoBehaviour
     float currentRatio = 0f;
     bool shouldChange;
 
-	public float circleRatio = 0.666666666f;
+	//public float circleRatio = 0.666666666f;
     Animator anim;
 
     //logic connections
@@ -30,12 +30,12 @@ public class StaminaBarLogic : MonoBehaviour
         progressBarEmpty = staminaEmpty.GetComponent<Image>();
         statsLogic = this.gameObject.GetComponent<PlayerStatsLogic>();
         anim = staminaEmpty.GetComponent<Animator>();
-		barDisplay = circleRatio;
+		barDisplay = 1f;
     }
 
     private void updateRatio()
     {   
-		currentRatio = (float)((float)currentStamina / (float)MAX_STAMINA) * circleRatio;
+		currentRatio = (float)((float)currentStamina / (float)MAX_STAMINA);
         if (progressBarFull.fillAmount > currentRatio)
         {
             //stamina bar go down
