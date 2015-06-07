@@ -110,6 +110,7 @@ public class ToturialLogic : MonoBehaviour {
         {
             // Set camera for game
             camera.transform.position = new Vector3(1f, 6.07f, -20.2f);
+            Destroy(GameObject.Find("ToturialPodium"));
             //collactableManager.SetActive(true);
             //enemyManager.SetActive(true);
             //TODO: remove line

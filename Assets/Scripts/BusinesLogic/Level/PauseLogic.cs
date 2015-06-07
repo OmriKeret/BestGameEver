@@ -14,6 +14,8 @@ public class PauseLogic : MonoBehaviour {
     AudioClip clickSound;
     TouchInterpeter touch;
     bool touchDisabled;
+
+    Animator darkScreen;
 	// Use this for initialization
 	void Start () {
         PauseMenu = GameObject.Find("PauseMenu");
@@ -25,6 +27,7 @@ public class PauseLogic : MonoBehaviour {
         buttonImage = GameObject.Find("Pause").GetComponent<Image>();
         clickSound = Sound.sound.getButtonPushSound();
         touch = GameObject.Find("TouchInterpter").GetComponent<TouchInterpeter>();
+        darkScreen = GameObject.Find("Canvas/DarkScreen").GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -53,6 +56,7 @@ public class PauseLogic : MonoBehaviour {
     private void openMenu()
     {
         Time.timeScale = 0;
+        darkScreen.SetBool("darkScreen",true);
         LeanTween.move(PauseMenu, menuEndPos, timeToMenuToOpenAndClose).setIgnoreTimeScale(true);
         isMenuOpen = true;
         buttonImage.sprite = imageOpen;
@@ -62,6 +66,7 @@ public class PauseLogic : MonoBehaviour {
     private void closeMenu()
     {
         Time.timeScale = 1;
+         darkScreen.SetBool("darkScreen",false);
         LeanTween.move(PauseMenu, menuOrigPos, timeToMenuToOpenAndClose).setIgnoreTimeScale(true);
         isMenuOpen = false;
         buttonImage.sprite = imageClose;

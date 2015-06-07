@@ -19,6 +19,7 @@ public class Sound : MonoBehaviour
     public AudioClip playerDie;
     public AudioClip changeScoreToCash;
     public AudioClip finishChangingScoreToCash;
+	public AudioClip PickUpCoin;
     private Dictionary<EnemyType, EnemySoundModel> enemieSounds;
     public static Sound sound;
     // Use this for initialization
