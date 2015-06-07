@@ -10,7 +10,7 @@ public class SuperPowerLogic : MonoBehaviour {
     public float superHitTime = 1f;
     private int count;
     private int originalStr;
-    int comboToAchiveToSuperHit = 1;
+    int comboToAchiveToSuperHit = 3;
     int maxComboReached;
     bool canSuperPower;
 
