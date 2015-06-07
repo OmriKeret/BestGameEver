@@ -13,6 +13,7 @@ public class TouchInterpeter : MonoBehaviour {
 	public Vector2 direction;
 	Vector2 realWorldTouch;
     public Button pauseButton;
+    private Button superPowerButton;
     public bool isMovmentDisabled;
 	// Use this for initialization
 	void Start () {
@@ -20,6 +21,7 @@ public class TouchInterpeter : MonoBehaviour {
 		PlayerMovmentController = GameObject.Find("PlayerManager").GetComponent<MovementController>();
 		player = GameObject.Find("PlayerManager").GetComponent<Rigidbody2D>();
         pauseButton = GameObject.Find("Pause").GetComponent<Button>();
+        superPowerButton = GameObject.Find("Canvas/SuperHit").GetComponent<Button>();
         events = GameObject.Find("EventSystem").GetComponent<EventSystem>();
 	}
 	
@@ -74,7 +76,7 @@ public class TouchInterpeter : MonoBehaviour {
 				    break;
 			    }
 		    }
-            if (events.currentSelectedGameObject == pauseButton.gameObject)
+            if (events.currentSelectedGameObject == pauseButton.gameObject || events.currentSelectedGameObject == superPowerButton.gameObject)
             {
               //  Debug.Log("button 1 clicked");
                 return;

@@ -174,8 +174,8 @@ public class CollisionLogic : MonoBehaviour  {
                      if (Time.timeScale != 0) //could happen in super hit power up
                      {
                          enemy.playDeathSound();
-                         enemy.Split(position);
-                         enemy.Death();
+                         //enemy.Split(position);
+                         //enemy.Death();
                      }
 
                  } break;

@@ -8,7 +8,7 @@ public class MissionAssigner : MonoBehaviour {
     MissionModel[] missions;
     Dictionary<EnemyType, string> enemyTypeString;
     Dictionary<CollectableTypes, string> collactableTypeString;
-    Dictionary<PowerUpType, string> PowerUpTypeString;
+	Dictionary<PowerUpType, string> PowerUpTypeString;
 	// Use this for initialization
 	void Awake () {
         DontDestroyOnLoad(gameObject);
@@ -52,6 +52,9 @@ public class MissionAssigner : MonoBehaviour {
         if(mission.type == MissionType.killTypeOfEnemy) {
             mission.missionText = string.Format("Kill total of {0} {1}{2}", mission.numberToAchive, enemyTypeString[mission.enemyType], inOneGame);
         }
+		if(mission.type == MissionType.takePowerUp) {
+			mission.missionText = string.Format("Pick up {0} {1}{2}", mission.numberToAchive,PowerUpTypeString[mission.powerUpType], inOneGame);
+		}
 		//Up to here.
         if (mission.type == MissionType.takeCollectable)
         {
@@ -137,8 +140,8 @@ public class MissionAssigner : MonoBehaviour {
             new MissionModel {type = MissionType.takeCollectable , numberToAchive = 1, collectableType = CollectableTypes.COIN, needToBeCompletedInOneGame = true},
             new MissionModel {type = MissionType.takeCollectable , numberToAchive = 1 ,collectableType = CollectableTypes.COIN, needToBeCompletedInOneGame = false},
 			//Collectable_End, Starting PowerUp
-			new MissionModel {type = MissionType.takePowerUp , numberToAchive = 1, powerUpType = PowerUpType.SUPERHIT , needToBeCompletedInOneGame = true},
-			new MissionModel {type = MissionType.takePowerUp , numberToAchive = 1, powerUpType = PowerUpType.SUPERHIT , needToBeCompletedInOneGame = false},
+			//new MissionModel {type = MissionType.takePowerUp , numberToAchive = 1, powerUpType = PowerUpType.SUPERHIT , needToBeCompletedInOneGame = true},
+			//new MissionModel {type = MissionType.takePowerUp , numberToAchive = 1, powerUpType = PowerUpType.SUPERHIT , needToBeCompletedInOneGame = false},
         };
 
         enemyTypeString = new Dictionary<EnemyType, string> 
@@ -156,14 +159,13 @@ public class MissionAssigner : MonoBehaviour {
 			}
 
         };
-        PowerUpTypeString = new Dictionary<PowerUpType, string>
+		PowerUpTypeString = new Dictionary<PowerUpType, string>
 		{
 			{PowerUpType.BUBBLE, "Bubble power up!"},
 			{PowerUpType.INVINCABLE, "Invincible power up! ;)"},
 			{PowerUpType.SUPERHIT, "Mega Hit Power"}
-
 		};
-    }
+	}
 
 
 }

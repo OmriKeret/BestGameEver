@@ -440,6 +440,7 @@ public class DeathLogic : MonoBehaviour {
 
     internal void playerDie(int sign)
     {
+        GameObject.Find("PlayerManager").GetComponent<Collider2D>().enabled = false;
         animationLogic.playerDie();
         pauseBtn.interactable = false;
         soundLogic.playDeathSound();
