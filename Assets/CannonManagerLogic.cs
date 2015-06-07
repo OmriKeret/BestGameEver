@@ -4,10 +4,12 @@ using System.Collections;
 public class CannonManagerLogic : MonoBehaviour
 {
 
-    private bool timerOn = false;
-    private const int waitBeforeShoot = (int)(2.5*500);
+    private static bool timerOn = false;
+    private const int waitBeforeShoot = (int)(2.5*2);
     private int currentTime = 0;
     private GameObject cannonPrefab;
+    private bool oldTimer;
+    
     
     // Use this for initialization
 	void Start () {
@@ -17,11 +19,19 @@ public class CannonManagerLogic : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
-	    if (timerOn)
+	void Update ()
+	{
+	    if (oldTimer ^ timerOn)
 	    {
-	        currentTime++;
+	        Debug.Log("Switch to "+timerOn);
 	    }
+	    oldTimer = timerOn;
+        if (timerOn)
+	    {
+	        Debug.Log(string.Format("{0}/{1}",currentTime,waitBeforeShoot));
+            currentTime++;
+	    }
+	    
 	    if (currentTime>=waitBeforeShoot)
 	    {
 	        currentTime = 0;
@@ -39,8 +49,19 @@ public class CannonManagerLogic : MonoBehaviour
 	
 	}
 
-    public void StartTime()
+    public void StartTimer()
     {
         timerOn = true;
+        Debug.Log("Timer "+timerOn);
+        
+    }
+
+    public void StopTimer()
+    {
+        if (timerOn)
+        {
+            timerOn = false;
+            currentTime = 0;
+        }
     }
 }
