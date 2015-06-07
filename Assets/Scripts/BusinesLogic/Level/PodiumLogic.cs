@@ -30,6 +30,8 @@ public class PodiumLogic : MonoBehaviour {
     protected GameObject podium;
     public float PodiumSpeed;
 
+    private CannonManagerLogic cannonManager;
+
     // action to do when finishing to break (destroy or go down)
     Action actionToDoWhenFinisheToBreak;
     //animation
@@ -43,6 +45,7 @@ public class PodiumLogic : MonoBehaviour {
         goingDown = false;
         firstJump = true;
         secondJump = true;
+	    cannonManager = FindObjectOfType<CannonManagerLogic>();
 	}
     void FixedUpdate()
     {
