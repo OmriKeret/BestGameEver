@@ -9,7 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 460366}
   - 212: {fileID: 21201192}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: monst arm 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 427220}
   - 212: {fileID: 21215186}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: torso down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,9 +47,9 @@ GameObject:
   - 114: {fileID: 11471056}
   - 114: {fileID: 11403434}
   - 82: {fileID: 8223736}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: tankEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,7 +63,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 480008}
   - 212: {fileID: 21255256}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: monst_leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 402884}
   - 212: {fileID: 21225758}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: monst arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 447622}
   - 212: {fileID: 21281676}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: torso up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 408540}
   - 212: {fileID: 21292364}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: monst_leg 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 124008}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.1000004, y: 20.3999996, z: 0}
+  m_LocalPosition: {x: 13.8134289, y: 5.48009634, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 427220}

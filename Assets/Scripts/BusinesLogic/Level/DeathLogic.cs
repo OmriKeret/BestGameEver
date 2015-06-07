@@ -62,6 +62,7 @@ public class DeathLogic : MonoBehaviour {
     private float currentScore;
     private GameObject particles;
 
+    Animator darkScreen;
 
 	// Initialization
     void Start()
@@ -83,7 +84,7 @@ public class DeathLogic : MonoBehaviour {
         missionLogic = this.gameObject.GetComponent<MissionLogic>();
         scoreLogic = this.gameObject.GetComponent<ScoreLogic>();
         currencyLogic = this.gameObject.GetComponent<CurrencyLogic>();
-
+        darkScreen = GameObject.Find("Canvas/DarkScreen").GetComponent<Animator>();
         missionsToggleAndText = new InternalMissionModel[] {
 			new InternalMissionModel(),
 			new InternalMissionModel(),
@@ -241,6 +242,7 @@ public class DeathLogic : MonoBehaviour {
     //brings death screen up
     private void MoveGUI(float delay)
     {
+        darkScreen.SetBool("darkScreen", true);
         touch.SetDisableMovment();
         pauseBtn.enabled = false;
         LeanTween.move (losePanel, EndPos, timeToOpenDeathMenu).setDelay (delay).setIgnoreTimeScale (true).setOnComplete (() => 
