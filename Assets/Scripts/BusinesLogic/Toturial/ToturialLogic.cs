@@ -102,7 +102,7 @@ public class ToturialLogic : MonoBehaviour {
             shouldDoBasicToturial = !data.finishedBasicToturial;
         }
 
-        if (shouldDoBasicToturial)
+        if (true)
         {
             startToturial();
         }
