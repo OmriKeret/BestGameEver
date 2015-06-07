@@ -11,7 +11,7 @@ public class MissionStats : MonoBehaviour {
     Dictionary<int, string> tierTitle;
     public bool finishedInit = false;
 	// Use this for initialization
-	void Start()
+	void OnEnable()
     {
         IOMissionModel missionsFromDisc = null ;
         initalizeDictionary();
@@ -22,14 +22,14 @@ public class MissionStats : MonoBehaviour {
            missionsFromDisc = MemoryAccess.memoryAccess.LoadMission();
 
           //  var missionsFromDisc = MemoryAccess.memoryAccess.LoadMission();
-	        if (true)//missionsFromDisc == null)
+	        if (missionsFromDisc == null)
 	        {
                 tier = 1;
 	            currentMissions = missionAssigner.getNewMissions(tier);
 	        }
 	        else
 	        {
-                //currentMissions = missionsFromDisc.missions;
+
                 currentMissions = new MissionModel[missionsFromDisc.missions.Length];
                 for (int i = 0; i < currentMissions.Length; i++)
                 {
@@ -57,7 +57,8 @@ public class MissionStats : MonoBehaviour {
             {7, "Nijna"},
             {8, "Chupacabra"},
 			{9, "Iturbide"},
-            {10, "Master of the Heike Clan"}
+            {10, "Master of the Heike Clan"},
+            {11, "Samurai Jack!"}
         };
     }
     public string getTitle() 
@@ -68,7 +69,7 @@ public class MissionStats : MonoBehaviour {
             return s;
         }
         Debug.Log("Title got is null! tier is " + tier);
-        return tierTitle[1];
+        return tierTitle[10];
     }
     public void upgradeTier()
     {

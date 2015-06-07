@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.UI;
 
 public class ToturialLogic : MonoBehaviour {
     GameObject enemyManager;
@@ -44,6 +45,9 @@ public class ToturialLogic : MonoBehaviour {
     
     // delay problems
     private GameObject tapArrowObject;
+
+    // super hit
+    private Button superPower;
     void OnEnable()
     {
       
@@ -58,7 +62,7 @@ public class ToturialLogic : MonoBehaviour {
         highlightContainer = GameObject.Find("ToturialManager/HighlightContainer");
         highlightAnimation = highlightContainer.GetComponentInChildren<Animator>();
         IOManager = this.GetComponent<ToturialIOManager>();
-
+        superPower = GameObject.Find("Canvas/SuperHit").GetComponent<Button>();
 
     }
 
@@ -86,6 +90,7 @@ public class ToturialLogic : MonoBehaviour {
         collactableManager = GameObject.Find("CollectableManager");
         enemyManager.SetActive(false);
         collactableManager.SetActive(false);
+        superPower.interactable = false;
     }
 
     private void setCameraPositionForToturial()
@@ -102,7 +107,7 @@ public class ToturialLogic : MonoBehaviour {
             shouldDoBasicToturial = !data.finishedBasicToturial;
         }
 
-        if (true)
+        if (shouldDoBasicToturial)
         {
             startToturial();
         }
@@ -238,6 +243,7 @@ public class ToturialLogic : MonoBehaviour {
        IOManager.saveBasicToturialInfo(new IOBasicToturialModel {finishedBasicToturial = true });
        collactableManager.SetActive(true);
        enemyManager.SetActive(true);
+       superPower.interactable = true;
        Debug.Log("Player finished toturial!");
    }
 
