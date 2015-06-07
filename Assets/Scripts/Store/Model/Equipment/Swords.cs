@@ -20,12 +20,12 @@ public class Swords  {
 		},
 		new ClothModel{
 			id = 2, 
-			description = "\nThis heavy sword can slice the toughest of demon skins! +DAMAGE, -SPEED", 
+			description = "This heavy sword can slice the toughest of demon skins! +DAMAGE, -SPEED", 
 			jemPrice = -1, 
 			name = "Heavy Sword of Kickassery", 
 			owned = false, 
 			part = BodyPart.sword, 
-			PJPrice = 9700,
+			PJPrice = 970,
 			characterSpriteFront = "Cloth/Sword/sword3", 
 			selected = false, 
 			statsImprove = new StatsImprovementModel{dmg=1, dashDist=-2}
@@ -35,11 +35,11 @@ public class Swords  {
 			description = "Now we're talkin'. +DAMAGE", 
 			jemPrice = -1, 
 			name = "Ninja Sword", 
-			owned = false, 
+			owned = true, 
 			part = BodyPart.sword, 
-			PJPrice = 30875,
+			PJPrice = 3087,
 			characterSpriteFront = "Cloth/Sword/sword2", 
-			selected = false, 
+			selected = true, 
 			statsImprove = new StatsImprovementModel{dmg = 3}
 		},
 		new ClothModel{
@@ -47,11 +47,11 @@ public class Swords  {
 			description = "Wicked Samurai, this is turning crazy. +DAMAGE, +SPEED", 
 			jemPrice = -1, 
 			name = "The Black Swan", 
-			owned = false, 
+			owned = true, 
 			part = BodyPart.sword, 
-			PJPrice = 100000,
+			PJPrice = 10000,
 			characterSpriteFront = "Cloth/Sword/sword4", 
-			selected = false, 
+			selected = true, 
 			statsImprove = new StatsImprovementModel{dmg = 7}
 		},
 		new ClothModel{
@@ -59,11 +59,11 @@ public class Swords  {
 			description = "Severe Pain +Awesome Damage", 
 			jemPrice = -1, 
 			name = "Haragoho", 
-			owned = false, 
+			owned = true, 
 			part = BodyPart.sword, 
-			PJPrice = 321000,
+			PJPrice = 32100,
 			characterSpriteFront = "Cloth/Sword/sword5", 
-			selected = false, 
+			selected = true, 
 			statsImprove = new StatsImprovementModel{dmg = 15}
 		}//,
 		/*new ClothModel{
@@ -73,7 +73,7 @@ public class Swords  {
 			name = "It's a Secret", 
 			owned = true, 
 			part = BodyPart.sword, 
-			PJPrice = 999999,
+			PJPrice = 99999,
 			characterSpriteFront = "Cloth/Sword/sword", 
 			selected = true, 
 			statsImprove = new StatsImprovementModel{dmg = 31}

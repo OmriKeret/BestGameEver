@@ -4,7 +4,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 public class MemoryAccess : MonoBehaviour {
     private static string scoreFileName = "/playerInfoScore.dat";
-    private static string missionsFileName = "/playerInfoMissions.dat";//missions
+    private static string missionsFileName = "/playerInfoMission.dat";//missions
     private static string currencyFileName = "/playerInfoCurrency.dat";
     private static string clothHatsFileName = "/playerInfoClothHats.dat";
     private static string clothPonchoesFileName = "/playerInfoClothPonchoes.dat";
@@ -26,18 +26,6 @@ public class MemoryAccess : MonoBehaviour {
         }
 	}
 
-   //public void manualInitilize()
-   // {
-   //     if (memoryAccess == null)
-   //     {
-   //         DontDestroyOnLoad(gameObject);
-   //         memoryAccess = this;
-   //     }
-   //     else if (memoryAccess != this)
-   //     {
-   //         Destroy(gameObject);
-   //     }
-   // }
 
     public void SaveScore(IOScoreModel score)
     {
@@ -90,7 +78,7 @@ public class MemoryAccess : MonoBehaviour {
     {
         try
         {
-            if (File.Exists(Application.persistentDataPath + scoreFileName))
+            if (File.Exists(Application.persistentDataPath + currencyFileName))
             {
                 BinaryFormatter bf = new BinaryFormatter();
                 FileStream file = File.Open(Application.persistentDataPath + currencyFileName, FileMode.Open);
@@ -193,6 +181,7 @@ public class MemoryAccess : MonoBehaviour {
                 file.Close();
                 return cloth;
             }
+            
         }
         catch
         {
@@ -254,7 +243,7 @@ public class MemoryAccess : MonoBehaviour {
     {
         try
         {
-            if (File.Exists(Application.persistentDataPath + clothSwordsFileName))
+            if (File.Exists(Application.persistentDataPath + toturialBasicFileName))
             {
                 BinaryFormatter bf = new BinaryFormatter();
                 FileStream file = File.Open(Application.persistentDataPath + toturialBasicFileName, FileMode.Open);
@@ -262,6 +251,11 @@ public class MemoryAccess : MonoBehaviour {
                 file.Close();
                 return data;
             }
+            else
+            {
+                Debug.Log("couldn't find toturial data file ");
+            }
+            
         }
         catch
         {
@@ -270,17 +264,22 @@ public class MemoryAccess : MonoBehaviour {
         return null;
     }
 
-    public void SaveBasicToturial(IOBasicToturialModel data)
+    public bool SaveBasicToturial(IOBasicToturialModel data)
     {
+        Debug.Log("trying to save toturial info: finished basicToturial = " + data.finishedBasicToturial);
+        var success = false;
         try
         {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Create(Application.persistentDataPath + toturialBasicFileName);
             bf.Serialize(file, data);
             file.Close();
+            success = true;
         }
         catch
         {
+            Debug.Log("couldn't save toturial data");
         }
+        return success;
     }
 }

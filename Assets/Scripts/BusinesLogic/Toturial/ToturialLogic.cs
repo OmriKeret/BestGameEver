@@ -101,11 +101,24 @@ public class ToturialLogic : MonoBehaviour {
 
     internal void checkIfNeededToStartToturial()
     {
+
         var data = IOManager.loadBasicToturialInfo();
+        Debug.Log("In loading toturial data module");
+        if (data == null)
+        {
+            Debug.Log("data is null");
+        }
+        else
+        {
+            Debug.Log("data of basic toturial is :" + data.finishedBasicToturial);
+        }
+      
         bool shouldDoBasicToturial = true;
         if(data != null) 
         {
-            shouldDoBasicToturial = !data.finishedBasicToturial;
+            shouldDoBasicToturial = (!data.finishedBasicToturial);
+            Debug.Log("shouldDoBasicToturial = " + shouldDoBasicToturial);
+            
         }
 
         if (shouldDoBasicToturial)

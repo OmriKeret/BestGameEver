@@ -26,7 +26,7 @@ public class Hats {
 			owned = false, 
 			part = BodyPart.hat,
 			characterSpriteFront = "Cloth/Hat/hat3", 
-			PJPrice = 9700, 
+			PJPrice = 970, 
 			selected = false, 
 
 			statsImprove = new StatsImprovementModel{hp=1}
@@ -38,7 +38,7 @@ public class Hats {
 			owned = false,
 			part = BodyPart.hat,
 			characterSpriteFront = "Cloth/Hat/chicken", 
-			PJPrice = 30875, 
+			PJPrice = 3087, 
 			selected = false, 
 			statsImprove = new StatsImprovementModel{hp=2}
 		},
@@ -49,7 +49,7 @@ public class Hats {
 			name = "The Bee-Sheep Hat", 
 			owned = false, 
 			part = BodyPart.hat,characterSpriteFront = "Cloth/Hat/bee hat", 
-			PJPrice = 100000, 
+			PJPrice = 10000, 
 			selected = false, 
 			statsImprove = new StatsImprovementModel{hp=3}
 		},
@@ -60,7 +60,7 @@ public class Hats {
 			name = "Boss's Sombrero", 
 			owned = false, 
 			part = BodyPart.hat,characterSpriteFront = "Cloth/Hat/hat2", 
-			PJPrice = 321000, 
+			PJPrice = 32100, 
 			selected = false, 
 			statsImprove = new StatsImprovementModel{hp=4}
 		},
@@ -71,7 +71,7 @@ public class Hats {
 			name = "Secret", 
 			owned = false, 
 			part = BodyPart.hat,characterSpriteFront = "Cloth/Hat/hat4", 
-			PJPrice = 999999, 
+			PJPrice = 99999, 
 			selected = false, 
 			statsImprove = new StatsImprovementModel{hp=5}
 		}
