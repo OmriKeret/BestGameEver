@@ -9,8 +9,8 @@ public class ToturialIOManager : MonoBehaviour {
         return MemoryAccess.memoryAccess.LoadBasicToturial();
     }
 
-    public void saveBasicToturialInfo(IOBasicToturialModel data)
+    public bool saveBasicToturialInfo(IOBasicToturialModel data)
     {
-        MemoryAccess.memoryAccess.SaveBasicToturial(data);
+        return MemoryAccess.memoryAccess.SaveBasicToturial(data);
     }
 }
