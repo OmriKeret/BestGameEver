@@ -39,6 +39,7 @@ public class EagleAILogic : MonoBehaviour, IEnemy
         _allVectorPaths = new HawkPaths();//new StupidPaths();
         initPaths();
         _generalAnimationLogic = GameObject.Find("Logic").GetComponent<EnemyGeneralAnimationLogic>();
+        Debug.Log("Eagle!!!!");
     }
 
     private void FixedUpdate()
@@ -111,7 +112,7 @@ public class EagleAILogic : MonoBehaviour, IEnemy
 
         //selectOrderPath(out path, i_PathNumber);
 
-        LeanTween.moveSpline(this.gameObject, path, calculateTime(i_speed)).setEase(LeanTweenType.linear).setOnComplete(() =>
+        LeanTween.move(this.gameObject, path, calculateTime(i_speed)).setEase(LeanTweenType.linear).setOnComplete(() =>
         {
             FinishedMoving();
         });

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class EnemyGeneratorLogic  {
 
-	GameObject stupid,spike,tank,cannon;
+	GameObject stupid,spike,tank,cannon,hawk;
     
 	public Dictionary<EnemyType,GameObject> maker;
 
@@ -13,12 +13,14 @@ public class EnemyGeneratorLogic  {
         spike = Resources.Load ("spikeEnemy") as GameObject;
         tank = Resources.Load("tankEnemy") as GameObject;
         cannon = Resources.Load("cannonEnemy") as GameObject;
+        hawk = Resources.Load("eagleEnemy") as GameObject;
 		maker = new Dictionary<EnemyType,GameObject>  	
 		{ 
 			{ EnemyType.Stupid, stupid },
             {EnemyType.Spike,spike},
             {EnemyType.Tank,tank},
             {EnemyType.Cannon,cannon},
+            {EnemyType.Hawk,hawk},
             {EnemyType.End,new GameObject()}
 		};
 	}
