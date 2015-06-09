@@ -35,11 +35,11 @@ public class Swords  {
 			description = "Now we're talkin'. +DAMAGE", 
 			jemPrice = -1, 
 			name = "Ninja Sword", 
-			owned = true, 
+			owned = false, 
 			part = BodyPart.sword, 
 			PJPrice = 308,
 			characterSpriteFront = "Cloth/Sword/sword2", 
-			selected = true, 
+			selected = false, 
 			statsImprove = new StatsImprovementModel{dmg = 3}
 		},
 		new ClothModel{
@@ -47,11 +47,11 @@ public class Swords  {
 			description = "Wicked Samurai, this is turning crazy. +DAMAGE, +SPEED", 
 			jemPrice = -1, 
 			name = "The Black Swan", 
-			owned = true, 
+			owned = false, 
 			part = BodyPart.sword, 
 			PJPrice = 1000,
 			characterSpriteFront = "Cloth/Sword/sword4", 
-			selected = true, 
+			selected = false, 
 			statsImprove = new StatsImprovementModel{dmg = 7}
 		},
 		new ClothModel{
@@ -59,11 +59,11 @@ public class Swords  {
 			description = "Severe Pain +Awesome Damage", 
 			jemPrice = -1, 
 			name = "Haragoho", 
-			owned = true, 
+			owned = false, 
 			part = BodyPart.sword, 
 			PJPrice = 3200,
 			characterSpriteFront = "Cloth/Sword/sword5", 
-			selected = true, 
+			selected = false, 
 			statsImprove = new StatsImprovementModel{dmg = 15}
 		}//,
 		/*new ClothModel{

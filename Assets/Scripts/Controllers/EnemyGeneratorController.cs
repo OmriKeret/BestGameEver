@@ -7,7 +7,7 @@ public class EnemyGeneratorController : MonoBehaviour {
 	private GenerateWaveLogic generateWaveLogic;
 	private int _waveNumber = 0;
     private int counter = 0;
-    public int TimeBetweenWaves = 150;
+    public int TimeBetweenWaves = 30;
     bool startCounter = false;
 	// Use this for initialization
 
