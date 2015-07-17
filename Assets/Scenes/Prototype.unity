@@ -5231,7 +5231,7 @@ MonoBehaviour:
     m_LineSpacing: .779999971
   m_Text: '0
 
-    POINTS'
+    KILLS'
 --- !u!222 &1080938096
 CanvasRenderer:
   m_ObjectHideFlags: 0

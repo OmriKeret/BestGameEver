@@ -375,7 +375,7 @@ public class DeathLogic : MonoBehaviour {
     {
 
        scoreBegin = scoreLogic.score;
-       bonus = scoreLogic.AddBonusToScoreAfterFinishingMissions();
+       bonus = 0;//scoreLogic.AddBonusToScoreAfterFinishingMissions();
        scoreEnd = scoreBegin + bonus;
 
        

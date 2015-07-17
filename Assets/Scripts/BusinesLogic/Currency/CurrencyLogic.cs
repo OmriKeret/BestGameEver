@@ -4,7 +4,7 @@ using System.Collections;
 public class CurrencyLogic : MonoBehaviour {
 
     CurrencyData currencyDataAccess;
-    public int deviderToScore = 100;
+    public int deviderToScore = 1/100;
     void Start()
     {
         currencyDataAccess = GameObject.Find("GameManagerData").GetComponent<CurrencyData>();

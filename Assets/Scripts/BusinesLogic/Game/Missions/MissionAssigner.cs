@@ -67,7 +67,7 @@ public class MissionAssigner : MonoBehaviour {
         }
         if (mission.type == MissionType.getScoreOf)
         {
-            mission.missionText = string.Format("Get score of {0}{1}", string.Format(System.Globalization.CultureInfo.InvariantCulture,
+            mission.missionText = string.Format("Get {0}{1} kills ", string.Format(System.Globalization.CultureInfo.InvariantCulture,
                                  "{0:0,0}", mission.numberToAchive), inOneGame);
         }
         if (mission.type == MissionType.survival)

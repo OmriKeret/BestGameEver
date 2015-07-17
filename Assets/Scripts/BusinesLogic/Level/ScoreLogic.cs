@@ -14,15 +14,16 @@ public class ScoreLogic : MonoBehaviour {
 	}
 	
 	public void addPoint(AddPointModel model) {
-		var scoreToAdd = 0;
-		scoreToAdd += (int)model.type * 100;
-		for(int i = 0; i < model.combo; i ++) {
-			scoreToAdd += (int)model.type * 1327;
-		}
-		score += scoreToAdd;
+        //var scoreToAdd = 0;
+        //scoreToAdd += (int)model.type * 100;
+        //for(int i = 0; i < model.combo; i ++) {
+        //    scoreToAdd += (int)model.type * 1327;
+        //}
+        //score += scoreToAdd;
+        score++;
         var scoreTxt = string.Format(System.Globalization.CultureInfo.InvariantCulture,
                                  "{0:0,0}", score);
-        scoreText.text = string.Format("{0}\nPOINTS", scoreTxt);
+        scoreText.text = string.Format("{0}\nKILLS", scoreTxt);
         missionLogic.gotScoreOf(score);
     }
 
