@@ -6,34 +6,29 @@ using Soomla.Store;
 
 public class RealCurrencyLogic : MonoBehaviour
 {
-    //  StoreLogic storeLogic;
-
+      StoreLogic storeLogic;
+      
     // Use this for initialization
     void Start()
     {
        // SoomlaStore.Initialize(new SoomlaPurhcableItem());
-        //  storeLogic = this.GetComponent<StoreLogic>();
+        storeLogic = this.GetComponent<StoreLogic>();
 
         StoreEvents.OnMarketPurchase += (PurchasableVirtualItem pvi, string payload, Dictionary<string, string> a) =>
         {
             Debug.Log("purchase event success");
-            //switch (pvi.ID)
-            //{
-            //    case SoomlaPurhcableItem.HUND_COIN_PACK_ID:
-            //        storeLogic.updatePJS(100);
-            //        break;
-            //}
+            switch (pvi.ID)
+            {
+                case SoomlaPurhcableItem.COIN_PACK_100_PRODUCT_ID:
+                    storeLogic.updatePJS(100);
+                    break;
+            }
         };
 
         StoreEvents.OnMarketPurchaseCancelled += (PurchasableVirtualItem pvi) =>
         {
             Debug.Log("purchase event cancelled");
-            //switch (pvi.ID)
-            //{
-            //    case SoomlaPurhcableItem.HUND_COIN_PACK_ID:
-            //        storeLogic.updatePJS(100);
-            //        break;
-            //}
+
         };
 
 
@@ -66,8 +61,8 @@ public class RealCurrencyLogic : MonoBehaviour
     {
         try
         {
-            Debug.Log("SOOMLA IS TRYING TO BUY ITEM ID: " + SoomlaPurhcableItem.COIN_PACK_PRODUCT_ID);
-            StoreInventory.BuyItem(SoomlaPurhcableItem.COIN_PACK_PRODUCT_ID);
+            Debug.Log("SOOMLA IS TRYING TO BUY ITEM ID: " + SoomlaPurhcableItem.COIN_PACK_100_PRODUCT_ID);
+            StoreInventory.BuyItem(SoomlaPurhcableItem.COIN_PACK_100_PRODUCT_ID);
         }
         catch (Exception e)
         {

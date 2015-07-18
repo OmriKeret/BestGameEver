@@ -22,6 +22,7 @@ public class Sound : MonoBehaviour
     public AudioClip changeScoreToCash;
     public AudioClip finishChangingScoreToCash;
 	public AudioClip PickUpCoin;
+    public AudioClip fallingCoinsSound;
     private Dictionary<EnemyType, EnemySoundModel> enemieSounds;
     public static Sound sound;
     // Use this for initialization
@@ -127,5 +128,10 @@ public class Sound : MonoBehaviour
     public AudioClip getPauseBtnOut()
     {
         return pauseBtnOut;
+    }
+
+    public AudioClip getFallingCoinsSound()
+    {
+        return fallingCoinsSound;
     }
 }

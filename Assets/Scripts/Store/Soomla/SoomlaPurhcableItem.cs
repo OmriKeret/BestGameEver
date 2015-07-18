@@ -51,7 +51,7 @@ public class SoomlaPurhcableItem : IStoreAssets
 
     public const string CANCELED_TEST_PACK_PRODUCT_ID = "android.test.canceled";
 
-    public const string COIN_PACK_PRODUCT_ID = "coins100id";
+    public const string COIN_PACK_100_PRODUCT_ID = "coins100id";
 
     public const string THOUSANDMUFF_PACK_PRODUCT_ID = "2500_pack";
 
@@ -98,10 +98,10 @@ public class SoomlaPurhcableItem : IStoreAssets
     public static VirtualCurrencyPack COIN_PACK_SUCCESS = new VirtualCurrencyPack(
     "100 Coins",                                   // name
     "100 Coins pack success",                       // description
-   COIN_PACK_PRODUCT_ID,                                   // item id
+   COIN_PACK_100_PRODUCT_ID,                                   // item id
     100,												// number of currencies in the pack
     COIN_CURRENCY_ITEM_ID,                        // the currency associated with this pack
-    new PurchaseWithMarket(COIN_PACK_PRODUCT_ID, 0.99)
+    new PurchaseWithMarket(COIN_PACK_100_PRODUCT_ID, 0.99)
     );
 
     //public static VirtualCurrencyPack FIFTYMUFF_PACK = new VirtualCurrencyPack(
