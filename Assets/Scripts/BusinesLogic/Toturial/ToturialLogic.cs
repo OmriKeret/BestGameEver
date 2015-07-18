@@ -110,7 +110,7 @@ public class ToturialLogic : MonoBehaviour {
             
         }
 
-        if (true)
+        if (shouldDoBasicToturial)
         {
             startToturial();
         }
