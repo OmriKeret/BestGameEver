@@ -376,7 +376,7 @@ public class DeathLogic : MonoBehaviour {
     {
 
        scoreBegin = scoreLogic.score;
-       bonus = 0;//scoreLogic.AddBonusToScoreAfterFinishingMissions();
+       bonus = 0;
        scoreEnd = scoreBegin + bonus;
 
        
@@ -409,6 +409,7 @@ public class DeathLogic : MonoBehaviour {
                   {
                       // no more updates to score
 					  changeScoreText = true;
+                      newHighScore = false;
                       updateCurrencyGui();
                       saveScoreAndMissions();
                       
