@@ -1,84 +1,176 @@
-﻿//using UnityEngine;
-//using System.Collections;
+﻿using Soomla.Store;
+using System.Collections.Generic;
+public class SoomlaPurhcableItem : IStoreAssets
+{
 
-//using System.Collections.Generic;
+     //<summary>
+     //see parent.
+     //</summary>
+    public int GetVersion()
+    {
+        return 2;
+    }
 
-//public class SoomlaPurhcableItem: IStoreAssets{
+     //<summary>
+     //see parent.
+     //</summary>
+    public VirtualCurrency[] GetCurrencies()
+    {
+        return new VirtualCurrency[] { COIN_CURRENCY };
+    }
 
-//    public const string HUND_COIN_PACK_ID = "android.test.purchased";//"coins100id";
-//  public int GetVersion() {
-//    return 0;
-//  }
+     //<summary>
+     //see parent.
+     //</summary>
+    public VirtualGood[] GetGoods()
+    {
+        return new VirtualGood[] { };
+    }
 
-//  // NOTE: Even if you have no use in one of these functions, you still need to
-//  // implement them all and just return an empty array.
+     //<summary>
+     //see parent.
+     //</summary>
+    public VirtualCurrencyPack[] GetCurrencyPacks()
+    {
+        return new VirtualCurrencyPack[] { COIN_PACK_REFUND, COIN_PACK_SUCCESS, COIN_PACK_CANCEL };
+    }
 
-//  public VirtualCurrency[] GetCurrencies() {
-//      return new VirtualCurrency[] { COIN_CURRENCY };
-//  }
+     //<summary>
+     //see parent.
+     //</summary>
+    public VirtualCategory[] GetCategories()
+    {
+        return new VirtualCategory[] { };
+    }
 
-//  public VirtualGood[] GetGoods() {
-//    return new VirtualGood[] {};
-//  }
+    /** Static Final Members **/
 
-//  public VirtualCurrencyPack[] GetCurrencyPacks() {
-//    return new VirtualCurrencyPack[] {HUND_COIN_PACK};
-//  }
+    public const string COIN_CURRENCY_ITEM_ID = "currency_coin";
 
-//  public VirtualCategory[] GetCategories() {
-//    return new VirtualCategory[]{};
-//  }
+    public const string REFUND_TEST_PACK_PRODUCT_ID = "android.test.refunded";
 
-//  /** Virtual Currencies **/
+    public const string CANCELED_TEST_PACK_PRODUCT_ID = "android.test.canceled";
 
-//  public static VirtualCurrency COIN_CURRENCY = new VirtualCurrency(
-//    "Coin",                               // Name
-//    "Coin currency",                      // Description
-//    "coin_currency_ID"                    // Item ID
-//  );
+    public const string COIN_PACK_100_PRODUCT_ID = "coins100id";
 
-//  /** Virtual Currency Packs **/
+    public const string THOUSANDMUFF_PACK_PRODUCT_ID = "2500_pack";
 
-//  public static VirtualCurrencyPack HUND_COIN_PACK = new VirtualCurrencyPack(
-//    "100 Coins",                          // Name
-//    "100 coin currency units",            // Description
-//    HUND_COIN_PACK_ID,                       // Item ID
-//    100,                                  // Number of currencies in the pack
-//    "coin_currency_ID",                   // ID of the currency associated with this pack
-//    new PurchaseWithMarket( new MarketItem(              // Purchase type (with real money $)
-//      HUND_COIN_PACK_ID, 0.99)                 // Product ID
-//                                   // Price (in real money $)
-//    )
-//  );
+    public const string MUFFINCAKE_ITEM_ID = "fruit_cake";
 
-//  /** Virtual Goods **/
+    public const string PAVLOVA_ITEM_ID = "pavlova";
 
-//  public static VirtualGood SHIELD_GOOD = new SingleUseVG(
-//    "Shield",                             // Name
-//    "Protect yourself from enemies",      // Description
-//    "shield_ID",                          // Item ID
-//    new PurchaseWithVirtualItem(          // Purchase type (with virtual currency)
-//     "coin_currency_ID",                     // ID of the item used to pay with
-//      225                                    // Price (amount of coins)
-//    )
-//  );
+    public const string CHOCLATECAKE_ITEM_ID = "chocolate_cake";
 
-//  // NOTE: Create non-consumable items using LifeTimeVG with PurchaseType of PurchaseWithMarket.
-//  public static VirtualGood NO_ADS_LTVG = new LifetimeVG(
-//    "No Ads",                             // Name
-//    "No More Ads!",                       // Description
-//    "no_ads_ID",                          // Item ID
-//    new PurchaseWithMarket(               // Purchase type (with real money $)
-//      "no_ads_PROD_ID",                      // Product ID
-//      0.99                                   // Price (in real money $)
-//    )
-//  );
+    public const string CREAMCUP_ITEM_ID = "cream_cup";
 
-//  /** Virtual Categories **/
-
-//  public static VirtualCategory GENERAL_CATEGORY = new VirtualCategory(
-//    "General", new List<string>(new string[] {})
-//  );
+    public const string NO_ADS_LIFETIME_PRODUCT_ID = "no_ads";
 
 
-//}
+    /** Virtual Currencies **/
+
+    public static VirtualCurrency COIN_CURRENCY = new VirtualCurrency(
+            "Coin",										// name
+            "",												// description
+            COIN_CURRENCY_ITEM_ID							// item id
+    );
+
+
+    /** Virtual Currency Packs **/
+
+    public static VirtualCurrencyPack COIN_PACK_REFUND = new VirtualCurrencyPack(
+            "100 Coins",                                   // name
+            "100 Coins pack",                       // description
+           REFUND_TEST_PACK_PRODUCT_ID,                                   // item id
+            100,												// number of currencies in the pack
+            COIN_CURRENCY_ITEM_ID,                        // the currency associated with this pack
+            new PurchaseWithMarket(REFUND_TEST_PACK_PRODUCT_ID, 0.99)
+    );
+
+    public static VirtualCurrencyPack COIN_PACK_CANCEL = new VirtualCurrencyPack(
+        "100 Coins",                                   // name
+        "100 Coins pack cancel",                       // description
+        CANCELED_TEST_PACK_PRODUCT_ID,                                   // item id
+        100,												// number of currencies in the pack
+        COIN_CURRENCY_ITEM_ID,                        // the currency associated with this pack
+        new PurchaseWithMarket(CANCELED_TEST_PACK_PRODUCT_ID, 0.99)
+    );
+
+    public static VirtualCurrencyPack COIN_PACK_SUCCESS = new VirtualCurrencyPack(
+    "100 Coins",                                   // name
+    "100 Coins pack success",                       // description
+   COIN_PACK_100_PRODUCT_ID,                                   // item id
+    100,												// number of currencies in the pack
+    COIN_CURRENCY_ITEM_ID,                        // the currency associated with this pack
+    new PurchaseWithMarket(COIN_PACK_100_PRODUCT_ID, 0.99)
+    );
+
+    //public static VirtualCurrencyPack FIFTYMUFF_PACK = new VirtualCurrencyPack(
+    //        "50 Muffins",                                   // name
+    //        "Test cancellation of an item",                 // description
+    //        "muffins_50",                                   // item id
+    //        50,                                             // number of currencies in the pack
+    //        COIN_CURRENCY_ITEM_ID,                        // the currency associated with this pack
+    //        new PurchaseWithMarket(FIFTYMUFF_PACK_PRODUCT_ID, 1.99)
+    //);
+
+    //public static VirtualCurrencyPack FOURHUNDMUFF_PACK = new VirtualCurrencyPack(
+    //        "400 Muffins",                                  // name
+    //        "Test purchase of an item",                 	// description
+    //        "muffins_400",                                  // item id
+    //        400,                                            // number of currencies in the pack
+    //        COIN_CURRENCY_ITEM_ID,                        // the currency associated with this pack
+    //        new PurchaseWithMarket(FOURHUNDMUFF_PACK_PRODUCT_ID, 4.99)
+    //);
+
+    //public static VirtualCurrencyPack THOUSANDMUFF_PACK = new VirtualCurrencyPack(
+    //        "1000 Muffins",                                 // name
+    //        "Test item unavailable",                 		// description
+    //        "muffins_1000",                                 // item id
+    //        1000,                                           // number of currencies in the pack
+    //        COIN_CURRENCY_ITEM_ID,                        // the currency associated with this pack
+    //        new PurchaseWithMarket(THOUSANDMUFF_PACK_PRODUCT_ID, 8.99)
+    //);
+
+    ///** Virtual Goods **/
+
+    //public static VirtualGood MUFFINCAKE_GOOD = new SingleUseVG(
+    //        "Fruit Cake",                                       		// name
+    //        "Customers buy a double portion on each purchase of this cake", // description
+    //        "fruit_cake",                                       		// item id
+    //        new PurchaseWithVirtualItem(COIN_CURRENCY_ITEM_ID, 225)); // the way this virtual good is purchased
+
+    //public static VirtualGood PAVLOVA_GOOD = new SingleUseVG(
+    //        "Pavlova",                                         			// name
+    //        "Gives customers a sugar rush and they call their friends", // description
+    //        "pavlova",                                          		// item id
+    //        new PurchaseWithVirtualItem(COIN_CURRENCY_ITEM_ID, 175)); // the way this virtual good is purchased
+
+    //public static VirtualGood CHOCLATECAKE_GOOD = new SingleUseVG(
+    //        "Chocolate Cake",                                   		// name
+    //        "A classic cake to maximize customer satisfaction",	 		// description
+    //        "chocolate_cake",                                   		// item id
+    //        new PurchaseWithVirtualItem(COIN_CURRENCY_ITEM_ID, 250)); // the way this virtual good is purchased
+
+
+    //public static VirtualGood CREAMCUP_GOOD = new SingleUseVG(
+    //        "Cream Cup",                                        		// name
+    //        "Increase bakery reputation with this original pastry",   	// description
+    //        "cream_cup",                                        		// item id
+    //        new PurchaseWithVirtualItem(COIN_CURRENCY_ITEM_ID, 50));  // the way this virtual good is purchased
+
+
+    ///** Virtual Categories **/
+    // //The muffin rush theme doesn't support categories, so we just put everything under a general category.
+    //public static VirtualCategory GENERAL_CATEGORY = new VirtualCategory(
+    //        "General", new List<string>(new string[] { MUFFINCAKE_ITEM_ID, PAVLOVA_ITEM_ID, CHOCLATECAKE_ITEM_ID, CREAMCUP_ITEM_ID })
+    //);
+
+
+    ///** LifeTimeVGs **/
+    // //Note: create non-consumable items using LifeTimeVG with PuchaseType of PurchaseWithMarket
+    //public static VirtualGood NO_ADS_LTVG = new LifetimeVG(
+    //    "No Ads", 														// name
+    //    "No More Ads!",				 									// description
+    //    "no_ads",														// item id
+    //    new PurchaseWithMarket(NO_ADS_LIFETIME_PRODUCT_ID, 0.99));	// the way this virtual good is purchased
+}
