@@ -74,6 +74,7 @@ public class PlayerStatsLogic : MonoBehaviour {
     //return true if dead
     public bool removeHp(int num)
     {
+        CameraShakeLogic.GetInstance.CameraShake();
         HP -= num;
         ReWriteHP();
         if (HP <= 0)

@@ -26,7 +26,7 @@ PlayerSettings:
   m_ActiveColorSpace: 0
   m_MTRendering: 1
   m_MobileMTRendering: 0
-  m_UseDX11: 1
+  m_UseDX11: 0
   m_Stereoscopic3D: 0
   iosShowActivityIndicatorOnLoading: -1
   androidShowActivityIndicatorOnLoading: -1
@@ -76,7 +76,7 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleIdentifier: com.kiwi.ponchjoe
-  bundleVersion: 1.0.0
+  bundleVersion: 3.0.2
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
   metroEnableLowLatencyPresentationAPI: 0
@@ -123,8 +123,8 @@ PlayerSettings:
   iOSLaunchScreenCustomXibPath: 
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
-  AndroidKeystoreName: C:/Users/7/Final Project/BestGameEver/user2.keystore
-  AndroidKeyaliasName: kiwi
+  AndroidKeystoreName: C:/Users/7/Final Project/BestGameEver/key/superuser.keystore
+  AndroidKeyaliasName: 
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
   androidEnableBanner: 1
@@ -156,6 +156,9 @@ PlayerSettings:
   m_BuildTargetBatching:
   - m_BuildTarget: Android
     m_StaticBatching: 1
+    m_DynamicBatching: 1
+  - m_BuildTarget: Web
+    m_StaticBatching: 0
     m_DynamicBatching: 1
   webPlayerTemplate: APPLICATION:Default
   m_TemplateCustomTags: {}

@@ -210,6 +210,7 @@ public class DeathLogic : MonoBehaviour {
     {
         if (playerStatsLogic.removeHp(1))
         {
+            
             DeathScreen(0f);
             return;
         }
