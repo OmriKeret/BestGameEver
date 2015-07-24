@@ -180,4 +180,12 @@ public class PodiumLogic : MonoBehaviour {
             Instantiate(cannonPrefab, new Vector3(25, -5, 0), Quaternion.identity);
         }
     }
+
+    public bool IsAlive
+    {
+        get
+        {
+            return collider.enabled;
+        }
+    }
 }

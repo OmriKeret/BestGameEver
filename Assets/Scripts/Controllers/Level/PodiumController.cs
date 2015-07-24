@@ -23,7 +23,7 @@ public class PodiumController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Time.time - timeLandedOnPodium > timeOnPodiumBeforeCannonArrives && shouldCheckTime)
+        if (Time.time - timeLandedOnPodium > timeOnPodiumBeforeCannonArrives && (shouldCheckTime&&podiumLogic.IsAlive))
         {
             shouldCheckTime = false;
             podiumLogic.playerIsCamping();
