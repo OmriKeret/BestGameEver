@@ -3,7 +3,7 @@ using System.Collections;
 using System;
 [Serializable]
 public class IOMissionModel {
-
+    public bool[] rankStars;
     public int tier = -2;
     public MissionModel[] missions;
 

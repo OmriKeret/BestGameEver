@@ -63,7 +63,9 @@ public class DeathLogic : MonoBehaviour {
     private GameObject particles;
 
     Animator darkScreen;
-
+    
+    // New mission system
+    EndscreenGuiMain endScreen;
 	// Initialization
     void Start()
     {
@@ -127,6 +129,7 @@ public class DeathLogic : MonoBehaviour {
         particles = GameObject.Find("LosePanel/LosePJ/Particles");
         timeStartedToChangeScore = -1;
         superPower = GameObject.Find("Canvas/SuperHit").GetComponent<Button>();
+        endScreen = this.GetComponentInChildren<EndscreenGuiMain>();
     }
 
     void Update()
@@ -222,13 +225,14 @@ public class DeathLogic : MonoBehaviour {
     //the death screen
     private void DeathScreen(float delay)
     {
-        pauseBtn.interactable = false;
-        superPower.interactable = false;
-        touch.SetDisableMovment();
-        GetMissionData();
-        GetScoreData();
-        MoveGUI(delay);
-        saveScoreAndMissions();
+        endScreen.initiateDeathScreen();
+        //pauseBtn.interactable = false;
+        //superPower.interactable = false;
+        //touch.SetDisableMovment();
+        //GetMissionData();
+        //GetScoreData();
+        //MoveGUI(delay);
+        //saveScoreAndMissions();
     }
 
     private void saveScore()

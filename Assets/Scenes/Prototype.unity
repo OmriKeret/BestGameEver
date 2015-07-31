@@ -3548,8 +3548,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MAX_DASH_NUM: 3
-  maxHP: 2
-  HP: 2
+  maxHP: 1
+  HP: 1
   Strength: 1
   combo: 0
   dashNum: 3
@@ -8596,7 +8596,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: 2fa892d5d91ca374195c0f5b99a0493e, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11643,7 +11643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .713235259, g: .382839531, b: .382839531, a: 1}
+  m_Color: {r: .599305689, g: .713235259, b: .382839531, a: 1}
   m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
@@ -12912,6 +12912,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fe9cd17e01dd5f4cb96952a95ebfd66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CMStar: {fileID: 126092, guid: 5ae792024ef8760438f699dc9bdd1a50, type: 2}
+  completedStar: {fileID: 126092, guid: b82d91c18dc51634f8916bfa4df1ac04, type: 2}
+  unCompletedStar: {fileID: 126092, guid: d6227a1e270b7e74092da2cf52170430, type: 2}
 --- !u!114 &2020077892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12970,7 +12973,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: f6c6e43c9f6848843ad7728c137f7863, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

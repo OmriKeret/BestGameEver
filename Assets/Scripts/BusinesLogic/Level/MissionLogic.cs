@@ -271,4 +271,34 @@ public class MissionLogic : MonoBehaviour {
     {
         return missions;
     }
+
+    internal int getFirstMissingStarIndex()
+    {
+        int i = 0;
+        bool[] missionStars = missionStats.rankStars;
+        while (i < missionStars.Length)
+        {
+            if (!missionStars[i])
+            {
+                return i;
+            }
+            i++;
+        }
+        return i;
+    }
+
+    internal string getTierTitle()
+    {
+        return missionStats.getTitle();
+    }
+
+    internal bool[] getRankStars()
+    {
+        return missionStats.rankStars;
+    }
+
+    internal bool addRankStar()
+    {
+        return missionStats.addRankStar();
+    }
 }

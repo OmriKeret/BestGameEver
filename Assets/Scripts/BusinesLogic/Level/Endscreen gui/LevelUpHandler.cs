@@ -3,9 +3,10 @@ using System.Collections;
 
 public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
 
+    FinishedMissionHandler finishedMission;
 	// Use this for initialization
 	void Start () {
-	
+        finishedMission = this.GetComponent<FinishedMissionHandler>();
 	}
 	
 	// Update is called once per frame
@@ -13,9 +14,16 @@ public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
 	
 	}
 
+    IEnumerator run()
+    {
+      yield return new WaitForSeconds(2);
+      Debug.Log("finished waiting");
+      finishedMission.finishedLevelingUp();
+    }
+
     public void handleEvent()
     {
-        throw new System.NotImplementedException();
+        StartCoroutine(run());
     }
 
     public void next()
@@ -24,6 +32,11 @@ public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
     }
 
     public void setNext(PhaseEventHandler next)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    internal void handleEvent(ref bool animationRuns)
     {
         throw new System.NotImplementedException();
     }

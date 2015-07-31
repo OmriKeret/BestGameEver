@@ -6,10 +6,12 @@ public class MissionStats : MonoBehaviour {
 
     int tier;
     public string title;
+    public bool[] rankStars;
     MissionModel[] currentMissions;
     MissionAssigner missionAssigner;
     Dictionary<int, string> tierTitle;
     public bool finishedInit = false;
+
 	// Use this for initialization.
 	void OnLevelWasLoaded()
     {
@@ -26,10 +28,17 @@ public class MissionStats : MonoBehaviour {
            missionsFromDisc = MemoryAccess.memoryAccess.LoadMission();
 
           //  var missionsFromDisc = MemoryAccess.memoryAccess.LoadMission();
-           if (missionsFromDisc == null || missionsFromDisc.missions == null)
+           if (true)//missionsFromDisc == null || missionsFromDisc.missions == null) //todo: remove debug comment
 	        {
                 tier = 1;
+                rankStars = new bool[3];
 	            currentMissions = missionAssigner.getNewMissions(tier);
+               foreach(var m in currentMissions)  // REMOVE THIS
+               {                                  // REMOVE THIS
+                   m.isFinished = true;
+                   m.numberOfStars = 2;// REMOVE THIS
+               }                                    // REMOVE THIS
+                
 	        }
 	        else
 	        {
@@ -47,7 +56,7 @@ public class MissionStats : MonoBehaviour {
 
     public void SaveMissionProgression()
     {
-        MemoryAccess.memoryAccess.SaveMissions(new IOMissionModel { tier = tier, missions = currentMissions });
+        MemoryAccess.memoryAccess.SaveMissions(new IOMissionModel { tier = tier, missions = currentMissions, rankStars = rankStars });
     }
     private void initalizeDictionary()
     {
@@ -58,7 +67,7 @@ public class MissionStats : MonoBehaviour {
             {4, "Samurai Apprentice"},
 			{5, "Samurai"},
             {6, "La Llorona"},
-            {7, "Nijna"},
+            {7, "Ninja"},
             {8, "Chupacabra"},
 			{9, "Iturbide"},
             {10, "Master of the Heike Clan"},
@@ -129,6 +138,7 @@ public class MissionStats : MonoBehaviour {
             result[i].currentNumberAchived = currentMissions[i].currentNumberAchived;
             result[i].enemyType = currentMissions[i].enemyType;
             result[i].isFinished = currentMissions[i].isFinished;
+            result[i].numberOfStars = currentMissions[i].numberOfStars;
             result[i].missionText = currentMissions[i].missionText;
             result[i].needToBeCompletedInOneGame = currentMissions[i].needToBeCompletedInOneGame;
             result[i].numberToAchive = currentMissions[i].numberToAchive;
@@ -142,5 +152,19 @@ public class MissionStats : MonoBehaviour {
     internal int getTier()
     {
         return this.tier;
+    }
+
+    internal bool addRankStar()
+    {
+        for (var i = 0; i < rankStars.Length; i++)
+        {
+            if (!rankStars[i])
+            {
+                Debug.Log("adding star number " + i);
+                rankStars[i] = true;
+                return (i == rankStars.Length - 1);
+            }
+        }
+        return true;
     }
 }
