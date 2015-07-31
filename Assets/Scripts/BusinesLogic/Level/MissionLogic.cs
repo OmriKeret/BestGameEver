@@ -251,4 +251,24 @@ public class MissionLogic : MonoBehaviour {
             }
         }
     }
+
+    /**
+     *  Check if a mission is finished.
+     * */
+    internal bool finishedMission()
+    {
+       foreach (var mission in  missions) 
+       {
+           if (mission.isFinished)
+           {
+               return true;
+           }
+       }
+       return false;
+    }
+
+    internal MissionModel[] getMissions()
+    {
+        return missions;
+    }
 }
