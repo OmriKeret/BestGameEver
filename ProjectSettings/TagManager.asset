@@ -48,11 +48,11 @@ TagManager:
   - name: Background
     uniqueID: 1223548685
     locked: 0
-  - name: darkShade
-    uniqueID: 1609760803
-    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: darkShade
+    uniqueID: 1609760803
     locked: 0
   - name: UI
     uniqueID: 1747990833

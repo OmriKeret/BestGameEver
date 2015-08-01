@@ -47,6 +47,7 @@ public class FinishedMissionHandler : MonoBehaviour, PhaseEventHandler{
         // Logic.
         missionLogic = this.gameObject.GetComponentInParent<MissionLogic>();
         levelupHandler = this.gameObject.GetComponent<LevelUpHandler>();
+
         // GUI.
         // Mission complete Panel
         missionComplete = GameObject.Find("MissionComplete");
@@ -118,7 +119,7 @@ public class FinishedMissionHandler : MonoBehaviour, PhaseEventHandler{
             LeanTween.moveX(CMObject, 100f, 0.5f).setIgnoreTimeScale(true).setEase(LeanTweenType.easeInExpo).setOnComplete(
                 () =>
                 {
-                    CMObject.transform.position = new Vector3(-100f, CMObject.transform.position.y, CMObject.transform.position.z);
+                    CMObject.transform.position = new Vector3(-200f, CMObject.transform.position.y, CMObject.transform.position.z);
                     initilizeMissionData(mission);
                     LeanTween.moveX(CMObject, originalX, 0.5f).setIgnoreTimeScale(true).setEase(LeanTweenType.easeInExpo).setOnComplete(
                         () =>
@@ -167,21 +168,23 @@ public class FinishedMissionHandler : MonoBehaviour, PhaseEventHandler{
                 yield return null;
             }
 
-            // mission logic will tell us if we leveled up
+            // Mission logic will tell us if we leveled up
             if (missionLogic.addRankStar())
             {
                 levelingUp = true;
-                levelupHandler.handleEvent();
+				levelupHandler.handleEvent(rankProgressStars);
 
                 while (levelingUp)
                 {
-                    Debug.Log("level up waiting");
+
+//                    Debug.Log("level up waiting");
                     yield return new WaitForSeconds(0.1f);
                 }
-                Debug.Log("finished level up");
+  //              Debug.Log("finished level up");
+				// TODO: reset rankProgressStars
             }
             i++;
-            Debug.Log("iteration number is " + i);
+        //    Debug.Log("iteration number is " + i);
         }
         movingStarsAnimationIsPlaying = false;
     }
@@ -204,7 +207,8 @@ public class FinishedMissionHandler : MonoBehaviour, PhaseEventHandler{
     public void handleEvent()
     {
         missionComplete.transform.position = new Vector3(0, 0, missionComplete.transform.position.z);
-        Time.timeScale = 0f;
+		Time.timeScale = 0f;
+		Debug.Log ("time scale is " + Time.timeScale);
         StartCoroutine(run());
       
     }

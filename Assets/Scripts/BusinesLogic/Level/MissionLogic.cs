@@ -299,6 +299,16 @@ public class MissionLogic : MonoBehaviour {
 
     internal bool addRankStar()
     {
-        return missionStats.addRankStar();
+        var leveledUp =  missionStats.addRankStar();
+		if (leveledUp) 
+		{
+			missionStats.upgradeTier();
+		}
+		return leveledUp;
     }
+
+	public int getRankCompleteReward ()
+	{
+		return 100 + 300 * getTier ();
+	}
 }
