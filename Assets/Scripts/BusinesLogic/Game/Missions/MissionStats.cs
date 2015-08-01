@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -10,6 +10,7 @@ public class MissionStats : MonoBehaviour {
     MissionModel[] currentMissions;
     MissionAssigner missionAssigner;
     Dictionary<int, string> tierTitle;
+	Dictionary<int, int> tierStars;
     public bool finishedInit = false;
 
 	// Use this for initialization.
@@ -73,6 +74,20 @@ public class MissionStats : MonoBehaviour {
             {10, "Master of the Heike Clan"},
             {11, "Samurai Jack!"}
         };
+
+		tierStars = new Dictionary<int, int>{ //All ranks here are subject to change
+			{1, 3}, //"Novice"
+			{2, 4}, //"Beginner Samurai"
+			{3, 5}, //"Amateur Samurai"
+			{4, 6}, //"Samurai Apprentice"
+			{5, 7}, //"Samurai"
+			{6, 8}, //"La Llorona"
+			{7, 8},
+			{8, 8},
+			{9, 8},
+			{10, 8},
+			{11, 8}
+		};
     }
     public string getTitle() 
     {
@@ -87,6 +102,9 @@ public class MissionStats : MonoBehaviour {
     public void upgradeTier()
     {
         tier++;
+		int numStars;
+		tierStars.TryGetValue (tier, out numStars);
+		rankStars = new bool[numStars];
     }
 
     public void getNewMissions()
@@ -167,4 +185,5 @@ public class MissionStats : MonoBehaviour {
         }
         return true;
     }
+
 }
