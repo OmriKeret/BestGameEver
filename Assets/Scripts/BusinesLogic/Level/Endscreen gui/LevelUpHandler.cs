@@ -185,8 +185,8 @@ public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
 
 		blackBackground.SetBool("darkScreenSolid", false);
       Debug.Log("finished waiting");
-      finishedMission.finishedLevelingUp();
-    }
+		finishedMission.finishedLevelingUp(newRankProgressStars);
+	}
 
 	public void handleEvent()
 	{
@@ -259,8 +259,7 @@ public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
 		// Set new rank as mission complete sybling.
 		newRank.transform.parent = missionCompleteObject.transform;
 
-		// Finished leveling up
-		finishedMission.finishedLevelingUp ();
+		animationRun = false; // release lock on leveling up
 
 	}
 

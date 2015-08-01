@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class SummeryScreen : MonoBehaviour, PhaseEventHandler {
 
+	Button missionCompleteBtn;
 	// Use this for initialization
 	void Start () {
-	
 	}
 	
 	// Update is called once per frame
@@ -15,7 +16,7 @@ public class SummeryScreen : MonoBehaviour, PhaseEventHandler {
 
     public void handleEvent()
     {
-        throw new System.NotImplementedException();
+        //Brings up next button
     }
 
     public void next()

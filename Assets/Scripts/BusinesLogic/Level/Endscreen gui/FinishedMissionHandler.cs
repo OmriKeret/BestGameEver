@@ -27,11 +27,14 @@ public class FinishedMissionHandler : MonoBehaviour, PhaseEventHandler{
     GameObject[] CMProgressStars;
     public GameObject CMStar;
 
+	Button missionCompleteBtn;
+
     // Rank Panel.
     GameObject rankPanel;
     Text rankTitle;
     GameObject rankFirstStar;
     GameObject[] rankProgressStars;
+
     public GameObject completedStar;
     public GameObject unCompletedStar;
     public Sprite rankCompletedStar;
@@ -56,6 +59,7 @@ public class FinishedMissionHandler : MonoBehaviour, PhaseEventHandler{
         CMObject = GameObject.Find("MissionComplete/CompletedMission");
         CMFirstStar = GameObject.Find("MissionComplete/CompletedMission/firstStarPos");
         CMText = GameObject.Find("MissionComplete/CompletedMission/MissionCompleteText").GetComponent<Text>();
+		missionCompleteBtn = GameObject.Find("MissionComplete/NextButton").GetComponent<Button>();
 
         // Rank Panel.
         rankPanel = GameObject.Find("MissionComplete/RankPanel");
@@ -81,7 +85,6 @@ public class FinishedMissionHandler : MonoBehaviour, PhaseEventHandler{
                 StartCoroutine(processFinishedMission(mission));
                 Debug.Log("passed proccess mission");
                 // Move mission in.
-                // .
 
             }
 
@@ -90,7 +93,19 @@ public class FinishedMissionHandler : MonoBehaviour, PhaseEventHandler{
                 yield return new WaitForSeconds(0.1f);
             }
         }
-    }
+		movingStarsAnimationIsPlaying = true;
+
+
+		Debug.Log("finished all mission");
+		// moving next button up
+		LeanTween.moveY (missionCompleteBtn.gameObject, CMObject.transform.position.y, 0.5f).setIgnoreTimeScale (true).setEase (LeanTweenType.linear);
+		while (movingStarsAnimationIsPlaying)
+		{
+			yield return new WaitForSeconds(0.1f);
+		}
+		nextEvent.handleEvent ();
+		
+	}
 
     private void initiateRankStats()
     {
@@ -176,14 +191,15 @@ public class FinishedMissionHandler : MonoBehaviour, PhaseEventHandler{
 
                 while (levelingUp)
                 {
-
-//                    Debug.Log("level up waiting");
                     yield return new WaitForSeconds(0.1f);
                 }
+
   //              Debug.Log("finished level up");
-				// TODO: reset rankProgressStars
-            }
-            i++;
+				// TODO: reset 
+				i = missionLogic.getFirstMissingStarIndex();
+			} else { 
+           		i++;
+			}
         //    Debug.Log("iteration number is " + i);
         }
         movingStarsAnimationIsPlaying = false;
@@ -223,8 +239,14 @@ public class FinishedMissionHandler : MonoBehaviour, PhaseEventHandler{
         this.nextEvent = next;
     }
 
-    internal void finishedLevelingUp()
-    {
+	internal void finishedLevelingUp(GameObject[] newRankProgressStars)
+	{
+		this.rankProgressStars = newRankProgressStars;
         levelingUp = false;
     }
+
+	public void onNextButtonClicked() 
+	{
+		movingStarsAnimationIsPlaying = false;
+	}
 }
