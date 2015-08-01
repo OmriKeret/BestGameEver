@@ -12915,6 +12915,7 @@ MonoBehaviour:
   CMStar: {fileID: 126092, guid: 5ae792024ef8760438f699dc9bdd1a50, type: 2}
   completedStar: {fileID: 126092, guid: b82d91c18dc51634f8916bfa4df1ac04, type: 2}
   unCompletedStar: {fileID: 126092, guid: d6227a1e270b7e74092da2cf52170430, type: 2}
+  rankCompletedStar: {fileID: 21300000, guid: f6c6e43c9f6848843ad7728c137f7863, type: 3}
 --- !u!114 &2020077892
 MonoBehaviour:
   m_ObjectHideFlags: 0
