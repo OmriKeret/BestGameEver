@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
-
+    PhaseEventHandler nextEvent;
     FinishedMissionHandler finishedMission;
 
 	// Logic
@@ -211,7 +211,7 @@ public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
 
     public void setNext(PhaseEventHandler next)
     {
-        throw new System.NotImplementedException();
+        nextEvent = next;
     }
 
 

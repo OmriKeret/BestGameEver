@@ -98,13 +98,16 @@ public class FinishedMissionHandler : MonoBehaviour, PhaseEventHandler{
 
 		Debug.Log("finished all mission");
 		// moving next button up
-		LeanTween.moveY (missionCompleteBtn.gameObject, CMObject.transform.position.y, 0.5f).setIgnoreTimeScale (true).setEase (LeanTweenType.linear);
+		LeanTween.moveY (missionCompleteBtn.gameObject, CMObject.transform.position.y - 30f, 0.5f).setIgnoreTimeScale (true).setEase (LeanTweenType.linear);
 		while (movingStarsAnimationIsPlaying)
 		{
 			yield return new WaitForSeconds(0.1f);
 		}
+        
+        // After next button is clicked we move down the mission complete object
+        LeanTween.moveY(CMObject, -200f, 0.5f).setIgnoreTimeScale(true).setEase(LeanTweenType.linear);
+        LeanTween.moveY(CMObject, -200f, 0.5f).setIgnoreTimeScale(true).setEase(LeanTweenType.linear);
 		nextEvent.handleEvent ();
-		
 	}
 
     private void initiateRankStats()
@@ -193,7 +196,7 @@ public class FinishedMissionHandler : MonoBehaviour, PhaseEventHandler{
                 {
                     yield return new WaitForSeconds(0.1f);
                 }
-
+                CMObject = GameObject.Find("MissionComplete");
   //              Debug.Log("finished level up");
 				// TODO: reset 
 				i = missionLogic.getFirstMissingStarIndex();

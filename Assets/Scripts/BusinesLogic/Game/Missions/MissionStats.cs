@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using System.Linq;
 public class MissionStats : MonoBehaviour {
 
     int tier;
@@ -33,7 +33,7 @@ public class MissionStats : MonoBehaviour {
 	        {
                 tier = 1;
                 rankStars = new bool[3];
-	            currentMissions = missionAssigner.getNewMissions(tier);
+                initilizeMissions();
                foreach(var m in currentMissions)  // REMOVE THIS
                {                                  // REMOVE THIS
                    m.isFinished = true;
@@ -107,10 +107,41 @@ public class MissionStats : MonoBehaviour {
 		rankStars = new bool[numStars];
     }
 
-    public void getNewMissions()
+    private void initilizeMissions()
     {
-        currentMissions = missionAssigner.getNewMissions(tier);
-
+        currentMissions = new MissionModel[3];
+		for (int j = 0; j < currentMissions.Length; j++) {
+			currentMissions[j] = new MissionModel();
+		}
+        List<MissionModel> missionList = currentMissions.Where(e => !e.isFinished).ToList();
+        for (int i = 0; i < currentMissions.Length; i++)
+        {
+            MissionModel mission;
+            do
+            {
+                mission = missionAssigner.getNewMission(1);
+            } while (missionList.Exists(m => m.type == mission.type));
+            currentMissions[i] = mission;
+            missionList.Add(mission);
+        }
+    }
+    public MissionModel[] getNewMissions()
+    {
+        List<MissionModel> missionList = currentMissions.Where(e => !e.isFinished).ToList();
+        for (int i = 0; i < currentMissions.Length; i++)
+        {
+            if (currentMissions[i].isFinished)
+            {
+                MissionModel mission;
+                do
+                {
+                    mission = missionAssigner.getNewMission(tier);
+                } while (missionList.Exists(m => m.type == mission.type));
+                currentMissions[i] = mission;
+                missionList.Add(mission);
+            }
+        }
+        return currentMissions;
     }
 	// Update is called once per frame
 	void Update () {
@@ -163,6 +194,7 @@ public class MissionStats : MonoBehaviour {
             result[i].powerUpType = currentMissions[i].powerUpType;
             result[i].collectableType = currentMissions[i].collectableType;
             result[i].type = currentMissions[i].type;
+            result[i].isNew = currentMissions[i].isNew;
         }
         return result;
     }
@@ -183,7 +215,20 @@ public class MissionStats : MonoBehaviour {
                 return (i == rankStars.Length - 1);
             }
         }
-        return true;
+        return false;
     }
 
+
+    internal void finishedMission(int missionNum)
+    {
+        currentMissions[missionNum].isFinished = true;
+    }
+
+    internal void unMarkMissionAsNew()
+    {
+        foreach (var mission in currentMissions)
+        {
+            mission.isNew = false;
+        }
+    }
 }

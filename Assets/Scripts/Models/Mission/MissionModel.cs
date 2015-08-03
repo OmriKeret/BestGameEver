@@ -14,4 +14,5 @@ public class MissionModel {
    public bool isFinished;
    public bool needToBeCompletedInOneGame;
    public int numberOfStars;
+   public bool isNew;
 }

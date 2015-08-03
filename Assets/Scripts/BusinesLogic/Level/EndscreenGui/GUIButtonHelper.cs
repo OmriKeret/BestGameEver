@@ -3,13 +3,18 @@ using System.Collections;
 
 public class GUIButtonHelper : MonoBehaviour {
 
+    // new missions
+    NewMissionsHandler newMissionsHandler;
+
 	// level up
 	LevelUpHandler levelupHandler;
 
 	// Mission complete 
 	FinishedMissionHandler finishedMission;
 
-	void Start () {
+	void Start () 
+    {
+        newMissionsHandler = GameObject.Find("Logic").GetComponentInChildren<NewMissionsHandler>();
 		levelupHandler = GameObject.Find("Logic").GetComponentInChildren<LevelUpHandler>();
 		finishedMission = GameObject.Find("Logic").GetComponentInChildren<FinishedMissionHandler>();
 	}
@@ -23,4 +28,9 @@ public class GUIButtonHelper : MonoBehaviour {
 	{
 		finishedMission.onNextButtonClicked ();
 	}
+
+    public void NewMissionsNext()
+    {
+        newMissionsHandler.OnClickedNext();
+    }
 }

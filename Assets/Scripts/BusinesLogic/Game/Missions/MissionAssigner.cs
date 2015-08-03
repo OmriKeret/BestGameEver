@@ -17,23 +17,11 @@ public class MissionAssigner : MonoBehaviour {
 
     void OnEnable() { }
 
-    public MissionModel[] getNewMissions(int tier)
+    public MissionModel getNewMission(int tier)
     {
-        List<MissionModel> result = new List<MissionModel>();
-        int i = 0;
-        while (i < 3)
-        {
-            MissionModel mission = getRandomMission(tier);
-
-            //if mission doesn't exists yet
-            if (!result.Exists(m => m.type == mission.type))
-            {
-                result.Add(mission);
-                i++;
-            }
-        }
-        return result.ToArray();
-
+        var mission = getRandomMission(tier);
+        mission.isNew = true;
+        return mission;
     }
 
     //helper method to generate random mission by tier

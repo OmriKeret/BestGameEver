@@ -197,6 +197,7 @@ public class MissionLogic : MonoBehaviour {
         //TODO:playsound 
         MissionsToggleAndText[missionNum].missionToggle.isOn = true;
         missions[missionNum].isFinished = true;
+        missionStats.finishedMission(missionNum);
     }
 
     public void updateMissionProggressEndOfGame()
@@ -269,7 +270,7 @@ public class MissionLogic : MonoBehaviour {
 
     internal MissionModel[] getMissions()
     {
-        return missions;
+        return missionStats.getMissions();
     }
 
     internal int getFirstMissingStarIndex()
@@ -311,4 +312,36 @@ public class MissionLogic : MonoBehaviour {
 	{
 		return 100 + 300 * (getTier () - 1);
 	}
+
+    internal bool didLevelUp()
+    {
+       int i = getFirstMissingStarIndex();
+       int numberOfCurrentLevelStars = getRankStars().Length;
+       int numberToAchive = numberOfCurrentLevelStars - i;
+       foreach (var mission in missions)
+       {
+           if (mission.isFinished)
+           {
+               numberToAchive--;
+           }
+           if (numberToAchive == 0)
+           {
+               return true;
+           }
+       }
+       return false;
+    }
+    /**
+     * Gets and sets new missions
+     * */
+    internal MissionModel[] getNewMissions()
+    {
+       return missionStats.getNewMissions();
+
+    }
+
+    internal void unMarkMissionsNew()
+    {
+        missionStats.unMarkMissionAsNew();
+    }
 }
