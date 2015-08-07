@@ -5,6 +5,7 @@ public class CurrencyLogic : MonoBehaviour {
 
     CurrencyData currencyDataAccess;
     public int deviderToScore = 1;
+    public int goldEarned;
     void Start()
     {
         currencyDataAccess = GameObject.Find("GameManagerData").GetComponent<CurrencyData>();
@@ -20,5 +21,10 @@ public class CurrencyLogic : MonoBehaviour {
         Debug.Log("After"+currentCurrency.PJ);
         currencyDataAccess.saveCurrency(currentCurrency);
         return currencyToAdd;
+    }
+
+    public int getGoldEarned()
+    {
+        return goldEarned;
     }
 }

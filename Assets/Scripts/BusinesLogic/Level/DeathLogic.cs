@@ -69,11 +69,10 @@ public class DeathLogic : MonoBehaviour {
 	// Initialization
     void Start()
     {
+        endScreen = this.GetComponentInChildren<EndscreenGuiMain>();
         animationLogic = this.gameObject.GetComponent<AnimationLogic>();
-        var bonus = GameObject.Find("LosePanel/FinishedAllMissions");
-        HighScore = GameObject.Find("LosePanel/NewHighScore").GetComponent<Animator>();
-        bonusAnimator = bonus.GetComponent<Animator>();
-        bonusText = bonus.GetComponent<Text>();
+        HighScore = null;
+        bonusAnimator = null;
         pauseBtn = GameObject.Find("Pause").GetComponent<Button>();
         soundLogic = this.gameObject.GetComponent<SoundLogic>();
         missionLogic = this.gameObject.GetComponent<MissionLogic>();
@@ -129,7 +128,7 @@ public class DeathLogic : MonoBehaviour {
         particles = GameObject.Find("LosePanel/LosePJ/Particles");
         timeStartedToChangeScore = -1;
         superPower = GameObject.Find("Canvas/SuperHit").GetComponent<Button>();
-        endScreen = this.GetComponentInChildren<EndscreenGuiMain>();
+       
     }
 
     void Update()
