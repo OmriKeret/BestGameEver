@@ -17,7 +17,7 @@ public class EnemyGeneratorController : MonoBehaviour {
     }
 
 	void Start () {
-        GameObject.FindObjectOfType<EventListener>().Listener[EventTypes.TestEvent] += testMethon;
+        GameObject.FindObjectOfType<EventListener>().Listener[EventTypes.WaveOver] += GenerateWave;
         //Debug only: start from wave x
         _waveNumber = 0;
         //End debug
@@ -28,24 +28,25 @@ public class EnemyGeneratorController : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-        if (generateWaveLogic.waveEnded)
-        {
-            generateWaveLogic.waveEnded = false;
-            startCounter = true;
-		}
-        if (startCounter)
-        {
-            counter++;
-        }
-        if (counter == TimeBetweenWaves)
-        {
-            startCounter = false;
-            counter = 0;
-            GenerateWave();
-        }
+        //if (generateWaveLogic.waveEnded)
+        //{
+        //    generateWaveLogic.waveEnded = false;
+        //    startCounter = true;
+        //}
+        //if (startCounter)
+        //{
+        //    counter++;
+        //}
+        //if (counter == TimeBetweenWaves)
+        //{
+        //    startCounter = false;
+        //    counter = 0;
+        //    GenerateWave();
+        //}
 	}
 
 	void GenerateWave(){
+        Debug.Log(string.Format("Delegate was called with {0}", _waveNumber));
         WaveGenerateModel wm = new WaveGenerateModel(_waveNumber);
         generateWaveLogic.generateWave(wm);
         _waveNumber++;

@@ -8,13 +8,17 @@ public class EventListener : MonoBehaviour {
     public Dictionary<EventTypes, VoidEvent> Listener;
     #region Events definition
     public static event VoidEvent onTest;
+    public static event VoidEvent onWaveOver;
     #endregion
 
     void Awake()
     {
         Listener = new Dictionary<EventTypes, VoidEvent>();
-        //Add here all the events
+        #region Add events to the Listener
         Listener.Add(EventTypes.TestEvent, onTest);
+        Listener.Add(EventTypes.WaveOver, onWaveOver);
+        #endregion
+        
     }
 
 }

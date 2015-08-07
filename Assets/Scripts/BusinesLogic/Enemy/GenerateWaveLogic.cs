@@ -71,7 +71,7 @@ public class GenerateWaveLogic : MonoBehaviour {
             //Check if wave ended
             if (currentType.Equals(EnemyType.End))
             {
-                waveEnded = true;
+                GameObject.FindObjectOfType<EventListener>().Listener[EventTypes.WaveOver].Invoke();
 
                 yield break;
             }
