@@ -35,8 +35,14 @@ public class GenerateWaveLogic : MonoBehaviour {
 
     
 	// Use this for initialization
-	public void generateWave(WaveGenerateModel i_model) {
-		/** --omri's code
+	public void generateWave(WaveGenerateModel i_model)
+    {
+        #region debug
+        //GameObject.FindObjectOfType<EventListener>().Listener[EventTypes.TestEvent].Invoke();
+        #endregion
+
+
+        /** --omri's code
         if (!TypeOfEnemiesEachWave.ContainsKey(model.waveNumber))
         {
             return;

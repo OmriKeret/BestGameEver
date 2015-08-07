@@ -19,4 +19,5 @@ public enum EnemyType
     Cannon = 5,
     End = 6,// This is NOT an enemy, just means that the way have ended
     
+    
 }

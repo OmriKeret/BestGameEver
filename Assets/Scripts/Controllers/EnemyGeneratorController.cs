@@ -11,7 +11,13 @@ public class EnemyGeneratorController : MonoBehaviour {
     bool startCounter = false;
 	// Use this for initialization
 
+    public void testMethon()
+    {
+        Debug.Log("Delegete works");
+    }
+
 	void Start () {
+        GameObject.FindObjectOfType<EventListener>().Listener[EventTypes.TestEvent] += testMethon;
         //Debug only: start from wave x
         _waveNumber = 0;
         //End debug
