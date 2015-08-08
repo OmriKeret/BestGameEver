@@ -17,7 +17,7 @@ public class EndscreenChainFactory : MonoBehaviour {
     public PhaseEventHandler getChain(bool finishedMission)
     {
         PhaseEventHandler first = null;
-        if (finishedMission)
+        if (false)//finishedMission)
         {
             first = finishedMissionHandler;
             finishedMissionHandler.setNext(newMissionHandler);
