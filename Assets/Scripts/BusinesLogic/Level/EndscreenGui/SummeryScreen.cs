@@ -27,6 +27,7 @@ public class SummeryScreen : MonoBehaviour, PhaseEventHandler {
     // special effects
     Animator newHighScore;
     Animator moneyCount;
+    Animator goldCoin;
 
     //controlls
     bool isAnimationPlaying;
@@ -52,7 +53,7 @@ public class SummeryScreen : MonoBehaviour, PhaseEventHandler {
         // Special effects.
         newHighScore = GameObject.Find("LosePanel/NewHighScore").GetComponent<Animator>();
         roundRankAnimator = GameObject.Find("LosePanel/ROUNDRANK/rank").GetComponent<Animator>();
-        moneyCount = null;//TODO: this
+        goldCoin = GameObject.Find("LosePanel/LosePJ/PJS").GetComponent<Animator>();
 
 	}
 	
@@ -127,10 +128,28 @@ public class SummeryScreen : MonoBehaviour, PhaseEventHandler {
         {
             yield return new WaitForSeconds(0.1f);
         }
-        Debug.Log("finished to exchange gold earned");
-  
+        Debug.Log("finished to exchange kills with gold earned");
 
+        fitGoldCoin();
 
+    }
+
+    /**
+     * Puts the gold coin in place
+     * */
+    private void fitGoldCoin()
+    {
+
+        var camera = Camera.main;
+        RectTransform rt = totalEarned.gameObject.GetComponent<RectTransform>();
+        var canvas = totalEarned.gameObject.GetComponentInParent<Canvas>();
+        Vector3 position = goldCoin.transform.position;
+        position.x += ((rt.rect.width * canvas.scaleFactor)/2); // The important part!
+
+        //// In my case, I needed to do this aswell, you probable don't need this in your setup and can just set rt.position with the input instead
+        //Vector3 output;
+        //RectTransformUtility.ScreenPointToWorldPointInRectangle(rt, input, camera, out output);
+        goldCoin.transform.position = position;
     }
 
     private IEnumerator changeKillsToTotalEarned()

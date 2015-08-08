@@ -3157,6 +3157,7 @@ GameObject:
   - 224: {fileID: 563755675}
   - 222: {fileID: 563755677}
   - 114: {fileID: 563755676}
+  - 114: {fileID: 563755678}
   m_Layer: 5
   m_Name: TOTALEARNED
   m_TagString: Untagged
@@ -3175,12 +3176,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1378797008}
-  m_RootOrder: 13
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -114.999992, y: -188}
-  m_SizeDelta: {x: 214, y: 74}
-  m_Pivot: {x: .5, y: .5}
+  m_RootOrder: 12
+  m_AnchorMin: {x: 0, y: .5}
+  m_AnchorMax: {x: 0, y: .5}
+  m_AnchoredPosition: {x: 159.290283, y: -185.935379}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &563755676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3201,18 +3202,31 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 1
+    m_Alignment: 2
     m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'TOTAL EARNED:'
+  m_Text: 'TOTAL EARNED: '
 --- !u!222 &563755677
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 563755674}
+--- !u!114 &563755678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 563755674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
 --- !u!1 &566175092
 GameObject:
   m_ObjectHideFlags: 0
@@ -3241,7 +3255,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1378797008}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: -115, y: -22}
@@ -3903,7 +3917,7 @@ RectTransform:
   m_RootOrder: 4
   m_AnchorMin: {x: .5, y: 1}
   m_AnchorMax: {x: .5, y: 1}
-  m_AnchoredPosition: {x: 444, y: -492}
+  m_AnchoredPosition: {x: 444, y: -527}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &663038037
@@ -4244,6 +4258,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 820216391}
   - 212: {fileID: 820216392}
+  - 95: {fileID: 820216393}
   m_Layer: 0
   m_Name: PJS
   m_TagString: Untagged
@@ -4258,8 +4273,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 820216390}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -131, y: 4, z: -2}
-  m_LocalScale: {x: 16.6014977, y: 16.6015034, z: -261.95813}
+  m_LocalPosition: {x: -369, y: -11.8000002, z: -1.99998808}
+  m_LocalScale: {x: 4, y: 4, z: -261.95813}
   m_Children: []
   m_Father: {fileID: 663038036}
   m_RootOrder: 0
@@ -4288,7 +4303,24 @@ SpriteRenderer:
   m_SortingLayerID: 1747990833
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 1fa0a6b7fe224954a9f115bbe6564748, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+--- !u!95 &820216393
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 820216390}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f97748de573171d41ae251f3f2e6a14e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &820260375
 GameObject:
   m_ObjectHideFlags: 0
@@ -8763,8 +8795,8 @@ RectTransform:
   - {fileID: 1946240922}
   - {fileID: 1771563541}
   - {fileID: 1328282185}
-  - {fileID: 566175093}
   - {fileID: 563755675}
+  - {fileID: 566175093}
   - {fileID: 1714448204}
   m_Father: {fileID: 1993472764}
   m_RootOrder: 7
