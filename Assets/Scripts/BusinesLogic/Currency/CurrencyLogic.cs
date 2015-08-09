@@ -15,9 +15,7 @@ public class CurrencyLogic : MonoBehaviour {
     {
         int currencyToAdd = score / deviderToScore; // + coins
         var currentCurrency = currencyDataAccess.loadCurrency();
-        Debug.Log("Before" + currentCurrency.PJ);
         currentCurrency.PJ += currencyToAdd;
-        Debug.Log("After"+currentCurrency.PJ);
         currencyDataAccess.saveCurrency(currentCurrency);
         return currencyToAdd;
     }

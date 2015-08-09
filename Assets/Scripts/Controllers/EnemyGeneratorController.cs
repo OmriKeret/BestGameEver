@@ -9,6 +9,7 @@ public class EnemyGeneratorController : MonoBehaviour {
     private int counter = 0;
     public int TimeBetweenWaves = 1;
     bool startCounter = false;
+    EventListener listener;
 	// Use this for initialization
 
     public void testMethon()
@@ -17,7 +18,9 @@ public class EnemyGeneratorController : MonoBehaviour {
     }
 
 	void Start () {
-        GameObject.FindObjectOfType<EventListener>().Listener[EventTypes.WaveOver] += GenerateWaveWithDelay;
+        listener = EventListener.instance;
+        listener.Listener[EventTypes.WaveOver] += GenerateWaveWithDelay;
+        listener.Listener[EventTypes.GameOver] += StopGeneration;
         //Debug only: start from wave x
         _waveNumber = 0;
         //End debug
@@ -32,25 +35,27 @@ public class EnemyGeneratorController : MonoBehaviour {
 	}
 
 	void GenerateWave(){
-        Debug.Log(string.Format("Delegate was called with {0}", _waveNumber));
         WaveGenerateModel wm = new WaveGenerateModel(_waveNumber);
         generateWaveLogic.generateWave(wm);
         _waveNumber++;
 	}
 
-    void GenerateWaveWithDelay()
+    System.Object GenerateWaveWithDelay(params System.Object[] obj)
     {
         StartCoroutine(Delay());
-        
+        return null;
     }
 
     IEnumerator Delay()
-    {
-        Debug.Log(string.Format("Start Waiting {0} for {1} seconds", Time.time, TimeBetweenWaves));   
-        yield return new WaitForSeconds(TimeBetweenWaves);
-        Debug.Log(string.Format("Finish Waiting {0}", Time.time));
+    {        yield return new WaitForSeconds(TimeBetweenWaves);
         GenerateWave();
-        
     }
+
+    System.Object StopGeneration(params System.Object[] obj)
+    {
+        GameObject.FindObjectOfType<EventListener>().Listener[EventTypes.WaveOver] -= GenerateWaveWithDelay;
+        return null;
+    }
+
 
 }

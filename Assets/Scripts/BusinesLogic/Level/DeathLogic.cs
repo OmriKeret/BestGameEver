@@ -222,6 +222,7 @@ public class DeathLogic : MonoBehaviour {
     //the death screen
     private void DeathScreen(float delay)
     {
+        EventListener.instance.Listener[EventTypes.GameOver].Invoke();
         pauseBtn.interactable = false;
         superPower.interactable = false;
         touch.SetDisableMovment();

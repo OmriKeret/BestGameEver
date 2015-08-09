@@ -9,6 +9,7 @@ public enum EventTypes {
 
     WaveOver = 40,
     GameOver,
+    FinishedMission,
 
 
     TestEvent = 2048//Just for testing

@@ -15,13 +15,23 @@ public class GenerateWaveLogic : MonoBehaviour {
     public bool waveEnded = false;
     private int TimeToFinishPath = 50;
     public int MaxEasyEnemies = 4;
+    private EventListener listener;
+    private bool gameOn = true;
 
 	void Awake () {
 		_waveFactory = new WaveLogicFactory ();
 		enemyGenerator = new EnemyGeneratorLogic ();
 		waveNumber = 1;
 		waveEnded = false;
+        listener = EventListener.instance;
+        gameOn = true;
+        
 	}
+
+    void Start()
+    {
+        listener.Listener[EventTypes.GameOver] += stopCurrentWave;
+    }
 
     public void generateNonEmpty(WaveGenerateModel i_model)
     {
@@ -56,11 +66,17 @@ public class GenerateWaveLogic : MonoBehaviour {
         
 	}
 
+    System.Object stopCurrentWave(params System.Object[] obj)
+    {
+        gameOn = false;
+        return false;
+    }
+
     IEnumerator GenerateEnemiesWithPause(WaveGenerateModel i_waveModel)
     {
         EnemyType currentType;
         EnemyLocation currentLocation;
-        while (true)
+        while (gameOn)
         {
             if (GameObject.FindGameObjectsWithTag("Enemy").Length >= MaxEasyEnemies)
             {
@@ -71,8 +87,8 @@ public class GenerateWaveLogic : MonoBehaviour {
             //Check if wave ended
             if (currentType.Equals(EnemyType.End))
             {
-                GameObject.FindObjectOfType<EventListener>().Listener[EventTypes.WaveOver].Invoke();
-
+                listener.Listener[EventTypes.WaveOver].Invoke();
+                //This action cause exception. need to stop the corutine when game over
                 yield break;
             }
             var enemyLocation = new Vector2(0f, 40f); ;//instantiateLocations[UnityEngine.Random.Range(0, locationMax)];
