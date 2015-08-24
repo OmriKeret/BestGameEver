@@ -103,7 +103,7 @@ public class NewMissionsHandler : MonoBehaviour, PhaseEventHandler{
                     missionOneText.text = missions[i].missionText;
                     createStars(missionOneFirstStarPos, missions[i].numberOfStars, missionOneToggle.gameObject);
 
-					if (missions[i].isFinished) {
+					if (missions[i].isNew) {
 						newMissonList.Add(missionOneToggle.gameObject);
 					}
                     break;
@@ -112,7 +112,8 @@ public class NewMissionsHandler : MonoBehaviour, PhaseEventHandler{
                     missionTwoText.text = missions[i].missionText;
                     createStars(missionTwoFirstStarPos, missions[i].numberOfStars, missionTwoToggle.gameObject);
 
-					if (missions[i].isFinished) {
+                    if (missions[i].isNew)
+                    {
 					newMissonList.Add(missionTwoToggle.gameObject);
 					}
                     break;
@@ -121,7 +122,8 @@ public class NewMissionsHandler : MonoBehaviour, PhaseEventHandler{
                     missionThreeText.text = missions[i].missionText;
                     createStars(missionThreeFirstStarPos, missions[i].numberOfStars, missionThreeToggle.gameObject);
 
-					if (missions[i].isFinished) {
+                    if (missions[i].isNew)
+                    {
 					newMissonList.Add(missionThreeToggle.gameObject);
 					}
                     break;
