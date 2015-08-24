@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class NewMissionsHandler : MonoBehaviour, PhaseEventHandler{
 
@@ -28,6 +29,9 @@ public class NewMissionsHandler : MonoBehaviour, PhaseEventHandler{
     Text missionThreeText;
     GameObject missionThreeFirstStarPos;
 
+	//new mission List
+	List<GameObject> newMissonList;
+
     //missions stars
     public GameObject star;
 
@@ -37,6 +41,7 @@ public class NewMissionsHandler : MonoBehaviour, PhaseEventHandler{
         //GUI
         // newMissio Object
         newMissionObject = GameObject.Find("NewMissions");
+		newMissonList = new List<GameObject> ();
 
         //new mission One
         missionOneToggle = GameObject.Find("NewMissions/MissionOne").GetComponent<Toggle>();
@@ -68,7 +73,22 @@ public class NewMissionsHandler : MonoBehaviour, PhaseEventHandler{
 
     private void moveMissionsIn()
     {
-        LeanTween.moveY(newMissionObject, 0f, 0.5f).setIgnoreTimeScale(true).setEase(LeanTweenType.linear);
+		//Change position of new mission to the left of the screen.
+		foreach(var mission in newMissonList) {
+			var pos = mission.transform.position;
+			mission.transform.position = new Vector3(pos.x - 100, pos.y, pos.z);
+		}
+
+		// Move new mission panel down.
+        LeanTween.moveY (newMissionObject, 0f, 0.5f).setIgnoreTimeScale (true).setEase (LeanTweenType.linear)
+			.setOnComplete (()=>{
+				Debug.Log("Moves new mission in");
+				// Moves new mission in.
+				foreach(var mission in newMissonList) {
+					var pos = mission.transform.position;
+					LeanTween.moveX (mission,pos.x + 100, 0.3f).setIgnoreTimeScale (true).setEase (LeanTweenType.linear);
+				}
+			});
     }
 
     private void updateMissions()
@@ -82,16 +102,28 @@ public class NewMissionsHandler : MonoBehaviour, PhaseEventHandler{
                     missionOneToggle.isOn = missions[i].isFinished;
                     missionOneText.text = missions[i].missionText;
                     createStars(missionOneFirstStarPos, missions[i].numberOfStars, missionOneToggle.gameObject);
+
+					if (missions[i].isFinished) {
+						newMissonList.Add(missionOneToggle.gameObject);
+					}
                     break;
                 case 1:
                     missionTwoToggle.isOn = missions[i].isFinished;
                     missionTwoText.text = missions[i].missionText;
                     createStars(missionTwoFirstStarPos, missions[i].numberOfStars, missionTwoToggle.gameObject);
+
+					if (missions[i].isFinished) {
+					newMissonList.Add(missionTwoToggle.gameObject);
+					}
                     break;
                 case 2:
                     missionThreeToggle.isOn = missions[i].isFinished;
                     missionThreeText.text = missions[i].missionText;
                     createStars(missionThreeFirstStarPos, missions[i].numberOfStars, missionThreeToggle.gameObject);
+
+					if (missions[i].isFinished) {
+					newMissonList.Add(missionThreeToggle.gameObject);
+					}
                     break;
             }
         }
@@ -113,8 +145,9 @@ public class NewMissionsHandler : MonoBehaviour, PhaseEventHandler{
     public void OnClickedNext()
     {
         Debug.Log("clicked next");
+
         //Move up and call next
-        LeanTween.moveY(newMissionObject, -200f, 0.5f).setIgnoreTimeScale(true).setEase(LeanTweenType.linear);
+        LeanTween.moveY(newMissionObject, -200f, 0.5f).setIgnoreTimeScale(true).setEase(LeanTweenType.linear); 
         nextEvent.handleEvent();
     }
     public void next()

@@ -37,7 +37,7 @@ public class MissionStats : MonoBehaviour {
                foreach(var m in currentMissions)  // REMOVE THIS
                {                                  // REMOVE THIS
                    m.isFinished = true;
-                   m.numberOfStars = 2;// REMOVE THIS
+                   m.numberOfStars = 2;				// REMOVE THIS
                }                                    // REMOVE THIS
                 
 	        }
