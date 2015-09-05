@@ -62,8 +62,8 @@ public class GuiAdjuster : MonoBehaviour {
         // Finished mission adjusting parameters
         finishedMissionHeader = GameObject.Find("MissionComplete/Header");
         finishedMissionCompletedMission = GameObject.Find("MissionComplete/CompletedMission");
-        finishedMissionNextBtnPos = GameObject.Find("MissionComplete/finishedMissionNextBtnPos");
-        finishedMissionNextBtn = GameObject.Find("MissionComplete/NextButton");
+		finishedMissionNextBtnPos = GameObject.Find("MissionComplete/NextBtnPos");
+		finishedMissionNextBtn = GameObject.Find("MissionComplete/NextButton");
 
         // Finished mission armor.
         rankTitle = GameObject.Find("Canvas/MissionComplete/Armor/Title").GetComponent<Text>();
@@ -72,8 +72,8 @@ public class GuiAdjuster : MonoBehaviour {
 
         // Summary armor.
         summaryShildTitle = GameObject.Find("Canvas/LosePanel/Armor/Title").GetComponent<Text>();
-        summaryLevel = GameObject.Find("Canvas/LosePanelArmor/Armor/Level").GetComponent<Text>();
-        summaryLevelArmor = GameObject.Find("Canvas/LosePanelArmor/Armor").GetComponent<Image>();
+		summaryLevel = GameObject.Find("LosePanel/Armor/Level").GetComponent<Text>();
+        summaryLevelArmor = GameObject.Find("Canvas/LosePanel/Armor").GetComponent<Image>();
 
 	}
 
@@ -126,7 +126,7 @@ public class GuiAdjuster : MonoBehaviour {
     {
         var starsInLevel = missionLogic.getNextRankStars();
         GameObject prefab = smallPanel;
-        if (starsInLevel >= 4)
+        if (starsInLevel <= 4)
         {
             // Small panel
             // initiate small panel and set finishedMission rank panel as its parent.
@@ -140,7 +140,7 @@ public class GuiAdjuster : MonoBehaviour {
         GameObject newLevelRankPanel = Instantiate(prefab, newRankPanelObject.transform.position, Quaternion.identity) as GameObject;
         newLevelRankPanel.GetComponent<RectTransform>().parent = newRankPanelObject.GetComponent<RectTransform>().parent;
         newLevelRankPanel.name = newRankPanelObject.name;
-
+		newLevelRankPanel.GetComponent<RectTransform> ().localScale = new Vector3 (1f, 1f, 1f);
         GameObject.Destroy(newRankPanelObject);
     }
 
@@ -149,7 +149,7 @@ public class GuiAdjuster : MonoBehaviour {
         // TODO: initiate the panels and make room for them
         var starsInLevel = missionLogic.getRankStars().Length;
         GameObject prefab = smallPanel;
-        if (starsInLevel >= 4)
+        if (starsInLevel <= 4)
         {
             // Small panel
             // initiate small panel and set finishedMission rank panel as its parent.
@@ -163,6 +163,7 @@ public class GuiAdjuster : MonoBehaviour {
         GameObject finishedMissionPanel = Instantiate(prefab, finishedMissionRankPanel.transform.position, Quaternion.identity) as GameObject;
         finishedMissionPanel.GetComponent<RectTransform>().parent = finishedMissionRankPanel.GetComponent<RectTransform>().parent;
         finishedMissionPanel.name = finishedMissionRankPanel.name;
+		finishedMissionPanel.GetComponent<RectTransform> ().localScale = new Vector3 (1f, 1f, 1f);
 
         GameObject.Destroy(finishedMissionRankPanel);
     }

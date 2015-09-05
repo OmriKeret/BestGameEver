@@ -29,6 +29,7 @@ public class EndscreenGuiMain : MonoBehaviour {
     {
         guiAdjuster.initiatePanels();
         guiAdjuster.initiateShilds();
+		guiAdjuster.AdjustPanelsOnStart ();
         blockInput();
         blackBackground.SetBool("darkScreen", true);
         startEndScreen();

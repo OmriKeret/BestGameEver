@@ -86,7 +86,9 @@ public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
 
 		// Move level title down in.
 		float levelUpTitleOriginalY = levelUpTitle.transform.position.y;
-		float rankPanelOrignalY = rankPanelObject.transform.position.y;
+
+		// Adjust finished mission stars panel.
+		float rankPanelOrignalY = guiAdjuster.AdjustPanelsOnLevelUpAndReciveNewY ();
 
 		// Remove from the mission complete hirearchi
 		rankPanelObject.transform.parent = GameObject.Find("Canvas").transform;
