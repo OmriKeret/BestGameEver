@@ -28,10 +28,13 @@ public class FinishedMissionHandler : MonoBehaviour, PhaseEventHandler{
     public GameObject CMStar;
 
 	Button missionCompleteBtn;
+    Vector3 btnFinalPos;
 
     // Rank Panel.
     GameObject rankPanel;
     Text rankTitle;
+    Text rankLevel;
+
     GameObject rankFirstStar;
     GameObject[] rankProgressStars;
 
@@ -60,11 +63,13 @@ public class FinishedMissionHandler : MonoBehaviour, PhaseEventHandler{
         CMFirstStar = GameObject.Find("MissionComplete/CompletedMission/firstStarPos");
         CMText = GameObject.Find("MissionComplete/CompletedMission/MissionCompleteText").GetComponent<Text>();
 		missionCompleteBtn = GameObject.Find("MissionComplete/NextButton").GetComponent<Button>();
+        btnFinalPos = GameObject.Find("MissionComplete/NextBtnPos").transform.position;
 
         // Rank Panel.
         rankPanel = GameObject.Find("MissionComplete/RankPanel");
-        rankTitle =  GameObject.Find("MissionComplete/RankPanel/Title").GetComponent<Text>();
-        rankFirstStar = GameObject.Find("MissionComplete/RankPanel/RankStarsPanel/FirstStarPos");
+        rankTitle =  GameObject.Find("Canvas/MissionComplete/Armor/Title").GetComponent<Text>();
+        rankLevel = GameObject.Find("Canvas/MissionComplete/Armor/Level").GetComponent<Text>();
+        rankFirstStar = GameObject.Find("Canvas/MissionComplete/RankPanel/RankStarsPanel/FirstStarPos");
     }
 	
 	// Update is called once per frame
@@ -98,7 +103,7 @@ public class FinishedMissionHandler : MonoBehaviour, PhaseEventHandler{
 
 		Debug.Log("finished all mission");
 		// moving next button up
-		LeanTween.moveY (missionCompleteBtn.gameObject, CMObject.transform.position.y - 30f, 0.5f).setIgnoreTimeScale (true).setEase (LeanTweenType.linear);
+        LeanTween.moveY(missionCompleteBtn.gameObject, btnFinalPos.y, 0.5f).setIgnoreTimeScale(true).setEase(LeanTweenType.linear);
 		while (movingStarsAnimationIsPlaying)
 		{
 			yield return new WaitForSeconds(0.1f);

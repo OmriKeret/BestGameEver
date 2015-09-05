@@ -231,4 +231,15 @@ public class MissionStats : MonoBehaviour {
             mission.isNew = false;
         }
     }
+
+    internal int getNextLevelStars()
+    {
+        int numStars;
+        if (tierStars.TryGetValue(tier + 1, out numStars)){
+            return numStars;
+        }
+
+        return rankStars.Length;
+         
+    }
 }

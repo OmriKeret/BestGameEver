@@ -82,7 +82,6 @@ public class NewMissionsHandler : MonoBehaviour, PhaseEventHandler{
 		// Move new mission panel down.
         LeanTween.moveY (newMissionObject, 0f, 0.5f).setIgnoreTimeScale (true).setEase (LeanTweenType.linear)
 			.setOnComplete (()=>{
-				Debug.Log("Moves new mission in");
 				// Moves new mission in.
 				foreach(var mission in newMissonList) {
 					var pos = mission.transform.position;
@@ -94,6 +93,8 @@ public class NewMissionsHandler : MonoBehaviour, PhaseEventHandler{
     private void updateMissions()
     {
         var missions = missionLogic.getNewMissions();
+        missionLogic.saveMissionData();
+
         for (int i = 0; i < missions.Length; i++)
         {
             switch (i)

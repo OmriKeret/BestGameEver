@@ -42,10 +42,10 @@ public class SummeryScreen : MonoBehaviour, PhaseEventHandler {
 
         // Gui.
         losePanel = GameObject.Find("LosePanel");
-        goldEarned = GameObject.Find("LosePanel/TOTALEARNED").GetComponent<Text>();
-        numOfKills = GameObject.Find("LosePanel/KILLS").GetComponent<Text>();
-        bestCombo = GameObject.Find("LosePanel/COMBOBONUS").GetComponent<Text>();
-        roundRank = GameObject.Find("LosePanel/ROUNDRANK").GetComponent<Text>();
+        goldEarned = GameObject.Find("LosePanel/TOTALEARNED/Num").GetComponent<Text>();
+        numOfKills = GameObject.Find("LosePanel/KILLS/Num").GetComponent<Text>();
+        bestCombo = GameObject.Find("LosePanel/COMBOBONUS/Num").GetComponent<Text>();
+        roundRank = GameObject.Find("LosePanel/ROUNDRANK/rank").GetComponent<Text>();
         roundRankObject = GameObject.Find("LosePanel/ROUNDRANK/rank");
 
         totalEarned = GameObject.Find("LosePanel/TOTALEARNED").GetComponent<Text>();
@@ -84,7 +84,7 @@ public class SummeryScreen : MonoBehaviour, PhaseEventHandler {
         {
             yield return new WaitForSeconds(0.1f);
         }
-        ShowGoldEarned();
+        //ShowGoldEarned();
         ShowKills();
         showBestCombo();
 
@@ -131,8 +131,9 @@ public class SummeryScreen : MonoBehaviour, PhaseEventHandler {
         Debug.Log("finished to exchange kills with gold earned");
 
         fitGoldCoin();
-
     }
+
+ 
 
     /**
      * Puts the gold coin in place
@@ -159,6 +160,7 @@ public class SummeryScreen : MonoBehaviour, PhaseEventHandler {
         int i = kills;
         var totalEarnedTemp = totalEarnedDisplayedSum;
         var timeStartedToChangeScore = Time.realtimeSinceStartup;
+        int coinsPerKill = currencyLogic.getCoinsPerKill();
         while (i > 0)
         {
             // TODO: music!
@@ -168,7 +170,7 @@ public class SummeryScreen : MonoBehaviour, PhaseEventHandler {
                 deltaTime = timeToReciveCoins;
             }
             i = (int)(kills * calculateEasing(deltaTime, timeToReciveCoins));
-            totalEarnedDisplayedSum = totalEarnedTemp + (kills - i) * 2; // 2 coins for each kill
+            totalEarnedDisplayedSum = totalEarnedTemp + (kills - i) * coinsPerKill; // 2 coins for each kill
 
             var displayedTotal = string.Format(System.Globalization.CultureInfo.InvariantCulture,
                         "{0:0,0}", totalEarnedDisplayedSum);
@@ -176,8 +178,8 @@ public class SummeryScreen : MonoBehaviour, PhaseEventHandler {
             "{0:0,0}", i);
             Debug.Log("kills is : " + kills);
             Debug.Log("i is : " + i);
-            totalEarned.text = string.Format("TOTAL EARNED: {0}", displayedTotal);
-            numOfKills.text = string.Format("KILLS: {0}", killsDisplayed);
+            totalEarned.text = string.Format("{0}", displayedTotal);
+            numOfKills.text = string.Format("{0}", killsDisplayed);
             yield return null; // wait one frame
         }
         Debug.Log("total kills: " + (kills - i));
@@ -210,8 +212,8 @@ public class SummeryScreen : MonoBehaviour, PhaseEventHandler {
             var gold = string.Format(System.Globalization.CultureInfo.InvariantCulture,
             "{0:0,0}", coinsEarned - i);
 
-            totalEarned.text = string.Format("TOTAL EARNED: {0}", displayedTotal);
-            goldEarned.text = string.Format("GOLD EARNED: {0}", gold);
+            totalEarned.text = string.Format("{0}", displayedTotal);
+            goldEarned.text = string.Format("{0}", gold);
             yield return null; // wait one frame
         }
         isAnimationPlaying = false;
@@ -225,7 +227,8 @@ public class SummeryScreen : MonoBehaviour, PhaseEventHandler {
         var combo = playerStats.getHighestCombo();
         var displayedCombo = string.Format(System.Globalization.CultureInfo.InvariantCulture,
                          "{0:0,0}", combo);
-        bestCombo.text = string.Format("BEST COMBO:   {0}", displayedCombo);
+        bestCombo.text = string.Format("{0}", displayedCombo);
+
     }
 
     /**
@@ -233,10 +236,15 @@ public class SummeryScreen : MonoBehaviour, PhaseEventHandler {
      * */
     private void ShowKills()
     {
-        var numberOfKills = scoreLogic.score;
+        var numberOfKills = scoreLogic.kills;
         var displayedKills = string.Format(System.Globalization.CultureInfo.InvariantCulture,
                          "{0:0,0}", numberOfKills);
-        numOfKills.text = string.Format("KILLS:   {0}", displayedKills);
+        numOfKills.text = string.Format("{0}", displayedKills);
+
+        // TODO: do somthing with this information
+        //check if new high score and save
+        bool isNewHighScore = scoreLogic.getHighScore() < numberOfKills;
+        scoreLogic.saveScoreData(); // Saving here because it destroys the high score check.
     }
 
     /**
@@ -247,8 +255,9 @@ public class SummeryScreen : MonoBehaviour, PhaseEventHandler {
         var coinsEarned = currencyLogic.getGoldEarned();
         var displayedGold = string.Format(System.Globalization.CultureInfo.InvariantCulture,
                          "{0:0,0}", coinsEarned);
-        goldEarned.text = string.Format("GOLD EARNED:   {0}", displayedGold);
+        goldEarned.text = string.Format("{0}", displayedGold);
     }
+
 
     public void next()
     {

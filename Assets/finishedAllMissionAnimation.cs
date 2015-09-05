@@ -9,6 +9,6 @@ public class finishedAllMissionAnimation : MonoBehaviour {
 	}
 	
     public void setFinishedAnimation() {
-        deathLogic.moveOldMission(0);
+    
     }
 }

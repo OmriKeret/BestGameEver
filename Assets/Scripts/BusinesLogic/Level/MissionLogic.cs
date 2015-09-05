@@ -204,12 +204,11 @@ public class MissionLogic : MonoBehaviour {
     {
         if (missionStats.updateMissionStats(this.missions))
         {
-            deathLogic.switchMissionsOnComplete(missionStats.switchMissions());
+         
         }
         else
         {
-            //no more updates to score
-            deathLogic.updateCurrencyGui();
+
         }
     }
 
@@ -218,15 +217,6 @@ public class MissionLogic : MonoBehaviour {
         return missionStats.getTier();
     }
 
-    internal int getBonusForFinishingAllMission()
-    {
-        var tier = missionStats.getTier();
-        if (tier < 3)
-        {
-            return tier * 1200;
-        }
-         return (int)Mathf.Pow(10,tier);
-    }
 
     internal void saveMissionData()
     {
@@ -313,7 +303,7 @@ public class MissionLogic : MonoBehaviour {
 		return 100 + 300 * (getTier () - 1);
 	}
 
-    internal bool didLevelUp()
+    public bool didLevelUp()
     {
        int i = getFirstMissingStarIndex();
        int numberOfCurrentLevelStars = getRankStars().Length;
@@ -322,9 +312,9 @@ public class MissionLogic : MonoBehaviour {
        {
            if (mission.isFinished)
            {
-               numberToAchive--;
+               numberToAchive = numberToAchive - mission.numberOfStars;
            }
-           if (numberToAchive == 0)
+           if (numberToAchive <= 0)
            {
                return true;
            }
@@ -343,5 +333,10 @@ public class MissionLogic : MonoBehaviour {
     internal void unMarkMissionsNew()
     {
         missionStats.unMarkMissionAsNew();
+    }
+
+    internal int getNextRankStars()
+    {
+        return missionStats.getNextLevelStars();
     }
 }

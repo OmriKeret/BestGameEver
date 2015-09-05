@@ -4,23 +4,26 @@ using System.Collections;
 public class CurrencyLogic : MonoBehaviour {
 
     CurrencyData currencyDataAccess;
-    public int deviderToScore = 1;
+    public int killPerCoin = 2;
     public int goldEarned;
     void Start()
     {
         currencyDataAccess = GameObject.Find("GameManagerData").GetComponent<CurrencyData>();
-        deviderToScore = 1;
+        killPerCoin = 2;
     }
 
-    public int updateCurrencyByScore(int score)
+    public int updateCurrencyByKillsAndLoot(int kills, int coinsEarned)
     {
-        int currencyToAdd = score / deviderToScore; // + coins
+        int currencyToAdd = kills / killPerCoin; // + coins
         var currentCurrency = currencyDataAccess.loadCurrency();
-        Debug.Log("Before" + currentCurrency.PJ);
-        currentCurrency.PJ += currencyToAdd;
-        Debug.Log("After"+currentCurrency.PJ);
+        currentCurrency.PJ += currencyToAdd + coinsEarned;
         currencyDataAccess.saveCurrency(currentCurrency);
         return currencyToAdd;
+    }
+
+    public int getCoinsPerKill()
+    {
+        return killPerCoin;
     }
 
     public int getGoldEarned()

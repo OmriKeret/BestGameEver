@@ -35,6 +35,7 @@ public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
 	GameObject newRank;
 	GameObject[] newRankProgressStars;
 	Text newRankTitle;
+    Text newRankNum;
 
 	// Reward.
 	Text rewardText;
@@ -42,6 +43,9 @@ public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
 	float timeToReciveCoins = 2f;
 	float rewardSum;
 	Button nextButton;
+
+    // Gui adjustment
+    GuiAdjuster guiAdjuster;
 
 	// Use this for initialization
 
@@ -61,8 +65,11 @@ public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
 		// new rank
 		newRankFirstStarPos = GameObject.Find ("LevelUp/NewLevel/RankStarsPanel/FirstStarPos");
 		newRankPanelObject = GameObject.Find ("LevelUp/NewLevel/RankStarsPanel");
-		newRankTitle = GameObject.Find ("LevelUp/NewLevel/RankStarsPanel/Title").GetComponent<Text> ();
+        newRankTitle = GameObject.Find("MissionComplete/Armor/Title").GetComponent<Text>();
+        newRankNum = GameObject.Find("MissionComplete/Armor/Level").GetComponent<Text>();
 		newRank = GameObject.Find ("LevelUp/NewLevel");
+
+        guiAdjuster = this.gameObject.GetComponent<GuiAdjuster>();
 	}
 	
 	// Update is called once per frame
@@ -99,7 +106,7 @@ public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
 		// Moves completed mission screen down.
 		float MissionCompleteOriginalY = missionCompleteObject.transform.position.y;
 
-		LeanTween.moveY (missionCompleteObject, -100f, 0.5f).setIgnoreTimeScale (true).setEase (LeanTweenType.linear).setOnComplete (
+		LeanTween.moveY (missionCompleteObject, -200f, 0.5f).setIgnoreTimeScale (true).setEase (LeanTweenType.linear).setOnComplete (
 			() => {
 			animationRun = false;
 			});
@@ -152,7 +159,7 @@ public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
 
 		// moves up the Next button and wait for a next click :)
 		float nextButtonOrigY = nextButton.transform.position.y;
-		LeanTween.moveY (nextButton.gameObject, reward.transform.position.y - 20f, 0.5f).setIgnoreTimeScale (true).setEase (LeanTweenType.linear);
+		LeanTween.moveY (nextButton.gameObject, reward.transform.position.y - 15f, 0.5f).setIgnoreTimeScale (true).setEase (LeanTweenType.linear);
 		animationRun = true;
 		while (animationRun) {
 			yield return new WaitForSeconds(0.1f);
@@ -265,7 +272,8 @@ public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
 
 	private void initiateNewRankStats()
 	{
-		newRankTitle.text = missionLogic.getTierTitle(); ; 
+		newRankTitle.text = missionLogic.getTierTitle();
+        newRankNum.text = string.Format("{0}", missionLogic.getTier());
 		newRankProgressStars = new GameObject[missionLogic.getRankStars().Length];
 		Vector3 firstStarPos =  newRankFirstStarPos.transform.position;
 		int i = 0;

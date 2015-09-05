@@ -10,11 +10,13 @@ public class EndscreenGuiMain : MonoBehaviour {
     PhaseEventHandler firstEvent;
     TouchInterpeter touch;
     Animator blackBackground;
+    GuiAdjuster guiAdjuster;
 
 	void Start ()
     {
         endScreenChainFactory = this.gameObject.GetComponent<EndscreenChainFactory>();
         missionLogic = this.gameObject.GetComponentInParent<MissionLogic>();
+        guiAdjuster = this.gameObject.GetComponent<GuiAdjuster>();
         pauseBtn = GameObject.Find("Pause").GetComponent<Button>();
         touch = GameObject.Find("TouchInterpter").GetComponent<TouchInterpeter>();
         blackBackground = GameObject.Find("Canvas/DarkScreen").GetComponent<Animator>();
@@ -25,6 +27,8 @@ public class EndscreenGuiMain : MonoBehaviour {
      * */
     public void initiateDeathScreen()
     {
+        guiAdjuster.initiatePanels();
+        guiAdjuster.initiateShilds();
         blockInput();
         blackBackground.SetBool("darkScreen", true);
         startEndScreen();
