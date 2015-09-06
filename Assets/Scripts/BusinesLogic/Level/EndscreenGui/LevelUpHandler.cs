@@ -79,6 +79,10 @@ public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
 
     IEnumerator run()
     {
+        // reGet new rank paramaters (because they have been initiated)
+        newRankFirstStarPos = GameObject.Find("LevelUp/NewLevel/RankStarsPanel/FirstStarPos");
+        newRankPanelObject = GameObject.Find("LevelUp/NewLevel/RankStarsPanel");
+
 		// Dark screen
 		animationRun = true;
 		blackBackground.SetBool("darkScreenSolid", true);
@@ -86,9 +90,6 @@ public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
 
 		// Move level title down in.
 		float levelUpTitleOriginalY = levelUpTitle.transform.position.y;
-
-		// Adjust finished mission stars panel.
-		float rankPanelOrignalY = guiAdjuster.AdjustPanelsOnLevelUpAndReciveNewY ();
 
 		// Remove from the mission complete hirearchi
 		rankPanelObject.transform.parent = GameObject.Find("Canvas").transform;
@@ -107,6 +108,7 @@ public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
 
 		// Moves completed mission screen down.
 		float MissionCompleteOriginalY = missionCompleteObject.transform.position.y;
+        var missionCompleteOriginalPos = missionCompleteObject.transform.position;
 
 		LeanTween.moveY (missionCompleteObject, -200f, 0.5f).setIgnoreTimeScale (true).setEase (LeanTweenType.linear).setOnComplete (
 			() => {
@@ -184,8 +186,13 @@ public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
 		LeanTween.moveY (levelUpTitle, levelUpTitleOriginalY, 0.3f).
 			setIgnoreTimeScale (true).setEase (LeanTweenType.linear);
 
+        // calculation set of missionComplete object
+        var missionCompleteCurrentPos = missionCompleteObject.transform.position;
+        missionCompleteObject.transform.position = missionCompleteOriginalPos;
+        // Adjust finished mission stars panel.
+        float rankPanelOrignalY = guiAdjuster.AdjustPanelsOnLevelUpAndReciveNewY();
 
-
+        missionCompleteObject.transform.position = missionCompleteCurrentPos;
 		StartCoroutine(moveNewMissionIn (rankPanelOrignalY, MissionCompleteOriginalY));
 
 		while (animationRun) {
@@ -251,7 +258,7 @@ public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
 		// unDark the screen
 		blackBackground.SetBool("darkScreenSolid", false);
 
-		LeanTween.moveY (newRank, rankPanelOrignalY, 0.3f).
+        LeanTween.moveY(newRankPanelObject, rankPanelOrignalY, 0.3f).
 			setIgnoreTimeScale (true).setEase (LeanTweenType.linear);
 
 		LeanTween.moveY (missionCompleteObject, MissionCompleteOriginalY, 0.3f).
@@ -265,8 +272,8 @@ public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
 			yield return new WaitForSeconds(0.1f);
 		}
 
-		// Set new rank as mission complete sybling.
-		newRank.transform.parent = missionCompleteObject.transform;
+        // Set new rank as mission complete sybling.
+        newRank.transform.parent = missionCompleteObject.transform;
 
 		animationRun = false; // release lock on leveling up
 
@@ -281,7 +288,7 @@ public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
 		int i = 0;
 		while (i < newRankProgressStars.Length)
 		{
-			newRankProgressStars[i] = Instantiate(unCompletedStar, firstStarPos + new Vector3(i * 7.0f, 0, 0), Quaternion.identity) as GameObject;
+			newRankProgressStars[i] = Instantiate(unCompletedStar, firstStarPos + new Vector3(i * 18.0f, 0, 0), Quaternion.identity) as GameObject;
 			newRankProgressStars[i].transform.parent = newRankPanelObject.transform;
 			i++;
 		}

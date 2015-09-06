@@ -75,6 +75,7 @@ public class GuiAdjuster : MonoBehaviour {
 		summaryLevel = GameObject.Find("LosePanel/Armor/Level").GetComponent<Text>();
         summaryLevelArmor = GameObject.Find("Canvas/LosePanel/Armor").GetComponent<Image>();
 
+        initiatePanels();
 	}
 
     public void initiateShilds()
@@ -138,7 +139,7 @@ public class GuiAdjuster : MonoBehaviour {
         }
 
         GameObject newLevelRankPanel = Instantiate(prefab, newRankPanelObject.transform.position, Quaternion.identity) as GameObject;
-        newLevelRankPanel.GetComponent<RectTransform>().parent = newRankPanelObject.GetComponent<RectTransform>().parent;
+        newLevelRankPanel.transform.parent = newRankPanelObject.transform.parent;
         newLevelRankPanel.name = newRankPanelObject.name;
 		newLevelRankPanel.GetComponent<RectTransform> ().localScale = new Vector3 (1f, 1f, 1f);
         GameObject.Destroy(newRankPanelObject);
@@ -149,7 +150,7 @@ public class GuiAdjuster : MonoBehaviour {
         // TODO: initiate the panels and make room for them
         var starsInLevel = missionLogic.getRankStars().Length;
         GameObject prefab = smallPanel;
-        if (starsInLevel <= 4)
+        if (starsInLevel >= 4)
         {
             // Small panel
             // initiate small panel and set finishedMission rank panel as its parent.
@@ -161,7 +162,7 @@ public class GuiAdjuster : MonoBehaviour {
         }
 
         GameObject finishedMissionPanel = Instantiate(prefab, finishedMissionRankPanel.transform.position, Quaternion.identity) as GameObject;
-        finishedMissionPanel.GetComponent<RectTransform>().parent = finishedMissionRankPanel.GetComponent<RectTransform>().parent;
+		finishedMissionPanel.transform.parent = finishedMissionRankPanel.transform.parent;
         finishedMissionPanel.name = finishedMissionRankPanel.name;
 		finishedMissionPanel.GetComponent<RectTransform> ().localScale = new Vector3 (1f, 1f, 1f);
 
@@ -172,45 +173,57 @@ public class GuiAdjuster : MonoBehaviour {
     {
         // find panel
         var finishedMissionPanel = GameObject.Find("MissionComplete/RankPanel/RankStarsPanel");
+
         // adjesting panel according to header
-        var finishedMissionPanelHeight = finishedMissionPanel.GetComponent<RectTransform>().rect.height;
-        var headerPos = finishedMissionHeader.GetComponent<RectTransform>().position;
-        var panelAdjustedYPosition = headerPos.y - finishedMissionHeader.GetComponent<RectTransform>().rect.height / 2 - panelDistanceFromHeader - finishedMissionPanelHeight / 2;
-        finishedMissionPanel.GetComponent<RectTransform>().position = new Vector3(headerPos.x, panelAdjustedYPosition, headerPos.z);
+        var finishedMissionPanelHeight = getHeight(finishedMissionPanel.GetComponent<RectTransform>());
+        var headerPos = finishedMissionHeader.transform.position;
+        var panelAdjustedYPosition = headerPos.y - getHeight(finishedMissionHeader.GetComponent<RectTransform>()) / 2 - finishedMissionPanelHeight / 2;
+        finishedMissionPanel.transform.position = new Vector3(headerPos.x, panelAdjustedYPosition, headerPos.z);
 
         // adjesting mission acoording to panel
-        var panelPos = finishedMissionPanel.GetComponent<RectTransform>().position;
-        var completedMissionAdjustedY = panelPos.y - finishedMissionPanelHeight / 2 - panelDistanceFromCompletedMission - finishedMissionPanelHeight / 2;
-        finishedMissionCompletedMission.GetComponent<RectTransform>().position = new Vector3(panelPos.x, completedMissionAdjustedY, panelPos.z);
+        var finishedMissionHeigt = getHeight(finishedMissionCompletedMission.GetComponent<RectTransform>());
+        var finishedMissionAdjustedY = panelAdjustedYPosition - finishedMissionHeigt / 2 - finishedMissionPanelHeight / 2;
+        finishedMissionCompletedMission.transform.position = new Vector3(headerPos.x, finishedMissionAdjustedY, headerPos.z);
 
         // adjesting next btn
-        var completedMissonPos = finishedMissionCompletedMission.GetComponent<RectTransform>().position;
-        var nextBtnHeight = finishedMissionNextBtn.GetComponent<RectTransform>().rect.height;
-        var nextBtnY = completedMissonPos.y - finishedMissionPanelHeight / 2 - panelDistanceFromCompletedMission - nextBtnHeight / 2;
-        finishedMissionNextBtnPos.GetComponent<RectTransform>().position = new Vector3(completedMissonPos.x, completedMissionAdjustedY, completedMissonPos.z);
+        var finishedMissionNextBtny = finishedMissionAdjustedY - getHeight(finishedMissionNextBtn.GetComponent<RectTransform>()) / 2 - finishedMissionHeigt / 2;
+        finishedMissionNextBtnPos.transform.position = new Vector3(headerPos.x, finishedMissionNextBtny, headerPos.z);
+
+        Debug.Log("panel start Y is: " + panelAdjustedYPosition);
     }
 
     public float AdjustPanelsOnLevelUpAndReciveNewY()
     {
         // find panel
         var finishedMissionPanel = GameObject.Find("LevelUp/NewLevel/RankStarsPanel");
+        var tempPanelPos = finishedMissionPanel.transform.position;
+
         // adjesting panel according to header
-        var finishedMissionPanelHeight = finishedMissionPanel.GetComponent<RectTransform>().rect.height;
-        var headerPos = finishedMissionHeader.GetComponent<RectTransform>().position;
-        var panelAdjustedYPosition = headerPos.y - finishedMissionHeader.GetComponent<RectTransform>().rect.height / 2 - panelDistanceFromHeader - finishedMissionPanelHeight / 2;
-       // finishedMissionPanel.GetComponent<RectTransform>().position = new Vector3(headerPos.x, panelAdjustedYPosition, headerPos.z);
+        var finishedMissionPanelHeight = getHeight(finishedMissionPanel.GetComponent<RectTransform>());
+        var headerPos = finishedMissionHeader.transform.position;
+        var panelAdjustedYPosition = headerPos.y - getHeight(finishedMissionHeader.GetComponent<RectTransform>()) / 2 - finishedMissionPanelHeight / 2;
+        finishedMissionPanel.transform.position = new Vector3(headerPos.x, panelAdjustedYPosition, headerPos.z);
 
         // adjesting mission acoording to panel
-       // var panelPos = finishedMissionPanel.GetComponent<RectTransform>().position;
-        var completedMissionAdjustedY = panelAdjustedYPosition - finishedMissionPanelHeight / 2 - panelDistanceFromCompletedMission - finishedMissionPanelHeight / 2;
-        finishedMissionCompletedMission.GetComponent<RectTransform>().position = new Vector3(headerPos.x, completedMissionAdjustedY, headerPos.z);
+        var finishedMissionHeigt = getHeight(finishedMissionCompletedMission.GetComponent<RectTransform>());
+        var finishedMissionAdjustedY = panelAdjustedYPosition - finishedMissionHeigt / 2 - finishedMissionPanelHeight / 2;
+        finishedMissionCompletedMission.transform.position = new Vector3(headerPos.x, finishedMissionAdjustedY, headerPos.z);
 
         // adjesting next btn
-        var completedMissonPos = finishedMissionCompletedMission.GetComponent<RectTransform>().position;
-        var nextBtnHeight = finishedMissionNextBtn.GetComponent<RectTransform>().rect.height;
-        var nextBtnY = completedMissonPos.y - finishedMissionPanelHeight / 2 - panelDistanceFromCompletedMission - nextBtnHeight / 2;
-        finishedMissionNextBtnPos.GetComponent<RectTransform>().position = new Vector3(completedMissonPos.x, completedMissionAdjustedY, completedMissonPos.z);
+        var finishedMissionNextBtny = finishedMissionAdjustedY - getHeight(finishedMissionNextBtn.GetComponent<RectTransform>()) / 2 - finishedMissionHeigt / 2;
+        finishedMissionNextBtnPos.transform.position = new Vector3(headerPos.x, finishedMissionNextBtny, headerPos.z);
 
+        finishedMissionPanel.transform.position = tempPanelPos;
+
+        Debug.Log("panel adjusted Y is: " + panelAdjustedYPosition);
         return panelAdjustedYPosition;
+    }
+
+    // Helper method to get height.
+    private float getHeight(RectTransform guiObject)
+    {
+        Vector3[] corners = new Vector3[4] { new Vector3(), new Vector3(), new Vector3(), new Vector3() };
+        guiObject.GetWorldCorners(corners);
+        return Mathf.Abs(corners[0].y - corners[2].y);
     }
 }

@@ -69,7 +69,7 @@ public class FinishedMissionHandler : MonoBehaviour, PhaseEventHandler{
         rankPanel = GameObject.Find("MissionComplete/RankPanel");
         rankTitle =  GameObject.Find("Canvas/MissionComplete/Armor/Title").GetComponent<Text>();
         rankLevel = GameObject.Find("Canvas/MissionComplete/Armor/Level").GetComponent<Text>();
-        rankFirstStar = GameObject.Find("Canvas/MissionComplete/RankPanel/RankStarsPanel/FirstStarPos");
+      
     }
 	
 	// Update is called once per frame
@@ -79,6 +79,7 @@ public class FinishedMissionHandler : MonoBehaviour, PhaseEventHandler{
 
     private IEnumerator run()
     {
+        rankFirstStar = GameObject.Find("Canvas/MissionComplete/RankPanel/RankStarsPanel/FirstStarPos"); 
         missions = missionLogic.getMissions();
         initiateRankStats();
 
@@ -103,6 +104,7 @@ public class FinishedMissionHandler : MonoBehaviour, PhaseEventHandler{
 
 		Debug.Log("finished all mission");
 		// moving next button up
+        btnFinalPos = GameObject.Find("MissionComplete/NextBtnPos").transform.position;
         LeanTween.moveY(missionCompleteBtn.gameObject, btnFinalPos.y, 0.5f).setIgnoreTimeScale(true).setEase(LeanTweenType.linear);
 		while (movingStarsAnimationIsPlaying)
 		{
@@ -123,7 +125,7 @@ public class FinishedMissionHandler : MonoBehaviour, PhaseEventHandler{
         int i = 0;
         while (i < rankProgressStars.Length)
         {
-            rankProgressStars[i] = Instantiate(unCompletedStar, firstStarPos + new Vector3(i * 7.0f, 0, 0), Quaternion.identity) as GameObject;
+            rankProgressStars[i] = Instantiate(unCompletedStar, firstStarPos + new Vector3(i * 18.0f, 0, 0), Quaternion.identity) as GameObject;
             rankProgressStars[i].transform.parent = rankPanel.transform;
             i++;
         }
@@ -255,6 +257,7 @@ public class FinishedMissionHandler : MonoBehaviour, PhaseEventHandler{
 
 	public void onNextButtonClicked() 
 	{
+        Debug.Log("Click next btn");
 		movingStarsAnimationIsPlaying = false;
 	}
 }

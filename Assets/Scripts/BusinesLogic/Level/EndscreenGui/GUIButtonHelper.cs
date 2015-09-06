@@ -26,6 +26,7 @@ public class GUIButtonHelper : MonoBehaviour {
 
 	public void FinishedMissionNext()
 	{
+        Debug.Log("Click next btn");
 		finishedMission.onNextButtonClicked ();
 	}
 
