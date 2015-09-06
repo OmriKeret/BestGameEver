@@ -44,17 +44,17 @@ public class NewMissionsHandler : MonoBehaviour, PhaseEventHandler{
 		newMissonList = new List<GameObject> ();
 
         //new mission One
-        missionOneToggle = GameObject.Find("NewMissions/MissionOne").GetComponent<Toggle>();
+        missionOneToggle = GameObject.Find("Canvas/NewMissions/MissionOne/Toggle").GetComponent<Toggle>();
         missionOneText = GameObject.Find("NewMissions/MissionOne/MissionText").GetComponent<Text>();
         missionOneFirstStarPos = GameObject.Find("NewMissions/MissionOne/firstStarPos");
 
         //new mission Two
-        missionTwoToggle = GameObject.Find("NewMissions/MissionTwo").GetComponent<Toggle>();
+        missionTwoToggle = GameObject.Find("NewMissions/MissionTwo/Toggle").GetComponent<Toggle>();
         missionTwoText = GameObject.Find("NewMissions/MissionTwo/MissionText").GetComponent<Text>();
         missionTwoFirstStarPos = GameObject.Find("NewMissions/MissionTwo/firstStarPos");
 
         //new mission Three
-        missionThreeToggle = GameObject.Find("NewMissions/MissionThree").GetComponent<Toggle>();
+        missionThreeToggle = GameObject.Find("NewMissions/MissionThree/Toggle").GetComponent<Toggle>();
         missionThreeText = GameObject.Find("NewMissions/MissionThree/MissionText").GetComponent<Text>();
         missionThreeFirstStarPos = GameObject.Find("NewMissions/MissionThree/firstStarPos");
 	    
@@ -100,32 +100,32 @@ public class NewMissionsHandler : MonoBehaviour, PhaseEventHandler{
             switch (i)
             {
                 case 0:
-                    missionOneToggle.isOn = missions[i].isFinished;
+                    missionOneToggle.isOn = missions[i].isNew;
                     missionOneText.text = missions[i].missionText;
-                    createStars(missionOneFirstStarPos, missions[i].numberOfStars, missionOneToggle.gameObject);
+                    createStars(missionOneFirstStarPos, missions[i].numberOfStars, missionOneToggle.transform.parent.gameObject);
 
 					if (missions[i].isNew) {
-						newMissonList.Add(missionOneToggle.gameObject);
+                        newMissonList.Add(missionOneToggle.transform.parent.gameObject);
 					}
                     break;
                 case 1:
-                    missionTwoToggle.isOn = missions[i].isFinished;
+                    missionTwoToggle.isOn = missions[i].isNew;
                     missionTwoText.text = missions[i].missionText;
-                    createStars(missionTwoFirstStarPos, missions[i].numberOfStars, missionTwoToggle.gameObject);
+                    createStars(missionTwoFirstStarPos, missions[i].numberOfStars, missionTwoToggle.transform.parent.gameObject);
 
                     if (missions[i].isNew)
                     {
-					newMissonList.Add(missionTwoToggle.gameObject);
+                        newMissonList.Add(missionTwoToggle.transform.parent.gameObject);
 					}
                     break;
                 case 2:
-                    missionThreeToggle.isOn = missions[i].isFinished;
+                    missionThreeToggle.isOn = missions[i].isNew;
                     missionThreeText.text = missions[i].missionText;
-                    createStars(missionThreeFirstStarPos, missions[i].numberOfStars, missionThreeToggle.gameObject);
+                    createStars(missionThreeFirstStarPos, missions[i].numberOfStars, missionThreeToggle.transform.parent.gameObject);
 
                     if (missions[i].isNew)
                     {
-					newMissonList.Add(missionThreeToggle.gameObject);
+                        newMissonList.Add(missionThreeToggle.transform.parent.gameObject);
 					}
                     break;
             }
@@ -139,7 +139,7 @@ public class NewMissionsHandler : MonoBehaviour, PhaseEventHandler{
         GameObject tempStar;
         while (i < numberOfStars)
         {
-            tempStar = Instantiate(star, firstStarPos + new Vector3(i * 4.0f, 0, 0), Quaternion.identity) as GameObject;
+            tempStar = Instantiate(star, firstStarPos + new Vector3(i * 2.0f, 0, 0), Quaternion.identity) as GameObject;
             tempStar.transform.parent = parent.transform;
             i++;
         }

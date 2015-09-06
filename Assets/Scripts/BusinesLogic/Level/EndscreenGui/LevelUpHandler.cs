@@ -101,7 +101,7 @@ public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
 			});
 
 		// Moves rank object near the level up title.
-		LeanTween.moveY (rankPanelObject, 0f, 0.5f).setIgnoreTimeScale (true).setEase (LeanTweenType.linear).setOnComplete (
+		LeanTween.moveY (rankPanelObject, 10f, 0.5f).setIgnoreTimeScale (true).setEase (LeanTweenType.linear).setOnComplete (
 			() => {
 			animationRun = false;
 			});
@@ -132,8 +132,9 @@ public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
 		}
 
 		var rewardOrigY = reward.transform.position.y;
+        var levelPanelHeight = guiAdjuster.getHeight(GameObject.Find("RankPanel/RankStarsPanel").GetComponent<RectTransform>());
 		//Brings reward up
-		LeanTween.moveY (reward, rankPanelObject.transform.position.y - 40f, 0.5f).setIgnoreTimeScale (true).setEase (LeanTweenType.linear).setOnComplete (
+        LeanTween.moveY(reward, rankPanelObject.transform.position.y - levelPanelHeight / 2f - 10f, 0.5f).setIgnoreTimeScale(true).setEase(LeanTweenType.linear).setOnComplete(
 			() => {
 				animationRun = false;
 			});
@@ -242,7 +243,7 @@ public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
 		var animationIsRunning = true;
 
 		// Insert new title and remove old title.
-		LeanTween.moveX (newRank, rankPanelObject.transform.position.x, 0.3f).
+        LeanTween.moveX(newRankPanelObject, rankPanelObject.transform.position.x, 0.3f).
 			setIgnoreTimeScale (true).setEase (LeanTweenType.linear);
 		LeanTween.moveX (rankPanelObject, -200f, 0.3f).
 			setIgnoreTimeScale (true).setEase (LeanTweenType.linear).setOnComplete (

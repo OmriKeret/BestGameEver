@@ -150,7 +150,7 @@ public class GuiAdjuster : MonoBehaviour {
         // TODO: initiate the panels and make room for them
         var starsInLevel = missionLogic.getRankStars().Length;
         GameObject prefab = smallPanel;
-        if (starsInLevel >= 4)
+        if (starsInLevel <= 4)
         {
             // Small panel
             // initiate small panel and set finishedMission rank panel as its parent.
@@ -177,16 +177,16 @@ public class GuiAdjuster : MonoBehaviour {
         // adjesting panel according to header
         var finishedMissionPanelHeight = getHeight(finishedMissionPanel.GetComponent<RectTransform>());
         var headerPos = finishedMissionHeader.transform.position;
-        var panelAdjustedYPosition = headerPos.y - getHeight(finishedMissionHeader.GetComponent<RectTransform>()) / 2 - finishedMissionPanelHeight / 2;
+        var panelAdjustedYPosition = headerPos.y - getHeight(finishedMissionHeader.GetComponent<RectTransform>()) / 2 - finishedMissionPanelHeight / 2 - panelDistanceFromHeader;
         finishedMissionPanel.transform.position = new Vector3(headerPos.x, panelAdjustedYPosition, headerPos.z);
 
         // adjesting mission acoording to panel
         var finishedMissionHeigt = getHeight(finishedMissionCompletedMission.GetComponent<RectTransform>());
-        var finishedMissionAdjustedY = panelAdjustedYPosition - finishedMissionHeigt / 2 - finishedMissionPanelHeight / 2;
+        var finishedMissionAdjustedY = panelAdjustedYPosition - finishedMissionHeigt / 2 - finishedMissionPanelHeight / 2 - panelDistanceFromCompletedMission;
         finishedMissionCompletedMission.transform.position = new Vector3(headerPos.x, finishedMissionAdjustedY, headerPos.z);
 
         // adjesting next btn
-        var finishedMissionNextBtny = finishedMissionAdjustedY - getHeight(finishedMissionNextBtn.GetComponent<RectTransform>()) / 2 - finishedMissionHeigt / 2;
+        var finishedMissionNextBtny = finishedMissionAdjustedY - getHeight(finishedMissionNextBtn.GetComponent<RectTransform>()) / 2 - finishedMissionHeigt / 2 - nextBtnDistanceFromCompletedMission;
         finishedMissionNextBtnPos.transform.position = new Vector3(headerPos.x, finishedMissionNextBtny, headerPos.z);
 
         Debug.Log("panel start Y is: " + panelAdjustedYPosition);
@@ -201,16 +201,16 @@ public class GuiAdjuster : MonoBehaviour {
         // adjesting panel according to header
         var finishedMissionPanelHeight = getHeight(finishedMissionPanel.GetComponent<RectTransform>());
         var headerPos = finishedMissionHeader.transform.position;
-        var panelAdjustedYPosition = headerPos.y - getHeight(finishedMissionHeader.GetComponent<RectTransform>()) / 2 - finishedMissionPanelHeight / 2;
+        var panelAdjustedYPosition = headerPos.y - getHeight(finishedMissionHeader.GetComponent<RectTransform>()) / 2 - finishedMissionPanelHeight / 2 - panelDistanceFromHeader;
         finishedMissionPanel.transform.position = new Vector3(headerPos.x, panelAdjustedYPosition, headerPos.z);
 
         // adjesting mission acoording to panel
         var finishedMissionHeigt = getHeight(finishedMissionCompletedMission.GetComponent<RectTransform>());
-        var finishedMissionAdjustedY = panelAdjustedYPosition - finishedMissionHeigt / 2 - finishedMissionPanelHeight / 2;
+        var finishedMissionAdjustedY = panelAdjustedYPosition - finishedMissionHeigt / 2 - finishedMissionPanelHeight / 2 - panelDistanceFromCompletedMission;
         finishedMissionCompletedMission.transform.position = new Vector3(headerPos.x, finishedMissionAdjustedY, headerPos.z);
 
         // adjesting next btn
-        var finishedMissionNextBtny = finishedMissionAdjustedY - getHeight(finishedMissionNextBtn.GetComponent<RectTransform>()) / 2 - finishedMissionHeigt / 2;
+        var finishedMissionNextBtny = finishedMissionAdjustedY - getHeight(finishedMissionNextBtn.GetComponent<RectTransform>()) / 2 - finishedMissionHeigt / 2 - nextBtnDistanceFromCompletedMission;
         finishedMissionNextBtnPos.transform.position = new Vector3(headerPos.x, finishedMissionNextBtny, headerPos.z);
 
         finishedMissionPanel.transform.position = tempPanelPos;
@@ -220,7 +220,7 @@ public class GuiAdjuster : MonoBehaviour {
     }
 
     // Helper method to get height.
-    private float getHeight(RectTransform guiObject)
+    public float getHeight(RectTransform guiObject)
     {
         Vector3[] corners = new Vector3[4] { new Vector3(), new Vector3(), new Vector3(), new Vector3() };
         guiObject.GetWorldCorners(corners);

@@ -82,7 +82,7 @@ public class FinishedMissionHandler : MonoBehaviour, PhaseEventHandler{
         rankFirstStar = GameObject.Find("Canvas/MissionComplete/RankPanel/RankStarsPanel/FirstStarPos"); 
         missions = missionLogic.getMissions();
         initiateRankStats();
-
+        isFirstMission = true;
         foreach (var mission in missions)
         {
             if (mission.isFinished)
@@ -134,7 +134,6 @@ public class FinishedMissionHandler : MonoBehaviour, PhaseEventHandler{
     private IEnumerator processFinishedMission(MissionModel mission)
     {
         // should insert the mission ?
-        isFirstMission = CMText.text.Equals("KILL THE BIG BAD DRAGON\n");
 
         if (!isFirstMission)
         {
@@ -159,6 +158,7 @@ public class FinishedMissionHandler : MonoBehaviour, PhaseEventHandler{
         }
         else
         {
+            isFirstMission = false;
             initilizeMissionData(mission);
         }
         
@@ -225,7 +225,7 @@ public class FinishedMissionHandler : MonoBehaviour, PhaseEventHandler{
         Vector3 firstStarPos = CMFirstStar.transform.position;
         for (int i = 0; i < mission.numberOfStars; i++)
         {
-          CMProgressStars[i] = Instantiate(CMStar,firstStarPos + new Vector3(i * 3.0f,0,0),Quaternion.identity) as GameObject;
+          CMProgressStars[i] = Instantiate(CMStar,firstStarPos + new Vector3(i * 2.0f,0,0),Quaternion.identity) as GameObject;
           CMProgressStars[i].transform.parent = CMObject.transform;
         }
     }

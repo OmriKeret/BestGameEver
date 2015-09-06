@@ -20,4 +20,13 @@ public static class Easing {
         return xPowered / (xPowered + Mathf.Pow((1 - x),alpha));
     }
 
+    public static float cubicInOut(float currentTime,float startValue,float changeInValue,float duration) {	
+        currentTime /= duration/2;
+	    if (currentTime < 1)
+            return changeInValue/2*currentTime*currentTime*currentTime + startValue;
+	    currentTime -= 2;
+	    return changeInValue/2*(currentTime*currentTime*currentTime + 2) + startValue;
+    }
+
+
 }

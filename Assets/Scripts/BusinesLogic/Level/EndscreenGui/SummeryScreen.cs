@@ -10,7 +10,7 @@ public class SummeryScreen : MonoBehaviour, PhaseEventHandler {
     ScoreLogic scoreLogic;
     PlayerStatsLogic playerStats;
     int totalEarnedDisplayedSum = 0;
-    float timeToReciveCoins = 1f;
+    float timeToReciveCoins = 1.5f;
 	//GUI
     //LOSE PANEL
     GameObject losePanel;
@@ -42,18 +42,18 @@ public class SummeryScreen : MonoBehaviour, PhaseEventHandler {
 
         // Gui.
         losePanel = GameObject.Find("LosePanel");
-        goldEarned = GameObject.Find("LosePanel/TOTALEARNED/Num").GetComponent<Text>();
+      //  goldEarned = GameObject.Find("LosePanel/TOTALEARNED/Num").GetComponent<Text>();
         numOfKills = GameObject.Find("LosePanel/KILLS/Num").GetComponent<Text>();
         bestCombo = GameObject.Find("LosePanel/COMBOBONUS/Num").GetComponent<Text>();
         roundRank = GameObject.Find("LosePanel/ROUNDRANK/rank").GetComponent<Text>();
         roundRankObject = GameObject.Find("LosePanel/ROUNDRANK/rank");
 
-        totalEarned = GameObject.Find("LosePanel/TOTALEARNED").GetComponent<Text>();
+        totalEarned = GameObject.Find("LosePanel/TOTALEARNED/Num").GetComponent<Text>();
 
         // Special effects.
         newHighScore = GameObject.Find("LosePanel/NewHighScore").GetComponent<Animator>();
         roundRankAnimator = GameObject.Find("LosePanel/ROUNDRANK/rank").GetComponent<Animator>();
-        goldCoin = GameObject.Find("LosePanel/LosePJ/PJS").GetComponent<Animator>();
+      //  goldCoin = GameObject.Find("LosePanel/LosePJ/PJS").GetComponent<Animator>();
 
 	}
 	
@@ -70,7 +70,8 @@ public class SummeryScreen : MonoBehaviour, PhaseEventHandler {
     private IEnumerator run()
     {
         Debug.Log("started");
-  
+        ShowKills();
+        showBestCombo();
         //brings down summary screen
         isAnimationPlaying = true;
         LeanTween.moveY(losePanel, 0f, 0.5f).setIgnoreTimeScale(true).setEase(LeanTweenType.linear).setOnComplete(
@@ -85,8 +86,22 @@ public class SummeryScreen : MonoBehaviour, PhaseEventHandler {
             yield return new WaitForSeconds(0.1f);
         }
         //ShowGoldEarned();
-        ShowKills();
-        showBestCombo();
+ 
+
+        // pause for one sec
+       // yield return new WaitForSeconds(1f);
+
+        // change Kills to gold
+        isAnimationPlaying = true;
+
+        StartCoroutine(changeKillsToTotalEarned());
+
+        // Wait until gold earned is exchanged
+        while (isAnimationPlaying)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+        Debug.Log("finished to exchange kills with gold earned");
 
         // Shows round rank.
         isAnimationPlaying = true;
@@ -106,31 +121,8 @@ public class SummeryScreen : MonoBehaviour, PhaseEventHandler {
             yield return new WaitForSeconds(0.1f);
         }
         Debug.Log("finished rotation animation");
-        // change gold earned to gold
-        isAnimationPlaying = true;
-       
-        StartCoroutine(changeCoinsEarnedToTotalEarned());
 
-        // Wait until gold earned is exchanged
-        while (isAnimationPlaying)
-        {
-            yield return new WaitForSeconds(0.1f);
-        }
-        Debug.Log("finished to exchange gold earned");
-
-        // change Kills to gold
-        isAnimationPlaying = true;
-
-        StartCoroutine(changeKillsToTotalEarned());
-
-        // Wait until gold earned is exchanged
-        while (isAnimationPlaying)
-        {
-            yield return new WaitForSeconds(0.1f);
-        }
-        Debug.Log("finished to exchange kills with gold earned");
-
-        fitGoldCoin();
+      //  fitGoldCoin();
     }
 
  
@@ -156,32 +148,38 @@ public class SummeryScreen : MonoBehaviour, PhaseEventHandler {
     private IEnumerator changeKillsToTotalEarned()
     {
         Debug.Log("got to change kills");
-        var kills = 10;//scoreLogic.score;
-        int i = kills;
+        var kills = scoreLogic.kills;
+        int i = 0;
         var totalEarnedTemp = totalEarnedDisplayedSum;
         var timeStartedToChangeScore = Time.realtimeSinceStartup;
         int coinsPerKill = currencyLogic.getCoinsPerKill();
-        while (i > 0)
+        Debug.Log("started at: " + Time.realtimeSinceStartup);
+        while (i < kills)
         {
             // TODO: music!
             float deltaTime = Time.realtimeSinceStartup - timeStartedToChangeScore;
-            if (deltaTime > timeToReciveCoins)
-            {
-                deltaTime = timeToReciveCoins;
-            }
-            i = (int)(kills * calculateEasing(deltaTime, timeToReciveCoins));
-            totalEarnedDisplayedSum = totalEarnedTemp + (kills - i) * coinsPerKill; // 2 coins for each kill
+            //if (deltaTime > timeToReciveCoins)
+            //{
+            //    deltaTime = timeToReciveCoins;
+            //}
+            //i = (int)(kills * calculateEasing(deltaTime, timeToReciveCoins));
+            i = (int)(Easing.cubicInOut(deltaTime, 0, kills, timeToReciveCoins));
+            
+            totalEarnedDisplayedSum = totalEarnedTemp + (i) * coinsPerKill; // 2 coins for each kill
 
             var displayedTotal = string.Format(System.Globalization.CultureInfo.InvariantCulture,
                         "{0:0,0}", totalEarnedDisplayedSum);
             var killsDisplayed = string.Format(System.Globalization.CultureInfo.InvariantCulture,
-            "{0:0,0}", i);
-            Debug.Log("kills is : " + kills);
-            Debug.Log("i is : " + i);
+            "{0:0,0}", kills - i);
+          //  Debug.Log("kills is : " + kills);
+           // Debug.Log("i is : " + i);
+
             totalEarned.text = string.Format("{0}", displayedTotal);
             numOfKills.text = string.Format("{0}", killsDisplayed);
             yield return null; // wait one frame
         }
+        Debug.Log("finished at: " + Time.realtimeSinceStartup);
+        Debug.Log("total time is : " + (Time.realtimeSinceStartup - timeStartedToChangeScore));
         Debug.Log("total kills: " + (kills - i));
         isAnimationPlaying = false;
     }
@@ -271,7 +269,7 @@ public class SummeryScreen : MonoBehaviour, PhaseEventHandler {
 
     private float calculateEasing(float deltaTime, float totalTime)
     {
-        return 1 - Easing.easeInOut(deltaTime, totalTime);
-
+        return 1f - Easing.easeInOut(deltaTime, totalTime);
     }
+
 }
