@@ -66,10 +66,9 @@ public class GenerateWaveLogic : MonoBehaviour {
         
 	}
 
-    System.Object stopCurrentWave(params System.Object[] obj)
+    void stopCurrentWave(params System.Object[] obj)
     {
         gameOn = false;
-        return false;
     }
 
     IEnumerator GenerateEnemiesWithPause(WaveGenerateModel i_waveModel)
@@ -93,7 +92,7 @@ public class GenerateWaveLogic : MonoBehaviour {
             }
             var enemyLocation = new Vector2(0f, 40f); ;//instantiateLocations[UnityEngine.Random.Range(0, locationMax)];
             GameObject currentEnemy = Instantiate(enemyGenerator.getEnemy(currentType), enemyLocation, Quaternion.identity) as GameObject;
-            IEnemy currentEnemyLogic = currentEnemy.GetComponent<IEnemy>();
+            BasicEnemyLogic currentEnemyLogic = currentEnemy.GetComponent<BasicEnemyLogic>();
             currentEnemyLogic.playSpawnSound();
             currentEnemyLogic.StartOrderPath(TimeToFinishPath, currentLocation);
             //If there are more enemies in row, don't wait.

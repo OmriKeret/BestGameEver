@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TankStats : AEnemyStats
+public class TankStats : BasicEnemyStats
 {
 
     void Start()

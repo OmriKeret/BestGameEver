@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 using System.Collections;
 
 public class PopupLogic : MonoBehaviour
@@ -34,14 +35,16 @@ public class PopupLogic : MonoBehaviour
     #endregion
 
     Text text;
+    SpriteRenderer spriteRender;
 
     void Start()
     {
         UpLocation = transform.position;
         UpTime = 0.4f;
-        DownLocation = UpLocation - new Vector3(0, 35, 0);
+        DownLocation = UpLocation - new Vector3(0, 33, 0);
         DownTime = 0.4f;
         text = GetComponentInChildren<Text>();
+        spriteRender = GetComponentInChildren<SpriteRenderer>();
     }
 
     void setText(string message)
@@ -49,14 +52,14 @@ public class PopupLogic : MonoBehaviour
         text.text = message;
     }
 
-    public System.Object showPopup(params System.Object[] obj)
+    public void showPopup(string messege, Sprite sprite)
     {
-        StartCoroutine(startPopupRutine(obj[0].ToString()));
-        return null;
+        StartCoroutine(startPopupRutine(messege, sprite));
     }
 
-    IEnumerator startPopupRutine(string message)
+    IEnumerator startPopupRutine(string message,Sprite background)
     {
+        spriteRender.sprite = background;
         setText(message);
         downPopup();
         yield return new WaitForSeconds(2);

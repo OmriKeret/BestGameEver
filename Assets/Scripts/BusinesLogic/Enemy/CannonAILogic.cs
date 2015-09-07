@@ -14,7 +14,7 @@ public class CannonAILogic : MonoBehaviour, IEnemy
     bool isinitilized;
     
 
-    AEnemyStats _stats;
+    BasicEnemyStats _stats;
     Rigidbody2D _rigidbody;
     GameObject _leftBodyPartResouce, _rightBodyPartResouce;
     GameObject _leftBodyPart, _rightBodyPart;
@@ -36,7 +36,7 @@ public class CannonAILogic : MonoBehaviour, IEnemy
     {
         _animation = this.GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
-        _stats = GetComponent<AEnemyStats>();
+        _stats = GetComponent<BasicEnemyStats>();
         _rigidbody = GetComponent<Rigidbody2D>();
         _leftBodyPartResouce = Resources.Load("stupidL") as GameObject;
         _rightBodyPartResouce = Resources.Load("stupidR") as GameObject;
@@ -83,7 +83,7 @@ public class CannonAILogic : MonoBehaviour, IEnemy
         return FindObjectOfType<PlayerStatsController>().gameObject.transform.position;
     }
 
-    public void SetStats(AEnemyStats i_stats)
+    public void SetStats(BasicEnemyStats i_stats)
     {
         _stats = i_stats;
     }

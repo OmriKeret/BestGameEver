@@ -9,7 +9,7 @@ public class EagleAILogic : MonoBehaviour, IEnemy
     // Animation 
     Animator _animation;
 
-    AEnemyStats _stats;
+    BasicEnemyStats _stats;
     Rigidbody2D _rigidbody;
     GameObject _leftBodyPartResouce, _rightBodyPartResouce;
     GameObject _leftBodyPart, _rightBodyPart;
@@ -30,7 +30,7 @@ public class EagleAILogic : MonoBehaviour, IEnemy
         
         _animation = this.GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
-        _stats = GetComponent<AEnemyStats>();
+        _stats = GetComponent<BasicEnemyStats>();
         _rigidbody = GetComponent<Rigidbody2D>();
         _leftBodyPartResouce = Resources.Load("stupidL") as GameObject;
         _rightBodyPartResouce = Resources.Load("stupidR") as GameObject;
@@ -74,7 +74,7 @@ public class EagleAILogic : MonoBehaviour, IEnemy
         return new Vector2(0, 0);
     }
 
-    public void SetStats(AEnemyStats i_stats)
+    public void SetStats(BasicEnemyStats i_stats)
     {
         _stats = i_stats;
     }

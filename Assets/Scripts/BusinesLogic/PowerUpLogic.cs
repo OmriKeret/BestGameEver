@@ -196,7 +196,7 @@ public class PowerUpLogic : MonoBehaviour {
            collider.enabled = true;
            //Debug.Log("iterating on enemy " + i + "\ndead status: " + enemy.GetComponent<IEnemy>().isDead());
            //Debug.Log("character strength is: " + playerStatsLogic.Strength );
-           if (enemy.GetComponent<IEnemy>().isDead())
+           if (enemy.GetComponent<BasicEnemyLogic>().isDead())
            {
                killEnemy(enemy);
 
@@ -223,7 +223,7 @@ public class PowerUpLogic : MonoBehaviour {
         }
 
         var position = enemy.transform.position;
-        var enemyLogic = enemy.GetComponent<IEnemy>();
+        var enemyLogic = enemy.GetComponent<BasicEnemyLogic>();
         enemyLogic.Split(position);
         enemyLogic.playDeathSound();
         enemyLogic.Death();

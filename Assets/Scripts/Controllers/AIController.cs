@@ -4,7 +4,7 @@ using System.Collections;
 public class AIController : MonoBehaviour {
 
 	private IEnemy _logic;
-	private AEnemyStats _stats;
+	private BasicEnemyStats _stats;
 	Vector2 _creationLocation, _movementDirection;
 	public CollisionFacade collisionFacade;
     public EnemyType type;

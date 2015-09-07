@@ -40,10 +40,9 @@ public class EnemyGeneratorController : MonoBehaviour {
         _waveNumber++;
 	}
 
-    System.Object GenerateWaveWithDelay(params System.Object[] obj)
+    void GenerateWaveWithDelay(params System.Object[] obj)
     {
         StartCoroutine(Delay());
-        return null;
     }
 
     IEnumerator Delay()
@@ -51,10 +50,9 @@ public class EnemyGeneratorController : MonoBehaviour {
         GenerateWave();
     }
 
-    System.Object StopGeneration(params System.Object[] obj)
+    void StopGeneration(params System.Object[] obj)
     {
         GameObject.FindObjectOfType<EventListener>().Listener[EventTypes.WaveOver] -= GenerateWaveWithDelay;
-        return null;
     }
 
 

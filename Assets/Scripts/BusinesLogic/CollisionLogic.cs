@@ -88,8 +88,8 @@ public class CollisionLogic : MonoBehaviour  {
         playerStatsLogic.resetDash();
 
         var sign = VectorForce.x > 0 ? 1 : -1;
-        var enemyStats = model.CollidedWith.GetComponent<AEnemyStats>();
-		if ((enemyStats._mode == EnemyMode.Attack || enemyStats._mode == EnemyMode.Both) && (!animationLogic.isDashing || model.CollidedWith.gameObject.GetComponent<IEnemy>().getEnemyType() == EnemyType.Spike ))
+        var enemyStats = model.CollidedWith.GetComponent<BasicEnemyStats>();
+		if ((enemyStats._mode == EnemyMode.Attack || enemyStats._mode == EnemyMode.Both) && (!animationLogic.isDashing || model.CollidedWith.gameObject.GetComponent<BasicEnemyLogic>().getEnemyType() == EnemyType.Spike ))
 		{
             soundLogic.playHittedSound();
            // Debug.Log("player Collided with commet");
@@ -155,8 +155,8 @@ public class CollisionLogic : MonoBehaviour  {
 
 	public void EnemyCollidedWithPlayer(CollisionModel model) {
      //   Debug.Log("enemy collision detected. Enemy mode is:");
-		var enemyController = model.mainCollider.GetComponent<AIController> ();
-		var enemy = model.mainCollider.GetComponent<IEnemy> ();
+		var enemyController = model.mainCollider.GetComponent<EnemyController> ();
+		var enemy = model.mainCollider.GetComponent<BasicEnemyLogic> ();
 		var position = (Vector2)model.mainCollider.transform.position;
 	    EnemyMode mode = enemy.GetEnemyMode();
        // Debug.Log(mode);
@@ -198,7 +198,7 @@ public class CollisionLogic : MonoBehaviour  {
         var VectorForce = (Vector2)((playerPosition - enemyPosition).normalized);
         var signX = VectorForce.x > 0 ? 1 : -1;
         var signY = VectorForce.y > 0 ? 1 : -1;
-        var enemy = model.mainCollider.GetComponent<IEnemy>();
+        var enemy = model.mainCollider.GetComponent<BasicEnemyLogic>();
         bool dead = enemy.lifeDown(playerStatsLogic.Strength);
         if (dead)
         {
@@ -224,7 +224,7 @@ public class CollisionLogic : MonoBehaviour  {
     public void killEnemy(GameObject enemy)
     {
         var position = enemy.transform.position;
-        var enemyLogic = enemy.GetComponent<IEnemy>();
+        var enemyLogic = enemy.GetComponent<BasicEnemyLogic>();
 		enemyLogic.Split(position);
 		enemyLogic.Death ();
     }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 
-public abstract class AEnemyStats : MonoBehaviour {
+public abstract class BasicEnemyStats : MonoBehaviour {
 
     public int life;
     public int BASIC_HP_DOWN;

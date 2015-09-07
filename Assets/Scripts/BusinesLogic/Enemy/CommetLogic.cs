@@ -19,6 +19,11 @@ public class CommetLogic : MonoBehaviour
         
     }
 
+    public void Destroy()
+    {
+        Destroy(this.gameObject);
+    }
+
     public void moveNormal()
     {
         transform.position -= new Vector3(movementRadious * Mathf.Cos(currentAngle), movementRadious * Mathf.Sin(currentAngle));

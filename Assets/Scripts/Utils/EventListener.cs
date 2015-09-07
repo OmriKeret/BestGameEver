@@ -4,10 +4,6 @@ using System.Collections.Generic;
 
 public class EventListener : MonoBehaviour {
 
-    /**
-     * This implementation isn't good enough
-     * To prevent using Object.Find, this class should be a singleton
-     * */
 
     private static EventListener _instance;
 
@@ -23,13 +19,14 @@ public class EventListener : MonoBehaviour {
         }
     }
 
-    public delegate System.Object GenericEvent(params System.Object[] obj);
+    public delegate void GenericEvent(params System.Object[] obj);
     public Dictionary<EventTypes, GenericEvent> Listener;
     #region Events definition
     public event GenericEvent onTest;
     public event GenericEvent onWaveOver;
     public event GenericEvent onGameOver;
     public event GenericEvent onFinishedMission;
+    public event GenericEvent onPlayerGotHit;
     #endregion
 
     void Awake()
@@ -41,6 +38,7 @@ public class EventListener : MonoBehaviour {
         Listener.Add(EventTypes.WaveOver, onWaveOver);
         Listener.Add(EventTypes.GameOver, onGameOver);
         Listener.Add(EventTypes.FinishedMission, onFinishedMission);
+        Listener.Add(EventTypes.PlayerGotHit, onPlayerGotHit);
         #endregion
         
     }

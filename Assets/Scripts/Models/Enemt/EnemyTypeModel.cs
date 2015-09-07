@@ -8,7 +8,7 @@ public class EnemyTypeModel {
         switch (i_Type)
         {
             case 1:
-                return new StupidAILogic().GetType();
+                return new StupidEnemyLogic().GetType();
         }
         return null;
     }
