@@ -4474,7 +4474,7 @@ AnimationClip:
   m_GenerateMotionCurves: 0
   m_Events:
   - time: .200000003
-    functionName: IEnemy.Death
+    functionName: Death
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

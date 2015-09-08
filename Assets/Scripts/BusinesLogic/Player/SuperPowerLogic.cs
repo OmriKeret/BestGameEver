@@ -110,7 +110,7 @@ public class SuperPowerLogic : MonoBehaviour {
         var enemy = enemyStack.Pop();
         //   var enemyCollider = enemy.GetComponent<Collider2D>();
 
-        var enemyController = enemy.GetComponent<AIController>();
+        var enemyController = enemy.GetComponent<EnemyController>();
         var playerController = character.GetComponent<CollisionController>();
 
         //set collision between character and enemy manually

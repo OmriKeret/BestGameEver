@@ -19,9 +19,9 @@ public class TankEnemyLogic : BasicEnemyLogic {
     public override void initVectorPaths()
     {
         _allVectorPaths = new StupidPaths();
-    }
+    }   
 
-    public override void Death()
+    public  void kaki()
     {
         commet.Destroy();
         base.Death();

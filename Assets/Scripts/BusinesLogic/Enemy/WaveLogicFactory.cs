@@ -65,15 +65,15 @@ public class WaveLogicFactory {
 
         _easyWaves = new WaveLogic[]{
             //2 right right
-            new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid},
+            new WaveLogic(new EnemyType[]{EnemyType.Spike,EnemyType.Tank},
             new EnemyLocation[]{EnemyLocation.TopRight,EnemyLocation.TopRight},
             new int[]{1,1}),
             //2 left
-            new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid},
+            new WaveLogic(new EnemyType[]{EnemyType.Spike,EnemyType.Tank},
             new EnemyLocation[]{EnemyLocation.TopLeft,EnemyLocation.TopLeft},
             new int[]{1,1}),
             // left right
-            new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid},
+            new WaveLogic(new EnemyType[]{EnemyType.Spike,EnemyType.Stupid},
             new EnemyLocation[]{EnemyLocation.MidRight,EnemyLocation.MidLeft},
             new int[]{1,1}),
             // All right

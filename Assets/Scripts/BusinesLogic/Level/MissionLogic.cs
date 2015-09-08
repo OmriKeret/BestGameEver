@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System;
 
 public class MissionLogic : MonoBehaviour {
 
@@ -13,10 +14,12 @@ public class MissionLogic : MonoBehaviour {
   DeathLogic deathLogic; 
   MissionStats missionStats; 
   public Text missionTitle;
+    private EventListener listener;
 
 	// Use this for initialization
 	void Start () {
         deathLogic = this.gameObject.GetComponent<DeathLogic>();
+        listener = EventListener.instance;
         missionStats = GameObject.Find("GameManagerData").GetComponent<MissionStats>();     
 
         enemyKills = new Dictionary<EnemyType, int>	{ 
@@ -195,8 +198,13 @@ public class MissionLogic : MonoBehaviour {
     private void finishedMission(int missionNum)
     {
         //TODO:playsound 
-        MissionsToggleAndText[missionNum].missionToggle.isOn = true;
-        missions[missionNum].isFinished = true;
+        if (!missions[missionNum].isFinished)
+        {
+            MissionsToggleAndText[missionNum].missionToggle.isOn = true;
+            Debug.Log("Finished mission");
+            listener.Listener[EventTypes.FinishedMission].Invoke(MissionsToggleAndText[missionNum].missionText.text, PopupType.EndMission);
+            missions[missionNum].isFinished = true;
+        }
     }
 
     public void updateMissionProggressEndOfGame()
