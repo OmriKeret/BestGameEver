@@ -1687,7 +1687,7 @@ RectTransform:
   m_Children:
   - {fileID: 83540750}
   m_Father: {fileID: 1572155266}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 6.07967377e-06, y: 1.39999998}
@@ -1770,7 +1770,7 @@ RectTransform:
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: 1.10000002}
-  m_SizeDelta: {x: 160, y: 20}
+  m_SizeDelta: {x: 300, y: 20}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &296028982
 MonoBehaviour:
@@ -3097,14 +3097,14 @@ RectTransform:
   m_GameObject: {fileID: 344899713}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: .5, y: .800000012, z: 1}
   m_Children: []
   m_Father: {fileID: 2126420749}
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -60.9500923, y: -27}
-  m_SizeDelta: {x: 154.376663, y: 0}
+  m_AnchoredPosition: {x: -90, y: -46.350029}
+  m_SizeDelta: {x: 480, y: 114}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &344899715
 MonoBehaviour:
@@ -3121,18 +3121,18 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .45588237, g: 0, b: 0, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: f91306ab82250f044848efad8c3732b9, type: 3}
-    m_FontSize: 16
+    m_Font: {fileID: 12800000, guid: 5f2c71df703c4b34ca9257a82e3f91b4, type: 3}
+    m_FontSize: 44
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 6
+    m_Alignment: 3
     m_RichText: 0
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "KILL THE BIG BAD DRAGON\n "
+  m_Text: "KILL THE BIG BAD DRAGON \n "
 --- !u!222 &344899716
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3152,7 +3152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
-  m_VerticalFit: 2
+  m_VerticalFit: 0
 --- !u!1 &392089936
 GameObject:
   m_ObjectHideFlags: 0
@@ -3371,77 +3371,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!1 &411811389
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 180082, guid: 9886ac5fe0560e14ca8b7b79ddad00c6, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 224: {fileID: 411811390}
-  - 222: {fileID: 411811392}
-  - 114: {fileID: 411811391}
-  m_Layer: 5
-  m_Name: MissionText
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &411811390
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 22429816, guid: 9886ac5fe0560e14ca8b7b79ddad00c6,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 411811389}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .621024847, y: .183186948, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1724354028}
-  m_RootOrder: 1
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 17.8999996, y: 1.30000663}
-  m_SizeDelta: {x: 15.8999996, y: 50}
-  m_Pivot: {x: .5, y: .500000119}
---- !u!114 &411811391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11423618, guid: 9886ac5fe0560e14ca8b7b79ddad00c6,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 411811389}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: .45588237, g: 0, b: 0, a: 1}
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: f91306ab82250f044848efad8c3732b9, type: 3}
-    m_FontSize: 20
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 6
-    m_RichText: 0
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 1
-    m_LineSpacing: 1
-  m_Text: 'KILL THE BIG BAD DRAGON
-
-'
---- !u!222 &411811392
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 22267808, guid: 9886ac5fe0560e14ca8b7b79ddad00c6,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 411811389}
 --- !u!1 &421972464
 GameObject:
   m_ObjectHideFlags: 0
@@ -4257,7 +4186,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 22, y: -294}
+  m_AnchoredPosition: {x: 28, y: -359}
   m_SizeDelta: {x: 205.119995, y: 37.5999985}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &601485448
@@ -5029,7 +4958,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!224 &682699756 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22442378, guid: 1f5dc2fe3425e074797ea5ab475ccca9,
@@ -5183,7 +5112,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -111.5, y: -21}
+  m_AnchoredPosition: {x: -140, y: -21}
   m_SizeDelta: {x: 39, y: 50.7000008}
   m_Pivot: {x: .5, y: .5}
 --- !u!1 &771466395
@@ -6110,7 +6039,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -74.6999969, y: -5}
+  m_AnchoredPosition: {x: -90, y: -6}
   m_SizeDelta: {x: 39, y: 50.7000008}
   m_Pivot: {x: .5, y: .5}
 --- !u!1001 &974835508
@@ -6306,6 +6235,91 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 996256747}
+--- !u!1 &999651122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 180082, guid: 9886ac5fe0560e14ca8b7b79ddad00c6, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 999651123}
+  - 222: {fileID: 999651126}
+  - 114: {fileID: 999651125}
+  - 114: {fileID: 999651124}
+  m_Layer: 5
+  m_Name: MissionText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &999651123
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 22429816, guid: 9886ac5fe0560e14ca8b7b79ddad00c6,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 999651122}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: .200000003, y: .100000001, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1724354028}
+  m_RootOrder: 2
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 18.8999767, y: .699999988}
+  m_SizeDelta: {x: 573.799927, y: 185}
+  m_Pivot: {x: .5, y: .500000119}
+--- !u!114 &999651124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 999651122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 0
+--- !u!114 &999651125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11423618, guid: 9886ac5fe0560e14ca8b7b79ddad00c6,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 999651122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: .45588237, g: 0, b: 0, a: 1}
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 5f2c71df703c4b34ca9257a82e3f91b4, type: 3}
+    m_FontSize: 80
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 3
+    m_RichText: 0
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'KILL THE BIG BAD DRAGON
+
+'
+--- !u!222 &999651126
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 22267808, guid: 9886ac5fe0560e14ca8b7b79ddad00c6,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 999651122}
 --- !u!1 &1023016988
 GameObject:
   m_ObjectHideFlags: 0
@@ -8106,6 +8120,7 @@ GameObject:
   - 224: {fileID: 1188476845}
   - 222: {fileID: 1188476847}
   - 114: {fileID: 1188476846}
+  - 114: {fileID: 1188476848}
   m_Layer: 5
   m_Name: MissionText
   m_TagString: Untagged
@@ -8122,14 +8137,14 @@ RectTransform:
   m_GameObject: {fileID: 1188476844}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .621024847, y: .183186948, z: 1}
+  m_LocalScale: {x: .200000003, y: .100000001, z: 1}
   m_Children: []
   m_Father: {fileID: 1712749163}
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 17.8999996, y: 1.30000663}
-  m_SizeDelta: {x: 15.8999996, y: 50}
+  m_AnchoredPosition: {x: 18.8999996, y: 1}
+  m_SizeDelta: {x: 573.799988, y: 185}
   m_Pivot: {x: .5, y: .500000119}
 --- !u!114 &1188476846
 MonoBehaviour:
@@ -8146,16 +8161,16 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .45588237, g: 0, b: 0, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: f91306ab82250f044848efad8c3732b9, type: 3}
-    m_FontSize: 20
+    m_Font: {fileID: 12800000, guid: 5f2c71df703c4b34ca9257a82e3f91b4, type: 3}
+    m_FontSize: 80
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 6
+    m_Alignment: 3
     m_RichText: 0
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 1
+    m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'KILL THE BIG BAD DRAGON
 
@@ -8167,6 +8182,19 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1188476844}
+--- !u!114 &1188476848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1188476844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 0
 --- !u!1 &1214621150
 GameObject:
   m_ObjectHideFlags: 0
@@ -8197,7 +8225,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -74.6999969, y: -5}
+  m_AnchoredPosition: {x: -90, y: -6}
   m_SizeDelta: {x: 39, y: 50.7000008}
   m_Pivot: {x: .5, y: .5}
 --- !u!1 &1216290221
@@ -10804,14 +10832,14 @@ RectTransform:
   m_LocalScale: {x: 1.61024153, y: 5.45890474, z: 1}
   m_Children:
   - {fileID: 1214621151}
-  - {fileID: 1639130837}
   - {fileID: 245243942}
+  - {fileID: 1681530563}
   m_Father: {fileID: 1071114540}
   m_RootOrder: 5
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -7, y: -171}
-  m_SizeDelta: {x: 160, y: 20}
+  m_AnchoredPosition: {x: -1, y: -236}
+  m_SizeDelta: {x: 200, y: 24}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1572155267
 MonoBehaviour:
@@ -10906,7 +10934,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 465094, guid: 08ac20f68de93e743850bb23d491ff84, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 08ac20f68de93e743850bb23d491ff84, type: 2}
@@ -10941,7 +10969,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -74.6999969, y: -5}
+  m_AnchoredPosition: {x: -90, y: -6}
   m_SizeDelta: {x: 39, y: 50.7000008}
   m_Pivot: {x: .5, y: .5}
 --- !u!1 &1607429113
@@ -11215,77 +11243,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1623378196}
---- !u!1 &1639130836
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 180082, guid: 9886ac5fe0560e14ca8b7b79ddad00c6, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 224: {fileID: 1639130837}
-  - 222: {fileID: 1639130839}
-  - 114: {fileID: 1639130838}
-  m_Layer: 5
-  m_Name: MissionText
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1639130837
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 22429816, guid: 9886ac5fe0560e14ca8b7b79ddad00c6,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1639130836}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .621024847, y: .183186948, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1572155266}
-  m_RootOrder: 1
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 17.8999996, y: 1.30000663}
-  m_SizeDelta: {x: 15.8999996, y: 50}
-  m_Pivot: {x: .5, y: .500000119}
---- !u!114 &1639130838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11423618, guid: 9886ac5fe0560e14ca8b7b79ddad00c6,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1639130836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: .45588237, g: 0, b: 0, a: 1}
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: f91306ab82250f044848efad8c3732b9, type: 3}
-    m_FontSize: 20
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 6
-    m_RichText: 0
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 1
-    m_LineSpacing: 1
-  m_Text: 'KILL THE BIG BAD DRAGON
-
-'
---- !u!222 &1639130839
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 22267808, guid: 9886ac5fe0560e14ca8b7b79ddad00c6,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1639130836}
 --- !u!1 &1646075176
 GameObject:
   m_ObjectHideFlags: 0
@@ -11407,6 +11364,91 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1666923946}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1681530562
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 180082, guid: 9886ac5fe0560e14ca8b7b79ddad00c6, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1681530563}
+  - 222: {fileID: 1681530566}
+  - 114: {fileID: 1681530565}
+  - 114: {fileID: 1681530564}
+  m_Layer: 5
+  m_Name: MissionText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1681530563
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 22429816, guid: 9886ac5fe0560e14ca8b7b79ddad00c6,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1681530562}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: .200000003, y: .100000001, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1572155266}
+  m_RootOrder: 2
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 18.8999691, y: 1.8318634}
+  m_SizeDelta: {x: 573.799927, y: 185}
+  m_Pivot: {x: .5, y: .500000119}
+--- !u!114 &1681530564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1681530562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 0
+--- !u!114 &1681530565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11423618, guid: 9886ac5fe0560e14ca8b7b79ddad00c6,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1681530562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: .45588237, g: 0, b: 0, a: 1}
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 5f2c71df703c4b34ca9257a82e3f91b4, type: 3}
+    m_FontSize: 80
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 3
+    m_RichText: 0
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'KILL THE BIG BAD DRAGON
+
+'
+--- !u!222 &1681530566
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 22267808, guid: 9886ac5fe0560e14ca8b7b79ddad00c6,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1681530562}
 --- !u!1 &1688769627
 GameObject:
   m_ObjectHideFlags: 0
@@ -11555,8 +11597,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -7, y: 84}
-  m_SizeDelta: {x: 160, y: 20}
+  m_AnchoredPosition: {x: -1, y: 67}
+  m_SizeDelta: {x: 200, y: 24}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1712749164
 MonoBehaviour:
@@ -11683,14 +11725,14 @@ RectTransform:
   m_LocalScale: {x: 1.61024153, y: 5.45890474, z: 1}
   m_Children:
   - {fileID: 949508044}
-  - {fileID: 411811390}
   - {fileID: 2001729625}
+  - {fileID: 999651123}
   m_Father: {fileID: 1071114540}
   m_RootOrder: 4
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -7, y: -40}
-  m_SizeDelta: {x: 160, y: 20}
+  m_AnchoredPosition: {x: -1, y: -85}
+  m_SizeDelta: {x: 200, y: 24}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1724354029
 MonoBehaviour:
@@ -14747,7 +14789,7 @@ RectTransform:
   m_Children:
   - {fileID: 1783436762}
   m_Father: {fileID: 1724354028}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 6.07967377e-06, y: 2.20000005}
@@ -14961,7 +15003,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce047e2eab8b3c8499de65a1f6c12e11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newStarSprite: {fileID: 21300000, guid: 1fa0a6b7fe224954a9f115bbe6564748, type: 3}
+  newStarSprite: {fileID: 21300000, guid: ca593ee1aa2146841b57777d2405759b, type: 3}
   unCompletedStar: {fileID: 126092, guid: d6227a1e270b7e74092da2cf52170430, type: 2}
 --- !u!114 &2020077889
 MonoBehaviour:
@@ -14999,7 +15041,7 @@ MonoBehaviour:
   CMStar: {fileID: 126092, guid: 5ae792024ef8760438f699dc9bdd1a50, type: 2}
   completedStar: {fileID: 126092, guid: b82d91c18dc51634f8916bfa4df1ac04, type: 2}
   unCompletedStar: {fileID: 126092, guid: d6227a1e270b7e74092da2cf52170430, type: 2}
-  rankCompletedStar: {fileID: 21300000, guid: 77c56b6b063530c43b5c3ecb47b0a315, type: 3}
+  rankCompletedStar: {fileID: 21300000, guid: ca593ee1aa2146841b57777d2405759b, type: 3}
 --- !u!114 &2020077892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15629,7 +15671,7 @@ RectTransform:
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 15, y: -185}
-  m_SizeDelta: {x: 250, y: 100}
+  m_SizeDelta: {x: 300, y: 120}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &2126420750
 MonoBehaviour:

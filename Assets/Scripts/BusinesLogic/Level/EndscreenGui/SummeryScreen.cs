@@ -21,6 +21,7 @@ public class SummeryScreen : MonoBehaviour, PhaseEventHandler {
     Text bestCombo;
     Text roundRank;
     Animator roundRankAnimator;
+    Text roundRankText;
     GameObject roundRankObject;
     Text totalEarned;
 
@@ -53,6 +54,7 @@ public class SummeryScreen : MonoBehaviour, PhaseEventHandler {
         // Special effects.
         newHighScore = GameObject.Find("LosePanel/NewHighScore").GetComponent<Animator>();
         roundRankAnimator = GameObject.Find("LosePanel/ROUNDRANK/rank").GetComponent<Animator>();
+        roundRankText = GameObject.Find("LosePanel/ROUNDRANK/rank").GetComponent<Text>();
       //  goldCoin = GameObject.Find("LosePanel/LosePJ/PJS").GetComponent<Animator>();
 
 	}
@@ -104,6 +106,7 @@ public class SummeryScreen : MonoBehaviour, PhaseEventHandler {
         Debug.Log("finished to exchange kills with gold earned");
 
         // Shows round rank.
+        calculateRoundRank();
         isAnimationPlaying = true;
         roundRankAnimator.SetTrigger("show");
         var mainCamera = Camera.main;
@@ -123,6 +126,51 @@ public class SummeryScreen : MonoBehaviour, PhaseEventHandler {
         Debug.Log("finished rotation animation");
 
       //  fitGoldCoin();
+    }
+
+    private void calculateRoundRank()
+    {
+        var kills = scoreLogic.kills;
+        var combo = playerStats.getHighestCombo();
+        var roundScore = kills * (combo * 0.3);
+        if (roundScore < 15)
+        {
+            roundRankText.text = "F";
+        }
+        else if (roundScore < 25)
+        {
+            roundRankText.text = "D";
+        }
+        else if (roundScore < 35)
+        {
+            roundRankText.text = "C";
+        }
+        else if (roundScore < 45)
+        {
+            roundRankText.text = "C+";
+        }
+        else if (roundScore < 55)
+        {
+            roundRankText.text = "B";
+        }
+        else if (roundScore < 65)
+        {
+            roundRankText.text = "B+";
+        }
+        else if (roundScore < 75)
+        {
+            roundRankText.text = "A-";
+        }
+        else if (roundScore < 85)
+        {
+            roundRankText.text = "A";
+        }
+        else if (roundScore < 95)
+        {
+            roundRankText.text = "A+";
+        }
+
+       
     }
 
  

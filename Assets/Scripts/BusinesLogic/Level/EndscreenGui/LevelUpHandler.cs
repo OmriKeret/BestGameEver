@@ -128,6 +128,9 @@ public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
 			//TODO: particle system.
 			yield return new WaitForSeconds(0.2f);
 			star.GetComponent<SpriteRenderer>().sprite = newStarSprite;
+            star.GetComponent<SpriteRenderer>().color = new Color32(255, 220, 26, 255);
+            var localScale = star.GetComponent<Transform>().localScale;
+            star.GetComponent<Transform>().localScale = new Vector3(localScale.x, localScale.y, localScale.z) * 1.1f;
 			Debug.Log("switching star");
 		}
 
@@ -289,7 +292,8 @@ public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
 		int i = 0;
 		while (i < newRankProgressStars.Length)
 		{
-			newRankProgressStars[i] = Instantiate(unCompletedStar, firstStarPos + new Vector3(i * 18.0f, 0, 0), Quaternion.identity) as GameObject;
+            var downARow = i >= 4 ? 1 : 0;
+            newRankProgressStars[i] = Instantiate(unCompletedStar, firstStarPos + new Vector3((i % 4) * 13f, downARow * -11f, 0), Quaternion.identity) as GameObject;
 			newRankProgressStars[i].transform.parent = newRankPanelObject.transform;
 			i++;
 		}

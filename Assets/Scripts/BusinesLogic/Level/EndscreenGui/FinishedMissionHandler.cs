@@ -125,7 +125,8 @@ public class FinishedMissionHandler : MonoBehaviour, PhaseEventHandler{
         int i = 0;
         while (i < rankProgressStars.Length)
         {
-            rankProgressStars[i] = Instantiate(unCompletedStar, firstStarPos + new Vector3(i * 18.0f, 0, 0), Quaternion.identity) as GameObject;
+            var downARow = i >= 4 ? 1 : 0;
+            rankProgressStars[i] = Instantiate(unCompletedStar, firstStarPos + new Vector3((i  % 4) * 13f, downARow * -11f, 0), Quaternion.identity) as GameObject;
             rankProgressStars[i].transform.parent = rankPanel.transform;
             i++;
         }
@@ -225,7 +226,8 @@ public class FinishedMissionHandler : MonoBehaviour, PhaseEventHandler{
         Vector3 firstStarPos = CMFirstStar.transform.position;
         for (int i = 0; i < mission.numberOfStars; i++)
         {
-          CMProgressStars[i] = Instantiate(CMStar,firstStarPos + new Vector3(i * 1.0f,0,0),Quaternion.identity) as GameObject;
+
+          CMProgressStars[i] = Instantiate(CMStar,firstStarPos + new Vector3(i * 3.2f,0,0),Quaternion.identity) as GameObject;
           CMProgressStars[i].transform.parent = CMObject.transform;
         }
     }

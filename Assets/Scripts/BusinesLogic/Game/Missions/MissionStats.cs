@@ -31,8 +31,11 @@ public class MissionStats : MonoBehaviour {
           //  var missionsFromDisc = MemoryAccess.memoryAccess.LoadMission();
            if (true)//missionsFromDisc == null || missionsFromDisc.missions == null) //todo: remove debug comment
 	        {
+                int numberOfStars = 3;
                 tier = 1;
-                rankStars = new bool[3];
+                tierStars.TryGetValue(tier, out numberOfStars);
+                numberOfStars = numberOfStars == 0 ? 3 : numberOfStars;
+                rankStars = new bool[numberOfStars];
                 initilizeMissions();
                foreach(var m in currentMissions)  // REMOVE THIS
                {                                  // REMOVE THIS
@@ -63,30 +66,34 @@ public class MissionStats : MonoBehaviour {
     {
         tierTitle = new Dictionary<int, string>{ //All names here are subject to change
             {1, "Novice"},
-            {2, "Beginner Samurai"},
-            {3, "Amateur Samurai"},
-            {4, "Samurai Apprentice"},
-			{5, "Samurai"},
-            {6, "La Llorona"},
+            {2, "Beginner"},
+            {3, "Learner"},
+            {4, "Amature"},
+			{5, "Padawan"},
+            {6, "Master"},
             {7, "Ninja"},
-            {8, "Chupacabra"},
-			{9, "Iturbide"},
-            {10, "Master of the Heike Clan"},
-            {11, "Samurai Jack!"}
+            {8, "Samurai"},
+            {9, "Chupacabra"},
+			{10, "Iturbide"},
+            {11, "Master"},
+            {12, "Jack"},
+            {13, "Superb"}
         };
 
 		tierStars = new Dictionary<int, int>{ //All ranks here are subject to change
 			{1, 3}, //"Novice"
-			{2, 4}, //"Beginner Samurai"
-			{3, 5}, //"Amateur Samurai"
-			{4, 6}, //"Samurai Apprentice"
-			{5, 7}, //"Samurai"
-			{6, 8}, //"La Llorona"
-			{7, 8},
-			{8, 8},
-			{9, 8},
-			{10, 8},
-			{11, 8}
+			{2, 3}, //"Beginner Samurai"
+			{3, 4}, //"Amateur Samurai"
+			{4, 4}, //"Samurai Apprentice"
+			{5, 5}, //"Samurai"
+			{6, 5}, //"La Llorona"
+			{7, 6},
+			{8, 6},
+			{9, 7},
+			{10, 7},
+			{11, 8},
+            {12, 8},
+			{13, 8}
 		};
     }
     public string getTitle() 
