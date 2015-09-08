@@ -11,12 +11,19 @@ public class CommetLogic : MonoBehaviour
 
     void Start()
     {
-        orign = GetComponentInParent<Transform>().position;
         transform.position = new Vector3(movementRadious,0);
         transform.position += orign;
         currentAngle = 0;
         spinSpeed *= Mathf.Deg2Rad;
         
+    }
+
+    public Vector3 Orign
+    {
+        set
+        {
+            orign = value;
+        }
     }
 
     public void Destroy()
