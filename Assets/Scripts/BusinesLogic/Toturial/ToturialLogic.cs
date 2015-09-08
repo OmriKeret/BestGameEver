@@ -84,12 +84,16 @@ public class ToturialLogic : MonoBehaviour {
         touch.SetDisableMovment();
         toturialEnemySpanner.spawnEnemie();
 
+
         //DEBUG ONLY
        //shouldCheckForPlayerTouchingThePodiumFirstTime = true;
        //playerIsOnThePodium();
         enemyManager = GameObject.Find("EnemyManager");
+        Debug.Log(String.Format("6 tutorial {0}",enemyManager==null));
+        
         collactableManager = GameObject.Find("CollectableManager");
         enemyManager.SetActive(false);
+
         collactableManager.SetActive(false);
         superPower.interactable = false;
     }
@@ -101,15 +105,22 @@ public class ToturialLogic : MonoBehaviour {
 
     internal void checkIfNeededToStartToturial()
     {
-
-        var data = IOManager.loadBasicToturialInfo();     
+        IOBasicToturialModel data = null;
+        try
+        {
+            data = IOManager.loadBasicToturialInfo();     
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Error sending data!");
+        }
         bool shouldDoBasicToturial = true;
-        if(data != null) 
+
+        if (data != null) 
         {
             shouldDoBasicToturial = (!data.finishedBasicToturial);
             
         }
-
         if (shouldDoBasicToturial)
         {
             startToturial();
