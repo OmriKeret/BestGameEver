@@ -139,9 +139,10 @@ public class GuiAdjuster : MonoBehaviour {
         }
 
         GameObject newLevelRankPanel = Instantiate(prefab, newRankPanelObject.transform.position, Quaternion.identity) as GameObject;
-        newLevelRankPanel.transform.parent = newRankPanelObject.transform.parent;
-        newLevelRankPanel.name = newRankPanelObject.name;
+		newLevelRankPanel.transform.parent = finishedMissionRankPanel.transform.parent;
 		newLevelRankPanel.GetComponent<RectTransform> ().localScale = new Vector3 (1f, 1f, 1f);
+		newLevelRankPanel.transform.parent = newRankPanelObject.transform.parent;
+        newLevelRankPanel.name = newRankPanelObject.name;
         GameObject.Destroy(newRankPanelObject);
     }
 

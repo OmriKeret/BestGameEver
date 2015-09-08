@@ -225,7 +225,7 @@ public class FinishedMissionHandler : MonoBehaviour, PhaseEventHandler{
         Vector3 firstStarPos = CMFirstStar.transform.position;
         for (int i = 0; i < mission.numberOfStars; i++)
         {
-          CMProgressStars[i] = Instantiate(CMStar,firstStarPos + new Vector3(i * 2.0f,0,0),Quaternion.identity) as GameObject;
+          CMProgressStars[i] = Instantiate(CMStar,firstStarPos + new Vector3(i * 1.0f,0,0),Quaternion.identity) as GameObject;
           CMProgressStars[i].transform.parent = CMObject.transform;
         }
     }
