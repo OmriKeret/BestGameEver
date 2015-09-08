@@ -13,9 +13,12 @@ public class MissionLogic : MonoBehaviour {
   DeathLogic deathLogic; 
   MissionStats missionStats; 
   public Text missionTitle;
+  private EventListener listener;
 
+  public GameObject CMStar;
 	// Use this for initialization
 	void Start () {
+        listener = EventListener.instance;
         deathLogic = this.gameObject.GetComponent<DeathLogic>();
         missionStats = GameObject.Find("GameManagerData").GetComponent<MissionStats>();     
 
@@ -41,18 +44,21 @@ public class MissionLogic : MonoBehaviour {
 		MissionsToggleAndText[missionNum].missionText = GameObject.Find("PauseMenu/Mission1/Mission1Label").GetComponent<Text>();
         MissionsToggleAndText[missionNum].missionCount = GameObject.Find("PauseMenu/Mission1/Mission1Count").GetComponent<Text>();
 		MissionsToggleAndText[missionNum].missionToggle = GameObject.Find("PauseMenu/Mission1").GetComponent<Toggle>();
+        MissionsToggleAndText[missionNum].firstStarPos = GameObject.Find("PauseMenu/Mission1/FirstStarPos").transform.position;
         missionNum++;
 
 		MissionsToggleAndText[missionNum].missionText = GameObject.Find("PauseMenu/Mission2/Mission2Label").GetComponent<Text>();
 		MissionsToggleAndText[missionNum].missionToggle = GameObject.Find("PauseMenu/Mission2").GetComponent<Toggle>();
         MissionsToggleAndText[missionNum].missionCount = GameObject.Find("PauseMenu/Mission2/Mission2Count").GetComponent<Text>();
+        MissionsToggleAndText[missionNum].firstStarPos = GameObject.Find("PauseMenu/Mission2/FirstStarPos").transform.position;
         missionNum++;
 
 		MissionsToggleAndText[missionNum].missionText = GameObject.Find("PauseMenu/Mission3/Mission3Label").GetComponent<Text>();
 		MissionsToggleAndText[missionNum].missionToggle = GameObject.Find("PauseMenu/Mission3").GetComponent<Toggle>();
         MissionsToggleAndText[missionNum].missionCount = GameObject.Find("PauseMenu/Mission3/Mission3Count").GetComponent<Text>();
+        MissionsToggleAndText[missionNum].firstStarPos = GameObject.Find("PauseMenu/Mission3/FirstStarPos").transform.position;
         missionTitle = GameObject.Find("PauseMenu/MissionTitle").GetComponent<Text>();
-
+    
 	}
 
     //counting time to timed missions
@@ -94,6 +100,8 @@ public class MissionLogic : MonoBehaviour {
            updateNumberAchived(i, missions[i].currentNumberAchived);
        }
        missionTitle.text = title;
+       initilizeMissiosnData();
+
     }
 
    //helper method to format time text
@@ -195,9 +203,13 @@ public class MissionLogic : MonoBehaviour {
     private void finishedMission(int missionNum)
     {
         //TODO:playsound 
-        MissionsToggleAndText[missionNum].missionToggle.isOn = true;
-        missions[missionNum].isFinished = true;
-        missionStats.finishedMission(missionNum);
+        if (!missions[missionNum].isFinished)
+        {
+            MissionsToggleAndText[missionNum].missionToggle.isOn = true;
+            missions[missionNum].isFinished = true;
+            listener.Listener[EventTypes.FinishedMission].Invoke(MissionsToggleAndText[missionNum].missionText.text, PopupType.EndMission);
+            missionStats.finishedMission(missionNum);
+        }
     }
 
     public void updateMissionProggressEndOfGame()
@@ -338,5 +350,18 @@ public class MissionLogic : MonoBehaviour {
     internal int getNextRankStars()
     {
         return missionStats.getNextLevelStars();
+    }
+
+    private void initilizeMissiosnData()
+    {
+        for (int index = 0; index < missions.Length; index++)
+        {
+            Vector3 firstStarPos = MissionsToggleAndText[index].firstStarPos;
+            for (int i = 0; i < missions[index].numberOfStars; i++)
+            {
+                var CMProgressStars = Instantiate(CMStar, firstStarPos + new Vector3(i * 3.2f, 0, 0), Quaternion.identity) as GameObject;
+                CMProgressStars.transform.parent = MissionsToggleAndText[index].missionToggle.transform;
+            }
+        }
     }
 }

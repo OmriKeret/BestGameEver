@@ -117,6 +117,7 @@ public class DeathLogic : MonoBehaviour {
     //the death screen
     private void DeathScreen()
     {
+        EventListener.instance.Listener[EventTypes.GameOver].Invoke();
         saveCurrencyAndProgress();
         endScreen.initiateDeathScreen();
 

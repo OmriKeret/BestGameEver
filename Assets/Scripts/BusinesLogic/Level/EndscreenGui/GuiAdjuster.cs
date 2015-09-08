@@ -76,6 +76,7 @@ public class GuiAdjuster : MonoBehaviour {
         summaryLevelArmor = GameObject.Find("Canvas/LosePanel/Armor").GetComponent<Image>();
 
         initiatePanels();
+        initiateShilds();
 	}
 
     public void initiateShilds()
@@ -83,14 +84,14 @@ public class GuiAdjuster : MonoBehaviour {
         //TODO: check player level and set shilds accordingly
         var level = missionLogic.getTier();
         var levelTitle = missionLogic.getTierTitle();
-
+        Debug.Log("level is :" + level);
         if (level <= 3)
         {
             // Bronze shild.
             summaryLevelArmor.sprite = bronzeShild;
             finishedMissionArmor.sprite = bronzeShild;
         }
-        else if (level <= 6)
+        else if (level <= 8)
         {
             // Silver shild.
             summaryLevelArmor.sprite = silverShild;

@@ -63,3 +63,9 @@ TagManager:
   - name: blood
     uniqueID: 2813280549
     locked: 0
+  - name: New Layer
+    uniqueID: 2923559729
+    locked: 0
+  - name: New Layer
+    uniqueID: 3058654585
+    locked: 0

@@ -29,7 +29,7 @@ public class MissionStats : MonoBehaviour {
            missionsFromDisc = MemoryAccess.memoryAccess.LoadMission();
 
           //  var missionsFromDisc = MemoryAccess.memoryAccess.LoadMission();
-           if (true)//missionsFromDisc == null || missionsFromDisc.missions == null) //todo: remove debug comment
+           if (missionsFromDisc == null || missionsFromDisc.missions == null) //todo: remove debug comment
 	        {
                 int numberOfStars = 3;
                 tier = 1;
@@ -37,11 +37,6 @@ public class MissionStats : MonoBehaviour {
                 numberOfStars = numberOfStars == 0 ? 3 : numberOfStars;
                 rankStars = new bool[numberOfStars];
                 initilizeMissions();
-               foreach(var m in currentMissions)  // REMOVE THIS
-               {                                  // REMOVE THIS
-                   m.isFinished = true;
-                   m.numberOfStars = 2;				// REMOVE THIS
-               }                                    // REMOVE THIS
                 
 	        }
 	        else
@@ -143,6 +138,10 @@ public class MissionStats : MonoBehaviour {
                 do
                 {
                     mission = missionAssigner.getNewMission(tier);
+                    if (tier >= 1 && !missionList.Exists(m => m.numberOfStars == 2))
+                    {
+                        mission.numberOfStars = 2;
+                    }
                 } while (missionList.Exists(m => m.type == mission.type));
                 currentMissions[i] = mission;
                 missionList.Add(mission);

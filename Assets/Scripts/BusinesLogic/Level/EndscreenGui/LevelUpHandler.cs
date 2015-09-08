@@ -46,10 +46,19 @@ public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
 
     // Gui adjustment
     GuiAdjuster guiAdjuster;
-
+    GameObject scoreText;
+    GameObject pause;
+    GameObject staminaHolder;
+    GameObject healthHolder;
 	// Use this for initialization
 
 	void Start () {
+        // bad gui thing (healthbar etc)
+        scoreText = GameObject.Find("Canvas/ScoreText");
+        pause = GameObject.Find("Canvas/Pause");
+        staminaHolder = GameObject.Find("Canvas/StaminaHolder");
+        healthHolder = GameObject.Find("Canvas/HealthHolder");
+
 		missionLogic = this.gameObject.GetComponentInParent<MissionLogic>();
         finishedMission = this.GetComponent<FinishedMissionHandler>();
 		missionCompleteObject = GameObject.Find("MissionComplete");
@@ -79,6 +88,9 @@ public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
 
     IEnumerator run()
     {
+        removeGuiBadThings();
+
+
         // reGet new rank paramaters (because they have been initiated)
         newRankFirstStarPos = GameObject.Find("LevelUp/NewLevel/RankStarsPanel/FirstStarPos");
         newRankPanelObject = GameObject.Find("LevelUp/NewLevel/RankStarsPanel");
@@ -119,7 +131,7 @@ public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
 		while (animationRun) {
 			yield return new WaitForSeconds(0.1f);
 		}
-
+        guiAdjuster.updateShilds();
 		Debug.Log ("levelUp: everything in place");
 		// Change Stars sprite.
 		animationRun = true;
@@ -167,7 +179,7 @@ public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
 
 		// moves up the Next button and wait for a next click :)
 		float nextButtonOrigY = nextButton.transform.position.y;
-		LeanTween.moveY (nextButton.gameObject, reward.transform.position.y - 15f, 0.5f).setIgnoreTimeScale (true).setEase (LeanTweenType.linear);
+		LeanTween.moveY (nextButton.gameObject, reward.transform.position.y - 20f, 0.5f).setIgnoreTimeScale (true).setEase (LeanTweenType.linear);
 		animationRun = true;
 		while (animationRun) {
 			yield return new WaitForSeconds(0.1f);
@@ -204,9 +216,27 @@ public class LevelUpHandler : MonoBehaviour, PhaseEventHandler {
 		}
 
 		blackBackground.SetBool("darkScreenSolid", false);
+        addGuiBadThings();
       Debug.Log("finished waiting");
 		finishedMission.finishedLevelingUp(newRankProgressStars);
 	}
+
+    private void removeGuiBadThings()
+    {
+
+        scoreText.SetActive(false);
+        pause.SetActive(false);
+        staminaHolder.SetActive(false);
+        healthHolder.SetActive(false);
+    }
+
+    private void addGuiBadThings()
+    {
+        scoreText.SetActive(true);
+        pause.SetActive(true);
+        staminaHolder.SetActive(true);
+        healthHolder.SetActive(true);
+    }
 
 	public void handleEvent()
 	{

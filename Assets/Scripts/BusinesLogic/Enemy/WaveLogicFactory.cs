@@ -225,6 +225,7 @@ public class WaveLogicFactory
     {
         int waveNumber = UnityEngine.Random.Range(0, i_waves.Length);
         WaveLogic wave = i_waves[waveNumber];
+        
         return wave;
     }
 
@@ -254,6 +255,7 @@ public class WaveLogicFactory
                 break;
             }
         }
+        
         return (WaveType)correctType;
 
     }
@@ -282,6 +284,7 @@ public class WaveLogicFactory
         }
 
         podiumMaker.SetupNewWave(wave);
+        
         return wave;
     }
 
