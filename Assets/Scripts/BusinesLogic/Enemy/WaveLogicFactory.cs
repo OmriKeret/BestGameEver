@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections;
 using Random = UnityEngine.Random;
 
-public class WaveLogicFactory {
+public class WaveLogicFactory: MonoBehaviour {
 
 	WaveLogic[] tutorialWaves;//TBD
     readonly WaveLogic[] _easyWaves;
@@ -171,6 +171,7 @@ public class WaveLogicFactory {
         //end for debug
         i_model.wave =  new WaveLogic(_orderWaves[i_model.waveNumber]);
     }
+
 
 	private WaveLogic createWave(WaveLogic[] i_waves){
 		int waveNumber = UnityEngine.Random.Range (0,i_waves.Length);
