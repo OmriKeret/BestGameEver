@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class StupidGeneralStats : AEnemyStats {
+public class StupidGeneralStats : BasicEnemyStats {
 	
 	void Start () {
 		leftSplitLocation = new Vector2 (10, 0);

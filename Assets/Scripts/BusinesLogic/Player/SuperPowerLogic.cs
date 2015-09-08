@@ -110,7 +110,7 @@ public class SuperPowerLogic : MonoBehaviour {
         var enemy = enemyStack.Pop();
         //   var enemyCollider = enemy.GetComponent<Collider2D>();
 
-        var enemyController = enemy.GetComponent<AIController>();
+        var enemyController = enemy.GetComponent<EnemyController>();
         var playerController = character.GetComponent<CollisionController>();
 
         //set collision between character and enemy manually
@@ -166,7 +166,7 @@ public class SuperPowerLogic : MonoBehaviour {
             collider.enabled = true;
             //Debug.Log("iterating on enemy " + i + "\ndead status: " + enemy.GetComponent<IEnemy>().isDead());
             //Debug.Log("character strength is: " + playerStatsLogic.Strength );
-            if (enemy.GetComponent<IEnemy>().isDead())
+            if (enemy.GetComponent<BasicEnemyLogic>().isDead())
             {
                 killEnemy(enemy);
 
@@ -196,7 +196,7 @@ public class SuperPowerLogic : MonoBehaviour {
         }
 
         var position = enemy.transform.position;
-        var enemyLogic = enemy.GetComponent<IEnemy>();
+        var enemyLogic = enemy.GetComponent<BasicEnemyLogic>();
         enemyLogic.Split(position);
         enemyLogic.playDeathSound();
         enemyLogic.Death();

@@ -109,14 +109,13 @@ public class PodiumLogic : MonoBehaviour {
 
     protected void startGoDownTrigger()
     {
-
         //if you are still immune return
         //Debug.Log("fixed time is : " + Time.fixedTime);
         //Debug.Log("immunityTimeFromBeginning: " + immunityTimeFromBeginning);
         if (firstJump)
         {
             firstJump = false;
-            return; 
+            return;
         }
         if (secondJump)
         {
@@ -131,10 +130,12 @@ public class PodiumLogic : MonoBehaviour {
         {
             goingDown = true;
         }
-       
+        
         timeStartedCounting = Time.time;
-		shouldCountForBreak = true;
+        shouldCountForBreak = true;
     }
+
+    
 
     public void breakPodium() {
        collider.enabled = false;
@@ -164,8 +165,16 @@ public class PodiumLogic : MonoBehaviour {
 
     public void downForGood()
     {
-        breakPodium();
+        Debug.Log("Start: " + Time.fixedTime);
+        StartCoroutine(BreakWithDelay());
         actionToDoWhenFinisheToBreak = ()=>{Destroy(this.gameObject);};
+    }
+
+    IEnumerator BreakWithDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Debug.Log("End: " + Time.fixedTime);
+        breakPodium();
     }
 
     internal void playerIsCamping()
@@ -178,6 +187,14 @@ public class PodiumLogic : MonoBehaviour {
         else
         {
             Instantiate(cannonPrefab, new Vector3(25, -5, 0), Quaternion.identity);
+        }
+    }
+
+    public bool IsAlive
+    {
+        get
+        {
+            return collider.enabled;
         }
     }
 }

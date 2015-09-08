@@ -1,59 +1,44 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
-public class CannonAILogic : MonoBehaviour, IEnemy
-{
+public abstract class BasicEnemyLogic : MonoBehaviour {
+
+    protected BasicEnemyStats _stats;
+    Rigidbody2D _rigidbody;
+    protected GameObject _leftBodyPartResouce, _rightBodyPartResouce;
+    protected GameObject _leftBodyPart, _rightBodyPart;
+    protected GameObject _blood;
 
     // Animation 
     Animator _animation;
 
-    // Cannon params
-    Vector3 playerPosition;
-    bool isinitilized;
-    
-
-    BasicEnemyStats _stats;
-    Rigidbody2D _rigidbody;
-    GameObject _leftBodyPartResouce, _rightBodyPartResouce;
-    GameObject _leftBodyPart, _rightBodyPart;
-    GameObject _blood;
     public float timeToFinishPath = 15f;
     public float minTimeForPath = 4f;
     public float maxTimeForPath = 30f;
     private Dictionary<EnemyLocation, Vector3[]> _pathMap;
-    private StupidPaths _allVectorPaths;
+    protected StupidPaths _allVectorPaths;
 
     // blood splash data
-    private EnemyGeneralAnimationLogic _generalAnimationLogic;
+    protected EnemyGeneralAnimationLogic _generalAnimationLogic;
 
-    // time to jump and stuff
-    private float timeToFinishJump = 5f;
     AudioSource _audioSource;
     // Use this for initialization
-    void Awake()
+    protected virtual void Awake()
     {
         _animation = this.GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
         _stats = GetComponent<BasicEnemyStats>();
         _rigidbody = GetComponent<Rigidbody2D>();
-        _leftBodyPartResouce = Resources.Load("stupidL") as GameObject;
-        _rightBodyPartResouce = Resources.Load("stupidR") as GameObject;
         _blood = Resources.Load("BloodSplash") as GameObject;
         GetComponent<Rigidbody2D>().gravityScale = 0;
-        _allVectorPaths = new StupidPaths();
-       // initPaths();
         _generalAnimationLogic = GameObject.Find("Logic").GetComponent<EnemyGeneralAnimationLogic>();
-
-        // player position
-        playerPosition = GameObject.Find("PlayerManager").transform.position;
-        
+        initVectorPaths();
+        initPaths();
     }
 
-    private void FixedUpdate()
+    protected virtual void Start()
     {
-        RotateToDirection(_stats.Direction.normalized);
     }
 
     public bool lifeDown(int str)
@@ -67,20 +52,9 @@ public class CannonAILogic : MonoBehaviour, IEnemy
         return _stats.life <= 0;
     }
 
-    void IEnemy.Death()
+    public virtual void Death()
     {
         Destroy(this.gameObject);
-    }
-
-    Vector2 IEnemy.MoveToPoint(Vector2 point)
-    {
-        return (new Vector2(point.x * (-1), point.y * (-1))).normalized;
-    }
-
-    //TODO: Get the location from the game manager
-    Vector2 IEnemy.FindPlayerLocation()
-    {
-        return FindObjectOfType<PlayerStatsController>().gameObject.transform.position;
     }
 
     public void SetStats(BasicEnemyStats i_stats)
@@ -88,26 +62,34 @@ public class CannonAILogic : MonoBehaviour, IEnemy
         _stats = i_stats;
     }
 
-    void IEnemy.MoveInDirection(Vector2 i_direction)
+    public void Split(Vector2 i_location)
     {
-        if (_rigidbody.velocity.magnitude < _stats.MAX_SPEED)
+        try
         {
-            _rigidbody.AddForce(i_direction);
+            _leftBodyPart = Instantiate(_leftBodyPartResouce, i_location, Quaternion.identity) as GameObject;
+            if (_leftBodyPart != null)
+            {
+                _leftBodyPart.GetComponent<PartOfEnemyFadeOut>().FadeAndDestoryUp();
+            }
         }
-    }
+        catch
+        {
+            Debug.Log("Couldn't instansiate left body part!");
+        }
 
-    void IEnemy.Split(Vector2 i_location)
-    {
-        _leftBodyPart = Instantiate(_leftBodyPartResouce, i_location, Quaternion.identity) as GameObject;
-        if (_leftBodyPart != null)
+        try
         {
-            _leftBodyPart.GetComponent<PartOfEnemyFadeOut>().FadeAndDestoryUp();
+            _rightBodyPart = Instantiate(_rightBodyPartResouce, i_location, Quaternion.identity) as GameObject;
+            if (_rightBodyPart != null)
+            {
+                _rightBodyPart.GetComponent<PartOfEnemyFadeOut>().FadeAndDestoryDown(); ;
+            }
         }
-        _rightBodyPart = Instantiate(_rightBodyPartResouce, i_location, Quaternion.identity) as GameObject;
-        if (_rightBodyPart != null)
+        catch
         {
-            _rightBodyPart.GetComponent<PartOfEnemyFadeOut>().FadeAndDestoryDown(); ;
+            Debug.Log("Couldn't instansiate right body part!");
         }
+        
     }
 
     public void StartOrderPath(int i_speed, EnemyLocation i_Location)
@@ -117,18 +99,19 @@ public class CannonAILogic : MonoBehaviour, IEnemy
         {
 
         }
-         
+
+        //selectOrderPath(out path, i_PathNumber);
+
+        LeanTween.move(this.gameObject, path, calculateTime(i_speed)).setEase(LeanTweenType.linear).setOnComplete(() =>
+        {
+            FinishedMoving();
+        });
     }
 
 
-    public EnemyMode GetEnemyMode()
+    public virtual EnemyMode GetEnemyMode()
     {
         return EnemyMode.None;
-    }
-
-    public Vector3[] GetPath()
-    {
-        throw new System.NotImplementedException();
     }
 
     public void FinishedMoving()
@@ -142,9 +125,10 @@ public class CannonAILogic : MonoBehaviour, IEnemy
         return minTimeForPath * (_stats.MAX_SPEED / speed);
     }
 
-    public void initPaths()
-    {
+    public abstract void initVectorPaths();
 
+    public virtual void initPaths()
+    {
         _pathMap = new Dictionary<EnemyLocation, Vector3[]>();
         _pathMap.Add(EnemyLocation.TopLeft, _allVectorPaths.topLeft);
         _pathMap.Add(EnemyLocation.TopRight, _allVectorPaths.topRight);
@@ -176,6 +160,7 @@ public class CannonAILogic : MonoBehaviour, IEnemy
     // splash blood
     public void hit(int combo, Vector2 dir)
     {
+        _animation.SetTrigger("Hit");
         int minNum = _generalAnimationLogic.minEmissioNum;
         int maxNum = _generalAnimationLogic.maxEmission;
         if (combo != 0)
@@ -191,6 +176,7 @@ public class CannonAILogic : MonoBehaviour, IEnemy
         bloodEmiter.localVelocity = new Vector3(dir.x, dir.y, 0);
     }
 
+    // splash blood + death
     public void enemyDie(int combo, Vector2 dir)
     {
         GetComponent<Collider2D>().enabled = false;
@@ -210,44 +196,6 @@ public class CannonAILogic : MonoBehaviour, IEnemy
         bloodEmiter.localVelocity = new Vector3(dir.x, dir.y, 0);
     }
 
-    public void finishedCharge()
-    {
-        //TODO: set enemy path, dont forget u already got player position!
-        if (!isinitilized)
-        {
-            isinitilized = true;
-            Vector3 playerLocation = playerPosition;
-            Vector3[] path = playerLocation.x > 0 ? CannonPaths.flyFromLeft : CannonPaths.flyFromRight;
-            path[2].x = 2*(path[0].x - playerLocation.x) / 4;
-            path[2].y = playerLocation.y + 8f;
-            path[1].x = 3
-                *(path[3].x - playerLocation.x) / 4;
-            path[1].y = playerLocation.y + 8f;
-
-            LeanTween.move(this.gameObject, path, timeToFinishJump).setEase(LeanTweenType.easeInOutCubic).setOnComplete(() =>
-            {
-                FinishedMoving();
-            });
-        }
-        
-    }
-
-    private void RotateToDirection(Vector2 dir)
-    {
-        Vector2 dashAnimationVector;
-        var x = dir.normalized.x;
-        if (x > 0)
-        {
-            dashAnimationVector = new Vector2(1f, 0.5f);
-        }
-        else
-        {
-            dashAnimationVector = new Vector2(-1f, 0.5f);
-        }
-        //  Quaternion newRotation = Quaternion.LookRotation(dir);
-
-        this.transform.rotation = Quaternion.FromToRotation(dashAnimationVector, dir);
-    }
     public EnemyType getEnemyType()
     {
         return _stats._type;

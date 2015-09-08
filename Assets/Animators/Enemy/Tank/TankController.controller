@@ -135,6 +135,23 @@ AnimatorState:
   m_Mirror: 0
   m_Motion: {fileID: 7400000, guid: 8503198bb92df6d47b45e4e4a9220401, type: 2}
   m_Tag: 
+--- !u!1102 &110290944
+AnimatorState:
+  serializedVersion: 5
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: trest
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_Motion: {fileID: 7400000, guid: f7524a80904bf9b47914cc5fe60f5b7e, type: 2}
+  m_Tag: 
 --- !u!1102 &110299128
 AnimatorState:
   serializedVersion: 5
@@ -169,6 +186,9 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 110299128}
     m_Position: {x: -183, y: 267, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 110290944}
+    m_Position: {x: -148, y: 332, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 110193032}

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Text;
 
-    class EagleStats : AEnemyStats
+    class EagleStats : BasicEnemyStats
     {
         void Start()
         {

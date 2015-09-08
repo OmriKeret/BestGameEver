@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Text;
 
 
-    public class CannonStats : AEnemyStats
+    public class CannonStats : BasicEnemyStats
     {
         void Start()
         {

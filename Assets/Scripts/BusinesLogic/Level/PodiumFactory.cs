@@ -1,10 +1,8 @@
-﻿using System;
-using UnityEngine;
-//using UnityEditor;
+﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 
-public class PodiumFactory
+public class PodiumFactory : MonoBehaviour
     {
         private GameObject podiumPrefab;
         List<GameObject> activePodiums;
@@ -121,6 +119,7 @@ public class PodiumFactory
                 }
             }
         }
+
 
         public GameObject createPodium(PodiumModel podiumParams)
         {

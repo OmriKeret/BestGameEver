@@ -21,7 +21,7 @@ public class ToturialEnemySpwanner : MonoBehaviour {
     {
         Vector3 enemyLocation = new Vector3(23f, -9f, 0f);
         GameObject currentEnemy = Instantiate(stupid, enemyLocation, Quaternion.identity) as GameObject;
-        IEnemy currentEnemyLogic = currentEnemy.GetComponent<IEnemy>();
+        BasicEnemyLogic currentEnemyLogic = currentEnemy.GetComponent<BasicEnemyLogic>();
         currentEnemyLogic.playSpawnSound();
 
 
@@ -36,12 +36,12 @@ public class ToturialEnemySpwanner : MonoBehaviour {
     {
         Vector3 enemyLocation = new Vector3(0f, -25f, 0f);
         GameObject currentEnemy = Instantiate(stupid, enemyLocation, Quaternion.identity) as GameObject;
-        IEnemy currentEnemyLogic = currentEnemy.GetComponent<IEnemy>();
+        BasicEnemyLogic currentEnemyLogic = currentEnemy.GetComponent<BasicEnemyLogic>();
         currentEnemyLogic.playSpawnSound();
         LeanTween.move(currentEnemy, wave2Path1.vec3, timeToGetToPoint);
 
         currentEnemy = Instantiate(stupid, enemyLocation, Quaternion.identity) as GameObject;
-        currentEnemyLogic = currentEnemy.GetComponent<IEnemy>();
+        currentEnemyLogic = currentEnemy.GetComponent<BasicEnemyLogic>();
         currentEnemyLogic.playSpawnSound();
         LeanTween.move(currentEnemy, wave2Path2.vec3, timeToGetToPoint).setOnComplete(() =>
         {

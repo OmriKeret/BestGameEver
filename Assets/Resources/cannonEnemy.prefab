@@ -359,7 +359,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 140192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2638327f4ac9b9409983b4620aeb96a, type: 3}
+  m_Script: {fileID: 11500000, guid: 625de13cc7986ea4caccbf84835d5890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   timeToFinishPath: 40
@@ -373,10 +373,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 140192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c834ff917a9678e44994966daccf65ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 07acbfe11ffe1cf4fb1a9c4223d4832a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 5
 --- !u!114 &11498268
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -391,10 +390,10 @@ MonoBehaviour:
   life: 1
   BASIC_HP_DOWN: 1
   BASIC_HP: 1
-  MAX_SPEED: 10
+  MAX_SPEED: 1
   leftSplitLocation: {x: 0, y: 0}
   _mode: 1
-  _type: 5
+  _type: 4
   AllSprites: []
 --- !u!212 &21201998
 SpriteRenderer:
