@@ -64,16 +64,32 @@ public abstract class BasicEnemyLogic : MonoBehaviour {
 
     public void Split(Vector2 i_location)
     {
-        _leftBodyPart = Instantiate(_leftBodyPartResouce, i_location, Quaternion.identity) as GameObject;
-        if (_leftBodyPart != null)
+        try
         {
-            _leftBodyPart.GetComponent<PartOfEnemyFadeOut>().FadeAndDestoryUp();
+            _leftBodyPart = Instantiate(_leftBodyPartResouce, i_location, Quaternion.identity) as GameObject;
+            if (_leftBodyPart != null)
+            {
+                _leftBodyPart.GetComponent<PartOfEnemyFadeOut>().FadeAndDestoryUp();
+            }
         }
-        _rightBodyPart = Instantiate(_rightBodyPartResouce, i_location, Quaternion.identity) as GameObject;
-        if (_rightBodyPart != null)
+        catch
         {
-            _rightBodyPart.GetComponent<PartOfEnemyFadeOut>().FadeAndDestoryDown(); ;
+            Debug.Log("Couldn't instansiate left body part!");
         }
+
+        try
+        {
+            _rightBodyPart = Instantiate(_rightBodyPartResouce, i_location, Quaternion.identity) as GameObject;
+            if (_rightBodyPart != null)
+            {
+                _rightBodyPart.GetComponent<PartOfEnemyFadeOut>().FadeAndDestoryDown(); ;
+            }
+        }
+        catch
+        {
+            Debug.Log("Couldn't instansiate right body part!");
+        }
+        
     }
 
     public void StartOrderPath(int i_speed, EnemyLocation i_Location)
