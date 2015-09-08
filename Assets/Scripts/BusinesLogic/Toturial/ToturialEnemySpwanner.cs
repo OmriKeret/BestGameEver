@@ -22,14 +22,19 @@ public class ToturialEnemySpwanner : MonoBehaviour {
         Vector3 enemyLocation = new Vector3(23f, -9f, 0f);
         GameObject currentEnemy = Instantiate(stupid, enemyLocation, Quaternion.identity) as GameObject;
         BasicEnemyLogic currentEnemyLogic = currentEnemy.GetComponent<BasicEnemyLogic>();
-        currentEnemyLogic.playSpawnSound();
-
-
+        try
+        {
+            currentEnemyLogic.playSpawnSound();
+        }
+        catch (System.Exception e)
+        {
+            Debug.Log("Failed playing sound!");
+        }
+        
         LeanTween.move(currentEnemy, ltPath.vec3, timeToGetToPoint).setOnComplete(
             () => {
                 toturialLogic.EnemyGotToPosition();
             });
-        
     }
 
     internal void spawnEnemiesForWaveTwo()
