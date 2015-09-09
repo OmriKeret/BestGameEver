@@ -65,11 +65,13 @@ public class CollectableLogic : MonoBehaviour {
 
     internal void generatCoin()
     {
-        var pref = collectablesSprite[CollectableTypes.COIN];
-
-        var vec = RandomPlaceInsideScreenToPowerUp();
-        var sprite = Instantiate(pref, vec, Quaternion.identity) as GameObject;
-        sprite.GetComponent<CoinTrigger>().Set();
+        GameObject pref;
+        if (collectablesSprite.TryGetValue(CollectableTypes.COIN, out pref))
+        {
+            var vec = RandomPlaceInsideScreenToPowerUp();
+            var sprite = Instantiate(pref, vec, Quaternion.identity) as GameObject;
+            sprite.GetComponent<CoinTrigger>().Set();
+        }
     }
     private Vector3 RandomPlaceInsideScreenToPowerUp()
     {

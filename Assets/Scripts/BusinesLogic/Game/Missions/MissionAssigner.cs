@@ -56,7 +56,7 @@ public class MissionAssigner : MonoBehaviour {
         }
         if (mission.type == MissionType.getScoreOf)
         {
-            mission.missionText = string.Format("Get {0}kills {1} ", string.Format(System.Globalization.CultureInfo.InvariantCulture,
+            mission.missionText = string.Format("Get {0} kills {1} ", string.Format(System.Globalization.CultureInfo.InvariantCulture,
                                  "{0:0,0}", mission.numberToAchive), inOneGame);
         }
         if (mission.type == MissionType.survival)
@@ -79,7 +79,7 @@ public class MissionAssigner : MonoBehaviour {
 		switch (mission)
 		{
 			case MissionType.survival:
-                ResultingNumber *= tier;
+                ResultingNumber *= tier * 8;
 				break;
 			case MissionType.killTypeOfEnemy:
                 ResultingNumber *= tier * 1;
