@@ -309,6 +309,10 @@ public class MissionLogic : MonoBehaviour {
 		}
 		return leveledUp;
     }
+    public int getCurrentRankCompleteReward()
+    {
+        return 100 + 300 * (getTier());
+    }
 
 	public int getRankCompleteReward ()
 	{
