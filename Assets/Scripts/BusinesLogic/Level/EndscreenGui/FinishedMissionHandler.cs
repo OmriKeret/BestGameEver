@@ -130,6 +130,12 @@ public class FinishedMissionHandler : MonoBehaviour, PhaseEventHandler{
             rankProgressStars[i].transform.parent = rankPanel.transform;
             i++;
         }
+        var fillTill = missionLogic.getFirstMissingStarIndex();
+
+        for (int j = 0; j < fillTill; j++)
+        {
+            rankProgressStars[j].GetComponent<SpriteRenderer>().sprite = rankCompletedStar;
+        }
     }
 
     private IEnumerator processFinishedMission(MissionModel mission)
@@ -230,6 +236,7 @@ public class FinishedMissionHandler : MonoBehaviour, PhaseEventHandler{
           CMProgressStars[i] = Instantiate(CMStar,firstStarPos + new Vector3(i * 3.2f,0,0),Quaternion.identity) as GameObject;
           CMProgressStars[i].transform.parent = CMObject.transform;
         }
+
     }
 
     public void handleEvent()

@@ -29,7 +29,7 @@ public class MissionStats : MonoBehaviour {
            missionsFromDisc = MemoryAccess.memoryAccess.LoadMission();
 
           //  var missionsFromDisc = MemoryAccess.memoryAccess.LoadMission();
-           if (missionsFromDisc == null || missionsFromDisc.missions == null) //todo: remove debug comment
+           if (true)//missionsFromDisc == null || missionsFromDisc.missions == null) //todo: remove debug comment
 	        {
                 int numberOfStars = 3;
                 tier = 1;
@@ -41,7 +41,12 @@ public class MissionStats : MonoBehaviour {
 	        }
 	        else
 	        {
-
+                if (missionsFromDisc.rankStars.Length == 0)
+                {
+                    rankStars = new bool[3];
+                } else {
+                	rankStars = missionsFromDisc.rankStars;
+				}
                 currentMissions = new MissionModel[missionsFromDisc.missions.Length];
                 for (int i = 0; i < currentMissions.Length; i++)
                 {

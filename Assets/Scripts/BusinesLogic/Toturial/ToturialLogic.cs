@@ -63,6 +63,7 @@ public class ToturialLogic : MonoBehaviour {
         highlightAnimation = highlightContainer.GetComponentInChildren<Animator>();
         IOManager = this.GetComponent<ToturialIOManager>();
         superPower = GameObject.Find("Canvas/SuperHit").GetComponent<Button>();
+        enemyManager = GameObject.Find("EnemyManager");
 
     }
 
@@ -88,7 +89,7 @@ public class ToturialLogic : MonoBehaviour {
         //DEBUG ONLY
        //shouldCheckForPlayerTouchingThePodiumFirstTime = true;
        //playerIsOnThePodium();
-        enemyManager = GameObject.Find("EnemyManager");
+     
         Debug.Log(String.Format("6 tutorial {0}",enemyManager==null));
         
         collactableManager = GameObject.Find("CollectableManager");
@@ -303,7 +304,7 @@ public class ToturialLogic : MonoBehaviour {
        highlightAnimation.SetBool("highlight", true);
        func = pointToThirdEnemy;
        timeToWait = 3f;
-		timeTouched = Time.realtimeSinceStartup;
+	    timeTouched = Time.realtimeSinceStartup;
        timerIsOn = true;
 	   
       

@@ -287,7 +287,7 @@ public class MissionLogic : MonoBehaviour {
             }
             i++;
         }
-        return i;
+        return missionStars.Length;
     }
 
     internal string getTierTitle()
