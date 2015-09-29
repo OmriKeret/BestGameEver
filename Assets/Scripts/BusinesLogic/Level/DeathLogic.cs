@@ -129,7 +129,7 @@ public class DeathLogic : MonoBehaviour {
         scoreLogic.saveScoreData();
         if (missionLogic.didLevelUp())
         {
-            reward = missionLogic.getRankCompleteReward();    
+            reward = missionLogic.getCurrentRankCompleteReward();    
         }
         currencyLogic.updateCurrencyByKillsAndLoot(scoreLogic.kills, currencyLogic.getGoldEarned() + reward);
 

@@ -44,6 +44,11 @@ public class GuiAdjuster : MonoBehaviour {
     Text summaryLevel;
     Image summaryLevelArmor;
 
+        //newMissions armor.
+    Text newMissionShildTitle;
+    Text newMission;
+    Image newMissionArmor;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -75,6 +80,11 @@ public class GuiAdjuster : MonoBehaviour {
 		summaryLevel = GameObject.Find("LosePanel/Armor/Level").GetComponent<Text>();
         summaryLevelArmor = GameObject.Find("Canvas/LosePanel/Armor").GetComponent<Image>();
 
+        //newMissions armor.
+        newMissionShildTitle = GameObject.Find("Canvas/NewMissions/Armor/Title").GetComponent<Text>();
+        newMission = GameObject.Find("Canvas/NewMissions/Armor/Level").GetComponent<Text>();
+        newMissionArmor = GameObject.Find("Canvas/NewMissions/Armor").GetComponent<Image>();
+
         initiatePanels();
         initiateShilds();
 	}
@@ -84,33 +94,39 @@ public class GuiAdjuster : MonoBehaviour {
         //TODO: check player level and set shilds accordingly
         var level = missionLogic.getTier();
         var levelTitle = missionLogic.getTierTitle();
+       
         Debug.Log("level is :" + level);
         if (level <= 3)
         {
             // Bronze shild.
             summaryLevelArmor.sprite = bronzeShild;
             finishedMissionArmor.sprite = bronzeShild;
+            newMissionArmor.sprite = bronzeShild;
         }
         else if (level <= 8)
         {
             // Silver shild.
             summaryLevelArmor.sprite = silverShild;
             finishedMissionArmor.sprite = silverShild;
+            newMissionArmor.sprite = silverShild;
         }
         else
         {
             // Gold shild.
             summaryLevelArmor.sprite = goldShild;
             finishedMissionArmor.sprite = goldShild;
+            newMissionArmor.sprite = goldShild;
         }
 
         // Set level number
         summaryLevel.text = string.Format("{0}", level);
         rankLevel.text = string.Format("{0}", level);
+        newMission.text = string.Format("{0}", level);
 
         // Set level title.
         rankTitle.text = levelTitle;
         summaryShildTitle.text = levelTitle;
+        newMissionShildTitle.text = levelTitle;
     }
 
     public void updateShilds()

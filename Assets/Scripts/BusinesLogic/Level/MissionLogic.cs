@@ -287,7 +287,7 @@ public class MissionLogic : MonoBehaviour {
             }
             i++;
         }
-        return i;
+        return missionStars.Length;
     }
 
     internal string getTierTitle()
@@ -308,6 +308,10 @@ public class MissionLogic : MonoBehaviour {
 			missionStats.upgradeTier();
 		}
 		return leveledUp;
+    }
+    public int getCurrentRankCompleteReward()
+    {
+        return 100 + 300 * (getTier());
     }
 
 	public int getRankCompleteReward ()

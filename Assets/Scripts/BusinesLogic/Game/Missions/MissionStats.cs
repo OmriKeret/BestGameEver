@@ -41,7 +41,12 @@ public class MissionStats : MonoBehaviour {
 	        }
 	        else
 	        {
-
+                if (missionsFromDisc.rankStars.Length == 0)
+                {
+                    rankStars = new bool[3];
+                } else {
+                	rankStars = missionsFromDisc.rankStars;
+				}
                 currentMissions = new MissionModel[missionsFromDisc.missions.Length];
                 for (int i = 0; i < currentMissions.Length; i++)
                 {
@@ -72,7 +77,11 @@ public class MissionStats : MonoBehaviour {
 			{10, "Iturbide"},
             {11, "Master"},
             {12, "Jack"},
-            {13, "Superb"}
+            {13, "Superb"},
+            {14, "Superb"},
+            {15, "Superb"},
+            {16, "Superb"},
+            {17, "Superb"}
         };
 
 		tierStars = new Dictionary<int, int>{ //All ranks here are subject to change
@@ -88,7 +97,11 @@ public class MissionStats : MonoBehaviour {
 			{10, 7},
 			{11, 8},
             {12, 8},
-			{13, 8}
+			{13, 8},
+            {14, 8},
+            {15, 8},
+            {16, 8},
+            {17, 8}
 		};
     }
     public string getTitle() 
