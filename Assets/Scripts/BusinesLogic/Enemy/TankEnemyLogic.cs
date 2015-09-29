@@ -20,11 +20,15 @@ public class TankEnemyLogic : BasicEnemyLogic {
     public override void initVectorPaths()
     {
         _allVectorPaths = new StupidPaths();
-    }   
+    }
+
+    public void KillCommet()
+    {
+        commet.Destroy();
+    }
 
     public  void kaki()
     {
-        commet.Destroy();
         base.Death();
     }
 
