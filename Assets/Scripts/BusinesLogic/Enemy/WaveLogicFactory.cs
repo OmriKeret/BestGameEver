@@ -98,25 +98,25 @@ public class WaveLogicFactory
 			new int[]{1,1,1,1}),
 			//Stupids all from topleft, introducing Spike
 			//Stupids + Spike
-			new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid, EnemyType.Stupid,EnemyType.Stupid , EnemyType.Stupid,EnemyType.Spike , EnemyType.Stupid,EnemyType.Stupid},
-			new EnemyLocation[]{EnemyLocation.TopLeft,EnemyLocation.TopLeft, EnemyLocation.TopLeft,EnemyLocation.TopLeft, EnemyLocation.TopLeft,EnemyLocation.TopLeft, EnemyLocation.TopLeft,EnemyLocation.TopLeft},
-			new int[]{1,1,1,1,1,1,1,1}),
+			new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid, EnemyType.Spike,EnemyType.Stupid},
+			new EnemyLocation[]{EnemyLocation.TopLeft,EnemyLocation.TopLeft, EnemyLocation.TopLeft,EnemyLocation.TopLeft},
+			new int[]{1,1,1,1}),
 			//Stupids + Tank + Spike, shuffled 1.
-			new WaveLogic(new EnemyType[]{EnemyType.Spike,EnemyType.Stupid, EnemyType.Stupid,EnemyType.Stupid , EnemyType.Stupid,EnemyType.Stupid , EnemyType.Tank},
-			new EnemyLocation[]{EnemyLocation.BottomLeft,EnemyLocation.BottomRight, EnemyLocation.MidLeft,EnemyLocation.MidRight, EnemyLocation.TopLeft,EnemyLocation.TopMid, EnemyLocation.TopRight},
-			new int[]{1,1,3,2}),
+			new WaveLogic(new EnemyType[]{EnemyType.Stupid, EnemyType.Stupid,EnemyType.Spike, EnemyType.Stupid,EnemyType.Stupid},
+			new EnemyLocation[]{EnemyLocation.BottomLeft,EnemyLocation.BottomRight, EnemyLocation.TopLeft,EnemyLocation.TopMid, EnemyLocation.TopRight},
+			new int[]{1,1,2,1}),
 			//Shuffled 2
-			new WaveLogic(new EnemyType[]{EnemyType.Spike,EnemyType.Stupid, EnemyType.Stupid,EnemyType.Stupid , EnemyType.Stupid,EnemyType.Stupid , EnemyType.Tank},
-			new EnemyLocation[]{EnemyLocation.BottomLeft,EnemyLocation.BottomRight, EnemyLocation.MidLeft,EnemyLocation.MidRight, EnemyLocation.TopLeft,EnemyLocation.TopMid, EnemyLocation.TopRight},
-			new int[]{2,3,1,1}),
+			new WaveLogic(new EnemyType[]{EnemyType.Stupid, EnemyType.Stupid,EnemyType.Stupid, EnemyType.Stupid , EnemyType.Tank},
+			new EnemyLocation[]{EnemyLocation.BottomLeft,EnemyLocation.BottomRight, EnemyLocation.TopLeft,EnemyLocation.TopMid, EnemyLocation.TopRight},
+			new int[]{1,2,1,1}),
 			//Shuffled 3
-			new WaveLogic(new EnemyType[]{EnemyType.Spike,EnemyType.Stupid, EnemyType.Stupid,EnemyType.Stupid , EnemyType.Stupid,EnemyType.Stupid , EnemyType.Tank},
-			new EnemyLocation[]{EnemyLocation.BottomLeft,EnemyLocation.BottomRight, EnemyLocation.MidLeft,EnemyLocation.MidRight, EnemyLocation.TopLeft,EnemyLocation.TopMid, EnemyLocation.TopRight},
-			new int[]{1,3,2,1}),
+			new WaveLogic(new EnemyType[]{EnemyType.Stupid, EnemyType.Stupid,EnemyType.Spike, EnemyType.Stupid, EnemyType.Tank},
+			new EnemyLocation[]{EnemyLocation.BottomLeft,EnemyLocation.BottomRight, EnemyLocation.TopLeft,EnemyLocation.TopMid, EnemyLocation.TopRight},
+			new int[]{1,2,1,1}),
 			//Shuffled 4
-			new WaveLogic(new EnemyType[]{EnemyType.Spike,EnemyType.Stupid, EnemyType.Stupid,EnemyType.Stupid , EnemyType.Stupid,EnemyType.Stupid , EnemyType.Tank},
-			new EnemyLocation[]{EnemyLocation.BottomLeft,EnemyLocation.BottomRight, EnemyLocation.MidLeft,EnemyLocation.MidRight, EnemyLocation.TopLeft,EnemyLocation.TopMid, EnemyLocation.TopRight},
-			new int[]{1,2,3,1}),
+			new WaveLogic(new EnemyType[]{EnemyType.Stupid, EnemyType.Stupid,EnemyType.Stupid, EnemyType.Spike, EnemyType.Tank},
+			new EnemyLocation[]{EnemyLocation.BottomLeft,EnemyLocation.BottomRight, EnemyLocation.TopLeft,EnemyLocation.TopMid, EnemyLocation.TopRight},
+			new int[]{1,1,2,1}),
             //new WaveLogic(new EnemyType[]{EnemyType.Stupid,EnemyType.Stupid},
             //new EnemyLocation[]{EnemyLocation.TopRight,EnemyLocation.TopRight},
             //new int[]{1,1}),
@@ -301,7 +301,7 @@ public class WaveLogicFactory
             two = createWave(_easyWaves);
         }
 
-        WaveLogic merge = one.MergeWaves(two);
+        WaveLogic merge = one.MergeWaves(createWave(_easyWaves)).MergeWaves(createWave(_easyWaves)).MergeWaves(two);
         return merge;
     }
 
