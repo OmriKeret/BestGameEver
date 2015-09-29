@@ -89,7 +89,6 @@ public class ToturialLogic : MonoBehaviour {
        //shouldCheckForPlayerTouchingThePodiumFirstTime = true;
        //playerIsOnThePodium();
         enemyManager = GameObject.Find("EnemyManager");
-        Debug.Log(String.Format("6 tutorial {0}",enemyManager==null));
         
         collactableManager = GameObject.Find("CollectableManager");
         enemyManager.SetActive(false);
