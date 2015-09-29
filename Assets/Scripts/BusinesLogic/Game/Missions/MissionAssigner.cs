@@ -17,23 +17,11 @@ public class MissionAssigner : MonoBehaviour {
 
     void OnEnable() { }
 
-    public MissionModel[] getNewMissions(int tier)
+    public MissionModel getNewMission(int tier)
     {
-        List<MissionModel> result = new List<MissionModel>();
-        int i = 0;
-        while (i < 3)
-        {
-            MissionModel mission = getRandomMission(tier);
-
-            //if mission doesn't exists yet
-            if (!result.Exists(m => m.type == mission.type))
-            {
-                result.Add(mission);
-                i++;
-            }
-        }
-        return result.ToArray();
-
+        var mission = getRandomMission(tier);
+        mission.isNew = true;
+        return mission;
     }
 
     //helper method to generate random mission by tier
@@ -52,6 +40,7 @@ public class MissionAssigner : MonoBehaviour {
         mission.isFinished = false;
         mission.needToBeCompletedInOneGame = selectedMission.needToBeCompletedInOneGame;
 		mission.numberToAchive = TierFactor(tier, mission.type, mission.needToBeCompletedInOneGame);
+        mission.numberOfStars = selectedMission.numberOfStars;
         string inOneGame = mission.needToBeCompletedInOneGame ? " in one game!" : "!";
 		//TODO : Different enemies
         if(mission.type == MissionType.killTypeOfEnemy) {
@@ -67,7 +56,7 @@ public class MissionAssigner : MonoBehaviour {
         }
         if (mission.type == MissionType.getScoreOf)
         {
-            mission.missionText = string.Format("Get {0}{1} kills ", string.Format(System.Globalization.CultureInfo.InvariantCulture,
+            mission.missionText = string.Format("Get {0} kills {1} ", string.Format(System.Globalization.CultureInfo.InvariantCulture,
                                  "{0:0,0}", mission.numberToAchive), inOneGame);
         }
         if (mission.type == MissionType.survival)
@@ -90,22 +79,22 @@ public class MissionAssigner : MonoBehaviour {
 		switch (mission)
 		{
 			case MissionType.survival:
-				ResultingNumber *= 5;
+                ResultingNumber *= tier * 8;
 				break;
 			case MissionType.killTypeOfEnemy:
-				ResultingNumber *= 10;
+                ResultingNumber *= tier * 1;
 				break;
 			case MissionType.getScoreOf:
-				ResultingNumber *= 10;
+                ResultingNumber *= tier * 2;
 				break;
 			case MissionType.takePowerUp:
-				ResultingNumber *= 1;
+                ResultingNumber *= tier * 2;
 				break;
 			case MissionType.takeCollectable:
-				ResultingNumber *= 1;
+                ResultingNumber *= tier * 2;
 				break;
 			default:
-				ResultingNumber *= 1;
+                ResultingNumber *= tier;
 				break;
 		}
 		return inOneGame ? ResultingNumber : (ResultingNumber * 10);
@@ -123,27 +112,27 @@ public class MissionAssigner : MonoBehaviour {
         missions = new MissionModel[] { 
 			//TODO : foreach(PowerUpType powerUp in Enum.GetValues(typeof(PowerUpType))), for enemies, for collectables, etc.
                                              //Killing
-			new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 1, enemyType = EnemyType.General, needToBeCompletedInOneGame = true }, 
-			new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 1, enemyType = EnemyType.Stupid, needToBeCompletedInOneGame = true }, 
-			new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 1, enemyType = EnemyType.Spike, needToBeCompletedInOneGame = true }, 
-			new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 1, enemyType = EnemyType.Tank, needToBeCompletedInOneGame = true }, 
-			new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 1, enemyType = EnemyType.Hawk, needToBeCompletedInOneGame = true }, 
-			new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 1, enemyType = EnemyType.Cannon, needToBeCompletedInOneGame = true },
-			new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 1, enemyType = EnemyType.Stupid, needToBeCompletedInOneGame = false }, 
-			new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 1, enemyType = EnemyType.Spike, needToBeCompletedInOneGame = false }, 
-			new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 1, enemyType = EnemyType.Tank, needToBeCompletedInOneGame = false }, 
-			new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 1, enemyType = EnemyType.Hawk, needToBeCompletedInOneGame = false }, 
-			new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 1, enemyType = EnemyType.Cannon, needToBeCompletedInOneGame = false }, 
-			new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 1, enemyType = EnemyType.Stupid, needToBeCompletedInOneGame = false },
+			new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 5, enemyType = EnemyType.General, needToBeCompletedInOneGame = true, numberOfStars = 1 }, 
+			new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 5, enemyType = EnemyType.Stupid, needToBeCompletedInOneGame = true, numberOfStars = 1 }, 
+			new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 5, enemyType = EnemyType.Spike, needToBeCompletedInOneGame = true, numberOfStars = 1  }, 
+			new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 5, enemyType = EnemyType.Tank, needToBeCompletedInOneGame = true, numberOfStars = 1  }, 
+			new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 5, enemyType = EnemyType.Hawk, needToBeCompletedInOneGame = true , numberOfStars = 1 }, 
+			new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 5, enemyType = EnemyType.Cannon, needToBeCompletedInOneGame = true, numberOfStars = 1  },
+			new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 5, enemyType = EnemyType.Stupid, needToBeCompletedInOneGame = false, numberOfStars = 1  }, 
+			new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 5, enemyType = EnemyType.Spike, needToBeCompletedInOneGame = false, numberOfStars = 1  }, 
+			new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 5, enemyType = EnemyType.Tank, needToBeCompletedInOneGame = false, numberOfStars = 1  }, 
+			new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 5, enemyType = EnemyType.Hawk, needToBeCompletedInOneGame = false , numberOfStars = 1 }, 
+			new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 5, enemyType = EnemyType.Cannon, needToBeCompletedInOneGame = false , numberOfStars = 1 }, 
+			new MissionModel {type = MissionType.killTypeOfEnemy , numberToAchive = 5, enemyType = EnemyType.Stupid, needToBeCompletedInOneGame = false, numberOfStars = 1  },
 			//Killing_End, Starting Survival
-			new MissionModel {type = MissionType.survival , numberToAchive = 1 , needToBeCompletedInOneGame = true},
-			new MissionModel {type = MissionType.survival , numberToAchive = 1 , needToBeCompletedInOneGame = false},
+			new MissionModel {type = MissionType.survival , numberToAchive = 10 , needToBeCompletedInOneGame = true, numberOfStars = 1 },
+			new MissionModel {type = MissionType.survival , numberToAchive = 10 , needToBeCompletedInOneGame = false, numberOfStars = 1 },
 			//Survival_End, Starting Score
-            new MissionModel {type = MissionType.getScoreOf , numberToAchive = 1, needToBeCompletedInOneGame = true},
-			new MissionModel {type = MissionType.getScoreOf , numberToAchive = 1, needToBeCompletedInOneGame = false},
+            new MissionModel {type = MissionType.getScoreOf , numberToAchive = 5, needToBeCompletedInOneGame = true, numberOfStars = 1 },
+			new MissionModel {type = MissionType.getScoreOf , numberToAchive = 5, needToBeCompletedInOneGame = false, numberOfStars = 1 },
 			//Score_End, Starting Collectable
-            new MissionModel {type = MissionType.takeCollectable , numberToAchive = 1, collectableType = CollectableTypes.COIN, needToBeCompletedInOneGame = true},
-            new MissionModel {type = MissionType.takeCollectable , numberToAchive = 1 ,collectableType = CollectableTypes.COIN, needToBeCompletedInOneGame = false},
+            new MissionModel {type = MissionType.takeCollectable , numberToAchive = 1, collectableType = CollectableTypes.COIN, needToBeCompletedInOneGame = true, numberOfStars = 1 },
+            new MissionModel {type = MissionType.takeCollectable , numberToAchive = 1 ,collectableType = CollectableTypes.COIN, needToBeCompletedInOneGame = false, numberOfStars = 1 },
 			//Collectable_End, Starting PowerUp
 			//new MissionModel {type = MissionType.takePowerUp , numberToAchive = 1, powerUpType = PowerUpType.SUPERHIT , needToBeCompletedInOneGame = true},
 			//new MissionModel {type = MissionType.takePowerUp , numberToAchive = 1, powerUpType = PowerUpType.SUPERHIT , needToBeCompletedInOneGame = false},

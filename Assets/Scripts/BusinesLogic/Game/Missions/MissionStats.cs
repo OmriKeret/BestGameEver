@@ -1,15 +1,18 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using System.Linq;
 public class MissionStats : MonoBehaviour {
 
     int tier;
     public string title;
+    public bool[] rankStars;
     MissionModel[] currentMissions;
     MissionAssigner missionAssigner;
     Dictionary<int, string> tierTitle;
+	Dictionary<int, int> tierStars;
     public bool finishedInit = false;
+
 	// Use this for initialization.
 	void OnLevelWasLoaded()
     {
@@ -26,14 +29,24 @@ public class MissionStats : MonoBehaviour {
            missionsFromDisc = MemoryAccess.memoryAccess.LoadMission();
 
           //  var missionsFromDisc = MemoryAccess.memoryAccess.LoadMission();
-           if (missionsFromDisc == null || missionsFromDisc.missions == null)
+           if (missionsFromDisc == null || missionsFromDisc.missions == null) //todo: remove debug comment
 	        {
+                int numberOfStars = 3;
                 tier = 1;
-	            currentMissions = missionAssigner.getNewMissions(tier);
+                tierStars.TryGetValue(tier, out numberOfStars);
+                numberOfStars = numberOfStars == 0 ? 3 : numberOfStars;
+                rankStars = new bool[numberOfStars];
+                initilizeMissions();
+                
 	        }
 	        else
 	        {
-
+                if (missionsFromDisc.rankStars.Length == 0)
+                {
+                    rankStars = new bool[3];
+                } else {
+                	rankStars = missionsFromDisc.rankStars;
+				}
                 currentMissions = new MissionModel[missionsFromDisc.missions.Length];
                 for (int i = 0; i < currentMissions.Length; i++)
                 {
@@ -47,23 +60,49 @@ public class MissionStats : MonoBehaviour {
 
     public void SaveMissionProgression()
     {
-        MemoryAccess.memoryAccess.SaveMissions(new IOMissionModel { tier = tier, missions = currentMissions });
+        MemoryAccess.memoryAccess.SaveMissions(new IOMissionModel { tier = tier, missions = currentMissions, rankStars = rankStars });
     }
     private void initalizeDictionary()
     {
         tierTitle = new Dictionary<int, string>{ //All names here are subject to change
             {1, "Novice"},
-            {2, "Beginner Samurai"},
-            {3, "Amateur Samurai"},
-            {4, "Samurai Apprentice"},
-			{5, "Samurai"},
-            {6, "La Llorona"},
-            {7, "Nijna"},
-            {8, "Chupacabra"},
-			{9, "Iturbide"},
-            {10, "Master of the Heike Clan"},
-            {11, "Samurai Jack!"}
+            {2, "Beginner"},
+            {3, "Learner"},
+            {4, "Amature"},
+			{5, "Padawan"},
+            {6, "Master"},
+            {7, "Ninja"},
+            {8, "Samurai"},
+            {9, "Chupacabra"},
+			{10, "Iturbide"},
+            {11, "Master"},
+            {12, "Jack"},
+            {13, "Superb"},
+            {14, "Superb"},
+            {15, "Superb"},
+            {16, "Superb"},
+            {17, "Superb"}
         };
+
+		tierStars = new Dictionary<int, int>{ //All ranks here are subject to change
+			{1, 3}, //"Novice"
+			{2, 3}, //"Beginner Samurai"
+			{3, 4}, //"Amateur Samurai"
+			{4, 4}, //"Samurai Apprentice"
+			{5, 5}, //"Samurai"
+			{6, 5}, //"La Llorona"
+			{7, 6},
+			{8, 6},
+			{9, 7},
+			{10, 7},
+			{11, 8},
+            {12, 8},
+			{13, 8},
+            {14, 8},
+            {15, 8},
+            {16, 8},
+            {17, 8}
+		};
     }
     public string getTitle() 
     {
@@ -78,12 +117,50 @@ public class MissionStats : MonoBehaviour {
     public void upgradeTier()
     {
         tier++;
+		int numStars;
+		tierStars.TryGetValue (tier, out numStars);
+		rankStars = new bool[numStars];
     }
 
-    public void getNewMissions()
+    private void initilizeMissions()
     {
-        currentMissions = missionAssigner.getNewMissions(tier);
-
+        currentMissions = new MissionModel[3];
+		for (int j = 0; j < currentMissions.Length; j++) {
+			currentMissions[j] = new MissionModel();
+		}
+        List<MissionModel> missionList = currentMissions.Where(e => !e.isFinished).ToList();
+        for (int i = 0; i < currentMissions.Length; i++)
+        {
+            MissionModel mission;
+            do
+            {
+                mission = missionAssigner.getNewMission(1);
+            } while (missionList.Exists(m => m.type == mission.type));
+            currentMissions[i] = mission;
+            missionList.Add(mission);
+        }
+    }
+    public MissionModel[] getNewMissions()
+    {
+        List<MissionModel> missionList = currentMissions.Where(e => !e.isFinished).ToList();
+        for (int i = 0; i < currentMissions.Length; i++)
+        {
+            if (currentMissions[i].isFinished)
+            {
+                MissionModel mission;
+                do
+                {
+                    mission = missionAssigner.getNewMission(tier);
+                    if (tier >= 1 && !missionList.Exists(m => m.numberOfStars == 2))
+                    {
+                        mission.numberOfStars = 2;
+                    }
+                } while (missionList.Exists(m => m.type == mission.type));
+                currentMissions[i] = mission;
+                missionList.Add(mission);
+            }
+        }
+        return currentMissions;
     }
 	// Update is called once per frame
 	void Update () {
@@ -129,12 +206,14 @@ public class MissionStats : MonoBehaviour {
             result[i].currentNumberAchived = currentMissions[i].currentNumberAchived;
             result[i].enemyType = currentMissions[i].enemyType;
             result[i].isFinished = currentMissions[i].isFinished;
+            result[i].numberOfStars = currentMissions[i].numberOfStars;
             result[i].missionText = currentMissions[i].missionText;
             result[i].needToBeCompletedInOneGame = currentMissions[i].needToBeCompletedInOneGame;
             result[i].numberToAchive = currentMissions[i].numberToAchive;
             result[i].powerUpType = currentMissions[i].powerUpType;
             result[i].collectableType = currentMissions[i].collectableType;
             result[i].type = currentMissions[i].type;
+            result[i].isNew = currentMissions[i].isNew;
         }
         return result;
     }
@@ -142,5 +221,44 @@ public class MissionStats : MonoBehaviour {
     internal int getTier()
     {
         return this.tier;
+    }
+
+    internal bool addRankStar()
+    {
+        for (var i = 0; i < rankStars.Length; i++)
+        {
+            if (!rankStars[i])
+            {
+                Debug.Log("adding star number " + i);
+                rankStars[i] = true;
+                return (i == rankStars.Length - 1);
+            }
+        }
+        return false;
+    }
+
+
+    internal void finishedMission(int missionNum)
+    {
+        currentMissions[missionNum].isFinished = true;
+    }
+
+    internal void unMarkMissionAsNew()
+    {
+        foreach (var mission in currentMissions)
+        {
+            mission.isNew = false;
+        }
+    }
+
+    internal int getNextLevelStars()
+    {
+        int numStars;
+        if (tierStars.TryGetValue(tier + 1, out numStars)){
+            return numStars;
+        }
+
+        return rankStars.Length;
+         
     }
 }

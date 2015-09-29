@@ -6,4 +6,5 @@ public class InternalMissionModel {
   public  Text missionText;
   public  Toggle missionToggle;
   public Text missionCount;
+  public Vector3 firstStarPos;
 }

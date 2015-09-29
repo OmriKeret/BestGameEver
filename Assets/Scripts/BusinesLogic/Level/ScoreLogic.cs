@@ -5,7 +5,7 @@ public class ScoreLogic : MonoBehaviour {
     private MissionLogic missionLogic;
     Text scoreText;
     ScoreData scoreDataAccess;
-    public int score = 0;
+    public int kills = 0;
 	// Use this for initialization
 	void Start () {
         scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
@@ -20,25 +20,17 @@ public class ScoreLogic : MonoBehaviour {
         //    scoreToAdd += (int)model.type * 1327;
         //}
         //score += scoreToAdd;
-        score++;
+        kills++;
         var scoreTxt = string.Format(System.Globalization.CultureInfo.InvariantCulture,
-                                 "{0:0,0}", score);
+                                 "{0:0,0}", kills);
         scoreText.text = string.Format("{0}\nKILLS", scoreTxt);
-        missionLogic.gotScoreOf(score);
+        missionLogic.gotScoreOf(kills);
     }
 
-    internal int AddBonusToScoreAfterFinishingMissions()
-    {
-        //debug only - uncomment when finish debuging
-        var bonus = 100000;
-      //  var bonus = missionLogic.getBonusForFinishingAllMission();
-        score += bonus;
-        return bonus;
-    }
 
     internal void saveScoreData()
     {
-        scoreDataAccess.updateHighScore(score);
+        scoreDataAccess.updateHighScore(kills);
     }
 
     public int getHighScore()

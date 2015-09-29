@@ -165,7 +165,7 @@ public class PodiumLogic : MonoBehaviour {
 
     public void downForGood()
     {
-        Debug.Log("Start: " + Time.fixedTime);
+        
         StartCoroutine(BreakWithDelay());
         actionToDoWhenFinisheToBreak = ()=>{Destroy(this.gameObject);};
     }
@@ -173,7 +173,7 @@ public class PodiumLogic : MonoBehaviour {
     IEnumerator BreakWithDelay()
     {
         yield return new WaitForSeconds(0.5f);
-        Debug.Log("End: " + Time.fixedTime);
+
         breakPodium();
     }
 

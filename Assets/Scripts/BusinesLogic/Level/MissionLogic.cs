@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
-using System;
 
 public class MissionLogic : MonoBehaviour {
 
@@ -14,12 +13,13 @@ public class MissionLogic : MonoBehaviour {
   DeathLogic deathLogic; 
   MissionStats missionStats; 
   public Text missionTitle;
-    private EventListener listener;
+  private EventListener listener;
 
+  public GameObject CMStar;
 	// Use this for initialization
 	void Start () {
-        deathLogic = this.gameObject.GetComponent<DeathLogic>();
         listener = EventListener.instance;
+        deathLogic = this.gameObject.GetComponent<DeathLogic>();
         missionStats = GameObject.Find("GameManagerData").GetComponent<MissionStats>();     
 
         enemyKills = new Dictionary<EnemyType, int>	{ 
@@ -44,18 +44,21 @@ public class MissionLogic : MonoBehaviour {
 		MissionsToggleAndText[missionNum].missionText = GameObject.Find("PauseMenu/Mission1/Mission1Label").GetComponent<Text>();
         MissionsToggleAndText[missionNum].missionCount = GameObject.Find("PauseMenu/Mission1/Mission1Count").GetComponent<Text>();
 		MissionsToggleAndText[missionNum].missionToggle = GameObject.Find("PauseMenu/Mission1").GetComponent<Toggle>();
+        MissionsToggleAndText[missionNum].firstStarPos = GameObject.Find("PauseMenu/Mission1/FirstStarPos").transform.position;
         missionNum++;
 
 		MissionsToggleAndText[missionNum].missionText = GameObject.Find("PauseMenu/Mission2/Mission2Label").GetComponent<Text>();
 		MissionsToggleAndText[missionNum].missionToggle = GameObject.Find("PauseMenu/Mission2").GetComponent<Toggle>();
         MissionsToggleAndText[missionNum].missionCount = GameObject.Find("PauseMenu/Mission2/Mission2Count").GetComponent<Text>();
+        MissionsToggleAndText[missionNum].firstStarPos = GameObject.Find("PauseMenu/Mission2/FirstStarPos").transform.position;
         missionNum++;
 
 		MissionsToggleAndText[missionNum].missionText = GameObject.Find("PauseMenu/Mission3/Mission3Label").GetComponent<Text>();
 		MissionsToggleAndText[missionNum].missionToggle = GameObject.Find("PauseMenu/Mission3").GetComponent<Toggle>();
         MissionsToggleAndText[missionNum].missionCount = GameObject.Find("PauseMenu/Mission3/Mission3Count").GetComponent<Text>();
+        MissionsToggleAndText[missionNum].firstStarPos = GameObject.Find("PauseMenu/Mission3/FirstStarPos").transform.position;
         missionTitle = GameObject.Find("PauseMenu/MissionTitle").GetComponent<Text>();
-
+    
 	}
 
     //counting time to timed missions
@@ -97,6 +100,8 @@ public class MissionLogic : MonoBehaviour {
            updateNumberAchived(i, missions[i].currentNumberAchived);
        }
        missionTitle.text = title;
+       initilizeMissiosnData();
+
     }
 
    //helper method to format time text
@@ -201,9 +206,9 @@ public class MissionLogic : MonoBehaviour {
         if (!missions[missionNum].isFinished)
         {
             MissionsToggleAndText[missionNum].missionToggle.isOn = true;
-            Debug.Log("Finished mission");
-            listener.Listener[EventTypes.FinishedMission].Invoke(MissionsToggleAndText[missionNum].missionText.text, PopupType.EndMission);
             missions[missionNum].isFinished = true;
+            listener.Listener[EventTypes.FinishedMission].Invoke(MissionsToggleAndText[missionNum].missionText.text, PopupType.EndMission);
+            missionStats.finishedMission(missionNum);
         }
     }
 
@@ -211,12 +216,11 @@ public class MissionLogic : MonoBehaviour {
     {
         if (missionStats.updateMissionStats(this.missions))
         {
-            deathLogic.switchMissionsOnComplete(missionStats.switchMissions());
+         
         }
         else
         {
-            //no more updates to score
-            deathLogic.updateCurrencyGui();
+
         }
     }
 
@@ -225,15 +229,6 @@ public class MissionLogic : MonoBehaviour {
         return missionStats.getTier();
     }
 
-    internal int getBonusForFinishingAllMission()
-    {
-        var tier = missionStats.getTier();
-        if (tier < 3)
-        {
-            return tier * 1200;
-        }
-         return (int)Mathf.Pow(10,tier);
-    }
 
     internal void saveMissionData()
     {
@@ -256,6 +251,120 @@ public class MissionLogic : MonoBehaviour {
                 {
                     finishedMission(i);
                 }
+            }
+        }
+    }
+
+    /**
+     *  Check if a mission is finished.
+     * */
+    internal bool finishedMission()
+    {
+       foreach (var mission in  missions) 
+       {
+           if (mission.isFinished)
+           {
+               return true;
+           }
+       }
+       return false;
+    }
+
+    internal MissionModel[] getMissions()
+    {
+        return missionStats.getMissions();
+    }
+
+    internal int getFirstMissingStarIndex()
+    {
+        int i = 0;
+        bool[] missionStars = missionStats.rankStars;
+        while (i < missionStars.Length)
+        {
+            if (!missionStars[i])
+            {
+                return i;
+            }
+            i++;
+        }
+        return missionStars.Length;
+    }
+
+    internal string getTierTitle()
+    {
+        return missionStats.getTitle();
+    }
+
+    internal bool[] getRankStars()
+    {
+        return missionStats.rankStars;
+    }
+
+    internal bool addRankStar()
+    {
+        var leveledUp =  missionStats.addRankStar();
+		if (leveledUp) 
+		{
+			missionStats.upgradeTier();
+		}
+		return leveledUp;
+    }
+    public int getCurrentRankCompleteReward()
+    {
+        return 100 + 300 * (getTier());
+    }
+
+	public int getRankCompleteReward ()
+	{
+		return 100 + 300 * (getTier () - 1);
+	}
+
+    public bool didLevelUp()
+    {
+       int i = getFirstMissingStarIndex();
+       int numberOfCurrentLevelStars = getRankStars().Length;
+       int numberToAchive = numberOfCurrentLevelStars - i;
+       foreach (var mission in missions)
+       {
+           if (mission.isFinished)
+           {
+               numberToAchive = numberToAchive - mission.numberOfStars;
+           }
+           if (numberToAchive <= 0)
+           {
+               return true;
+           }
+       }
+       return false;
+    }
+    /**
+     * Gets and sets new missions
+     * */
+    internal MissionModel[] getNewMissions()
+    {
+       return missionStats.getNewMissions();
+
+    }
+
+    internal void unMarkMissionsNew()
+    {
+        missionStats.unMarkMissionAsNew();
+    }
+
+    internal int getNextRankStars()
+    {
+        return missionStats.getNextLevelStars();
+    }
+
+    private void initilizeMissiosnData()
+    {
+        for (int index = 0; index < missions.Length; index++)
+        {
+            Vector3 firstStarPos = MissionsToggleAndText[index].firstStarPos;
+            for (int i = 0; i < missions[index].numberOfStars; i++)
+            {
+                var CMProgressStars = Instantiate(CMStar, firstStarPos + new Vector3(i * 3.2f, 0, 0), Quaternion.identity) as GameObject;
+                CMProgressStars.transform.parent = MissionsToggleAndText[index].missionToggle.transform;
             }
         }
     }

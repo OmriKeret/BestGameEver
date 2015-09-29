@@ -8,6 +8,7 @@ public class PlayerStatsLogic : MonoBehaviour {
     public int HP = 3;
     public int Strength = 1;
     public int combo = 0;
+    public int highestCombo = 0;
     public int dashNum = 5;
     public int dashDist = 5;
     public PowerUpType powerUpModeActive;
@@ -52,9 +53,19 @@ public class PlayerStatsLogic : MonoBehaviour {
 		reWrithCombo ();
     }
 
+
+    public int getHighestCombo()
+    {
+        return highestCombo;
+    }
+
     public void addOneToCombo()
     {
         combo += 1;
+        if (highestCombo < combo)
+        {
+            highestCombo = combo;
+        }
         superPower.changeState(combo);
 		reWrithCombo ();
     }

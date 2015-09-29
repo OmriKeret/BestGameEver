@@ -48,11 +48,11 @@ TagManager:
   - name: Background
     uniqueID: 1223548685
     locked: 0
-  - name: darkShade
-    uniqueID: 1609760803
-    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: darkShade
+    uniqueID: 1609760803
     locked: 0
   - name: UI
     uniqueID: 1747990833
@@ -62,4 +62,10 @@ TagManager:
     locked: 0
   - name: blood
     uniqueID: 2813280549
+    locked: 0
+  - name: New Layer
+    uniqueID: 2923559729
+    locked: 0
+  - name: New Layer
+    uniqueID: 3058654585
     locked: 0

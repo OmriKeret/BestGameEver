@@ -16,6 +16,8 @@ public class PauseLogic : MonoBehaviour {
     TouchInterpeter touch;
     bool touchDisabled;
 
+  
+
     Animator darkScreen;
 	// Use this for initialization
 	void Start () {
@@ -75,5 +77,7 @@ public class PauseLogic : MonoBehaviour {
         audioSource.PlayOneShot(pauseSoundOut);
         
     }
+
+
 
 }

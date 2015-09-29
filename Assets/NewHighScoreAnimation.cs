@@ -12,6 +12,6 @@ public class NewHighScoreAnimation : MonoBehaviour {
 
     public void setFinishedAnimation()
     {
-        deathLogic.moveOldMission(0);
+       
     }
 }
