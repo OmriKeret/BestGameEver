@@ -198,6 +198,7 @@ public class WaveLogic {
 
     public bool IsCombinalbe(WaveLogic i_Wave)
     {
+        return false;//Just for debug
         EnemyLocation first = i_Wave.FirstLocation;
         EnemyLocation last = LastLocation;
 
