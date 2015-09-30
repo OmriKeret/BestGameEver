@@ -149,26 +149,26 @@ public class WaveLogicFactory
             
 		};
         _mediumWaves = new WaveLogic[]{
-			//one spike
-            new WaveLogic(new EnemyType[]{EnemyType.Spike},
-            new EnemyLocation[]{EnemyLocation.TopMid},
-            new int[]{1}),
-            //one spike
-            new WaveLogic(new EnemyType[]{EnemyType.Spike},
-            new EnemyLocation[]{EnemyLocation.MidLeft},
-            new int[]{1}),
-            //one spike
-            new WaveLogic(new EnemyType[]{EnemyType.Spike},
-            new EnemyLocation[]{EnemyLocation.MidRight},
-            new int[]{1}),
-            //2 spike
-            new WaveLogic(new EnemyType[]{EnemyType.Spike,EnemyType.Spike},
-            new EnemyLocation[]{EnemyLocation.TopLeft,EnemyLocation.TopRight},
-            new int[]{1,1}),
-            //2 spike
-            new WaveLogic(new EnemyType[]{EnemyType.Spike,EnemyType.Spike},
-            new EnemyLocation[]{EnemyLocation.BottomLeft,EnemyLocation.BottomRight},
-            new int[]{2}),
+			//Stupid&spike bottom up
+            new WaveLogic(new EnemyType[]{EnemyType.Spike,EnemyType.Stupid,EnemyType.Spike,EnemyType.Stupid},
+            new EnemyLocation[]{EnemyLocation.BottomLeft,EnemyLocation.BottomRight,EnemyLocation.TopRight,EnemyLocation.TopLeft},
+            new int[]{2,2}),
+            //Stupid&spike top down
+            new WaveLogic(new EnemyType[]{EnemyType.Spike,EnemyType.Stupid,EnemyType.Spike,EnemyType.Stupid},
+            new EnemyLocation[]{EnemyLocation.TopRight,EnemyLocation.TopLeft,EnemyLocation.BottomLeft,EnemyLocation.BottomRight},
+            new int[]{2,2}),
+            //Mix triangle
+            new WaveLogic(new EnemyType[]{EnemyType.Tank,EnemyType.Spike,EnemyType.Stupid},
+            new EnemyLocation[]{EnemyLocation.TopMid,EnemyLocation.BottomRight,EnemyLocation.BottomLeft},
+            new int[]{3}),
+            //Mix triangle 2
+            new WaveLogic(new EnemyType[]{EnemyType.Tank,EnemyType.Spike,EnemyType.Stupid},
+            new EnemyLocation[]{EnemyLocation.TopMid,EnemyLocation.BottomLeft,EnemyLocation.BottomRight},
+            new int[]{3}),
+            //2 spike and stupid square
+            new WaveLogic(new EnemyType[]{EnemyType.Spike,EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid,EnemyType.Spike},
+            new EnemyLocation[]{EnemyLocation.MidLeft,EnemyLocation.BottomLeft,EnemyLocation.BottomRight,EnemyLocation.TopLeft,EnemyLocation.TopRight,EnemyLocation.MidRight},
+            new int[]{1,4,1}),
             //trio
             new WaveLogic(new EnemyType[]{EnemyType.Spike,EnemyType.Stupid,EnemyType.Tank},
             new EnemyLocation[]{EnemyLocation.BottomLeft,EnemyLocation.MidRight,EnemyLocation.TopLeft},
@@ -270,7 +270,7 @@ public class WaveLogicFactory
         WaveLogic wave = null;
         //Only Easy for now - Or.M
         //remove the next three lines to return to normal random
-        wave = createEasyWave();
+        wave = createMediumWave();
         podiumMaker.SetupNewWave(wave);
         return wave;
         //Only Easy for now
@@ -312,7 +312,7 @@ public class WaveLogicFactory
         WaveLogic two = type ? createWave(_mediumWaves) : createWave(_easyWaves);
         WaveLogic three = type ? createWave(_easyWaves) : createWave(_mediumWaves);
 
-        WaveLogic merge = one.MergeWaves(two).MergeWaves(three);
+        WaveLogic merge = one.MergeWaves(two).MergeWaves(createWave(_mediumWaves)).MergeWaves(three);
         return merge;
     }
 
