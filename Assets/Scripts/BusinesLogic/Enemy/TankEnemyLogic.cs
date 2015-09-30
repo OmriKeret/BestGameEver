@@ -12,9 +12,14 @@ public class TankEnemyLogic : BasicEnemyLogic {
         _leftBodyPartResouce = Resources.Load("tankL") as GameObject;
         _rightBodyPartResouce = Resources.Load("tankR") as GameObject;
         commet = GetComponentInChildren<CommetLogic>();
-        commet.Orign = transform.position;
         switchSides = true;
 
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+        commet.Orign = transform.position;
     }
 
     public override void initVectorPaths()
@@ -32,8 +37,4 @@ public class TankEnemyLogic : BasicEnemyLogic {
         base.Death();
     }
 
-    protected virtual void Start()
-    {
-        base.Start();
-    }
 }

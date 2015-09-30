@@ -169,18 +169,7 @@ public class WaveLogicFactory
             new WaveLogic(new EnemyType[]{EnemyType.Spike,EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid,EnemyType.Stupid,EnemyType.Spike},
             new EnemyLocation[]{EnemyLocation.MidLeft,EnemyLocation.BottomLeft,EnemyLocation.BottomRight,EnemyLocation.TopLeft,EnemyLocation.TopRight,EnemyLocation.MidRight},
             new int[]{1,4,1}),
-            //trio
-            new WaveLogic(new EnemyType[]{EnemyType.Spike,EnemyType.Stupid,EnemyType.Tank},
-            new EnemyLocation[]{EnemyLocation.BottomLeft,EnemyLocation.MidRight,EnemyLocation.TopLeft},
-            new int[]{1,1,1}),
-            //Mike&Ike
-            new WaveLogic(new EnemyType[]{EnemyType.Spike,EnemyType.Tank},
-            new EnemyLocation[]{EnemyLocation.MidRight,EnemyLocation.MidLeft},
-            new int[]{2}),
-            //2
-            new WaveLogic(new EnemyType[]{EnemyType.Spike,EnemyType.Tank},
-            new EnemyLocation[]{EnemyLocation.BottomRight,EnemyLocation.TopLeft},
-            new int[]{2}),
+            
 		};
         _hardWaves = new WaveLogic[]{
             //Arials
@@ -311,8 +300,9 @@ public class WaveLogicFactory
         WaveLogic one = type ? createWave(_easyWaves) : createWave(_mediumWaves);
         WaveLogic two = type ? createWave(_mediumWaves) : createWave(_easyWaves);
         WaveLogic three = type ? createWave(_easyWaves) : createWave(_mediumWaves);
+        WaveLogic four = type ? createWave(_mediumWaves) : createWave(_easyWaves);
 
-        WaveLogic merge = one.MergeWaves(two).MergeWaves(createWave(_mediumWaves)).MergeWaves(three);
+        WaveLogic merge = one.MergeWaves(two).MergeWaves(three).MergeWaves(four);
         return merge;
     }
 
